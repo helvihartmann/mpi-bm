@@ -1,0 +1,220 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            node0
+  Device name:           mlx4_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4099
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+[node0:08071] 1 more process has sent help message help-mpi-btl-openib.txt / no device params found
+[node0:08071] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+1024000000 Byte are send
+2.131583 seconds for Process 0 to send.
+2.058964 seconds for Process 1 to receive.
+6.866568 seconds for Process 0 to send.
+0.996470 seconds for Process 1 to receive.
+6.424396 seconds for Process 0 to send.
+0.996004 seconds for Process 1 to receive.
+6.421990 seconds for Process 0 to send.
+0.994784 seconds for Process 1 to receive.
+6.424521 seconds for Process 0 to send.
+0.996938 seconds for Process 1 to receive.
+6.422559 seconds for Process 0 to send.
+0.996450 seconds for Process 1 to receive.
+6.423678 seconds for Process 0 to send.
+0.995776 seconds for Process 1 to receive.
+6.421326 seconds for Process 0 to send.
+0.995693 seconds for Process 1 to receive.
+6.424764 seconds for Process 0 to send.
+0.997275 seconds for Process 1 to receive.
+6.422503 seconds for Process 0 to send.
+0.996011 seconds for Process 1 to receive.
+6.424915 seconds for Process 0 to send.
+0.996947 seconds for Process 1 to receive.
+6.423106 seconds for Process 0 to send.
+0.997399 seconds for Process 1 to receive.
+6.422886 seconds for Process 0 to send.
+0.996331 seconds for Process 1 to receive.
+6.422972 seconds for Process 0 to send.
+0.995407 seconds for Process 1 to receive.
+6.425342 seconds for Process 0 to send.
+0.997737 seconds for Process 1 to receive.
+6.425455 seconds for Process 0 to send.
+0.996329 seconds for Process 1 to receive.
+6.423795 seconds for Process 0 to send.
+0.996750 seconds for Process 1 to receive.
+6.423594 seconds for Process 0 to send.
+0.996224 seconds for Process 1 to receive.
+6.423119 seconds for Process 0 to send.
+0.996546 seconds for Process 1 to receive.
+6.424401 seconds for Process 0 to send.
+0.996046 seconds for Process 1 to receive.
+6.423999 seconds for Process 0 to send.
+0.996564 seconds for Process 1 to receive.
+6.422045 seconds for Process 0 to send.
+0.995944 seconds for Process 1 to receive.
+6.424028 seconds for Process 0 to send.
+0.996150 seconds for Process 1 to receive.
+6.423578 seconds for Process 0 to send.
+0.996155 seconds for Process 1 to receive.
+6.424878 seconds for Process 0 to send.
+0.997724 seconds for Process 1 to receive.
+6.424697 seconds for Process 0 to send.
+0.995965 seconds for Process 1 to receive.
+6.421723 seconds for Process 0 to send.
+0.996171 seconds for Process 1 to receive.
+6.343098 seconds for Process 0 to send.
+0.917055 seconds for Process 1 to receive.
+6.425932 seconds for Process 0 to send.
+0.996597 seconds for Process 1 to receive.
+6.422594 seconds for Process 0 to send.
+0.995983 seconds for Process 1 to receive.
+6.418482 seconds for Process 0 to send.
+0.994823 seconds for Process 1 to receive.
+6.423326 seconds for Process 0 to send.
+0.995674 seconds for Process 1 to receive.
+6.425010 seconds for Process 0 to send.
+0.996206 seconds for Process 1 to receive.
+6.424446 seconds for Process 0 to send.
+0.996553 seconds for Process 1 to receive.
+6.424080 seconds for Process 0 to send.
+0.995578 seconds for Process 1 to receive.
+6.422323 seconds for Process 0 to send.
+0.995657 seconds for Process 1 to receive.
+6.425733 seconds for Process 0 to send.
+0.996467 seconds for Process 1 to receive.
+6.424429 seconds for Process 0 to send.
+0.995848 seconds for Process 1 to receive.
+6.425841 seconds for Process 0 to send.
+0.996104 seconds for Process 1 to receive.
+6.424248 seconds for Process 0 to send.
+0.996699 seconds for Process 1 to receive.
+6.422897 seconds for Process 0 to send.
+0.996560 seconds for Process 1 to receive.
+6.422036 seconds for Process 0 to send.
+0.995859 seconds for Process 1 to receive.
+6.421981 seconds for Process 0 to send.
+0.996152 seconds for Process 1 to receive.
+6.423296 seconds for Process 0 to send.
+0.996682 seconds for Process 1 to receive.
+6.420187 seconds for Process 0 to send.
+0.996095 seconds for Process 1 to receive.
+6.423312 seconds for Process 0 to send.
+0.995679 seconds for Process 1 to receive.
+6.422594 seconds for Process 0 to send.
+0.996343 seconds for Process 1 to receive.
+6.423979 seconds for Process 0 to send.
+0.995211 seconds for Process 1 to receive.
+6.421570 seconds for Process 0 to send.
+0.996344 seconds for Process 1 to receive.
+6.423528 seconds for Process 0 to send.
+0.995606 seconds for Process 1 to receive.
+6.424325 seconds for Process 0 to send.
+0.996354 seconds for Process 1 to receive.
+6.423101 seconds for Process 0 to send.
+0.995541 seconds for Process 1 to receive.
+6.426567 seconds for Process 0 to send.
+0.997266 seconds for Process 1 to receive.
+6.423512 seconds for Process 0 to send.
+0.996355 seconds for Process 1 to receive.
+6.424332 seconds for Process 0 to send.
+0.996355 seconds for Process 1 to receive.
+6.425545 seconds for Process 0 to send.
+0.996266 seconds for Process 1 to receive.
+6.424151 seconds for Process 0 to send.
+0.996530 seconds for Process 1 to receive.
+6.422589 seconds for Process 0 to send.
+0.996249 seconds for Process 1 to receive.
+6.420396 seconds for Process 0 to send.
+0.995766 seconds for Process 1 to receive.
+6.407695 seconds for Process 0 to send.
+0.979809 seconds for Process 1 to receive.
+6.423437 seconds for Process 0 to send.
+0.996614 seconds for Process 1 to receive.
+6.422887 seconds for Process 0 to send.
+0.996650 seconds for Process 1 to receive.
+6.421545 seconds for Process 0 to send.
+0.996803 seconds for Process 1 to receive.
+6.424419 seconds for Process 0 to send.
+0.995880 seconds for Process 1 to receive.
+6.426249 seconds for Process 0 to send.
+0.997089 seconds for Process 1 to receive.
+6.425086 seconds for Process 0 to send.
+0.996516 seconds for Process 1 to receive.
+6.425247 seconds for Process 0 to send.
+0.996166 seconds for Process 1 to receive.
+6.422852 seconds for Process 0 to send.
+0.995302 seconds for Process 1 to receive.
+6.422672 seconds for Process 0 to send.
+0.996527 seconds for Process 1 to receive.
+6.422457 seconds for Process 0 to send.
+0.996094 seconds for Process 1 to receive.
+6.422144 seconds for Process 0 to send.
+0.996671 seconds for Process 1 to receive.
+6.423599 seconds for Process 0 to send.
+0.996412 seconds for Process 1 to receive.
+6.425353 seconds for Process 0 to send.
+0.997300 seconds for Process 1 to receive.
+6.424607 seconds for Process 0 to send.
+0.995722 seconds for Process 1 to receive.
+6.425757 seconds for Process 0 to send.
+0.997137 seconds for Process 1 to receive.
+6.423595 seconds for Process 0 to send.
+0.996047 seconds for Process 1 to receive.
+6.425155 seconds for Process 0 to send.
+0.996354 seconds for Process 1 to receive.
+6.425788 seconds for Process 0 to send.
+0.996044 seconds for Process 1 to receive.
+6.424969 seconds for Process 0 to send.
+0.996497 seconds for Process 1 to receive.
+6.426015 seconds for Process 0 to send.
+0.997149 seconds for Process 1 to receive.
+6.423832 seconds for Process 0 to send.
+0.995673 seconds for Process 1 to receive.
+6.421200 seconds for Process 0 to send.
+0.996135 seconds for Process 1 to receive.
+6.424076 seconds for Process 0 to send.
+0.996004 seconds for Process 1 to receive.
+6.419218 seconds for Process 0 to send.
+0.995250 seconds for Process 1 to receive.
+6.424434 seconds for Process 0 to send.
+0.996752 seconds for Process 1 to receive.
+6.422894 seconds for Process 0 to send.
+0.996057 seconds for Process 1 to receive.
+6.424148 seconds for Process 0 to send.
+0.996410 seconds for Process 1 to receive.
+6.423806 seconds for Process 0 to send.
+0.996850 seconds for Process 1 to receive.
+6.423480 seconds for Process 0 to send.
+0.996889 seconds for Process 1 to receive.
+6.422104 seconds for Process 0 to send.
+0.996438 seconds for Process 1 to receive.
+6.424013 seconds for Process 0 to send.
+0.996733 seconds for Process 1 to receive.
+6.421689 seconds for Process 0 to send.
+0.995393 seconds for Process 1 to receive.
+6.423290 seconds for Process 0 to send.
+0.996773 seconds for Process 1 to receive.
+6.422825 seconds for Process 0 to send.
+0.996240 seconds for Process 1 to receive.
+6.422782 seconds for Process 0 to send.
+0.996151 seconds for Process 1 to receive.
+6.421722 seconds for Process 0 to send.
+0.995785 seconds for Process 1 to receive.
+6.424591 seconds for Process 0 to send.
+0.996910 seconds for Process 1 to receive.
+6.425576 seconds for Process 0 to send.
+0.996596 seconds for Process 1 to receive.
+6.422340 seconds for Process 0 to send.
+0 errors were spotted
+0.995678 seconds for Process 1 to receive.
+everything send correctly 
