@@ -6,6 +6,7 @@
 #include "classmpi3.h"
 #include <iostream>
 #include <cstdint>
+#include <time.h>
 using namespace std;
 
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
@@ -20,10 +21,9 @@ designed to send a lot of data between processes even more than 1GB
 
 int main(int argc,char *argv[]){
     int iterations = 10;
-    //int *sray ,*rray;
     int *scounts,*rcounts;
-    size_t ncounts, size, rank;
-    //size_t j, k,l ;
+    size_t ncounts;
+    int size, rank;
     float z;
     double starttime_send, endtime_send, starttime_recv, endtime_recv;
     int length;
@@ -70,16 +70,16 @@ int main(int argc,char *argv[]){
             starttime_send = mpi1.get_mpitime();
             mpi1.performsend(scounts,ncounts,MPI_INT,1,0,MPI_COMM_WORLD);
             endtime_send = mpi1.get_mpitime();
-            printf("%f seconds for Process %ld to send.\n", (endtime_send-starttime_send),rank);
+            printf("%f seconds for Process %d to send.\n", (endtime_send-starttime_send),rank);
         }
         
         //Process 1 receives the data
         else if (rank == 1) {
             starttime_recv = mpi1.get_mpitime();
             mpi1.performrecv(rcounts,ncounts,MPI_INT,0,0,
-                             MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                             MPI_COMM_WORLD,MPI_STATUS_IGNORE); // 2. Argument counts muss int sein
             endtime_recv = mpi1.get_mpitime();
-            printf("%f seconds for Process %ld to receive.\n", (endtime_recv-starttime_recv),rank);
+            printf("%f seconds for Process %d to receive.\n", (endtime_recv-starttime_recv),rank);
             
             //Checking for correct data Transmission
             for(size_t i=0;i<ncounts;i++){
@@ -106,4 +106,8 @@ int main(int argc,char *argv[]){
     mpi1.endmpi();
     delete [] scounts;
     delete [] rcounts;
+    clock_t clk_id = CLOCK_REALTIME;
+    struct timespec tp;
+    double time =clock_gettime(clk_id,&tp);
+    printf("%f\n",time);
 }

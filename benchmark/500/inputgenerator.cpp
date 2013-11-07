@@ -14,7 +14,7 @@ int main(){
     double k,j;
     
     // this loop is for creating the amount of data referred to as k000000Byte
-    for(j=0; j<16;j++){
+    for(j=0; j<12;j++){
         
             // for number of processes that exchange data
             //for(i=2; i<=8; i++){
@@ -39,7 +39,7 @@ int main(){
                 //name = streami.str()+'/'+name; //cuz no xtra folders generated
                 Slurm.open(name.c_str(), ios::out|ios::binary);
                 Slurm<<"#!/bin/bash\n\n#SBATCH -N"<<i<<" -n"<<i;
-                Slurm<<"\n#SBATCH -o 500_"<< k <<"MB.out"  <<"\n#SBATCH -J 500.cpp\n\nmpirun 500 "<< k<< "000000\n\nexit 0";
+                Slurm<<"\n#SBATCH -o 500_"<< k <<"MB.out"  <<"\n#SBATCH -J 500.cpp\n\nmpirun --mca btl_openib_warn_no_device_params_found 0 500 "<< k<< "000000\n\nexit 0";
                 Slurm.close();
            // }//for i
         }// for j,k

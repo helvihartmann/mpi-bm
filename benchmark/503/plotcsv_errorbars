@@ -1,0 +1,15 @@
+#!/usr/local/bin/gnuplot
+
+set output '503rateout_errorbars.pdf'
+set terminal pdf
+set logscale x 2
+set xlabel "Package size [B]"
+set ylabel "Data rate [MB/s]"
+set title 'Data rate MPI send receive'
+#set key at 2048,1e-05
+set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 5 ps 1.2   # --- blue
+set style line 2 lc rgb '#dd181f' lt 1 lw 2 pt 5 ps 1   # --- red
+plot '503rateout.csv' using 1:($2/1000000):($3/1000000) w yerrorbars ls 1 title 'send', \
+    '' using 1:($2/1000000) w lines ls 1 title '',\
+    '503rateout.csv' using 1:($4/1000000):($5/1000000) w yerrorbars ls 2 title 'receive',\
+    '' using 1:($4/1000000) w lines ls 2 title ''

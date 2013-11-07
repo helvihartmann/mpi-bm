@@ -1,5 +1,5 @@
-input_file = open("500_10kb.out",'r')
-output_file = open("500_10kb.csv",'a')
+input_file = open("501_1kB.out",'r')
+output_file = open("501_1kB.csv",'a')
 list_of_lines = []
 for line in input_file:
     list_of_lines.append(str(line.replace("\n","")))

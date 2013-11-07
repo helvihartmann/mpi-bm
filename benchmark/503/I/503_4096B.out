@@ -1,5 +1,5 @@
-16384 Byte are send 156250 times
-0.080000 load average last 15 minutes 
+4.11.2013 - 16:47
+16384 Byte are send 156250 times = 2,560,000,0000.080000
 0.140000 load average last 5 minutes
 0.490000 load average last minute
 CPU time used = 0.000000
@@ -22,4 +22,4 @@ CPU time used = 0.000000
 2.006507 seconds for Process 1 to receive.
 2.007137 seconds for Process 1 to receive.
 
-everything send correctly 
+everything send correctly

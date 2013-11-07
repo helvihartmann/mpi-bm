@@ -125,6 +125,4 @@ int main(int argc,char *argv[]){
             printf("%ld errors were spotted\n",l);
         }
     }
-    
-
 }
