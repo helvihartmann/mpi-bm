@@ -1,0 +1,130 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            node0
+  Device name:           mlx4_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4099
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node2:29584] *** Process received signal ***
+[node2:29584] Signal: Aborted (6)
+[node2:29584] Signal code:  (-6)
+[node2:29584] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fa47e2934a0]
+[node2:29584] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fa47e293425]
+[node2:29584] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7fa47e296b8b]
+[node2:29584] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7fa47e892e2d]
+[node2:29584] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7fa47e890f26]
+[node2:29584] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7fa47e890f53]
+[node2:29584] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7fa47e89117e]
+[node2:29584] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7fa47e89166d]
+[node2:29584] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7fa47e891709]
+[node2:29584] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node2:29584] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fa47e27e76d]
+[node2:29584] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node2:29584] *** End of error message ***
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node0:07923] *** Process received signal ***
+[node0:07923] Signal: Aborted (6)
+[node0:07923] Signal code:  (-6)
+[node0:07923] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7f9a558d64a0]
+[node0:07923] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7f9a558d6425]
+[node0:07923] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7f9a558d9b8b]
+[node0:07923] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7f9a55ed5e2d]
+[node0:07923] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7f9a55ed3f26]
+[node0:07923] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7f9a55ed3f53]
+[node0:07923] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7f9a55ed417e]
+[node0:07923] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7f9a55ed466d]
+[node0:07923] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7f9a55ed4709]
+[node0:07923] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node0:07923] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7f9a558c176d]
+[node0:07923] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node0:07923] *** End of error message ***
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node4:12450] *** Process received signal ***
+[node4:12450] Signal: Aborted (6)
+[node4:12450] Signal code:  (-6)
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node5:12739] *** Process received signal ***
+[node5:12739] Signal: Aborted (6)
+[node5:12739] Signal code:  (-6)
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node1:02513] *** Process received signal ***
+[node4:12450] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fa5e9c014a0]
+[node4:12450] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fa5e9c01425]
+[node4:12450] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7fa5e9c04b8b]
+[node4:12450] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7fa5ea200e2d]
+[node4:12450] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7fa5ea1fef26]
+[node4:12450] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7fa5ea1fef53]
+[node4:12450] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7fa5ea1ff17e]
+[node4:12450] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7fa5ea1ff66d]
+[node4:12450] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7fa5ea1ff709]
+[node4:12450] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node4:12450] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fa5e9bec76d]
+[node4:12450] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node4:12450] *** End of error message ***
+[node1:02513] Signal: Aborted (6)
+[node1:02513] Signal code:  (-6)
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node3:18065] *** Process received signal ***
+[node5:12739] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7ffca4bc54a0]
+[node5:12739] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7ffca4bc5425]
+[node5:12739] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7ffca4bc8b8b]
+[node5:12739] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7ffca51c4e2d]
+[node5:12739] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7ffca51c2f26]
+[node5:12739] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7ffca51c2f53]
+[node5:12739] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7ffca51c317e]
+[node5:12739] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7ffca51c366d]
+[node5:12739] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7ffca51c3709]
+[node5:12739] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node5:12739] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7ffca4bb076d]
+[node5:12739] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node5:12739] *** End of error message ***
+[node3:18065] Signal: Aborted (6)
+[node3:18065] Signal code:  (-6)
+[node1:02513] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fac449af4a0]
+[node1:02513] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fac449af425]
+[node1:02513] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7fac449b2b8b]
+[node1:02513] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7fac44faee2d]
+[node1:02513] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7fac44facf26]
+[node1:02513] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7fac44facf53]
+[node1:02513] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7fac44fad17e]
+[node1:02513] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7fac44fad66d]
+[node1:02513] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7fac44fad709]
+[node1:02513] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node1:02513] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fac4499a76d]
+[node1:02513] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node1:02513] *** End of error message ***
+[node3:18065] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fb2f9d1e4a0]
+[node3:18065] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7fb2f9d1e425]
+[node3:18065] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7fb2f9d21b8b]
+[node3:18065] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7fb2fa31de2d]
+[node3:18065] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7fb2fa31bf26]
+[node3:18065] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7fb2fa31bf53]
+[node3:18065] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7fb2fa31c17e]
+[node3:18065] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7fb2fa31c66d]
+[node3:18065] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7fb2fa31c709]
+[node3:18065] [ 9] /home/hartmann/firstests/402/402(main+0xf0) [0x408ecc]
+[node3:18065] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fb2f9d0976d]
+[node3:18065] [11] /home/hartmann/firstests/402/402() [0x408cf9]
+[node3:18065] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 7923 on node node0 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+[node0:07908] 5 more processes have sent help message help-mpi-btl-openib.txt / no device params found
+[node0:07908] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

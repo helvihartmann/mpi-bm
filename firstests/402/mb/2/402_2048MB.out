@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            node6
+  Device name:           mlx4_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4099
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+[node6:31491] 1 more process has sent help message help-mpi-btl-openib.txt / no device params found
+[node6:31491] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+
+ process 0 on node6 checking for correct data transmisson 
+
+ process 1 on node7 checking for correct data transmisson 
+process 1 running found everything correct 
+12.840211 seconds for Process 1.
+process 0 running found everything correct 
+12.741626 seconds for Process 0.

@@ -1,0 +1,58 @@
+--------------------------------------------------------------------------
+WARNING: No preset parameters were found for the device that Open MPI
+detected:
+
+  Local host:            node2
+  Device name:           mlx4_0
+  Device vendor ID:      0x02c9
+  Device vendor part ID: 4099
+
+Default device parameters will be used, which may result in lower
+performance.  You can edit any of the files specified by the
+btl_openib_device_param_files MCA parameter to set values for your
+device.
+
+NOTE: You can turn off this warning by setting the MCA parameter
+      btl_openib_warn_no_device_params_found to 0.
+--------------------------------------------------------------------------
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node2:05823] *** Process received signal ***
+[node2:05823] Signal: Aborted (6)
+[node2:05823] Signal code:  (-6)
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
+[node3:25942] *** Process received signal ***
+[node3:25942] Signal: Aborted (6)
+[node3:25942] Signal code:  (-6)
+[node2:05823] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7f5d241dc4a0]
+[node2:05823] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7f5d241dc425]
+[node2:05823] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7f5d241dfb8b]
+[node2:05823] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7f5d247dbe2d]
+[node2:05823] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7f5d247d9f26]
+[node2:05823] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7f5d247d9f53]
+[node2:05823] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7f5d247da17e]
+[node2:05823] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7f5d247da66d]
+[node2:05823] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7f5d247da709]
+[node2:05823] [ 9] 500(main+0xe2) [0x408f7e]
+[node2:05823] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7f5d241c776d]
+[node2:05823] [11] 500() [0x408db9]
+[node2:05823] *** End of error message ***
+[node3:25942] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7f9aad4b14a0]
+[node3:25942] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x35) [0x7f9aad4b1425]
+[node3:25942] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x17b) [0x7f9aad4b4b8b]
+[node3:25942] [ 3] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x11d) [0x7f9aadab0e2d]
+[node3:25942] [ 4] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef26) [0x7f9aadaaef26]
+[node3:25942] [ 5] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5ef53) [0x7f9aadaaef53]
+[node3:25942] [ 6] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(+0x5f17e) [0x7f9aadaaf17e]
+[node3:25942] [ 7] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znwm+0x7d) [0x7f9aadaaf66d]
+[node3:25942] [ 8] /usr/lib/x86_64-linux-gnu/libstdc++.so.6(_Znam+0x9) [0x7f9aadaaf709]
+[node3:25942] [ 9] 500(main+0xe2) [0x408f7e]
+[node3:25942] [10] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7f9aad49c76d]
+[node3:25942] [11] 500() [0x408db9]
+[node3:25942] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 5823 on node node2 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+[node2:05816] 1 more process has sent help message help-mpi-btl-openib.txt / no device params found
+[node2:05816] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

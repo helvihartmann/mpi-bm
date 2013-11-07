@@ -1,0 +1,8 @@
+
+ process 1 on node5 checking for correct data transmisson 
+
+ process 0 on node4 checking for correct data transmisson 
+process 1 running found everything correct 
+2.480388 seconds for Process 1.
+process 0 running found everything correct 
+2.521715 seconds for Process 0.

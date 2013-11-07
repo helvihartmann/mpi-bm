@@ -1,0 +1,8 @@
+process 0: 128kB of memory are allocated
+ process 0 on node6 checking for correct data transmisson 
+process 0 running found everything correct 
+0.042079 seconds for Process 0.
+process 1: 128kB of memory are allocated
+ process 1 on node7 checking for correct data transmisson 
+process 1 running found everything correct 
+0.042089 seconds for Process 1.

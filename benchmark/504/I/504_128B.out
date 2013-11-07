@@ -1,0 +1,26 @@
+7.11.2013 - 13:22
+512 Byte are send 5000000 times
+0.070000 load average last 15 minutes 
+0.090000 load average last 5 minutes
+0.340000 load average last minute
+CPU time used = 0.000000
+2.581303 seconds for Process 0 to send.
+2.422012 seconds for Process 0 to send.
+2.422868 seconds for Process 0 to send.
+2.422522 seconds for Process 0 to send.
+2.645463 seconds for Process 0 to send.
+2.422272 seconds for Process 0 to send.
+2.509616 seconds for Process 0 to send.
+2.423358 seconds for Process 0 to send.
+2.548339 seconds for Process 0 to send.
+2.581532 seconds for Process 1 to receive.
+2.422020 seconds for Process 1 to receive.
+2.422870 seconds for Process 1 to receive.
+2.422526 seconds for Process 1 to receive.
+2.645460 seconds for Process 1 to receive.
+2.422273 seconds for Process 1 to receive.
+2.509613 seconds for Process 1 to receive.
+2.423359 seconds for Process 1 to receive.
+2.548338 seconds for Process 1 to receive.
+
+everything send correctly 
