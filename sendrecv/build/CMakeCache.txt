@@ -157,6 +157,9 @@ sendrecv_BINARY_DIR:STATIC=/home/hartmann/benchmark/sendrecv/build
 //Value Computed by CMake
 sendrecv_SOURCE_DIR:STATIC=/home/hartmann/benchmark/sendrecv
 
+//Dependencies for target
+senrecv_LIB_DEPENDS:STATIC=
+
 
 ########################
 # INTERNAL cache entries

@@ -24,7 +24,6 @@ public:
     
     long double getrate(double mean,size_t iterations2, size_t packagesize_temp, size_t totaldatasent){
         rate = totaldatasent/mean;
-        std::cout << totaldatasent;
         return rate;
     }
 

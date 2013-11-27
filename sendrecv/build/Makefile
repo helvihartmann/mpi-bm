@@ -111,12 +111,26 @@ sendrecv/fast:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/build
 .PHONY : sendrecv/fast
 
+#=============================================================================
+# Target rules for targets named senrecv
+
+# Build rule for target.
+senrecv: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 senrecv
+.PHONY : senrecv
+
+# fast build rule for target.
+senrecv/fast:
+	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/build
+.PHONY : senrecv/fast
+
 sendrecv.o: sendrecv.cpp.o
 .PHONY : sendrecv.o
 
 # target to build an object file
 sendrecv.cpp.o:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.o
+	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/sendrecv.cpp.o
 .PHONY : sendrecv.cpp.o
 
 sendrecv.i: sendrecv.cpp.i
@@ -125,6 +139,7 @@ sendrecv.i: sendrecv.cpp.i
 # target to preprocess a source file
 sendrecv.cpp.i:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.i
+	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/sendrecv.cpp.i
 .PHONY : sendrecv.cpp.i
 
 sendrecv.s: sendrecv.cpp.s
@@ -133,6 +148,7 @@ sendrecv.s: sendrecv.cpp.s
 # target to generate assembly for a file
 sendrecv.cpp.s:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.s
+	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/sendrecv.cpp.s
 .PHONY : sendrecv.cpp.s
 
 # Help Target
@@ -144,6 +160,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sendrecv"
+	@echo "... senrecv"
 	@echo "... sendrecv.o"
 	@echo "... sendrecv.i"
 	@echo "... sendrecv.s"

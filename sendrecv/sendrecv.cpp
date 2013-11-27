@@ -41,7 +41,6 @@ int main(int argc,char *argv[]){
     
     for(size_t p=ncounts; p<cutoff;p=p*2){
         int m=0;
-        //cout<<"jez mache ich das schon zum" << m++ <<". mal;   " << p << " = Packetgröße;  " << "Prozess" << rank << " von" <<size<<" on"<< name<<" \n";
         int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[iterations], sendtime[iterations];
@@ -69,6 +68,7 @@ int main(int argc,char *argv[]){
                 }
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
+                //cout << sendtime[m];
              }
             
             //Process 1 receives the data

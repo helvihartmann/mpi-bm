@@ -8,3 +8,12 @@ set(CMAKE_CXX_COMPILER mpic++)
 add_definitions(-std=c++11)
 #This tells CMake to do executable
 add_executable(sendrecv sendrecv.cpp)
+
+#include headers from this folder
+include_directories(${UTIL_SOURCE_DIR}/include)
+
+# source files
+set(MEMALLOC_SOURCES "sendrecv.cpp")
+
+# Build Library
+add_library(senrecv STATIC ${MEMALLOC_SOURCES})

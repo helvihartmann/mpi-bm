@@ -1,3 +1,6 @@
+#ifndef BUFFEROPERATIONS_H
+#define BUFFEROPERATIONS_H
+
 #include "mpi.h"
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
  14.11.2013
@@ -14,53 +17,22 @@ private:
     Mpi mpi1;
 public:
     
-    void setPackagesizeTmp(size_t p){
-        packagesize_temp = p;
-    }
+    void setPackagesizeTmp(size_t);
     
-    void setIterations2(size_t iterations2){
-        timepackageissend = iterations2;
-    }
+    void setIterations2(size_t);
     
-    void allocateBuffer(){
-        scounts= new int [packagesize_temp];
-        rcounts= new int [packagesize_temp];
-    }
+    void allocateBuffer();
     
-    void initalizeBuffer(){
-        for(size_t i=0; i<packagesize_temp; i++){
-            scounts[i]=1;
-
-        }
-    }
+    void initalizeBuffer();
     
-    void sendBuffer(){
-        for(int j=0; j<timepackageissend; j++){
-            //std::cout << "scounts  "<< *scounts<<"\n";
-            mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD);
-        }
-    }
+    void sendBuffer();
     
-    void recvBuffer(){
-        for(int j=0; j<timepackageissend; j++){
-            mpi1.performrecv(rcounts,packagesize_temp,MPI_INT,0,j,
-                             MPI_COMM_WORLD,MPI_STATUS_IGNORE);
-        }
-        //std::cout << "rcounts  "<< *rcounts<<"\n";
-    }
+    void recvBuffer();
     
-    void checkBuffer(size_t *everythingcorrect_check){
-        //std::cout << "rcounts oben "<< *rcounts<<"\n \n \n";
-        for(size_t i=0;i<packagesize_temp;i++){
-            if(rcounts[i]!=1){
-                everythingcorrect_check++;
-            }
-        }
-    }
+    void checkBuffer(size_t *everythingcorrect_check);
     
-    void freeBuffer(){
-        delete [] scounts;
-        delete [] rcounts;
-    }
+    void freeBuffer();
     
 };
+
+#endif BUFFEROPERATIONS_H
