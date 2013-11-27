@@ -100,14 +100,16 @@ int main(int argc,char *argv[]){
                 mpi1.performrecv(recvtime,iterations,MPI_DOUBLE,1,iterations2+1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                 
                 /*--------------calculate all needed parameters--------------------- */
-                
+                size_t totaldatasent = data.getTotalDataSent();
+
                 Bandwidthcalc calc;
                 double send_mean = calc.getmean(sendtime, iterations);
-                double send_var = calc.getvar(sendtime, iterations, send_mean);
                 double recv_mean = calc.getmean(recvtime, iterations);
+                long double send_rate = calc.getrate(send_mean,iterations2, p, totaldatasent);
+                long double receive_rate = calc.getrate(recv_mean,iterations2, p, totaldatasent);
+                double send_var = calc.getvar(sendtime, iterations, send_mean);
                 double recv_var = calc.getvar(recvtime, iterations, send_mean);
-                long double send_rate = calc.getrate(send_mean,iterations2, p);
-                long double receive_rate = calc.getrate(recv_mean,iterations2, p);
+
                 
                 // systemload
                 int nelem=3;

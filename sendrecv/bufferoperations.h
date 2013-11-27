@@ -57,7 +57,6 @@ public:
             }
         }
     }
-
     
     void freeBuffer(){
         delete [] scounts;

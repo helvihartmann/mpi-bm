@@ -73,7 +73,7 @@ int main(int argc,char *argv[]){
             //Information about sent data amount
             if(m==1){
                 timestemp();
-                printf("%ld Byte are send %d times\n",ncounts*sizeof(int),iterations2);
+                printf("%ld Byte are send \n%d times\n",ncounts*sizeof(int),iterations2);
             }
             
             // time measure sending process

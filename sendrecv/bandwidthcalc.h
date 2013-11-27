@@ -22,8 +22,7 @@ public:
         return mean;
     }
     
-    long double getrate(double mean,size_t iterations2, size_t packagesize_temp){
-        size_t totaldatasent = iterations2*packagesize_temp;
+    long double getrate(double mean,size_t iterations2, size_t packagesize_temp, size_t totaldatasent){
         rate = totaldatasent/mean;
         return rate;
     }
@@ -39,6 +38,4 @@ public:
         varianz = sqrt(varianz_tmp)/m;
         return varianz;
     }
-
-    
 };
