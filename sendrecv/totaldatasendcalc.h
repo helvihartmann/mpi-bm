@@ -1,6 +1,8 @@
-//#include <cstdlib>
-#include <cstddef>
+#ifndef TOTAL_DATA
+#define TOTAL_DATA
 
+#include <cstddef>
+#include <cstdlib>
 /* pfad
  14.11.2013
 */
@@ -28,3 +30,4 @@ public:
     size_t getTotalDataSent();
     
 };
+#endif

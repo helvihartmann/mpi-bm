@@ -1,3 +1,6 @@
+#ifndef PRINT
+#define PRINT
+
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -18,3 +21,4 @@ public:
     void printbandwidth(size_t, size_t, double , long double , double , long double , double , double*);
     
 };
+#endif

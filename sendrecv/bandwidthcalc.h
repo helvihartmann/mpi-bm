@@ -1,5 +1,5 @@
-//#include <stdio.h>
-//#include <cmath>
+#ifndef BANDWIDTH
+#define BANDWIDTH
 #include <cstddef>
 
 /* ~pfad
@@ -19,3 +19,4 @@ public:
 
     double getvar(double*, int, double);
 };
+#endif

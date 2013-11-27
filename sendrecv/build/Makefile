@@ -159,6 +159,30 @@ bufferoperations.cpp.s:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
+classmpi3.o: classmpi3.cpp.o
+.PHONY : classmpi3.o
+
+# target to build an object file
+classmpi3.cpp.o:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.o
+.PHONY : classmpi3.cpp.o
+
+classmpi3.i: classmpi3.cpp.i
+.PHONY : classmpi3.i
+
+# target to preprocess a source file
+classmpi3.cpp.i:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.i
+.PHONY : classmpi3.cpp.i
+
+classmpi3.s: classmpi3.cpp.s
+.PHONY : classmpi3.s
+
+# target to generate assembly for a file
+classmpi3.cpp.s:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.s
+.PHONY : classmpi3.cpp.s
+
 print.o: print.cpp.o
 .PHONY : print.o
 
@@ -246,6 +270,9 @@ help:
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"
+	@echo "... classmpi3.o"
+	@echo "... classmpi3.i"
+	@echo "... classmpi3.s"
 	@echo "... print.o"
 	@echo "... print.i"
 	@echo "... print.s"
