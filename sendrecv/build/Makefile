@@ -159,6 +159,30 @@ bufferoperations.cpp.s:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
+print.o: print.cpp.o
+.PHONY : print.o
+
+# target to build an object file
+print.cpp.o:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.o
+.PHONY : print.cpp.o
+
+print.i: print.cpp.i
+.PHONY : print.i
+
+# target to preprocess a source file
+print.cpp.i:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.i
+.PHONY : print.cpp.i
+
+print.s: print.cpp.s
+.PHONY : print.s
+
+# target to generate assembly for a file
+print.cpp.s:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.s
+.PHONY : print.cpp.s
+
 sendrecv.o: sendrecv.cpp.o
 .PHONY : sendrecv.o
 
@@ -222,6 +246,9 @@ help:
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"
+	@echo "... print.o"
+	@echo "... print.i"
+	@echo "... print.s"
 	@echo "... sendrecv.o"
 	@echo "... sendrecv.i"
 	@echo "... sendrecv.s"

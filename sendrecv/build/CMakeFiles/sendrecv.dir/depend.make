@@ -7,6 +7,9 @@ CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o: ../bandwidthcalc.h
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.cpp
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.h
 
+CMakeFiles/sendrecv.dir/print.cpp.o: ../print.cpp
+CMakeFiles/sendrecv.dir/print.cpp.o: ../print.h
+
 CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../bandwidthcalc.h
 CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../bufferoperations.h
 CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../classmpi3.h
