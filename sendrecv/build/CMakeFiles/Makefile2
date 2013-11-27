@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/hartmann/benchmark/sendrecv/build
 CMakeFiles/sendrecv.dir/all:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/depend
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles  1 2
 	@echo "Built target sendrecv"
 .PHONY : CMakeFiles/sendrecv.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/sendrecv.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sendrecv.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sendrecv.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 0
 .PHONY : CMakeFiles/sendrecv.dir/rule
@@ -85,41 +85,6 @@ CMakeFiles/sendrecv.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/sendrecv.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/senrecv.dir
-
-# All Build rule for target.
-CMakeFiles/senrecv.dir/all:
-	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/depend
-	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles  2
-	@echo "Built target senrecv"
-.PHONY : CMakeFiles/senrecv.dir/all
-
-# Include target in all.
-all: CMakeFiles/senrecv.dir/all
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/senrecv.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/senrecv.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 0
-.PHONY : CMakeFiles/senrecv.dir/rule
-
-# Convenience name for target.
-senrecv: CMakeFiles/senrecv.dir/rule
-.PHONY : senrecv
-
-# clean rule for target.
-CMakeFiles/senrecv.dir/clean:
-	$(MAKE) -f CMakeFiles/senrecv.dir/build.make CMakeFiles/senrecv.dir/clean
-.PHONY : CMakeFiles/senrecv.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/senrecv.dir/clean
 .PHONY : clean
 
 #=============================================================================

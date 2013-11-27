@@ -4,6 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
+  "/home/hartmann/benchmark/sendrecv/bufferoperations.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/sendrecv.dir/bufferoperations.cpp.o"
   "/home/hartmann/benchmark/sendrecv/sendrecv.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/sendrecv.dir/sendrecv.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")

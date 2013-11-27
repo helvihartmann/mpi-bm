@@ -9,8 +9,8 @@
 /home/hartmann/benchmark/sendrecv/bandwidthcalc.h
 
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
-mpi.h
-/home/hartmann/benchmark/sendrecv/mpi.h
+classmpi3.h
+/home/hartmann/benchmark/sendrecv/classmpi3.h
 
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 mpi.h

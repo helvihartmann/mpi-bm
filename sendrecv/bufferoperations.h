@@ -1,7 +1,7 @@
 #ifndef BUFFEROPERATIONS_H
 #define BUFFEROPERATIONS_H
 
-#include "mpi.h"
+#include "classmpi3.h"
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
  14.11.2013
 class Mpi contains all MPi related functions
@@ -35,4 +35,4 @@ public:
     
 };
 
-#endif BUFFEROPERATIONS_H
+#endif /*BUFFEROPERATIONS_H*/

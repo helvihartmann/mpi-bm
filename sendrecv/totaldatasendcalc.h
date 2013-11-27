@@ -14,43 +14,16 @@ private:
     size_t packagesize_temp;
 public:
     
-    void setPackagesizeTmp(size_t p){
-        packagesize_temp = p;
-    }
+    void setPackagesizeTmp(size_t p);
     
-    size_t getpackagesize(int &argc, char **argv){
-        size_t ncounts;
-        if (argc > 0){
-            ncounts = atoll(argv[1]);
-        }
-        else{
-            ncounts = 128;
-        }
-        return ncounts;
-    }
+    size_t getpackagesize(int &argc, char **argv);
         
-    size_t getcutoff(int &argc, char **argv){
-        size_t ncounts;
-        if (argc > 1){
-            cutoff = atoll(argv[2]);
-        }
-        else{
-            cutoff = 8000000;
-        }
-        return cutoff;
-    }
+    size_t getcutoff(int &argc, char **argv);
 
 /* calculate the number of sending the package to have process occur in seconds regime
- sending 128 5millions time took a reasonable time, thats where the numbers in the calculation come from*/
-    size_t getiterations2(){
-        iterations2 = empiricalfactor/packagesize_temp;
-        return iterations2;
-    }
+ sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/
+    size_t getiterations2();
     
-    size_t getTotalDataSent(){
-        size_t totalDataSent = iterations2*packagesize_temp*sizeof(int);
-        //std::cout<<"totalData: "<< totalDataSent <<" "<< iterations2<<" "<<packagesize_temp<<"\n";
-        return totalDataSent;
-    }
+    size_t getTotalDataSent();
     
 };

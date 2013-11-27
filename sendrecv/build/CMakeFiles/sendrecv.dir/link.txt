@@ -1,1 +1,1 @@
-mpic++       CMakeFiles/sendrecv.dir/sendrecv.cpp.o  -o sendrecv -rdynamic 
+mpic++       CMakeFiles/sendrecv.dir/sendrecv.cpp.o CMakeFiles/sendrecv.dir/bufferoperations.cpp.o  -o sendrecv -rdynamic 
