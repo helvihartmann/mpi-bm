@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1
+#SBATCH -o sendrecv.out
+#SBATCH --job-name=simplesendreceive
+
+
+mpirun --mca btl_openib_warn_no_device_params_found 0 build/sendrecv 2048 8000
+
+exit 0
