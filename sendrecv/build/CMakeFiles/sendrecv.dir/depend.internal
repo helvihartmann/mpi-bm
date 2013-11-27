@@ -11,3 +11,5 @@ CMakeFiles/sendrecv.dir/sendrecv.cpp.o
  /home/hartmann/benchmark/sendrecv/print.h
  /home/hartmann/benchmark/sendrecv/sendrecv.cpp
  /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
+ /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp

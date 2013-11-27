@@ -10,5 +10,5 @@ set(CMAKE_CXX_COMPILER mpic++)
 #Sends the -std=c99 flag to the gcc compiler
 add_definitions(-std=c++11)
 #This tells CMake to do executable
-add_executable(sendrecv sendrecv.cpp bufferoperations.cpp)
+add_executable(sendrecv sendrecv.cpp bufferoperations.cpp totaldatasendcalc.cpp)
 

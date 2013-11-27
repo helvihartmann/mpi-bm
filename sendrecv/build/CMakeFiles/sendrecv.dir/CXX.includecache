@@ -49,4 +49,8 @@ bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
 
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
+cstdlib
+-
+cstddef
+-
 

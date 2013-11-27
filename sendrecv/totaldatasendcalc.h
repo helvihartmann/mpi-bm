@@ -1,4 +1,5 @@
-//#include <stdlib.h>
+#include <cstdlib>
+#include <cstddef>
 
 /* pfad
  14.11.2013
@@ -14,11 +15,11 @@ private:
     size_t packagesize_temp;
 public:
     
-    void setPackagesizeTmp(size_t p);
+    void setPackagesizeTmp(size_t);
     
-    size_t getpackagesize(int &argc, char **argv);
+    size_t getpackagesize(int&, char**);
         
-    size_t getcutoff(int &argc, char **argv);
+    size_t getcutoff(int&, char**);
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/

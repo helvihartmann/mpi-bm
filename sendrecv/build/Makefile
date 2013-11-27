@@ -159,6 +159,30 @@ sendrecv.cpp.s:
 	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.s
 .PHONY : sendrecv.cpp.s
 
+totaldatasendcalc.o: totaldatasendcalc.cpp.o
+.PHONY : totaldatasendcalc.o
+
+# target to build an object file
+totaldatasendcalc.cpp.o:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
+.PHONY : totaldatasendcalc.cpp.o
+
+totaldatasendcalc.i: totaldatasendcalc.cpp.i
+.PHONY : totaldatasendcalc.i
+
+# target to preprocess a source file
+totaldatasendcalc.cpp.i:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.i
+.PHONY : totaldatasendcalc.cpp.i
+
+totaldatasendcalc.s: totaldatasendcalc.cpp.s
+.PHONY : totaldatasendcalc.s
+
+# target to generate assembly for a file
+totaldatasendcalc.cpp.s:
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.s
+.PHONY : totaldatasendcalc.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -174,6 +198,9 @@ help:
 	@echo "... sendrecv.o"
 	@echo "... sendrecv.i"
 	@echo "... sendrecv.s"
+	@echo "... totaldatasendcalc.o"
+	@echo "... totaldatasendcalc.i"
+	@echo "... totaldatasendcalc.s"
 .PHONY : help
 
 

@@ -95,16 +95,41 @@ CMakeFiles/sendrecv.dir/bufferoperations.cpp.o.provides: CMakeFiles/sendrecv.dir
 
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o.provides.build: CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
 
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o: CMakeFiles/sendrecv.dir/flags.make
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o: ../totaldatasendcalc.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o"
+	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o -c /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
+
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.i"
+	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp > CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.i
+
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.s"
+	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp -o CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.s
+
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.requires:
+.PHONY : CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.requires
+
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.provides: CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.provides.build
+.PHONY : CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.provides
+
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.provides.build: CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
+
 # Object files for target sendrecv
 sendrecv_OBJECTS = \
 "CMakeFiles/sendrecv.dir/sendrecv.cpp.o" \
-"CMakeFiles/sendrecv.dir/bufferoperations.cpp.o"
+"CMakeFiles/sendrecv.dir/bufferoperations.cpp.o" \
+"CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o"
 
 # External object files for target sendrecv
 sendrecv_EXTERNAL_OBJECTS =
 
 sendrecv: CMakeFiles/sendrecv.dir/sendrecv.cpp.o
 sendrecv: CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
+sendrecv: CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
 sendrecv: CMakeFiles/sendrecv.dir/build.make
 sendrecv: CMakeFiles/sendrecv.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable sendrecv"
@@ -116,6 +141,7 @@ CMakeFiles/sendrecv.dir/build: sendrecv
 
 CMakeFiles/sendrecv.dir/requires: CMakeFiles/sendrecv.dir/sendrecv.cpp.o.requires
 CMakeFiles/sendrecv.dir/requires: CMakeFiles/sendrecv.dir/bufferoperations.cpp.o.requires
+CMakeFiles/sendrecv.dir/requires: CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o.requires
 .PHONY : CMakeFiles/sendrecv.dir/requires
 
 CMakeFiles/sendrecv.dir/clean:

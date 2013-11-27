@@ -1,6 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/sendrecv.dir/sendrecv.cpp.o"
   "CMakeFiles/sendrecv.dir/bufferoperations.cpp.o"
+  "CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o"
   "sendrecv.pdb"
   "sendrecv"
 )

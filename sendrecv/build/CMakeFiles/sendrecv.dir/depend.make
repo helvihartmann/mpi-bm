@@ -11,3 +11,5 @@ CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../print.h
 CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../sendrecv.cpp
 CMakeFiles/sendrecv.dir/sendrecv.cpp.o: ../totaldatasendcalc.h
 
+CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o: ../totaldatasendcalc.cpp
+
