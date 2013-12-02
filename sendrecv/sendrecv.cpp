@@ -104,13 +104,15 @@ int main(int argc,char *argv[]){
                 /*--------------calculate all needed parameters--------------------- */
                 size_t totaldatasent = data.getTotalDataSent();
 
-                Bandwidthcalc calc;
-                double send_mean = calc.getmean(sendtime, iterations);
-                double recv_mean = calc.getmean(recvtime, iterations);
-                long double send_rate = calc.getrate(send_mean,iterations2, p, totaldatasent);
-                long double receive_rate = calc.getrate(recv_mean,iterations2, p, totaldatasent);
-                double send_var = calc.getvar(sendtime, iterations, send_mean);
-                double recv_var = calc.getvar(recvtime, iterations, send_mean);
+                Bandwidthcalc send(sendtime,iterations), recv(recvtime, iterations);
+                
+                double send_mean = send.getmean();
+                long double send_rate = send.getrate(iterations2, p, totaldatasent);
+                double send_var = send.getvar();
+
+                double recv_mean = recv.getmean();
+                long double receive_rate = recv.getrate(iterations2, p, totaldatasent);
+                double recv_var = recv.getvar();
 
                 
                 // systemload

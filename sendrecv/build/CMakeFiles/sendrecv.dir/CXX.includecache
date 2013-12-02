@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp
+cmath
+-
+bandwidthcalc.h
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.h
+
 /home/hartmann/benchmark/sendrecv/bandwidthcalc.h
 cstddef
 -
@@ -51,10 +57,6 @@ totaldatasendcalc.h
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
-
-/home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
-totaldatasendcalc.h
-/home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 cstddef

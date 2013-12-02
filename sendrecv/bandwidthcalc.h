@@ -11,12 +11,16 @@ private:
     double mean;
     double varianz;
     long double rate;
+    double* time;
+    int iterations;
     
 public:
-    double getmean(double*, int);
+    Bandwidthcalc(double*, int);
     
-    long double getrate(double,size_t, size_t, size_t);
+    double getmean();
+    
+    long double getrate(size_t, size_t, size_t);
 
-    double getvar(double*, int, double);
+    double getvar();
 };
 #endif
