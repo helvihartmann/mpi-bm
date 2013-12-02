@@ -1,0 +1,19 @@
+# Prozess 0 von 2 on node0 
+# Prozess 1 von 2 on node1 
+# sendmode = 3 1 Send, 2 Ssend, 3 Bsend#2.12.2013 - 11:12
+# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
+5000000 512 2.288833 1118474087.854389 0.022337 1118469136.329212 0.022337 - 0.340000 0.090000 0.070000 
+2500000 1024 198.815358 12876268.826174 0.132291 12876264.854706 0.137676 - 1.000000 0.990000 0.890000 
+1250000 2048 55.226668 46354417.216268 0.106730 46354352.858968 0.106674 - 1.000000 0.990000 0.940000 
+625000 4096 50.181355 51014963.650137 2.427092 51014914.665354 2.427107 - 1.000000 0.990000 0.950000 
+312500 8192 10.753575 238060375.138252 0.149431 238058515.692090 0.158526 - 1.060000 1.000000 0.960000 
+[node0:9403] *** An error occurred in MPI_Bsend
+[node0:9403] *** on communicator MPI_COMM_WORLD
+[node0:9403] *** MPI_ERR_BUFFER: invalid buffer pointer
+[node0:9403] *** MPI_ERRORS_ARE_FATAL (your MPI job will now abort)
+--------------------------------------------------------------------------
+mpirun has exited due to process rank 0 with PID 9403 on
+node node0 exiting without calling "finalize". This may
+have caused other processes in the application to be
+terminated by signals sent by mpirun (as reported here).
+--------------------------------------------------------------------------

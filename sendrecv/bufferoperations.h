@@ -25,11 +25,11 @@ public:
     
     void initalizeBuffer();
     
-    void sendBuffer();
+    void sendBuffer(int const);
     
     void recvBuffer();
     
-    void checkBuffer(size_t *everythingcorrect_check);
+    void checkBuffer(size_t*);
     
     void freeBuffer();
     

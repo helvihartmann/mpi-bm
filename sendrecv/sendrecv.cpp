@@ -20,7 +20,6 @@ designed to send a lot of data between processes as specified in console
 
 int main(int argc,char *argv[]){
     /*--------------------------------------start MPI-----------------------------*/
-    //cout<<"\n hallo \n";
     int size, rank;
     int length;
     char name[MPI_MAX_PROCESSOR_NAME];
@@ -36,10 +35,13 @@ int main(int argc,char *argv[]){
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
     
-    size_t ncounts = data.getpackagesize(argc,argv);
+    int const sendmode = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
+    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend";
+
+    size_t startPackageSize = data.getStartPackageSize(argc,argv);
     size_t cutoff = data.getcutoff(argc, argv);
     
-    for(size_t p=ncounts; p<cutoff;p=p*2){
+    for(size_t p=startPackageSize; p<cutoff;p=p*2){
         int m=0;
         int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
@@ -64,7 +66,7 @@ int main(int argc,char *argv[]){
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
                 for(int j=0; j<iterations2; j++){
-                    bufferoperations.sendBuffer();
+                    bufferoperations.sendBuffer(sendmode);
                 }
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
@@ -91,7 +93,7 @@ int main(int argc,char *argv[]){
         
         // send everything to process 0 to do the output
         if (rank == 1){
-            mpi1.performsend(recvtime,iterations,MPI_DOUBLE,0,iterations2+1,MPI_COMM_WORLD);
+            mpi1.performsend(recvtime,iterations,MPI_DOUBLE,0,iterations2+1,MPI_COMM_WORLD, sendmode);
         }
         if (rank == 0) {
 
@@ -119,7 +121,7 @@ int main(int argc,char *argv[]){
                 /*-----------------------------print-- ------------------------------*/
                 
                 // Header
-                if(p==ncounts){
+                if(p==startPackageSize){
                     out.printtimestemp();
                     out.printheader();
                 }

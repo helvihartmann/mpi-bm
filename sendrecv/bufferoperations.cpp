@@ -24,10 +24,10 @@ void Bufferoperations::initalizeBuffer(){
     }
 }
 
-void Bufferoperations::sendBuffer(){
+void Bufferoperations::sendBuffer(int const sendmode){
     for(int j=0; j<timepackageissend; j++){
         //std::cout << "scounts  "<< *scounts<<"\n";
-        mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD);
+        mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
     }
 }
 
