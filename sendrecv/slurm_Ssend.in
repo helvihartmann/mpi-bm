@@ -2,7 +2,7 @@
 
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
-#SBATCH -o Bsend.out
+#SBATCH -o Ssend3.out
 #SBATCH --job-name=simplesendreceive
 
 

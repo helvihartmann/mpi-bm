@@ -20,8 +20,7 @@ designed to send a lot of data between processes as specified in console
 
 int main(int argc,char *argv[]){
     /*--------------------------------------start MPI-----------------------------*/
-    int size, rank;
-    int length;
+    int size, rank, length;
     char name[MPI_MAX_PROCESSOR_NAME];
     Mpi mpi1;
     mpi1.init_it(&argc,&argv);
@@ -36,7 +35,7 @@ int main(int argc,char *argv[]){
     Totaldatasendcalc data;
     
     int const sendmode = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
-    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend";
+    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend \n";
 
     size_t startPackageSize = data.getStartPackageSize(argc,argv);
     size_t cutoff = data.getcutoff(argc, argv);
@@ -54,7 +53,6 @@ int main(int argc,char *argv[]){
         
         data.setPackagesizeTmp(p);
         size_t iterations2 = data.getiterations2();
-        //cout<<"ITERATIONS2  "<<iterations2<<"\n";
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<iterations; m++){
             
