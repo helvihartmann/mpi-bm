@@ -8,6 +8,7 @@ CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.cpp
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.h
 
 CMakeFiles/sendrecv.dir/classmpi3.cpp.o: ../classmpi3.cpp
+CMakeFiles/sendrecv.dir/classmpi3.cpp.o: ../classmpi3.h
 
 CMakeFiles/sendrecv.dir/print.cpp.o: ../print.cpp
 CMakeFiles/sendrecv.dir/print.cpp.o: ../print.h

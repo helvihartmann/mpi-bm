@@ -9,6 +9,7 @@ CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
  /home/hartmann/benchmark/sendrecv/bufferoperations.h
 CMakeFiles/sendrecv.dir/classmpi3.cpp.o
  /home/hartmann/benchmark/sendrecv/classmpi3.cpp
+ /home/hartmann/benchmark/sendrecv/classmpi3.h
 CMakeFiles/sendrecv.dir/print.cpp.o
  /home/hartmann/benchmark/sendrecv/print.cpp
  /home/hartmann/benchmark/sendrecv/print.h

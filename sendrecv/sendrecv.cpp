@@ -36,10 +36,10 @@ int main(int argc,char *argv[]){
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
     
-    size_t ncounts = data.getpackagesize(argc,argv);
+    size_t startPackageSize = data.getpackagesize(argc,argv);
     size_t cutoff = data.getcutoff(argc, argv);
     
-    for(size_t p=ncounts; p<cutoff;p=p*2){
+    for(size_t p=startPackageSize; p<cutoff;p=p*2){
         int m=0;
         int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
@@ -119,7 +119,7 @@ int main(int argc,char *argv[]){
                 /*-----------------------------print-- ------------------------------*/
                 
                 // Header
-                if(p==ncounts){
+                if(p==startPackageSize){
                     out.printtimestemp();
                     out.printheader();
                 }
