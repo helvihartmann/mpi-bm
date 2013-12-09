@@ -10,7 +10,17 @@
 cstddef
 -
 
+/home/hartmann/benchmark/sendrecv/bufferoperations.cpp
+mpi.h
+/home/hartmann/benchmark/sendrecv/mpi.h
+bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
+
+/home/hartmann/benchmark/sendrecv/bufferoperations.h
+classmpi3.h
+/home/hartmann/benchmark/sendrecv/classmpi3.h
+
+/home/hartmann/benchmark/sendrecv/classmpi3.cpp
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 

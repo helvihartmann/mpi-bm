@@ -93,7 +93,7 @@ int main(int argc,char *argv[]){
         
         // send everything to process 0 to do the output
         if (rank == 1){
-            mpi1.performsend(recvtime,iterations,MPI_DOUBLE,0,iterations2+1,MPI_COMM_WORLD);
+            mpi1.performsend(recvtime,iterations,MPI_DOUBLE,0,iterations2+1,MPI_COMM_WORLD, sendmode);
         }
         if (rank == 0) {
 
