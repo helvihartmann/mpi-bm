@@ -30,6 +30,16 @@ size_t Totaldatasendcalc::getcutoff(int &argc, char **argv){
         return cutoff;
 }
 
+int const Totaldatasendcalc::getsendmode(int &argc, char **argv){
+    if (argc > 2){
+        sendmode = atoll(argv[3]);
+    }
+    else{
+        sendmode = 1;
+    }
+    return sendmode;
+}
+
 size_t Totaldatasendcalc::getiterations2(){
         iterations2 = empiricalfactor/packagesize_temp;
         return iterations2;

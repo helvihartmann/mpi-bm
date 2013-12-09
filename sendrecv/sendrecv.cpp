@@ -38,6 +38,10 @@ int main(int argc,char *argv[]){
     
     size_t startPackageSize = data.getpackagesize(argc,argv);
     size_t cutoff = data.getcutoff(argc, argv);
+    int const sendmode = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
+    
+    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend \n";
+    cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
         int m=0;

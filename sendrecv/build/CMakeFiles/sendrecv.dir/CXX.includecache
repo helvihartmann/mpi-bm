@@ -14,10 +14,6 @@ cstddef
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 
-/home/hartmann/benchmark/sendrecv/classmpi3.cpp
-classmpi3.h
-/home/hartmann/benchmark/sendrecv/classmpi3.h
-
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 mpi.h
 -
@@ -56,9 +52,7 @@ totaldatasendcalc.h
 bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
 
+/home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
+totaldatasendcalc.h
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
-cstddef
--
-cstdlib
--
 
