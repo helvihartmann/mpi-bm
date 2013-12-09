@@ -28,28 +28,31 @@ int main(int argc,char *argv[]){
     rank = mpi1.get_rank();
     MPI_Get_processor_name(name, &length); //not yet handled in class
     cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
-
     
     /*--------------------- Iterate over packege size-----------------------------*/
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
     
     int const sendmode = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
-    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend \n";
-
     size_t startPackageSize = data.getStartPackageSize(argc,argv);
     size_t cutoff = data.getcutoff(argc, argv);
     
+    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend \n";
+    cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
+    
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
+        cout << "foo";
         int m=0;
         int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[iterations], sendtime[iterations];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
+        
         Bufferoperations bufferoperations;
         bufferoperations.setPackagesizeTmp(p);
         bufferoperations.allocateBuffer();
+        
         
         data.setPackagesizeTmp(p);
         size_t iterations2 = data.getiterations2();
