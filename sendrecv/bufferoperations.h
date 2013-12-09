@@ -14,12 +14,11 @@ private:
     int *scounts,*rcounts;
     size_t packagesize_temp;
     size_t timepackageissend;
+    int sendmode;
     Mpi mpi1;
 public:
     
-    void setPackagesizeTmp(size_t);
-    
-    void setIterations2(size_t);
+    Bufferoperations(size_t, size_t, int);
     
     void allocateBuffer();
     

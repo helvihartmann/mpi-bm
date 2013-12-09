@@ -7,6 +7,7 @@ CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
  /home/hartmann/benchmark/sendrecv/bufferoperations.cpp
  /home/hartmann/benchmark/sendrecv/bufferoperations.h
+ /home/hartmann/benchmark/sendrecv/classmpi3.h
 CMakeFiles/sendrecv.dir/classmpi3.cpp.o
  /home/hartmann/benchmark/sendrecv/classmpi3.cpp
  /home/hartmann/benchmark/sendrecv/classmpi3.h
@@ -19,5 +20,6 @@ CMakeFiles/sendrecv.dir/sendrecv.cpp.o
  /home/hartmann/benchmark/sendrecv/classmpi3.h
  /home/hartmann/benchmark/sendrecv/print.h
  /home/hartmann/benchmark/sendrecv/sendrecv.cpp
+ /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
  /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp

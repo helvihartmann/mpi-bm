@@ -50,13 +50,13 @@ int main(int argc,char *argv[]){
         double recvtime[iterations], sendtime[iterations];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
-        Bufferoperations bufferoperations;
-        bufferoperations.setPackagesizeTmp(p);
-        bufferoperations.allocateBuffer();
-        
         data.setPackagesizeTmp(p);
         size_t iterations2 = data.getiterations2();
-        //cout<<"ITERATIONS2  "<<iterations2<<"\n";
+
+        Bufferoperations bufferoperations(p, iterations2, sendmode);
+        bufferoperations.allocateBuffer();
+        
+                //cout<<"ITERATIONS2  "<<iterations2<<"\n";
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<iterations; m++){
             
@@ -67,9 +67,8 @@ int main(int argc,char *argv[]){
 
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
-                for(int j=0; j<iterations2; j++){
-                    bufferoperations.sendBuffer();
-                }
+                bufferoperations.sendBuffer();
+            
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
                 //cout << sendtime[m];
@@ -80,9 +79,8 @@ int main(int argc,char *argv[]){
                 
                 //time measure receving data
                 starttime_recv = mpi1.get_mpitime();
-                for(int j=0; j<iterations2; j++){
-                    bufferoperations.recvBuffer();
-                }
+                bufferoperations.recvBuffer();
+
                 endtime_recv = mpi1.get_mpitime();
                 recvtime[m]=(endtime_recv-starttime_recv);
                 

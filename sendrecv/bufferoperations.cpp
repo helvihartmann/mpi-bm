@@ -4,13 +4,12 @@
 /*  */
 
     
-void Bufferoperations::setPackagesizeTmp(size_t p){
+Bufferoperations::Bufferoperations(size_t p, size_t iterations2, int sendmode){
     packagesize_temp = p;
+    timepackageissend = iterations2;
+    sendmode = sendmode;
 }
 
-void Bufferoperations::setIterations2(size_t iterations2){
-    timepackageissend = iterations2;
-}
 
 void Bufferoperations::allocateBuffer(){
     scounts= new int [packagesize_temp];
