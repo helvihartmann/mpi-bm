@@ -20,7 +20,7 @@ public:
     
     int get_rank();
     
-    void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, int const);
+    void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, const int*);
 
     
     void performrecv(void*, int, MPI_Datatype, int, int, MPI_Comm,MPI_Status*);

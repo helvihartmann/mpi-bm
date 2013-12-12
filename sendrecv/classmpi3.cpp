@@ -17,20 +17,20 @@ int Mpi::get_rank(){
         return rank;
 }
     
-void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, int const sendmode){
+void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, const int* sendmode){
     
-    switch (sendmode) {
+    switch (*sendmode) {
         case 1:
             MPI_Send(sendbuff,sendcount,sendtype, destination, tag, comm);
-            std::cout<<"sendmode: Send";
+            std::cout<<"#sendmode: Send\n";
             break;
         case 2:
             MPI_Ssend(sendbuff,sendcount,sendtype, destination, tag, comm);
-            std::cout<<"sendmode: Ssend";
+            std::cout<<"#sendmode: Ssend\n";
             break;
         case 3:
             MPI_Bsend(sendbuff,sendcount,sendtype, destination, tag, comm);
-            std::cout<<"sendmode: Bsend";
+            std::cout<<"#sendmode: Bsend \n";
             break;
         default:
             MPI_Send(sendbuff,sendcount,sendtype, destination, tag, comm);
