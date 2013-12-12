@@ -6,6 +6,6 @@
 #SBATCH --job-name=simplesendreceive
 
 
-mpirun --mca btl_openib_warn_no_device_params_found 0 build/sendrecv 32 1000000 1
+mpirun --mca btl_openib_warn_no_device_params_found 0 build/sendrecv 32 513 1
 
 exit 0

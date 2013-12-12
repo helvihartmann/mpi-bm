@@ -43,7 +43,7 @@ int main(int argc,char *argv[]){
     
     cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
-    for(size_t p=startPackageSize; p<cutoff;p=p*2){
+    for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
         int m=0;
         int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
@@ -102,6 +102,15 @@ int main(int argc,char *argv[]){
                 /*--------------calculate all needed parameters--------------------- */
                 size_t totaldatasent = data.getTotalDataSent();
 
+                /*Bandwidthcalc send(sendtime,iterations), recv(recvtime,iterations);
+                
+                double send_mean = send.getmean();
+                long double send_rate = send.getrate(send_mean,iterations2, p, totaldatasent);
+                double send_var = send.getvar(send_mean);
+                
+                double recv_mean = recv.getmean();
+                long double receive_rate = recv.getrate(recv_mean,iterations2, p, totaldatasent);
+                double recv_var = recv.getvar(recv_mean);*/
                 Bandwidthcalc calc;
                 double send_mean = calc.getmean(sendtime, iterations);
                 double recv_mean = calc.getmean(recvtime, iterations);

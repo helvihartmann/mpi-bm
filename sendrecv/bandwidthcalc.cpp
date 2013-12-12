@@ -5,7 +5,12 @@
 /* ~pfad
  27.11.13 class that performs all calculations on meassured time to gain bandwidth knowledge*/
 
+/*Bandwidthcalc::Bandwidthcalc(double* time, int iterations){
+    iterations = iterations;
+}*/
+
 double Bandwidthcalc::getmean(double time[], int iterations){
+//double Bandwidthcalc::getmean(){
         double sum = 0;
         for(int m=0; m<iterations; m++){
             double mean_tmp = time[m];
@@ -21,6 +26,7 @@ long double Bandwidthcalc::getrate(double mean,size_t iterations2, size_t packag
 }
 
 double Bandwidthcalc::getvar(double time[], int iterations, double mean){
+//double Bandwidthcalc::getvar(double mean){
         double varianz_tmp = 0;
         int m;
         for( m=0; m<iterations; m++){
