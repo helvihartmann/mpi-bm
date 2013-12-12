@@ -40,7 +40,6 @@ int main(int argc,char *argv[]){
     size_t cutoff = data.getcutoff(argc, argv);
     int const sendmode = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
     
-    cout << "# sendmode = "<< sendmode << " 1 Send, 2 Ssend, 3 Bsend \n";
     cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
@@ -68,7 +67,6 @@ int main(int argc,char *argv[]){
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
                 bufferoperations.sendBuffer();
-            
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
                 //cout << sendtime[m];
@@ -80,7 +78,6 @@ int main(int argc,char *argv[]){
                 //time measure receving data
                 starttime_recv = mpi1.get_mpitime();
                 bufferoperations.recvBuffer();
-
                 endtime_recv = mpi1.get_mpitime();
                 recvtime[m]=(endtime_recv-starttime_recv);
                 

@@ -1,0 +1,10 @@
+# Prozess 0 von 2 on node0 
+# sendmode = 1 1 Send, 2 Ssend, 3 Bsend 
+# start Packagesize: 2048 cutoff 8000
+# Prozess 1 von 2 on node1 
+# sendmode = 1 1 Send, 2 Ssend, 3 Bsend 
+# start Packagesize: 2048 cutoff 8000
+#9.12.2013 - 18:10
+# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
+312500 8192 0.543937 4706428295.819034 0.005001 4706384562.257318 0.005004 - 0.160000 0.050000 0.060000 
+156250 16384 1.834848 1395211283.959669 0.000168 1395158729.213097 0.000222 - 0.340000 0.090000 0.070000 

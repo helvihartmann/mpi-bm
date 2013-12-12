@@ -22,12 +22,15 @@ void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int 
     switch (sendmode) {
         case 1:
             MPI_Send(sendbuff,sendcount,sendtype, destination, tag, comm);
+            std::cout<<"sendmode: Send";
             break;
         case 2:
             MPI_Ssend(sendbuff,sendcount,sendtype, destination, tag, comm);
+            std::cout<<"sendmode: Ssend";
             break;
         case 3:
             MPI_Bsend(sendbuff,sendcount,sendtype, destination, tag, comm);
+            std::cout<<"sendmode: Bsend";
             break;
         default:
             MPI_Send(sendbuff,sendcount,sendtype, destination, tag, comm);
