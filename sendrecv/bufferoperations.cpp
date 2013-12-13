@@ -4,7 +4,9 @@
 /*  */
 
     
-Bufferoperations::Bufferoperations(size_t p, size_t iterations2, const int* sendmode){
+Bufferoperations::Bufferoperations(size_t p, size_t iterations2, const int* sendmode_)
+    : sendmode(sendmode_)
+{
     packagesize_temp = p;
     timepackageissend = iterations2;
 }

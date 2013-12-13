@@ -22,20 +22,6 @@ public:
     long double getrate(size_t, size_t, size_t);
     
     double getvar();
-/*private:
-    double mean;
-    double varianz;
-    long double rate;
-    
-
-public:
-    
-    
-    double getmean(double*, int);
-    
-    long double getrate(double,size_t, size_t, size_t);
-
-    double getvar(double*, int, double);*/
 
 };
 #endif

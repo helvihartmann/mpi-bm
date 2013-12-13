@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdint>
 #include <cmath>
+#include <unistd.h>
 #include "classmpi3.h"
 #include "bandwidthcalc.h"
 #include "print.h"
@@ -19,6 +20,7 @@ designed to send a lot of data between processes as specified in console
  > sbatch slurm_test.in*/
 
 int main(int argc,char *argv[]){
+    sleep(4);
     /*--------------------------------------start MPI-----------------------------*/
     //cout<<"\n hallo \n";
     int size, rank;
@@ -46,7 +48,7 @@ int main(int argc,char *argv[]){
     
     for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
         int m=0;
-        int iterations = 10;
+        const int iterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[iterations], sendtime[iterations];
         size_t *everythingcorrect_check = 0;
@@ -114,16 +116,6 @@ int main(int argc,char *argv[]){
                 long double receive_rate = recv.getrate(iterations2, p, totaldatasent);
                 double recv_var = recv.getvar();
 
-                /*Bandwidthcalc calc;
-                
-                double send_mean = calc.getmean(sendtime,iterations);
-                long double send_rate = calc.getrate(send_mean,iterations2, p, totaldatasent);
-                double send_var = calc.getvar(sendtime, iterations,send_mean);
-                
-                double recv_mean = calc.getmean(recvtime,iterations);
-                long double receive_rate = calc.getrate(recv_mean,iterations2, p, totaldatasent);
-                double recv_var = calc.getvar(recvtime, iterations,recv_mean);*/
-      
                 
                 // systemload
                 int nelem=3;
