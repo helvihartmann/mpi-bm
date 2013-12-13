@@ -9,9 +9,9 @@
     iterations = iterations;
 }*/
 
-Bandwidthcalc::Bandwidthcalc(double time_[], int iterations_){
+Bandwidthcalc::Bandwidthcalc(double time_[], int outerStatisticalIterations_){
     time = time_;
-    iterations = iterations_;
+    iterations = outerStatisticalIterations_;
 }
 
 double Bandwidthcalc::getmean(){
@@ -24,7 +24,7 @@ double Bandwidthcalc::getmean(){
     return mean;
 }
 
-long double Bandwidthcalc::getrate(size_t iterations2, size_t packagesize_temp, size_t totaldatasent){
+long double Bandwidthcalc::getrate(size_t totaldatasent){
     rate = totaldatasent/mean;
     return rate;
 }

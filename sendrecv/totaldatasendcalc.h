@@ -31,7 +31,7 @@ public:
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/
-    size_t getiterations2();
+    size_t getinnerRuntimeIterations();
     
     size_t getTotalDataSent();
     

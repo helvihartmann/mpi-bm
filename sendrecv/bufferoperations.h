@@ -13,7 +13,7 @@ class Bufferoperations{
 private:
     int *scounts,*rcounts;
     size_t packagesize_temp;
-    size_t timepackageissend;
+    size_t innerRuntimeIterations;
     const int* sendmode;
     Mpi mpi1;
 public:

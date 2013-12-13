@@ -4,11 +4,11 @@
 /*  */
 
     
-Bufferoperations::Bufferoperations(size_t p, size_t iterations2, const int* sendmode_)
+Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, const int* sendmode_)
     : sendmode(sendmode_)
 {
     packagesize_temp = p;
-    timepackageissend = iterations2;
+    innerRuntimeIterations = innerRuntimeIterations_;
 }
 
 
@@ -25,14 +25,14 @@ void Bufferoperations::initalizeBuffer(){
 }
 
 void Bufferoperations::sendBuffer(){
-    for(int j=0; j<timepackageissend; j++){
+    for(int j=0; j<innerRuntimeIterations; j++){
         //std::cout << "scounts  "<< *scounts<<"\n";
         mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
     }
 }
 
 void Bufferoperations::recvBuffer(){
-    for(int j=0; j<timepackageissend; j++){
+    for(int j=0; j<innerRuntimeIterations; j++){
         mpi1.performrecv(rcounts,packagesize_temp,MPI_INT,0,j,
                          MPI_COMM_WORLD,MPI_STATUS_IGNORE);
     }

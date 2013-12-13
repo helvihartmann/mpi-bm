@@ -73,7 +73,7 @@ int const Totaldatasendcalc::getsendmode(){
     return sendmode;
 }
 
-size_t Totaldatasendcalc::getiterations2(){
+size_t Totaldatasendcalc::getinnerRuntimeIterations(){
         iterations2 = empiricalfactor/packagesize_temp;
         return iterations2;
 }

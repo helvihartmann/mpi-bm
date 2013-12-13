@@ -19,7 +19,7 @@ public:
     
     double getmean();
     
-    long double getrate(size_t, size_t, size_t);
+    long double getrate(size_t);
     
     double getvar();
 

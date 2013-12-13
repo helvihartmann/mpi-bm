@@ -48,20 +48,20 @@ int main(int argc,char *argv[]){
     
     for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
         int m=0;
-        const int iterations = 10;
+        const int outerStatisticalIterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
-        double recvtime[iterations], sendtime[iterations];
+        double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
         data.setPackagesizeTmp(p);
-        size_t iterations2 = data.getiterations2();
+        size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
 
-        Bufferoperations bufferoperations(p, iterations2, sendmode);
+        Bufferoperations bufferoperations(p, innerRuntimeIterations, sendmode);
         bufferoperations.allocateBuffer();
         
                 //cout<<"ITERATIONS2  "<<iterations2<<"\n";
         /*----------------------repeadingly send the package---------------------*/
-        for(int m=0; m<iterations; m++){
+        for(int m=0; m<outerStatisticalIterations; m++){
             
             //Process 0 sends the data
             if (rank == 0) {
@@ -94,26 +94,26 @@ int main(int argc,char *argv[]){
         
         // send everything to process 0 to do the output
         if (rank == 1){
-            mpi1.performsend(recvtime,iterations,MPI_DOUBLE,0,iterations2+1,MPI_COMM_WORLD, sendmode);
+            mpi1.performsend(recvtime,outerStatisticalIterations,MPI_DOUBLE,0,innerRuntimeIterations+1,MPI_COMM_WORLD, sendmode);
         }
         if (rank == 0) {
 
             if(everythingcorrect_check==0){
                 //get information from process 1
-                mpi1.performrecv(recvtime,iterations,MPI_DOUBLE,1,iterations2+1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+                mpi1.performrecv(recvtime,outerStatisticalIterations,MPI_DOUBLE,1,innerRuntimeIterations+1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                 
                 /*--------------calculate all needed parameters--------------------- */
                 size_t totaldatasent = data.getTotalDataSent();
 
                 
-                Bandwidthcalc send(sendtime,iterations), recv(recvtime, iterations);
+                Bandwidthcalc send(sendtime,outerStatisticalIterations), recv(recvtime, outerStatisticalIterations);
                 
                 double send_mean = send.getmean();
-                long double send_rate = send.getrate(iterations2, p, totaldatasent);
+                long double send_rate = send.getrate(totaldatasent);
                 double send_var = send.getvar();
                 
                 double recv_mean = recv.getmean();
-                long double receive_rate = recv.getrate(iterations2, p, totaldatasent);
+                long double receive_rate = recv.getrate(totaldatasent);
                 double recv_var = recv.getvar();
 
                 
@@ -130,7 +130,7 @@ int main(int argc,char *argv[]){
                     out.printheader();
                 }
                 
-                out.printbandwidth(iterations2, p, send_mean, send_rate, send_var, receive_rate, recv_var, loadavg);
+                out.printbandwidth(innerRuntimeIterations, p, send_mean, send_rate, send_var, receive_rate, recv_var, loadavg);
             }//if everything correct
             
             else{
