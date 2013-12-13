@@ -36,9 +36,10 @@ int main(int argc,char *argv[]){
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
     
-    size_t startPackageSize = data.getpackagesize(argc,argv);
-    size_t cutoff = data.getcutoff(argc, argv);
-    int tmp = data.getsendmode(argc,argv); // 1 Send, 2 Ssend, 3 Bsend
+    data.readOptions(argc,argv);
+    size_t startPackageSize = data.getpackagesize();
+    size_t cutoff = data.getcutoff();
+    int tmp = data.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     const int* sendmode = &tmp;
     
     cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
@@ -102,23 +103,27 @@ int main(int argc,char *argv[]){
                 /*--------------calculate all needed parameters--------------------- */
                 size_t totaldatasent = data.getTotalDataSent();
 
-                /*Bandwidthcalc send(sendtime,iterations), recv(recvtime,iterations);
+                
+                Bandwidthcalc send(sendtime,iterations), recv(recvtime, iterations);
                 
                 double send_mean = send.getmean();
-                long double send_rate = send.getrate(send_mean,iterations2, p, totaldatasent);
-                double send_var = send.getvar(send_mean);
+                long double send_rate = send.getrate(iterations2, p, totaldatasent);
+                double send_var = send.getvar();
                 
                 double recv_mean = recv.getmean();
-                long double receive_rate = recv.getrate(recv_mean,iterations2, p, totaldatasent);
-                double recv_var = recv.getvar(recv_mean);*/
-                Bandwidthcalc calc;
-                double send_mean = calc.getmean(sendtime, iterations);
-                double recv_mean = calc.getmean(recvtime, iterations);
-                long double send_rate = calc.getrate(send_mean,iterations2, p, totaldatasent);
-                long double receive_rate = calc.getrate(recv_mean,iterations2, p, totaldatasent);
-                double send_var = calc.getvar(sendtime, iterations, send_mean);
-                double recv_var = calc.getvar(recvtime, iterations, send_mean);
+                long double receive_rate = recv.getrate(iterations2, p, totaldatasent);
+                double recv_var = recv.getvar();
 
+                /*Bandwidthcalc calc;
+                
+                double send_mean = calc.getmean(sendtime,iterations);
+                long double send_rate = calc.getrate(send_mean,iterations2, p, totaldatasent);
+                double send_var = calc.getvar(sendtime, iterations,send_mean);
+                
+                double recv_mean = calc.getmean(recvtime,iterations);
+                long double receive_rate = calc.getrate(recv_mean,iterations2, p, totaldatasent);
+                double recv_var = calc.getvar(recvtime, iterations,recv_mean);*/
+      
                 
                 // systemload
                 int nelem=3;

@@ -7,40 +7,53 @@ int
 main (int argc, char **argv)
 {
     int sendmode = 1; //send by default
-    int startPackageSize = 2;
-    //int index;
+    size_t startPackageSize = 2;
+    size_t cutoff = 1000;
     int opt;
     
     opterr = 0;
     
-    while ((opt = getopt (argc, argv, "m:p:")) != -1)
+    while ((opt = getopt (argc, argv, "m:a:e:")) != -1)
         switch (opt)
     {
         case 'm':
             sendmode = atoi(optarg);
+            if (sendmode >= 1 && sendmode <= 3) {
+                //zwischen 1 und 3
+            }
+            else {
+                printf("FAILURE \n-m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                exit(1);
+            }
             break;
-        case 'p':
+        case 'a':
             startPackageSize = atoi(optarg);
+            if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
+            }
+            else {
+                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                exit(1);
+            }
             break;
-        /*case '?':
-            if (optopt == 'p')
-                fprintf (stderr, "Option -%d requires an argument for starting size of package.\n", optopt);
-            else if (isprint (optopt))
-                fprintf (stderr, "Unknown option `-%d'.\n", optopt);
-            else
-                fprintf (stderr,
+        case 'e':
+            cutoff = atoi(optarg);
+            if (cutoff >= 1 && cutoff <= 10000000000) {
+            }
+            else {
+                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                exit(1);
+            }
+            break;
+        case '?':
+            fprintf (stderr,
                          "Unknown option character `\\x%x'.\n",
-                         optopt);*/
+                         optopt);
             return 1;
         default:
             abort ();
     }
     
     
-    printf ("sendmode = %d, startPackageSize = %d\n",
-            sendmode, startPackageSize);
-    
-    /*for (index = optind; index < argc; index++)
-        printf ("Non-option argument %s\n", argv[index]);
-    return 0;*/
+    printf ("sendmode = %d, startPackageSize = %ld, cutoff = %ld \n",
+            sendmode, startPackageSize, cutoff);
 }

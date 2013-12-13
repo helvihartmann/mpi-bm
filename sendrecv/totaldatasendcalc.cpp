@@ -1,4 +1,8 @@
 #include "totaldatasendcalc.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /* pfad
 27.11.2013
@@ -7,36 +11,65 @@
 void Totaldatasendcalc::setPackagesizeTmp(size_t p){
         packagesize_temp = p;
 }
-    
-size_t Totaldatasendcalc::getpackagesize(int &argc, char **argv){
-        size_t ncounts;
-        if (argc > 0){
-            ncounts = atoll(argv[1]);
-        }
-        else{
-            ncounts = 128;
-        }
-        return ncounts;
+
+void Totaldatasendcalc::readOptions(int &argc, char **argv){
+    int opt;
+
+    //int opterr = 0;
+
+    while ((opt = getopt (argc, argv, "m:a:e:")) != -1)
+    switch (opt)
+    {
+        case 'm':
+            sendmode = atoi(optarg);
+            if (sendmode >= 1 && sendmode <= 3) {
+                //zwischen 1 und 3
+            }
+            else {
+                printf("FAILURE \n-m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                exit(1);
+            }
+            break;
+        case 'a':
+            startPackageSize = atoi(optarg);
+            if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
+            }
+            else {
+                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                exit(1);
+            }
+            break;
+        case 'e':
+            cutoff = atoi(optarg);
+            if (cutoff >= 1 && cutoff <= 10000000000) {
+            }
+            else {
+                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                exit(1);
+            }
+            break;
+        case '?':
+            fprintf (stderr,
+                     "Unknown option character `\\x%x'.\n",
+                     optopt);
+        default:
+            abort ();
+    }
+
+
+    printf ("sendmode = %d, startPackageSize = %ld, cutoff = %ld \n",
+            sendmode, startPackageSize, cutoff);
+}
+
+size_t Totaldatasendcalc::getpackagesize(){
+        return startPackageSize;
 }
         
-size_t Totaldatasendcalc::getcutoff(int &argc, char **argv){
-        size_t ncounts;
-        if (argc > 1){
-            cutoff = atoll(argv[2]);
-        }
-        else{
-            cutoff = 8000000;
-        }
+size_t Totaldatasendcalc::getcutoff(){
         return cutoff;
 }
 
-int const Totaldatasendcalc::getsendmode(int &argc, char **argv){
-    if (argc > 2){
-        sendmode = atoll(argv[3]);
-    }
-    else{
-        sendmode = 1;
-    }
+int const Totaldatasendcalc::getsendmode(){
     return sendmode;
 }
 

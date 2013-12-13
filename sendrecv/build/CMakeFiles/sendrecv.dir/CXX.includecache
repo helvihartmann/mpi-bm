@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp
+cmath
+-
+bandwidthcalc.h
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.h
+
 /home/hartmann/benchmark/sendrecv/bandwidthcalc.h
 cstddef
 -
