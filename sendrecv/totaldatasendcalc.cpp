@@ -3,13 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
 
 /* pfad
 27.11.2013
 */
 
 void Totaldatasendcalc::setPackagesizeTmp(size_t p){
-        packagesize_temp = p;
+    packagesize_temp = p;//correct at this point
 }
 
 void Totaldatasendcalc::readOptions(int &argc, char **argv){
@@ -74,11 +75,11 @@ int const Totaldatasendcalc::getsendmode(){
 }
 
 size_t Totaldatasendcalc::getinnerRuntimeIterations(){
-        iterations2 = empiricalfactor/packagesize_temp;
-        return iterations2;
+    iterations = empiricalfactor/packagesize_temp;
+    return iterations;
 }
     
 size_t Totaldatasendcalc::getTotalDataSent(){
-        size_t totalDataSent = iterations2*packagesize_temp*sizeof(int);
-        return totalDataSent;
+    size_t totalDataSent = iterations*packagesize_temp*sizeof(int);
+    return totalDataSent;
 }

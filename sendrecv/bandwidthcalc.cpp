@@ -1,13 +1,11 @@
 //#include <stdio.h>
 #include <cmath>
 #include "bandwidthcalc.h"
+#include <iostream>
 
 /* ~pfad
  27.11.13 class that performs all calculations on meassured time to gain bandwidth knowledge*/
 
-/*Bandwidthcalc::Bandwidthcalc(double* time, int iterations){
-    iterations = iterations;
-}*/
 
 Bandwidthcalc::Bandwidthcalc(double time_[], int outerStatisticalIterations_){
     time = time_;
@@ -20,7 +18,7 @@ double Bandwidthcalc::getmean(){
         double mean_tmp = time[m];
         sum = sum + mean_tmp;
     }
-    double mean = sum/iterations;
+    mean = sum/iterations;
     return mean;
 }
 

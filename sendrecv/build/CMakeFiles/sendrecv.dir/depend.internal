@@ -4,6 +4,7 @@
 CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o
  /home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp
  /home/hartmann/benchmark/sendrecv/bandwidthcalc.h
+ /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
  /home/hartmann/benchmark/sendrecv/bufferoperations.cpp
  /home/hartmann/benchmark/sendrecv/bufferoperations.h

@@ -13,7 +13,7 @@ private:
     int sendmode = 1; //send by default
     size_t startPackageSize = 2;
     size_t cutoff = 1000;
-    size_t iterations2;
+    size_t iterations;
     size_t empiricalfactor = 5000000*128;
     size_t packagesize_temp;
 

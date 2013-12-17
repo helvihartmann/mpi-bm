@@ -53,13 +53,12 @@ int main(int argc,char *argv[]){
         double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
-        data.setPackagesizeTmp(p);
+        data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
 
         Bufferoperations bufferoperations(p, innerRuntimeIterations, sendmode);
         bufferoperations.allocateBuffer();
         
-                //cout<<"ITERATIONS2  "<<iterations2<<"\n";
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<outerStatisticalIterations; m++){
             
@@ -73,7 +72,6 @@ int main(int argc,char *argv[]){
                 bufferoperations.sendBuffer();
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
-                //cout << sendtime[m];
              }
             
             //Process 1 receives the data

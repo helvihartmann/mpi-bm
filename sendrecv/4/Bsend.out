@@ -1,10 +1,9 @@
 # Prozess 0 von 2 on node2 
-sendmode = 3, startPackageSize = 128, cutoff = 5000 
-# start Packagesize: 128 cutoff 5000
+sendmode = 3, startPackageSize = 32, cutoff = 5000 
+# start Packagesize: 32 cutoff 5000
 # Prozess 1 von 2 on node3 
-sendmode = 3, startPackageSize = 128, cutoff = 5000 
-# start Packagesize: 128 cutoff 5000
-#sendmode: Bsend 
-#13.12.2013 - 11:36
+sendmode = 3, startPackageSize = 32, cutoff = 5000 
+# start Packagesize: 32 cutoff 5000
+#16.12.2013 - 9:48
 # repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
-5000000 512 2.353244 1087859895.668401 0.020409 1087858264.468721 0.020410 - 0.430000 0.230000 0.130000 
+20000000 128 8.596332 297801437.624610 0.027930 297801483.877812 0.027929 - 0.760000 0.260000 0.130000 

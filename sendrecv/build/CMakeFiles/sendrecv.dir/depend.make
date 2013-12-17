@@ -3,6 +3,7 @@
 
 CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o: ../bandwidthcalc.cpp
 CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o: ../bandwidthcalc.h
+CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o: ../totaldatasendcalc.h
 
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.cpp
 CMakeFiles/sendrecv.dir/bufferoperations.cpp.o: ../bufferoperations.h
