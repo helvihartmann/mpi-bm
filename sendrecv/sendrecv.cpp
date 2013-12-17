@@ -26,7 +26,10 @@ int main(int argc,char *argv[]){
     int size, rank;
     int length;
     char name[MPI_MAX_PROCESSOR_NAME];
-    Mpi mpi1;
+    Mpi mpi1;//Pointer auf dings anlegen und mpi1.sendbuffer(mpi1pnter) übergeben
+    
+    sleep(15);
+    
     mpi1.init_it(&argc,&argv);
     size = mpi1.get_size();
     rank = mpi1.get_rank();
@@ -44,7 +47,7 @@ int main(int argc,char *argv[]){
     int tmp = data.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     const int* sendmode = &tmp;
     
-    cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
+    cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
         const int outerStatisticalIterations = 10;
@@ -68,7 +71,7 @@ int main(int argc,char *argv[]){
 
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
-                bufferoperations.sendBuffer();
+                bufferoperations.sendBuffer(mpi1);//Objekt mpi1 mitübergeben
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
              }

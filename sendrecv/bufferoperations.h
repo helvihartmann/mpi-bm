@@ -15,7 +15,6 @@ private:
     size_t packagesize_temp;
     size_t innerRuntimeIterations;
     const int* sendmode;
-    Mpi mpi1;
 public:
     
     Bufferoperations(size_t, size_t, const int* );
@@ -24,7 +23,7 @@ public:
     
     void initalizeBuffer();
     
-    void sendBuffer();
+    void sendBuffer(Mpi);
     
     void recvBuffer();
     

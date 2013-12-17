@@ -33,6 +33,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'a':
             startPackageSize = atoi(optarg);
+
             if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
             }
             else {
@@ -42,11 +43,11 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= 1470987133) {
+            if (cutoff >= 1 && cutoff <= 500000000) {
             }
             else {
-                cutoff = 1470987133;
-                printf("WARNING \n-a: max package size was set to 1470987133 Byte \n");
+                cutoff = 500000000;
+                printf("WARNING \n-e: max package size was set to 1470987133 Byte \n");
             }
             break;
         case '?':
@@ -56,10 +57,6 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
         default:
             abort ();
     }
-
-
-    printf ("sendmode = %d, startPackageSize = %ld, cutoff = %ld \n",
-            sendmode, startPackageSize, cutoff);
 }
 
 size_t Totaldatasendcalc::getpackagesize(){

@@ -4,17 +4,17 @@
 additional  Send recv */
 
 void Mpi::init_it(int  *argc, char ***argv) {
-        MPI_Init(argc,argv);
-        MPI_Comm_size(MPI_COMM_WORLD, &size );
-        MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Init(argc,argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &size );
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 }
     
 int Mpi::get_size(){
-        return size;
+    return size;
 }
     
 int Mpi::get_rank(){
-        return rank;
+    return rank;
 }
     
 void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, const int* sendmode){

@@ -11,6 +11,8 @@ cstddef
 -
 totaldatasendcalc.h
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
+mpi.h
+/home/hartmann/benchmark/sendrecv/mpi.h
 
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
 classmpi3.h
