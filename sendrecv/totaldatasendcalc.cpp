@@ -42,11 +42,11 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= 10000000000) {
+            if (cutoff >= 1 && cutoff <= 1470987133) {
             }
             else {
-                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
-                exit(1);
+                cutoff = 1470987133;
+                printf("WARNING \n-a: max package size was set to 1470987133 Byte \n");
             }
             break;
         case '?':

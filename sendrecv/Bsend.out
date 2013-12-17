@@ -1,0 +1,13 @@
+# Prozess 0 von 2 on node0 
+sendmode = 3, startPackageSize = 32, cutoff = 5000 
+# start Packagesize: 32 cutoff 5000
+# Prozess 1 von 2 on node1 
+sendmode = 3, startPackageSize = 32, cutoff = 5000 
+# start Packagesize: 32 cutoff 5000
+#17.12.2013 - 10:38
+# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
+20000000 128 8.499935 301178780.226946 0.028460 301178688.144842 0.028464 - 0.760000 0.260000 0.130000 
+slurmd[node0]: *** JOB 2581 CANCELLED AT 2013-12-17T10:57:36 ***
+mpirun: killing job...
+
+[node0:21964] [[2279,0],0]-[[2279,0],1] mca_oob_tcp_msg_recv: readv failed: Connection reset by peer (104)
