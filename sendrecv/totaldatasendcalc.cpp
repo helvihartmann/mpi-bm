@@ -70,7 +70,7 @@ size_t Totaldatasendcalc::getcutoff(){
         return cutoff;
 }
 
-int const Totaldatasendcalc::getsendmode(){
+int Totaldatasendcalc::getsendmode(){
     return sendmode;
 }
 

@@ -47,7 +47,6 @@ int main(int argc,char *argv[]){
     cout << "# start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
-        int m=0;
         const int outerStatisticalIterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
@@ -110,7 +109,7 @@ int main(int argc,char *argv[]){
                 long double send_rate = send.getrate(totaldatasent);
                 double send_var = send.getvar();
                 
-                double recv_mean = recv.getmean();
+                //double recv_mean = recv.getmean();
                 long double receive_rate = recv.getrate(totaldatasent);
                 double recv_var = recv.getvar();
 
@@ -118,7 +117,9 @@ int main(int argc,char *argv[]){
                 // systemload
                 int nelem=3;
                 double loadavg[nelem];
-                int systemload = getloadavg(loadavg, nelem);
+                //int systemload = getloadavg(loadavg, nelem);
+                getloadavg(loadavg, nelem);
+
                 
                 /*-----------------------------print-- ------------------------------*/
                 

@@ -27,7 +27,7 @@ public:
         
     size_t getcutoff();
     
-    int const getsendmode();
+    int getsendmode();
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/
