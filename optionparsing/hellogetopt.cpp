@@ -19,6 +19,7 @@ main (int argc, char **argv)
         case 'm':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 3) {
+                
                 //zwischen 1 und 3
             }
             else {
@@ -29,6 +30,7 @@ main (int argc, char **argv)
         case 'a':
             startPackageSize = atoi(optarg);
             if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
+                
             }
             else {
                 printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
@@ -37,10 +39,11 @@ main (int argc, char **argv)
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= 10000000000) {
+            if (cutoff >= 1 && cutoff <= 10) {
+                
             }
             else {
-                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                printf("FAILURE \n-e: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
                 exit(1);
             }
             break;

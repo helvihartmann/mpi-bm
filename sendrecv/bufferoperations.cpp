@@ -3,9 +3,10 @@
 /*  */
 
     
-Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, const int* sendmode_)
+Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, const int* sendmode_, Mpi *mpi1pter)
     : sendmode(sendmode_)
 {
+    mpi1 = *mpi1pter;
     packagesize_temp = p;
     innerRuntimeIterations = innerRuntimeIterations_;
 }
@@ -23,7 +24,7 @@ void Bufferoperations::initalizeBuffer(){
     }
 }
 
-void Bufferoperations::sendBuffer(Mpi *mpi1){
+void Bufferoperations::sendBuffer(){
     for(int j=0; j<innerRuntimeIterations; j++){
         //std::cout << "scounts  "<< *scounts<<"\n";
         mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);

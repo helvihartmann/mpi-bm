@@ -27,8 +27,10 @@ int main(int argc,char *argv[]){
     int length;
     char name[MPI_MAX_PROCESSOR_NAME];
     Mpi mpi1;//Pointer auf dings anlegen und mpi1.sendbuffer(mpi1pnter) übergeben
+    Mpi *mpi1pnter;
+    mpi1pnter = &mpi1;
     
-    sleep(15);
+    //sleep(15);
     
     mpi1.init_it(&argc,&argv);
     size = mpi1.get_size();
@@ -58,7 +60,7 @@ int main(int argc,char *argv[]){
         data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
 
-        Bufferoperations bufferoperations(p, innerRuntimeIterations, sendmode);
+        Bufferoperations bufferoperations(p, innerRuntimeIterations, sendmode, mpi1pnter);
         bufferoperations.allocateBuffer();
         
         /*----------------------repeadingly send the package---------------------*/
@@ -71,7 +73,7 @@ int main(int argc,char *argv[]){
 
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
-                bufferoperations.sendBuffer(mpi1);//Objekt mpi1 mitübergeben
+                bufferoperations.sendBuffer();//Objekt mpi1 mitübergeben
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
              }

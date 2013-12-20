@@ -47,7 +47,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             }
             else {
                 cutoff = 500000000;
-                printf("WARNING \n-e: max package size was set to 1470987133 Byte \n");
+                printf("WARNING \n-e: max package size was set to 500 kB \n");
             }
             break;
         case '?':
