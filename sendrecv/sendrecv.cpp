@@ -20,7 +20,7 @@ designed to send a lot of data between processes as specified in console
  > sbatch slurm_test.in*/
 
 int main(int argc,char *argv[]){
-    sleep(4);
+    
     /*--------------------------------------start MPI-----------------------------*/
     //cout<<"\n hallo \n";
     int size, rank;
@@ -143,6 +143,7 @@ int main(int argc,char *argv[]){
         }//if you are process 0
         
         bufferoperations.freeBuffer();
+        sleep(4);
     }//for p iteration over package size
         
     mpi1.endmpi();
