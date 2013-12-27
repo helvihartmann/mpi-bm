@@ -51,7 +51,7 @@ int main(int argc,char *argv[]){
     
     cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
-    for(size_t p=startPackageSize; p<cutoff;p=p*1.5){
+    for(size_t p=startPackageSize; p<cutoff;p=p*2){
         const int outerStatisticalIterations = 10;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
