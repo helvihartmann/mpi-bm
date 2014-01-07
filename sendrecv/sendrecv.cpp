@@ -59,35 +59,41 @@ int main(int argc,char *argv[]){
         /* --------------send/recv the data*-----------------------------------------*/
         data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
-
-        Bufferoperations bufferoperations(p, innerRuntimeIterations, sendmode, mpi1pnter);
-        bufferoperations.allocateBuffer();
         
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<outerStatisticalIterations; m++){
             
             //Process 0 sends the data
             if (rank == 0) {
-
-                bufferoperations.initalizeBuffer();
+                
+                Bufferoperations bufferop0(p, innerRuntimeIterations, sendmode, mpi1pnter);
+                bufferop0.allocateBuffer();
+                bufferop0.initalizeBuffer();
 
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
-                bufferoperations.sendBuffer();//Objekt mpi1 mitübergeben
+                bufferop0.sendBuffer();//Objekt mpi1 mitübergeben
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
+                
+                bufferop0.freeBuffer();
+
              }
             
             //Process 1 receives the data
             else if (rank == 1) {
                 
+                Bufferoperations bufferop1(p, innerRuntimeIterations, sendmode, mpi1pnter);
+                bufferop1.allocateBuffer();
+                
                 //time measure receving data
                 starttime_recv = mpi1.get_mpitime();
-                bufferoperations.recvBuffer();
+                bufferop1.recvBuffer();
                 endtime_recv = mpi1.get_mpitime();
                 recvtime[m]=(endtime_recv-starttime_recv);
                 
-                bufferoperations.checkBuffer(everythingcorrect_check);
+                bufferop1.checkBuffer(everythingcorrect_check);
+                bufferop1.freeBuffer();
             }//else if
         }//for iterations to get statistic errors
         /*------------------------------------ output-------------------------------*/
@@ -114,7 +120,7 @@ int main(int argc,char *argv[]){
                 long double send_rate = send.getrate(totaldatasent);
                 double send_var = send.getvar();
                 
-                //double recv_mean = recv.getmean();
+                double recv_mean = recv.getmean();
                 long double receive_rate = recv.getrate(totaldatasent);
                 double recv_var = recv.getvar();
 
@@ -135,6 +141,7 @@ int main(int argc,char *argv[]){
                 }
                 
                 out.printbandwidth(innerRuntimeIterations, p, send_mean, send_rate, send_var, receive_rate, recv_var, loadavg);
+        
             }//if everything correct
             
             else{
@@ -142,7 +149,6 @@ int main(int argc,char *argv[]){
             }
         }//if you are process 0
         
-        bufferoperations.freeBuffer();
         sleep(4);
     }//for p iteration over package size
         

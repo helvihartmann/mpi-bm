@@ -72,8 +72,8 @@ int Totaldatasendcalc::getsendmode(){
 }
 
 size_t Totaldatasendcalc::getinnerRuntimeIterations(){
-    //iterations = empiricalfactor/packagesize_temp;
-    iterations = 1;
+    iterations = empiricalfactor/packagesize_temp;
+    //iterations = 1;
     return iterations;
 }
     

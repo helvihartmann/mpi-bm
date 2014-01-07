@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hartmann/benchmark/minimal/minimal.cpp
+mpi.h
+-
+fstream
+-
+string
+-
+iostream
+-
+cstdint
+-
+cmath
+-
+unistd.h
+-
+

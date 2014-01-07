@@ -13,13 +13,13 @@ Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, con
 
 
 void Bufferoperations::allocateBuffer(){
-    scounts= new int [packagesize_temp];
-    rcounts= new int [packagesize_temp];
+    counts= new int [packagesize_temp];
+    //rcounts= new int [packagesize_temp];
 }
 
 void Bufferoperations::initalizeBuffer(){
     for(size_t i=0; i<packagesize_temp; i++){
-        scounts[i]=1;
+        counts[i]=1;
 
     }
 }
@@ -27,13 +27,13 @@ void Bufferoperations::initalizeBuffer(){
 void Bufferoperations::sendBuffer(){
     for(int j=0; j<innerRuntimeIterations; j++){
         //std::cout << "scounts  "<< *scounts<<"\n";
-        mpi1.performsend(scounts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
+        mpi1.performsend(counts,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
     }
 }
 
 void Bufferoperations::recvBuffer(){
     for(int j=0; j<innerRuntimeIterations; j++){
-        mpi1.performrecv(rcounts,packagesize_temp,MPI_INT,0,j,
+        mpi1.performrecv(counts,packagesize_temp,MPI_INT,0,j,
                          MPI_COMM_WORLD,MPI_STATUS_IGNORE);
     }
     //std::cout << "rcounts  "<< *rcounts<<"\n";
@@ -42,13 +42,13 @@ void Bufferoperations::recvBuffer(){
 void Bufferoperations::checkBuffer(size_t *everythingcorrect_check){
     //std::cout << "rcounts oben "<< *rcounts<<"\n \n \n";
     for(size_t i=0;i<packagesize_temp;i++){
-        if(rcounts[i]!=1){
+        if(counts[i]!=1){
             everythingcorrect_check++;
         }
     }
 }
 
 void Bufferoperations::freeBuffer(){
-    delete [] scounts;
-    delete [] rcounts;
+    delete [] counts;
+    //delete [] rcounts;
 }

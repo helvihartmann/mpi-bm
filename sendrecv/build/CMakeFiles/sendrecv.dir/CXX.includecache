@@ -14,6 +14,10 @@ totaldatasendcalc.h
 mpi.h
 /home/hartmann/benchmark/sendrecv/mpi.h
 
+/home/hartmann/benchmark/sendrecv/bufferoperations.cpp
+bufferoperations.h
+/home/hartmann/benchmark/sendrecv/bufferoperations.h
+
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h

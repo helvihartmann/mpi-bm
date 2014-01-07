@@ -1,0 +1,1354 @@
+==21817== Memcheck, a memory error detector
+==21817== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==21817== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==21817== Command: build/minimal
+==21817== 
+==7368== Memcheck, a memory error detector
+==7368== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==7368== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==7368== Command: build/minimal
+==7368== 
+# Prozess 0 von 2 on node1 
+# Prozess 1 von 2 on node2 
+==7368== Syscall param write(buf) points to uninitialised byte(s)
+==7368==    at 0x5A4492D: ??? (syscall-template.S:82)
+==7368==    by 0xB54A2DC: ibv_cmd_create_qp (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xDEBA3B7: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368==    by 0xB54EB81: ibv_create_qp (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xB7790C2: qp_create_all (btl_openib_connect_oob.c:487)
+==7368==    by 0xB77A028: oob_module_start_connect (btl_openib_connect_oob.c:202)
+==7368==    by 0xB76BE5C: mca_btl_openib_endpoint_send (btl_openib_endpoint.h:432)
+==7368==    by 0xAD24AFE: mca_pml_ob1_send_request_start_copy (bml.h:290)
+==7368==    by 0xAD140AD: mca_pml_ob1_send (pml_ob1_sendreq.h:367)
+==7368==    by 0x50DE880: PMPI_Send (psend.c:75)
+==7368==    by 0x408F21: main (minimal.cpp:54)
+==7368==  Address 0x7fefff718 is on thread 1's stack
+==7368==  Uninitialised value was created by a stack allocation
+==7368==    at 0xDEB9AF0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_create_qp
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:ibv_create_qp
+   fun:qp_create_all
+   fun:oob_module_start_connect
+   fun:mca_btl_openib_endpoint_send
+   fun:mca_pml_ob1_send_request_start_copy
+   fun:mca_pml_ob1_send
+   fun:PMPI_Send
+   fun:main
+}
+==7368== Syscall param write(buf) points to uninitialised byte(s)
+==7368==    at 0x5A4492D: ??? (syscall-template.S:82)
+==7368==    by 0xB54A833: ibv_cmd_modify_qp (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xDEBA63E: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368==    by 0xB54EC73: ibv_modify_qp (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xB77914F: qp_create_all (btl_openib_connect_oob.c:511)
+==7368==    by 0xB77A028: oob_module_start_connect (btl_openib_connect_oob.c:202)
+==7368==    by 0xB76BE5C: mca_btl_openib_endpoint_send (btl_openib_endpoint.h:432)
+==7368==    by 0xAD24AFE: mca_pml_ob1_send_request_start_copy (bml.h:290)
+==7368==    by 0xAD140AD: mca_pml_ob1_send (pml_ob1_sendreq.h:367)
+==7368==    by 0x50DE880: PMPI_Send (psend.c:75)
+==7368==    by 0x408F21: main (minimal.cpp:54)
+==7368==  Address 0x7fefff728 is on thread 1's stack
+==7368==  Uninitialised value was created by a stack allocation
+==7368==    at 0xDEBA1BD: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_modify_qp
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:ibv_modify_qp
+   fun:qp_create_all
+   fun:oob_module_start_connect
+   fun:mca_btl_openib_endpoint_send
+   fun:mca_pml_ob1_send_request_start_copy
+   fun:mca_pml_ob1_send
+   fun:PMPI_Send
+   fun:main
+}
+==7368== Syscall param write(buf) points to uninitialised byte(s)
+==7368==    at 0x5A4492D: ??? (syscall-template.S:82)
+==7368==    by 0xB54A016: ibv_cmd_modify_srq (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xDEBA121: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368==    by 0xB764EEC: mca_btl_openib_post_srr (btl_openib_component.c:3644)
+==7368==    by 0xB76B131: mca_btl_openib_endpoint_post_recvs (btl_openib_endpoint.c:486)
+==7368==    by 0xB7792DF: qp_create_all (btl_openib_connect_oob.c:435)
+==7368==    by 0xB77A028: oob_module_start_connect (btl_openib_connect_oob.c:202)
+==7368==    by 0xB76BE5C: mca_btl_openib_endpoint_send (btl_openib_endpoint.h:432)
+==7368==    by 0xAD24AFE: mca_pml_ob1_send_request_start_copy (bml.h:290)
+==7368==    by 0xAD140AD: mca_pml_ob1_send (pml_ob1_sendreq.h:367)
+==7368==    by 0x50DE880: PMPI_Send (psend.c:75)
+==7368==    by 0x408F21: main (minimal.cpp:54)
+==7368==  Address 0x7fefff608 is on thread 1's stack
+==7368==  Uninitialised value was created by a stack allocation
+==7368==    at 0xDEB9FB0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_modify_srq
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:mca_btl_openib_post_srr
+   fun:mca_btl_openib_endpoint_post_recvs
+   fun:qp_create_all
+   fun:oob_module_start_connect
+   fun:mca_btl_openib_endpoint_send
+   fun:mca_pml_ob1_send_request_start_copy
+   fun:mca_pml_ob1_send
+   fun:PMPI_Send
+   fun:main
+}
+==21817== Syscall param write(buf) points to uninitialised byte(s)
+==21817==    at 0x5A4492D: ??? (syscall-template.S:82)
+==21817==    by 0xB54A2DC: ibv_cmd_create_qp (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xDEBA3B7: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xB54EB81: ibv_create_qp (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xB7790C2: qp_create_all (btl_openib_connect_oob.c:487)
+==21817==    by 0xB77AD7E: rml_recv_cb (btl_openib_connect_oob.c:246)
+==21817==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==21817==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==21817==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0xAD11FC4: mca_pml_ob1_recv (condition.h:99)
+==21817==  Address 0x7fefff3c8 is on thread 1's stack
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEB9AF0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_create_qp
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:ibv_create_qp
+   fun:qp_create_all
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+   fun:mca_pml_ob1_recv
+}
+==21817== Conditional jump or move depends on uninitialised value(s)
+==21817==    at 0x4C29D6E: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0xDEB9645: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xDEBA3CE: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xB54EB81: ibv_create_qp (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xB7790C2: qp_create_all (btl_openib_connect_oob.c:487)
+==21817==    by 0xB77AD7E: rml_recv_cb (btl_openib_connect_oob.c:246)
+==21817==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==21817==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==21817==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0xAD11FC4: mca_pml_ob1_recv (condition.h:99)
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEB8500: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:calloc
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:ibv_create_qp
+   fun:qp_create_all
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+   fun:mca_pml_ob1_recv
+}
+==21817== Syscall param write(buf) points to uninitialised byte(s)
+==21817==    at 0x5A4492D: ??? (syscall-template.S:82)
+==21817==    by 0xB54A833: ibv_cmd_modify_qp (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xDEBA63E: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xB54EC73: ibv_modify_qp (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xB77914F: qp_create_all (btl_openib_connect_oob.c:511)
+==21817==    by 0xB77AD7E: rml_recv_cb (btl_openib_connect_oob.c:246)
+==21817==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==21817==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==21817==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0xAD11FC4: mca_pml_ob1_recv (condition.h:99)
+==21817==  Address 0x7fefff3d8 is on thread 1's stack
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEBA1BD: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_modify_qp
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:ibv_modify_qp
+   fun:qp_create_all
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+   fun:mca_pml_ob1_recv
+}
+==21817== Syscall param write(buf) points to uninitialised byte(s)
+==21817==    at 0x5A4492D: ??? (syscall-template.S:82)
+==21817==    by 0xB54A016: ibv_cmd_modify_srq (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xDEBA121: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xB764EEC: mca_btl_openib_post_srr (btl_openib_component.c:3644)
+==21817==    by 0xB76B131: mca_btl_openib_endpoint_post_recvs (btl_openib_endpoint.c:486)
+==21817==    by 0xB7792DF: qp_create_all (btl_openib_connect_oob.c:435)
+==21817==    by 0xB77AD7E: rml_recv_cb (btl_openib_connect_oob.c:246)
+==21817==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==21817==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==21817==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==  Address 0x7fefff2b8 is on thread 1's stack
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEB9FB0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_modify_srq
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   fun:mca_btl_openib_post_srr
+   fun:mca_btl_openib_endpoint_post_recvs
+   fun:qp_create_all
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+}
+==21817== Source and destination overlap in memcpy(0xe3cd1f0, 0xe3cd1f0, 32)
+==21817==    at 0x4C2CFA0: memcpy@@GLIBC_2.14 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0xB77B062: rml_recv_cb (string3.h:52)
+==21817==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==21817==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==21817==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0xAD11FC4: mca_pml_ob1_recv (condition.h:99)
+==21817==    by 0x50DA972: PMPI_Recv (precv.c:78)
+==21817==    by 0x408F60: main (minimal.cpp:64)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Overlap
+   fun:memcpy@@GLIBC_2.14
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+   fun:mca_pml_ob1_recv
+   fun:PMPI_Recv
+   fun:main
+}
+==7368== Source and destination overlap in memcpy(0xed21aa0, 0xed21aa0, 32)
+==7368==    at 0x4C2CFA0: memcpy@@GLIBC_2.14 (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0xB77AC25: rml_recv_cb (string3.h:52)
+==7368==    by 0x8822BEF: orte_rml_recv_msg_callback (rml_oob_recv.c:62)
+==7368==    by 0x8A324BE: mca_oob_tcp_msg_recv_complete (oob_tcp_msg.c:530)
+==7368==    by 0x8A34FC2: mca_oob_tcp_peer_recv_handler (oob_tcp_peer.c:925)
+==7368==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==7368==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==7368==    by 0xAD14324: mca_pml_ob1_send (condition.h:99)
+==7368==    by 0x50DE880: PMPI_Send (psend.c:75)
+==7368==    by 0x408F21: main (minimal.cpp:54)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Overlap
+   fun:memcpy@@GLIBC_2.14
+   fun:rml_recv_cb
+   fun:orte_rml_recv_msg_callback
+   fun:mca_oob_tcp_msg_recv_complete
+   fun:mca_oob_tcp_peer_recv_handler
+   fun:opal_event_base_loop
+   fun:opal_progress
+   fun:mca_pml_ob1_send
+   fun:PMPI_Send
+   fun:main
+}
+==7368== Syscall param write(buf) points to uninitialised byte(s)
+==7368==    at 0x5A4492D: ??? (syscall-template.S:82)
+==7368==    by 0xB5498B1: ibv_cmd_dealloc_pd (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xDEB9B5C: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368==    by 0xB992AB5: ??? (in /usr/lib/librdmacm.so.1.0.0)
+==7368==    by 0x40146E7: _dl_close_worker (dl-close.c:266)
+==7368==    by 0x40151AD: _dl_close (dl-close.c:770)
+==7368==    by 0x400F175: _dl_catch_error (dl-error.c:178)
+==7368==    by 0x664452E: _dlerror_run (dlerror.c:164)
+==7368==    by 0x664400E: dlclose (dlclose.c:48)
+==7368==    by 0x5F2601B: ??? (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==7368==    by 0x5F23F1C: lt_dlclose (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==7368==    by 0x51706D7: ri_destructor (mca_base_component_repository.c:384)
+==7368==  Address 0x7fefff3f8 is on thread 1's stack
+==7368==  Uninitialised value was created by a stack allocation
+==7368==    at 0xDEB9AF0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_dealloc_pd
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   obj:/usr/lib/librdmacm.so.1.0.0
+   fun:_dl_close_worker
+   fun:_dl_close
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlclose
+   obj:/usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0
+   fun:lt_dlclose
+   fun:ri_destructor
+}
+==7368== Syscall param close(fd) contains uninitialised byte(s)
+==7368==    at 0x5A4486D: ??? (syscall-template.S:82)
+==7368==    by 0xB54C247: ibv_close_device (in /usr/lib/libibverbs.so.1.0.0)
+==7368==    by 0xB992ACF: ??? (in /usr/lib/librdmacm.so.1.0.0)
+==7368==    by 0x40146E7: _dl_close_worker (dl-close.c:266)
+==7368==    by 0x40151AD: _dl_close (dl-close.c:770)
+==7368==    by 0x400F175: _dl_catch_error (dl-error.c:178)
+==7368==    by 0x664452E: _dlerror_run (dlerror.c:164)
+==7368==    by 0x664400E: dlclose (dlclose.c:48)
+==7368==    by 0x5F2601B: ??? (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==7368==    by 0x5F23F1C: lt_dlclose (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==7368==    by 0x51706D7: ri_destructor (mca_base_component_repository.c:384)
+==7368==    by 0x5171498: mca_base_component_repository_release (opal_object.h:448)
+==7368==  Uninitialised value was created by a stack allocation
+==7368==    at 0xDEB8500: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   close(fd)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_close_device
+   obj:/usr/lib/librdmacm.so.1.0.0
+   fun:_dl_close_worker
+   fun:_dl_close
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlclose
+   obj:/usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0
+   fun:lt_dlclose
+   fun:ri_destructor
+   fun:mca_base_component_repository_release
+}
+==21817== Syscall param write(buf) points to uninitialised byte(s)
+==21817==    at 0x5A4492D: ??? (syscall-template.S:82)
+==21817==    by 0xB5498B1: ibv_cmd_dealloc_pd (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xDEB9B5C: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817==    by 0xB992AB5: ??? (in /usr/lib/librdmacm.so.1.0.0)
+==21817==    by 0x40146E7: _dl_close_worker (dl-close.c:266)
+==21817==    by 0x40151AD: _dl_close (dl-close.c:770)
+==21817==    by 0x400F175: _dl_catch_error (dl-error.c:178)
+==21817==    by 0x664452E: _dlerror_run (dlerror.c:164)
+==21817==    by 0x664400E: dlclose (dlclose.c:48)
+==21817==    by 0x5F2601B: ??? (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==21817==    by 0x5F23F1C: lt_dlclose (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==21817==    by 0x51706D7: ri_destructor (mca_base_component_repository.c:384)
+==21817==  Address 0x7fefff248 is on thread 1's stack
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEB9AF0: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   write(buf)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_cmd_dealloc_pd
+   obj:/usr/lib/libibverbs/libmlx4-rdmav2.so
+   obj:/usr/lib/librdmacm.so.1.0.0
+   fun:_dl_close_worker
+   fun:_dl_close
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlclose
+   obj:/usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0
+   fun:lt_dlclose
+   fun:ri_destructor
+}
+==21817== Syscall param close(fd) contains uninitialised byte(s)
+==21817==    at 0x5A4486D: ??? (syscall-template.S:82)
+==21817==    by 0xB54C247: ibv_close_device (in /usr/lib/libibverbs.so.1.0.0)
+==21817==    by 0xB992ACF: ??? (in /usr/lib/librdmacm.so.1.0.0)
+==21817==    by 0x40146E7: _dl_close_worker (dl-close.c:266)
+==21817==    by 0x40151AD: _dl_close (dl-close.c:770)
+==21817==    by 0x400F175: _dl_catch_error (dl-error.c:178)
+==21817==    by 0x664452E: _dlerror_run (dlerror.c:164)
+==21817==    by 0x664400E: dlclose (dlclose.c:48)
+==21817==    by 0x5F2601B: ??? (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==21817==    by 0x5F23F1C: lt_dlclose (in /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0)
+==21817==    by 0x51706D7: ri_destructor (mca_base_component_repository.c:384)
+==21817==    by 0x5171498: mca_base_component_repository_release (opal_object.h:448)
+==21817==  Uninitialised value was created by a stack allocation
+==21817==    at 0xDEB8500: ??? (in /usr/lib/libibverbs/libmlx4-rdmav2.so)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   close(fd)
+   obj:/lib/x86_64-linux-gnu/libc-2.15.so
+   fun:ibv_close_device
+   obj:/usr/lib/librdmacm.so.1.0.0
+   fun:_dl_close_worker
+   fun:_dl_close
+   fun:_dl_catch_error
+   fun:_dlerror_run
+   fun:dlclose
+   obj:/usr/lib/x86_64-linux-gnu/libltdl.so.7.3.0
+   fun:lt_dlclose
+   fun:ri_destructor
+   fun:mca_base_component_repository_release
+}
+==7368== 
+==7368== HEAP SUMMARY:
+==7368==     in use at exit: 316,013 bytes in 261 blocks
+==7368==   total heap usage: 9,299 allocs, 9,038 frees, 20,724,847 bytes allocated
+==7368== 
+==7368== 2 bytes in 1 blocks are definitely lost in loss record 2 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB7714BB: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==7368== 4 bytes in 1 blocks are definitely lost in loss record 5 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB7711E5: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==7368== 5 bytes in 1 blocks are definitely lost in loss record 8 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB340B09: ??? (in /usr/lib/libibverbs/libipathverbs-rdmav2.so)
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:/usr/lib/libibverbs/libipathverbs-rdmav2.so
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==7368== 5 bytes in 1 blocks are definitely lost in loss record 9 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB771369: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==7368== 5 bytes in 1 blocks are definitely lost in loss record 10 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x51978C8: mca_base_param_lookup_string (mca_base_param.c:538)
+==7368==    by 0xB771373: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:mca_base_param_lookup_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==7368== 8 bytes in 1 blocks are definitely lost in loss record 14 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0xB770749: ???
+==7368==    by 0xB770F8F: ???
+==7368==    by 0xB773661: ???
+==7368==    by 0xB773AD7: ???
+==7368==    by 0xB760F8F: ???
+==7368==    by 0x50F33E3: mca_btl_base_select (btl_base_select.c:111)
+==7368==    by 0xB139310: ???
+==7368==    by 0x50F2A95: mca_bml_base_init (bml_base_init.c:71)
+==7368==    by 0xAD1012D: ???
+==7368==    by 0x5107CFB: mca_pml_base_select (pml_base_select.c:132)
+==7368==    by 0x50B5FFD: ompi_mpi_init (ompi_mpi_init.c:576)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:mca_btl_base_select
+   obj:*
+   fun:mca_bml_base_init
+   obj:*
+   fun:mca_pml_base_select
+   fun:ompi_mpi_init
+}
+==7368== 32 bytes in 1 blocks are definitely lost in loss record 52 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0xB77A226: ???
+==7368==    by 0x8822BEF: ???
+==7368==    by 0x8A324BE: ???
+==7368==    by 0x8A34FC2: ???
+==7368==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==7368==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==7368==    by 0xAD14324: ???
+==7368==    by 0x50DE880: PMPI_Send (psend.c:75)
+==7368==    by 0x408F21: main (minimal.cpp:54)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+   fun:opal_progress
+   obj:*
+   fun:PMPI_Send
+   fun:main
+}
+==7368== 52 bytes in 1 blocks are definitely lost in loss record 57 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB771185: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==7368== 52 bytes in 1 blocks are definitely lost in loss record 58 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x51978C8: mca_base_param_lookup_string (mca_base_param.c:538)
+==7368==    by 0xB7711A9: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:mca_base_param_lookup_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==7368== 74 bytes in 1 blocks are definitely lost in loss record 76 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==7368==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==7368==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==7368==    by 0xB771DD3: ???
+==7368==    by 0xB76057D: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==7368==    by 0xA6AC8C3: ???
+==7368==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==7368==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==7368== 108 bytes in 8 blocks are definitely lost in loss record 114 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x517D017: opal_dss_unpack_string (dss_unpack.c:382)
+==7368==    by 0x517BCFE: opal_dss_unpack_buffer (dss_unpack.c:120)
+==7368==    by 0x517BF0D: opal_dss_unpack (dss_unpack.c:84)
+==7368==    by 0x514005A: orte_grpcomm_base_update_modex_entries (grpcomm_base_modex.c:916)
+==7368==    by 0x51402F5: orte_grpcomm_base_modex_unpack (grpcomm_base_modex.c:364)
+==7368==    by 0x8E47C33: ???
+==7368==    by 0x8822BEF: ???
+==7368==    by 0x8A30EE0: ???
+==7368==    by 0x8A325D3: ???
+==7368==    by 0x8A34FC2: ???
+==7368==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:opal_dss_unpack_string
+   fun:opal_dss_unpack_buffer
+   fun:opal_dss_unpack
+   fun:orte_grpcomm_base_update_modex_entries
+   fun:orte_grpcomm_base_modex_unpack
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+}
+==7368== 174 bytes in 6 blocks are definitely lost in loss record 137 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x59E6D81: strdup (strdup.c:43)
+==7368==    by 0xB7732D8: ???
+==7368==    by 0xB773780: ???
+==7368==    by 0xB773AD7: ???
+==7368==    by 0xB760F8F: ???
+==7368==    by 0x50F33E3: mca_btl_base_select (btl_base_select.c:111)
+==7368==    by 0xB139310: ???
+==7368==    by 0x50F2A95: mca_bml_base_init (bml_base_init.c:71)
+==7368==    by 0xAD1012D: ???
+==7368==    by 0x5107CFB: mca_pml_base_select (pml_base_select.c:132)
+==7368==    by 0x50B5FFD: ompi_mpi_init (ompi_mpi_init.c:576)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:mca_btl_base_select
+   obj:*
+   fun:mca_bml_base_init
+   obj:*
+   fun:mca_pml_base_select
+   fun:ompi_mpi_init
+}
+==7368== 300 (60 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 150 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x5A635A4: nss_parse_service_list (nsswitch.c:678)
+==7368==    by 0x5A64065: __nss_database_lookup (nsswitch.c:175)
+==7368==    by 0x9052623: ???
+==7368==    by 0x5A1CC0C: getpwuid_r@@GLIBC_2.2.5 (getXXbyYY_r.c:256)
+==7368==    by 0x5A1C502: getpwuid (getXXbyYY.c:117)
+==7368==    by 0x511B7D4: orte_session_dir_get_name (session_dir.c:148)
+==7368==    by 0x511BD72: orte_session_dir (session_dir.c:379)
+==7368==    by 0x5139B81: orte_ess_base_app_setup (ess_base_std_app.c:143)
+==7368==    by 0x861C654: ???
+==7368==    by 0x510B439: orte_init (orte_init.c:127)
+==7368==    by 0x50B57D8: ompi_mpi_init (ompi_mpi_init.c:356)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:nss_parse_service_list
+   fun:__nss_database_lookup
+   obj:*
+   fun:getpwuid_r@@GLIBC_2.2.5
+   fun:getpwuid
+   fun:orte_session_dir_get_name
+   fun:orte_session_dir
+   fun:orte_ess_base_app_setup
+   obj:*
+   fun:orte_init
+   fun:ompi_mpi_init
+}
+==7368== 1,756 (608 direct, 1,148 indirect) bytes in 2 blocks are definitely lost in loss record 163 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x513ED65: modex_lookup_orte_proc (opal_object.h:469)
+==7368==    by 0x513FEB8: orte_grpcomm_base_update_modex_entries (grpcomm_base_modex.c:885)
+==7368==    by 0x51402F5: orte_grpcomm_base_modex_unpack (grpcomm_base_modex.c:364)
+==7368==    by 0x8E47C33: ???
+==7368==    by 0x8822BEF: ???
+==7368==    by 0x8A30EE0: ???
+==7368==    by 0x8A325D3: ???
+==7368==    by 0x8A34FC2: ???
+==7368==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==7368==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==7368==    by 0x8E4766C: ???
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:modex_lookup_orte_proc
+   fun:orte_grpcomm_base_update_modex_entries
+   fun:orte_grpcomm_base_modex_unpack
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+   fun:opal_progress
+   obj:*
+}
+==7368== 6,112 (88 direct, 6,024 indirect) bytes in 1 blocks are definitely lost in loss record 175 of 182
+==7368==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7368==    by 0x51AA98A: opal_hash_table_set_value_uint64 (opal_object.h:469)
+==7368==    by 0x8A33FFC: ???
+==7368==    by 0x8A38BDC: ???
+==7368==    by 0x88241ED: ???
+==7368==    by 0x8824A98: ???
+==7368==    by 0x516CC74: orte_routed_base_register_sync (routed_base_register_sync.c:86)
+==7368==    by 0x8C41A8F: ???
+==7368==    by 0x5139BC9: orte_ess_base_app_setup (ess_base_std_app.c:165)
+==7368==    by 0x861C654: ???
+==7368==    by 0x510B439: orte_init (orte_init.c:127)
+==7368==    by 0x50B57D8: ompi_mpi_init (ompi_mpi_init.c:356)
+==7368== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:opal_hash_table_set_value_uint64
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:orte_routed_base_register_sync
+   obj:*
+   fun:orte_ess_base_app_setup
+   obj:*
+   fun:orte_init
+   fun:ompi_mpi_init
+}
+==7368== LEAK SUMMARY:
+==7368==    definitely lost: 1,277 bytes in 28 blocks
+==7368==    indirectly lost: 35,348 bytes in 32 blocks
+==7368==      possibly lost: 0 bytes in 0 blocks
+==7368==    still reachable: 8,221 bytes in 30 blocks
+==7368==         suppressed: 271,167 bytes in 171 blocks
+==7368== Reachable blocks (those to which a pointer was found) are not shown.
+==7368== To see them, rerun with: --leak-check=full --show-reachable=yes
+==7368== 
+==7368== For counts of detected and suppressed errors, rerun with: -v
+==7368== ERROR SUMMARY: 37 errors from 21 contexts (suppressed: 12408 from 195)
+==21817== 
+==21817== HEAP SUMMARY:
+==21817==     in use at exit: 316,013 bytes in 261 blocks
+==21817==   total heap usage: 9,278 allocs, 9,017 frees, 20,723,839 bytes allocated
+==21817== 
+==21817== 2 bytes in 1 blocks are definitely lost in loss record 2 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB7714BB: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==21817== 4 bytes in 1 blocks are definitely lost in loss record 5 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB7711E5: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==21817== 5 bytes in 1 blocks are definitely lost in loss record 8 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB340B09: ??? (in /usr/lib/libibverbs/libipathverbs-rdmav2.so)
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:/usr/lib/libibverbs/libipathverbs-rdmav2.so
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==21817== 5 bytes in 1 blocks are definitely lost in loss record 9 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB771369: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==21817== 5 bytes in 1 blocks are definitely lost in loss record 10 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x51978C8: mca_base_param_lookup_string (mca_base_param.c:538)
+==21817==    by 0xB771373: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:mca_base_param_lookup_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==21817== 8 bytes in 1 blocks are definitely lost in loss record 14 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0xB770749: ???
+==21817==    by 0xB770F8F: ???
+==21817==    by 0xB773661: ???
+==21817==    by 0xB773AD7: ???
+==21817==    by 0xB760F8F: ???
+==21817==    by 0x50F33E3: mca_btl_base_select (btl_base_select.c:111)
+==21817==    by 0xB139310: ???
+==21817==    by 0x50F2A95: mca_bml_base_init (bml_base_init.c:71)
+==21817==    by 0xAD1012D: ???
+==21817==    by 0x5107CFB: mca_pml_base_select (pml_base_select.c:132)
+==21817==    by 0x50B5FFD: ompi_mpi_init (ompi_mpi_init.c:576)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:mca_btl_base_select
+   obj:*
+   fun:mca_bml_base_init
+   obj:*
+   fun:mca_pml_base_select
+   fun:ompi_mpi_init
+}
+==21817== 32 bytes in 1 blocks are definitely lost in loss record 52 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0xB77A226: ???
+==21817==    by 0x8822BEF: ???
+==21817==    by 0x8A324BE: ???
+==21817==    by 0x8A34FC2: ???
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0xAD11FC4: ???
+==21817==    by 0x50DA972: PMPI_Recv (precv.c:78)
+==21817==    by 0x408F60: main (minimal.cpp:64)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+   fun:opal_progress
+   obj:*
+   fun:PMPI_Recv
+   fun:main
+}
+==21817== 52 bytes in 1 blocks are definitely lost in loss record 57 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB771185: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==21817== 52 bytes in 1 blocks are definitely lost in loss record 58 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x51978C8: mca_base_param_lookup_string (mca_base_param.c:538)
+==21817==    by 0xB7711A9: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817==    by 0x50B5F81: ompi_mpi_init (ompi_mpi_init.c:540)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:mca_base_param_lookup_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+   fun:ompi_mpi_init
+}
+==21817== 74 bytes in 1 blocks are definitely lost in loss record 76 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0x5195BAD: param_lookup.isra.10.part.11 (mca_base_param.c:2016)
+==21817==    by 0x5197150: param_register.constprop.12 (mca_base_param.c:1714)
+==21817==    by 0x51976BF: mca_base_param_reg_string (mca_base_param.c:375)
+==21817==    by 0xB771DD3: ???
+==21817==    by 0xB76057D: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x50F315C: mca_btl_base_open (btl_base_open.c:115)
+==21817==    by 0xA6AC8C3: ???
+==21817==    by 0x51A10F4: mca_base_components_open (mca_base_components_open.c:427)
+==21817==    by 0x5107808: mca_pml_base_open (pml_base_open.c:126)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:param_lookup.isra.10.part.11
+   fun:param_register.constprop.12
+   fun:mca_base_param_reg_string
+   obj:*
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_btl_base_open
+   obj:*
+   fun:mca_base_components_open
+   fun:mca_pml_base_open
+}
+==21817== 108 bytes in 8 blocks are definitely lost in loss record 114 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x517D017: opal_dss_unpack_string (dss_unpack.c:382)
+==21817==    by 0x517BCFE: opal_dss_unpack_buffer (dss_unpack.c:120)
+==21817==    by 0x517BF0D: opal_dss_unpack (dss_unpack.c:84)
+==21817==    by 0x514005A: orte_grpcomm_base_update_modex_entries (grpcomm_base_modex.c:916)
+==21817==    by 0x51402F5: orte_grpcomm_base_modex_unpack (grpcomm_base_modex.c:364)
+==21817==    by 0x8E47C33: ???
+==21817==    by 0x8822BEF: ???
+==21817==    by 0x8A30EE0: ???
+==21817==    by 0x8A325D3: ???
+==21817==    by 0x8A34FC2: ???
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:opal_dss_unpack_string
+   fun:opal_dss_unpack_buffer
+   fun:opal_dss_unpack
+   fun:orte_grpcomm_base_update_modex_entries
+   fun:orte_grpcomm_base_modex_unpack
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+}
+==21817== 174 bytes in 6 blocks are definitely lost in loss record 137 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x59E6D81: strdup (strdup.c:43)
+==21817==    by 0xB7732D8: ???
+==21817==    by 0xB773780: ???
+==21817==    by 0xB773AD7: ???
+==21817==    by 0xB760F8F: ???
+==21817==    by 0x50F33E3: mca_btl_base_select (btl_base_select.c:111)
+==21817==    by 0xB139310: ???
+==21817==    by 0x50F2A95: mca_bml_base_init (bml_base_init.c:71)
+==21817==    by 0xAD1012D: ???
+==21817==    by 0x5107CFB: mca_pml_base_select (pml_base_select.c:132)
+==21817==    by 0x50B5FFD: ompi_mpi_init (ompi_mpi_init.c:576)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:mca_btl_base_select
+   obj:*
+   fun:mca_bml_base_init
+   obj:*
+   fun:mca_pml_base_select
+   fun:ompi_mpi_init
+}
+==21817== 300 (60 direct, 240 indirect) bytes in 1 blocks are definitely lost in loss record 150 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x5A635A4: nss_parse_service_list (nsswitch.c:678)
+==21817==    by 0x5A64065: __nss_database_lookup (nsswitch.c:175)
+==21817==    by 0x9052623: ???
+==21817==    by 0x5A1CC0C: getpwuid_r@@GLIBC_2.2.5 (getXXbyYY_r.c:256)
+==21817==    by 0x5A1C502: getpwuid (getXXbyYY.c:117)
+==21817==    by 0x511B7D4: orte_session_dir_get_name (session_dir.c:148)
+==21817==    by 0x511BD72: orte_session_dir (session_dir.c:379)
+==21817==    by 0x5139B81: orte_ess_base_app_setup (ess_base_std_app.c:143)
+==21817==    by 0x861C654: ???
+==21817==    by 0x510B439: orte_init (orte_init.c:127)
+==21817==    by 0x50B57D8: ompi_mpi_init (ompi_mpi_init.c:356)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:nss_parse_service_list
+   fun:__nss_database_lookup
+   obj:*
+   fun:getpwuid_r@@GLIBC_2.2.5
+   fun:getpwuid
+   fun:orte_session_dir_get_name
+   fun:orte_session_dir
+   fun:orte_ess_base_app_setup
+   obj:*
+   fun:orte_init
+   fun:ompi_mpi_init
+}
+==21817== 1,756 (608 direct, 1,148 indirect) bytes in 2 blocks are definitely lost in loss record 163 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x513ED65: modex_lookup_orte_proc (opal_object.h:469)
+==21817==    by 0x513FEB8: orte_grpcomm_base_update_modex_entries (grpcomm_base_modex.c:885)
+==21817==    by 0x51402F5: orte_grpcomm_base_modex_unpack (grpcomm_base_modex.c:364)
+==21817==    by 0x8E47C33: ???
+==21817==    by 0x8822BEF: ???
+==21817==    by 0x8A30EE0: ???
+==21817==    by 0x8A325D3: ???
+==21817==    by 0x8A34FC2: ???
+==21817==    by 0x51B6D08: opal_event_base_loop (event.c:686)
+==21817==    by 0x51777A8: opal_progress (opal_progress.c:189)
+==21817==    by 0x8E4766C: ???
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:modex_lookup_orte_proc
+   fun:orte_grpcomm_base_update_modex_entries
+   fun:orte_grpcomm_base_modex_unpack
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:opal_event_base_loop
+   fun:opal_progress
+   obj:*
+}
+==21817== 6,112 (88 direct, 6,024 indirect) bytes in 1 blocks are definitely lost in loss record 175 of 182
+==21817==    at 0x4C2B6CD: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==21817==    by 0x51AA98A: opal_hash_table_set_value_uint64 (opal_object.h:469)
+==21817==    by 0x8A33FFC: ???
+==21817==    by 0x8A38BDC: ???
+==21817==    by 0x88241ED: ???
+==21817==    by 0x8824A98: ???
+==21817==    by 0x516CC74: orte_routed_base_register_sync (routed_base_register_sync.c:86)
+==21817==    by 0x8C41A8F: ???
+==21817==    by 0x5139BC9: orte_ess_base_app_setup (ess_base_std_app.c:165)
+==21817==    by 0x861C654: ???
+==21817==    by 0x510B439: orte_init (orte_init.c:127)
+==21817==    by 0x50B57D8: ompi_mpi_init (ompi_mpi_init.c:356)
+==21817== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:opal_hash_table_set_value_uint64
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   fun:orte_routed_base_register_sync
+   obj:*
+   fun:orte_ess_base_app_setup
+   obj:*
+   fun:orte_init
+   fun:ompi_mpi_init
+}
+==21817== LEAK SUMMARY:
+==21817==    definitely lost: 1,277 bytes in 28 blocks
+==21817==    indirectly lost: 35,348 bytes in 32 blocks
+==21817==      possibly lost: 0 bytes in 0 blocks
+==21817==    still reachable: 8,221 bytes in 30 blocks
+==21817==         suppressed: 271,167 bytes in 171 blocks
+==21817== Reachable blocks (those to which a pointer was found) are not shown.
+==21817== To see them, rerun with: --leak-check=full --show-reachable=yes
+==21817== 
+==21817== For counts of detected and suppressed errors, rerun with: -v
+==21817== ERROR SUMMARY: 38 errors from 22 contexts (suppressed: 27969 from 212)
