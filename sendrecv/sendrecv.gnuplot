@@ -20,5 +20,5 @@ set style line 8 lc rgb '#9370DB' lt 1 lw 2 pt 5 ps 1   # --- purple
 set style line 9 lc rgb '#8B4513' lt 1 lw 2 pt 5 ps 1   # --- brown
 set style line 10 lc rgb '#CD853F' lt 1 lw 2 pt 5 ps 1   # --- mocca
 plot \
-    'sendrecv.out' index 0 using 2:($3/1000000):($4/1000000) w yerrorbars ls 1 title 'send I', \
-    '' index 0 using 2:($3/1000000) w lines ls 1 title '',\
+    'send2.out' using 2:($4/1000000):($5/1000000) w yerrorbars ls 1 title 'send', \
+    ''using 2:($3/1000000) w lines ls 1 title '',\

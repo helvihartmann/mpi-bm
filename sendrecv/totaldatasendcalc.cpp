@@ -43,11 +43,11 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= 500000000) {
+            if (cutoff >= 1 && cutoff <= empiricalfactor) {
             }
             else {
-                cutoff = 500000000;
-                printf("WARNING \n-e: max package size was set to 500 kB \n");
+                cutoff = empiricalfactor;
+                printf("WARNING \n-e: max package size was set to %ld B \n",empiricalfactor);
             }
             break;
         case '?':
