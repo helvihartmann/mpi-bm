@@ -11,7 +11,7 @@ designed to send a lot of data between processes even more than 1GB
 
 class Bufferoperations{
 private:
-    int *counts;//*rcounts;
+    int *buffer;//*rcounts;
     size_t packagesize_temp;
     size_t innerRuntimeIterations;
     const int* sendmode;
@@ -23,6 +23,8 @@ public:
     void allocateBuffer();
     
     void initalizeBuffer();
+    
+    void specifyBuffer();
     
     void sendBuffer();
     

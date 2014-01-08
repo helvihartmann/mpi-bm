@@ -69,7 +69,18 @@ int main(int argc,char *argv[]){
                 Bufferoperations bufferop0(p, innerRuntimeIterations, sendmode, mpi1pnter);
                 bufferop0.allocateBuffer();
                 bufferop0.initalizeBuffer();
-
+                
+                switch(*sendmode){
+                    case 1:
+                    case 3:
+                    default:
+                        bufferop0.specifyBuffer();
+                        break;
+                    case 2:
+                        break;
+                }
+                
+                
                 // time measure sending process
                 starttime_send = mpi1.get_mpitime();
                 bufferop0.sendBuffer();//Objekt mpi1 mitübergeben

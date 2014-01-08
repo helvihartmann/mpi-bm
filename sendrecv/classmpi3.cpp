@@ -16,7 +16,13 @@ int Mpi::get_size(){
 int Mpi::get_rank(){
     return rank;
 }
+
+
+void Mpi::performBufferspecification(void *buffer, size_t packagesize_tmp){
+    MPI_BUFFER_ATTACH(buffer, packagesize_tmp)
     
+}
+
 void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, const int* sendmode){
     
     switch (*sendmode) {
@@ -57,5 +63,4 @@ double Mpi::get_mpitime(){
     }*/
     
 void Mpi::endmpi(){
-        MPI_Finalize();
-}
+s}
