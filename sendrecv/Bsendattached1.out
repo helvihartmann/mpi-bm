@@ -1,0 +1,34 @@
+# Prozess 0 von 2 on node0 
+# sendmode: 3 start Packagesize: 128 cutoff 100000
+# Prozess 1 von 2 on node1 
+# sendmode: 3 start Packagesize: 128 cutoff 100000
+#8.1.2014 - 13:58
+# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
+1000000 512 32.776206 15621088.235438 13.233328 15621136.831318 13.233400 - 0.810000 0.320000 0.230000 
+500000 1024 45.308260 11300367.835781 0.061010 11300228.631896 0.061415 - 0.980000 0.570000 0.330000 
+250000 2048 20.037490 25552102.519949 5.949475 25551884.832826 5.949271 - 0.990000 0.650000 0.380000 
+125000 4096 7.706756 66435219.866985 0.112294 66433126.992584 0.112266 - 0.940000 0.670000 0.390000 
+62500 8192 3.738792 136942638.293509 0.129597 136940024.361375 0.129575 - 0.890000 0.670000 0.400000 
+[node0:02276] *** Process received signal ***
+[node0:02276] Signal: Segmentation fault (11)
+[node0:02276] Signal code: Address not mapped (1)
+[node0:02276] Failing at address: 0x1190938
+[node0:02276] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fbbb32594a0]
+[node0:02276] [ 1] /usr/lib/libmpi.so.1(opal_memory_ptmalloc2_int_malloc+0x769) [0x7fbbb3f403b9]
+[node0:02276] [ 2] /usr/lib/libmpi.so.1(+0x14a738) [0x7fbbb3f41738]
+[node0:02276] [ 3] /usr/lib/libmpi.so.1(+0x13f126) [0x7fbbb3f36126]
+[node0:02276] [ 4] /usr/lib/libmpi.so.1(opal_show_help_vstring+0x18d) [0x7fbbb3f463bd]
+[node0:02276] [ 5] /usr/lib/libmpi.so.1(orte_show_help+0xb0) [0x7fbbb3ec0570]
+[node0:02276] [ 6] /usr/lib/libmpi.so.1(+0x4c81d) [0x7fbbb3e4381d]
+[node0:02276] [ 7] /usr/lib/libmpi.so.1(ompi_mpi_errors_are_fatal_comm_handler+0x127) [0x7fbbb3e440c7]
+[node0:02276] [ 8] /usr/lib/libmpi.so.1(ompi_errhandler_invoke+0x98) [0x7fbbb3e43298]
+[node0:02276] [ 9] /usr/lib/libmpi.so.1(PMPI_Bsend+0x34c) [0x7fbbb3e6993c]
+[node0:02276] [10] build/sendrecv(_ZN3Mpi11performsendEPviP15ompi_datatype_tiiP19ompi_communicator_tPKi+0x98) [0x40eec8]
+[node0:02276] [11] build/sendrecv(_ZN16Bufferoperations10sendBufferEv+0x5c) [0x40e9c6]
+[node0:02276] [12] build/sendrecv(main+0x2ff) [0x40a22b]
+[node0:02276] [13] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fbbb324476d]
+[node0:02276] [14] build/sendrecv() [0x409e49]
+[node0:02276] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 0 with PID 2276 on node node0 exited on signal 11 (Segmentation fault).
+--------------------------------------------------------------------------

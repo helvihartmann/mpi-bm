@@ -52,7 +52,7 @@ int main(int argc,char *argv[]){
     cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
-        const int outerStatisticalIterations = 3;
+        const int outerStatisticalIterations = data.getstatisticaliterations();;
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
         size_t *everythingcorrect_check = 0;
@@ -86,6 +86,16 @@ int main(int argc,char *argv[]){
                 bufferop0.sendBuffer();//Objekt mpi1 mitübergeben
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
+                
+                switch(*sendmode){
+                    case 1:
+                    case 3:
+                    default:
+                        bufferop0.detachBuffer();
+                        break;
+                    case 2:
+                        break;
+                }
                 
                 bufferop0.freeBuffer();
 
@@ -160,7 +170,7 @@ int main(int argc,char *argv[]){
             }
         }//if you are process 0
         
-        sleep(4);
+        //sleep(4);
     }//for p iteration over package size
         
     mpi1.endmpi();

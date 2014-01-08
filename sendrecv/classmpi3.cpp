@@ -19,7 +19,7 @@ int Mpi::get_rank(){
 
 
 void Mpi::performBufferspecification(void *buffer, size_t packagesize_tmp){
-    MPI_BUFFER_ATTACH(buffer, packagesize_tmp)
+    MPI_Buffer_attach(buffer, packagesize_tmp);
     
 }
 
@@ -57,10 +57,10 @@ double Mpi::get_mpitime(){
         return timepoint;
 }
     
-    /*char get_pname(char name, int &length){
-        MPI_Get_processor_name(name, &length);
-        return name;
-    }*/
+void Mpi::performBufferdetach(void* buffer, int packagesize_tmp){
+    MPI_Buffer_detach(&buffer,&packagesize_tmp);
+}
     
 void Mpi::endmpi(){
-s}
+    MPI_Finalize();
+}

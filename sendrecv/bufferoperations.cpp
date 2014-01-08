@@ -13,12 +13,12 @@ Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, con
 
 
 void Bufferoperations::allocateBuffer(){
-    counts= new int [packagesize_temp];
+    buffer= new int [packagesize_temp];
 }
 
 void Bufferoperations::initalizeBuffer(){
     for(size_t i=0; i<packagesize_temp; i++){
-        counts[i]=1;
+        buffer[i]=1;
 
     }
 }
@@ -46,6 +46,10 @@ void Bufferoperations::checkBuffer(size_t *everythingcorrect_check){
             everythingcorrect_check++;
         }
     }
+}
+
+void Bufferoperations::detachBuffer(){
+    mpi1.performBufferdetach(buffer,packagesize_temp);
 }
 
 void Bufferoperations::freeBuffer(){

@@ -18,7 +18,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
 
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "m:a:e:")) != -1)
+    while ((opt = getopt (argc, argv, "m:a:e:i:o:")) != -1)
     switch (opt)
     {
         case 'm':
@@ -41,15 +41,31 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
                 exit(1);
             }
             break;
-        case 'e':
-            cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= empiricalfactor) {
+        case 'i':
+            startiteration = atoi(optarg);
+            if (startiteration >=1 && startiteration <=100000000) {
             }
             else {
-                cutoff = empiricalfactor;
-                printf("WARNING \n-e: max package size was set to %ld B \n",empiricalfactor);
+                startiteration = 1000000*128;
+                printf("#WARNING \n-i: too many startiteration; limited to 128*1mio \n");
+            }
+        case 'e':
+            cutoff = atoi(optarg);
+            if (cutoff >= 1 && cutoff <= startiteration) {
+            }
+            else {
+                cutoff = startiteration;
+                printf("#WARNING \n-e: max package size was set to %ld B \n",startiteration);
             }
             break;
+        case 'o':
+            statisticaliterations = atoi(optarg);
+            if (statisticaliterations >=1 && startiteration <=1000) {
+            }
+            else {
+                statisticaliterations=1000;
+                printf("#WARNING \n-o: statistical iterations were limited to 1000 \n");
+            }
         case '?':
             fprintf (stderr,
                      "Unknown option character `\\x%x'.\n",
@@ -71,9 +87,18 @@ int Totaldatasendcalc::getsendmode(){
     return sendmode;
 }
 
+int Totaldatasendcalc::getstatisticaliterations(){
+    return statisticaliterations;
+}
+
+
 size_t Totaldatasendcalc::getinnerRuntimeIterations(){
-    iterations = empiricalfactor/packagesize_temp;
-    //iterations = 1;
+    if(startiteration==1){
+        iterations=1;
+    }
+    else {
+        iterations = startiteration/packagesize_temp;
+    }
     return iterations;
 }
     

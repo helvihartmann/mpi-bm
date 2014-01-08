@@ -32,6 +32,8 @@ public:
     
     void checkBuffer(size_t *everythingcorrect_check);
     
+    void detachBuffer();
+    
     void freeBuffer();
     
 };

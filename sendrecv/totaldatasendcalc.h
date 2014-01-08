@@ -14,8 +14,9 @@ private:
     size_t startPackageSize = 2;
     size_t cutoff = 1000;
     size_t iterations;
-    size_t empiricalfactor = 1000000*128;
+    size_t startiteration = 1000000*128;
     size_t packagesize_temp;
+    int statisticaliterations=1000;
 
 public:
     
@@ -24,6 +25,8 @@ public:
     void readOptions(int&, char**);
     
     size_t getpackagesize();
+    
+    int getstatisticaliterations();
         
     size_t getcutoff();
     

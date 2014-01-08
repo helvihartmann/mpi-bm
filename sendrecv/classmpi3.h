@@ -20,6 +20,9 @@ public:
     
     int get_rank();
     
+    void performBufferspecification(void*, size_t);
+
+    
     void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, const int*);
 
     
@@ -28,11 +31,8 @@ public:
     void performalltoall(void*, int, MPI_Datatype,void*, int, MPI_Datatype,  MPI_Comm);
     
     double get_mpitime();
-    
-    /*char get_pname(char name, int &length){
-        MPI_Get_processor_name(name, &length);
-        return name;
-    }*/
+  
+    void performBufferdetach(void*,int);
     
     void endmpi();
 };
