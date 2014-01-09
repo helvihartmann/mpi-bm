@@ -24,7 +24,7 @@ public:
     
     void initalizeBuffer();
     
-    void specifyBuffer();
+    //void specifyBuffer();
     
     void sendBuffer();
     
@@ -32,7 +32,7 @@ public:
     
     void checkBuffer(size_t *everythingcorrect_check);
     
-    void detachBuffer();
+    //void detachBuffer();
     
     void freeBuffer();
     

@@ -23,9 +23,9 @@ void Bufferoperations::initalizeBuffer(){
     }
 }
 
-void Bufferoperations::specifyBuffer(){
+/*void Bufferoperations::specifyBuffer(){
     mpi1.performBufferspecification(buffer,packagesize_temp);
-}
+}*/
 
 void Bufferoperations::sendBuffer(){
     for(int j=0; j<innerRuntimeIterations; j++){
@@ -48,9 +48,9 @@ void Bufferoperations::checkBuffer(size_t *everythingcorrect_check){
     }
 }
 
-void Bufferoperations::detachBuffer(){
+/*void Bufferoperations::detachBuffer(){
     mpi1.performBufferdetach(buffer,packagesize_temp);
-}
+}*/
 
 void Bufferoperations::freeBuffer(){
     delete [] buffer;

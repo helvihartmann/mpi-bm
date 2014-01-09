@@ -49,7 +49,7 @@ int main(int argc,char *argv[]){
     int tmp = data.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     const int* sendmode = &tmp;
     
-    cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
+    //cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
         
@@ -62,9 +62,6 @@ int main(int argc,char *argv[]){
         data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
         
-        if(p==startPackageSize){
-            cout <<"#statistical iterations: "<<outerStatisticalIterations<<" runtime iterations: "<<innerRuntimeIterations<<"\n";
-        }
         
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<outerStatisticalIterations; m++){

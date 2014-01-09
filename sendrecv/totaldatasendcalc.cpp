@@ -75,6 +75,9 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
         default:
             abort ();
     }
+    printf ("#sendmode = %d, startPackageSize = %ld, start iterations = %ld cutoff = %ld, statistical iterations = %d \n",
+            sendmode, startPackageSize, startiteration, cutoff, statisticaliterations);
+
 }
 
 size_t Totaldatasendcalc::getpackagesize(){
@@ -97,6 +100,9 @@ int Totaldatasendcalc::getstatisticaliterations(){
 size_t Totaldatasendcalc::getinnerRuntimeIterations(){
     if(startiteration==1){
         iterations=1;
+    }
+    else if (startiteration >=24000){
+        iterations=24000;
     }
     else {
         iterations = startiteration/packagesize_temp;

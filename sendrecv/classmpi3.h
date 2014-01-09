@@ -20,7 +20,7 @@ public:
     
     int get_rank();
     
-    void performBufferspecification(void*, size_t);
+    //void performBufferspecification(void*, size_t);
 
     
     void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, const int*);
@@ -32,7 +32,7 @@ public:
     
     double get_mpitime();
   
-    void performBufferdetach(void*,int);
+    //void performBufferdetach(void*,int);
     
     void endmpi();
 };

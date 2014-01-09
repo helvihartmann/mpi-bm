@@ -18,10 +18,10 @@ int Mpi::get_rank(){
 }
 
 
-void Mpi::performBufferspecification(void *buffer, size_t packagesize_tmp){
+/*void Mpi::performBufferspecification(void *buffer, size_t packagesize_tmp){
     MPI_Buffer_attach(buffer, packagesize_tmp);
     
-}
+}*/
 
 void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, const int* sendmode){
     
@@ -57,9 +57,9 @@ double Mpi::get_mpitime(){
         return timepoint;
 }
     
-void Mpi::performBufferdetach(void* buffer, int packagesize_tmp){
+/*void Mpi::performBufferdetach(void* buffer, int packagesize_tmp){
     MPI_Buffer_detach(&buffer,&packagesize_tmp);
-}
+}*/
     
 void Mpi::endmpi(){
     MPI_Finalize();
