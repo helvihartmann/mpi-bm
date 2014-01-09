@@ -9,54 +9,71 @@ main (int argc, char **argv)
     int sendmode = 1; //send by default
     size_t startPackageSize = 2;
     size_t cutoff = 1000;
+    int statisticaliterations=1000;
+    size_t startiteration=1000000*128;
     int opt;
     
     opterr = 0;
     
-    while ((opt = getopt (argc, argv, "m:a:e:")) != -1)
+    while ((opt = getopt (argc, argv, "m:a:i:e:o:")) != -1)
         switch (opt)
     {
         case 'm':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 3) {
-                
                 //zwischen 1 und 3
             }
             else {
-                printf("FAILURE \n-m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                printf("ERROR \n-m: your options are 1 send; 2 Ssend, 3 Bsend\n");
                 exit(1);
             }
             break;
         case 'a':
             startPackageSize = atoi(optarg);
+            
             if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
-                
             }
             else {
-                printf("FAILURE \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                printf("ERROR \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
                 exit(1);
+            }
+            break;
+        case 'i':
+            startiteration = atoi(optarg);
+            if (startiteration >=1 && startiteration<= 100000000) {
+            }
+            else {
+                startiteration = 1000000*128;
+                printf("#INFO \n-i: too many startiteration; limited to 128*1mio \n");
             }
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= 10) {
-                
+            if (cutoff >= 1 && cutoff <= startiteration) {
             }
             else {
-                printf("FAILURE \n-e: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
-                exit(1);
+                cutoff = startiteration;
+                printf("#INFO \n-e: max package size was set to %ld B \n",startiteration);
+            }
+            break;
+        case 'o':
+            statisticaliterations = atoi(optarg);
+            if (statisticaliterations >=1 && statisticaliterations <= 1000) {
+            }
+            else {
+                statisticaliterations=1000;
+                printf("#INFO \n-o: statistical iterations were limited to 1000 \n");
             }
             break;
         case '?':
             fprintf (stderr,
-                         "Unknown option character `\\x%x'.\n",
-                         optopt);
-            return 1;
+                     "ERROR: Unknown option character `\\x%x'.\n",
+                     optopt);
         default:
             abort ();
     }
     
     
-    printf ("sendmode = %d, startPackageSize = %ld, cutoff = %ld \n",
-            sendmode, startPackageSize, cutoff);
+    printf ("sendmode = %d, startPackageSize = %ld, start iterations = %ld cutoff = %ld, statistical iterations = %d \n",
+            sendmode, startPackageSize, startiteration, cutoff, statisticaliterations);
 }

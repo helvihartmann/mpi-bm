@@ -52,13 +52,19 @@ int main(int argc,char *argv[]){
     cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     
     for(size_t p=startPackageSize; p<cutoff;p=p*2){
-        const int outerStatisticalIterations = data.getstatisticaliterations();;
+        
+        int outerStatisticalIterations = data.getstatisticaliterations();;
+        
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
         double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
         data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations();
+        
+        if(p==startPackageSize){
+            cout <<"#statistical iterations: "<<outerStatisticalIterations<<" runtime iterations: "<<innerRuntimeIterations<<"\n";
+        }
         
         /*----------------------repeadingly send the package---------------------*/
         for(int m=0; m<outerStatisticalIterations; m++){
@@ -70,7 +76,7 @@ int main(int argc,char *argv[]){
                 bufferop0.allocateBuffer();
                 bufferop0.initalizeBuffer();
                 
-                switch(*sendmode){
+                /*switch(*sendmode){
                     case 1:
                     case 3:
                     default:
@@ -78,7 +84,7 @@ int main(int argc,char *argv[]){
                         break;
                     case 2:
                         break;
-                }
+                }*/
                 
                 
                 // time measure sending process
@@ -87,7 +93,7 @@ int main(int argc,char *argv[]){
                 endtime_send = mpi1.get_mpitime();
                 sendtime[m]=(endtime_send-starttime_send);
                 
-                switch(*sendmode){
+                /*switch(*sendmode){
                     case 1:
                     case 3:
                     default:
@@ -95,7 +101,7 @@ int main(int argc,char *argv[]){
                         break;
                     case 2:
                         break;
-                }
+                }*/
                 
                 bufferop0.freeBuffer();
 
