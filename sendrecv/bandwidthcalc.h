@@ -11,13 +11,14 @@
 class Bandwidthcalc{
 private:
     double mean;
+    double sum;
     double varianz;
     long double rate;
     double* time;
     int iterations;
     
 public:
-    Bandwidthcalc(double*, int);
+    Bandwidthcalc(double*,double, int);
     
     double getmean();
     

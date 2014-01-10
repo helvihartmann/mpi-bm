@@ -1,20 +1,15 @@
 # Prozess 0 von 2 on node0 
-#sendmode = 1, startPackageSize = 4096, start iterations = 128000000 cutoff = 10000000, statistical iterations = 10 
+#sendmode = 1, startPackageSize = 4096, start iterations = 128000000 cutoff = 100000, statistical iterations = 3 
 # Prozess 1 von 2 on node1 
-#sendmode = 1, startPackageSize = 4096, start iterations = 128000000 cutoff = 10000000, statistical iterations = 10 
+#sendmode = 1, startPackageSize = 4096, start iterations = 128000000 cutoff = 100000, statistical iterations = 3 
 
-0.064163 0.0218868 3.34399 2.85264 2.01221 1.86951 1.78979 1.74955 1.72984 1.72708 1.79259 1.87984 
+0.0647981 0.023319 3.64682 2.85257 2.01022 
 
-1.58284 1.08906 3.34314 2.85607 2.01348 1.86992 1.78996 1.7474 1.72941 1.75471 1.80034 1.88097 
-[node1:10825] *** Process received signal ***
-[node1:10825] Signal: Segmentation fault (11)
-[node1:10825] Signal code: Address not mapped (1)
-[node1:10825] Failing at address: 0x7ffdc3ca6e50
-[node1:10825] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x364a0) [0x7fc7ba2894a0]
-[node1:10825] [ 1] build/sendrecv2(main+0x506) [0x40a2a2]
-[node1:10825] [ 2] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xed) [0x7fc7ba27476d]
-[node1:10825] [ 3] build/sendrecv2() [0x409cb9]
-[node1:10825] *** End of error message ***
---------------------------------------------------------------------------
-mpirun noticed that process rank 1 with PID 10825 on node node1 exited on signal 11 (Segmentation fault).
---------------------------------------------------------------------------
+0.032316 0.0231881 3.64529 2.84974 2.00983 
+
+0.032403 0.023159 3.64562 2.85058 2.00933 
+0.0431724 0.0088287
+0.023222 4.01718e-05
+3.64591 0.00038028
+2.85096 0.000684285
+2.00979 0.000208463

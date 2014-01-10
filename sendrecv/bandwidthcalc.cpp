@@ -7,17 +7,13 @@
  27.11.13 class that performs all calculations on meassured time to gain bandwidth knowledge*/
 
 
-Bandwidthcalc::Bandwidthcalc(double time_[], int outerStatisticalIterations_){
+Bandwidthcalc::Bandwidthcalc(double time_[],double sum_, int outerStatisticalIterations_){
     time = time_;
+    sum=sum_;
     iterations = outerStatisticalIterations_;
 }
 
 double Bandwidthcalc::getmean(){
-    double sum = 0;
-    for(int m=0; m<iterations; m++){
-        double mean_tmp = time[m];
-        sum = sum + mean_tmp;
-    }
     mean = sum/iterations;
     return mean;
 }
