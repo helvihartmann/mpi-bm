@@ -40,7 +40,7 @@ main (int argc, char **argv)
             break;
         case 'i':
             startiteration = atoi(optarg);
-            if (startiteration >=1 && startiteration<= 100000000) {
+            if (startiteration >=1 && startiteration<= 10000000000) {
             }
             else {
                 startiteration = 1000000*128;

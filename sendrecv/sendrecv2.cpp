@@ -51,21 +51,21 @@ int main(int argc,char *argv[]){
     
     //cout << "# sendmode: " << *sendmode << " start Packagesize: "<<startPackageSize << " cutoff " << cutoff<<"\n";
     int z =0;
-    for(size_t p=startPackageSize; p<cutoff;p=p*2){
+    int outerStatisticalIterations = data.getstatisticaliterations();
+    for(int m=0; m<outerStatisticalIterations; m++){
         
-        int outerStatisticalIterations = data.getstatisticaliterations();;
+        int numberofpackages = log(cutoff)/log(2)-log(startPackageSize)/log(2)+1;
+        for(size_t p=startPackageSize; p<cutoff;p=p*2){
+        
         
         double starttime_send, endtime_send, starttime_recv, endtime_recv;
-        double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
+        double recvtime[numberofpackages], sendtime[numberofpackages];
         size_t *everythingcorrect_check = 0;
         /* --------------send/recv the data*-----------------------------------------*/
         data.setPackagesizeTmp(p);//p correct at this point
         size_t innerRuntimeIterations = data.getinnerRuntimeIterations(z);
-        z++;
-        
         
         /*----------------------repeadingly send the package---------------------*/
-        for(int m=0; m<outerStatisticalIterations; m++){
             
             //Process 0 sends the data
             if (rank == 0) {
@@ -89,7 +89,7 @@ int main(int argc,char *argv[]){
                 starttime_send = mpi1.get_mpitime();
                 bufferop0.sendBuffer();//Objekt mpi1 mitübergeben
                 endtime_send = mpi1.get_mpitime();
-                sendtime[m]=(endtime_send-starttime_send);
+                sendtime[z]=(endtime_send-starttime_send);
                 
                 /*switch(*sendmode){
                     case 1:
@@ -115,14 +115,19 @@ int main(int argc,char *argv[]){
                 starttime_recv = mpi1.get_mpitime();
                 bufferop1.recvBuffer();
                 endtime_recv = mpi1.get_mpitime();
-                recvtime[m]=(endtime_recv-starttime_recv);
+                recvtime[z]=(endtime_recv-starttime_recv);
+                std::cout<<recvtime[z]<<" ";
                 
                 bufferop1.checkBuffer(everythingcorrect_check);
                 bufferop1.freeBuffer();
             }//else if
-        }//for iterations to get statistic errors
+        z++;
+        }//for p iteration over package size
+        std::cout<<"\n";
+    }//for iterations to get statistic errors
+
         /*------------------------------------ output-------------------------------*/
-        MPI_Barrier(MPI_COMM_WORLD);
+        /*MPI_Barrier(MPI_COMM_WORLD);
         Printoutput out;
         
         // send everything to process 0 to do the output
@@ -135,7 +140,7 @@ int main(int argc,char *argv[]){
                 //get information from process 1
                 mpi1.performrecv(recvtime,outerStatisticalIterations,MPI_DOUBLE,1,innerRuntimeIterations+1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
                 
-                /*--------------calculate all needed parameters--------------------- */
+                //--------------calculate all needed parameters---------------------
                 size_t totaldatasent = data.getTotalDataSent();
 
                 
@@ -157,7 +162,7 @@ int main(int argc,char *argv[]){
                 getloadavg(loadavg, nelem);
 
                 
-                /*-----------------------------print-- ------------------------------*/
+                //-----------------------------print-- ------------------------------
                 
                 // Header
                 if(p==startPackageSize){
@@ -172,10 +177,10 @@ int main(int argc,char *argv[]){
             else{
                 out.printerrormessage(everythingcorrect_check,p);
             }
-        }//if you are process 0
+        }//if you are process 0*/
         
-        //sleep(4);
-    }//for p iteration over package size
+
+    
         
     mpi1.endmpi();
 }

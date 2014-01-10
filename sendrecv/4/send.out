@@ -1,9 +1,0 @@
-# Prozess 0 von 2 on node0 
-sendmode = 1, startPackageSize = 32, cutoff = 5000 
-# start Packagesize: 32 cutoff 5000
-# Prozess 1 von 2 on node1 
-sendmode = 1, startPackageSize = 32, cutoff = 5000 
-# start Packagesize: 32 cutoff 5000
-#16.12.2013 - 9:47
-# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
-20000000 128 8.419296 304063412.906907 0.007787 304063436.155264 0.007787 - 0.790000 0.360000 0.180000 

@@ -10,13 +10,13 @@
     //get starting packege size; read in data to send from console (default =128B)
 class Totaldatasendcalc{
 private:
-    int sendmode = 1; //send by default
-    size_t startPackageSize = 2;
-    size_t cutoff = 1000;
+    int sendmode; //send by default
+    size_t startPackageSize;
+    size_t cutoff;
     size_t iterations;
-    size_t startiteration = 20000000*128;
+    size_t startiteration;
     size_t packagesize_temp;
-    int statisticaliterations=1000;
+    int statisticaliterations;
 
 public:
     
@@ -34,7 +34,7 @@ public:
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/
-    size_t getinnerRuntimeIterations();
+    size_t getinnerRuntimeIterations(int z);
     
     size_t getTotalDataSent();
     

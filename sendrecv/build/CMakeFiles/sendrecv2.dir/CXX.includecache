@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp
+cmath
+-
+bandwidthcalc.h
+/home/hartmann/benchmark/sendrecv/bandwidthcalc.h
+iostream
+-
+
 /home/hartmann/benchmark/sendrecv/bandwidthcalc.h
 cstddef
 -
@@ -30,6 +38,10 @@ classmpi3.h
 mpi.h
 -
 
+/home/hartmann/benchmark/sendrecv/print.cpp
+print.h
+/home/hartmann/benchmark/sendrecv/print.h
+
 /home/hartmann/benchmark/sendrecv/print.h
 fstream
 -
@@ -40,7 +52,7 @@ iostream
 cstddef
 -
 
-/home/hartmann/benchmark/sendrecv/sendrecv.cpp
+/home/hartmann/benchmark/sendrecv/sendrecv2.cpp
 mpi.h
 -
 fstream

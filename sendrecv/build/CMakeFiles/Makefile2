@@ -53,38 +53,38 @@ CMAKE_SOURCE_DIR = /home/hartmann/benchmark/sendrecv
 CMAKE_BINARY_DIR = /home/hartmann/benchmark/sendrecv/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/sendrecv.dir
+# Target rules for target CMakeFiles/sendrecv2.dir
 
 # All Build rule for target.
-CMakeFiles/sendrecv.dir/all:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/depend
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/build
+CMakeFiles/sendrecv2.dir/all:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/depend
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles  1 2 3 4 5 6
-	@echo "Built target sendrecv"
-.PHONY : CMakeFiles/sendrecv.dir/all
+	@echo "Built target sendrecv2"
+.PHONY : CMakeFiles/sendrecv2.dir/all
 
 # Include target in all.
-all: CMakeFiles/sendrecv.dir/all
+all: CMakeFiles/sendrecv2.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/sendrecv.dir/rule: cmake_check_build_system
+CMakeFiles/sendrecv2.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sendrecv.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sendrecv2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 0
-.PHONY : CMakeFiles/sendrecv.dir/rule
+.PHONY : CMakeFiles/sendrecv2.dir/rule
 
 # Convenience name for target.
-sendrecv: CMakeFiles/sendrecv.dir/rule
-.PHONY : sendrecv
+sendrecv2: CMakeFiles/sendrecv2.dir/rule
+.PHONY : sendrecv2
 
 # clean rule for target.
-CMakeFiles/sendrecv.dir/clean:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/clean
-.PHONY : CMakeFiles/sendrecv.dir/clean
+CMakeFiles/sendrecv2.dir/clean:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/clean
+.PHONY : CMakeFiles/sendrecv2.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/sendrecv.dir/clean
+clean: CMakeFiles/sendrecv2.dir/clean
 .PHONY : clean
 
 #=============================================================================

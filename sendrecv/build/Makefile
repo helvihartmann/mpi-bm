@@ -99,24 +99,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sendrecv
+# Target rules for targets named sendrecv2
 
 # Build rule for target.
-sendrecv: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sendrecv
-.PHONY : sendrecv
+sendrecv2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sendrecv2
+.PHONY : sendrecv2
 
 # fast build rule for target.
-sendrecv/fast:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/build
-.PHONY : sendrecv/fast
+sendrecv2/fast:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/build
+.PHONY : sendrecv2/fast
 
 bandwidthcalc.o: bandwidthcalc.cpp.o
 .PHONY : bandwidthcalc.o
 
 # target to build an object file
 bandwidthcalc.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.o
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o
 .PHONY : bandwidthcalc.cpp.o
 
 bandwidthcalc.i: bandwidthcalc.cpp.i
@@ -124,7 +124,7 @@ bandwidthcalc.i: bandwidthcalc.cpp.i
 
 # target to preprocess a source file
 bandwidthcalc.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.i
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.i
 .PHONY : bandwidthcalc.cpp.i
 
 bandwidthcalc.s: bandwidthcalc.cpp.s
@@ -132,7 +132,7 @@ bandwidthcalc.s: bandwidthcalc.cpp.s
 
 # target to generate assembly for a file
 bandwidthcalc.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bandwidthcalc.cpp.s
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.s
 .PHONY : bandwidthcalc.cpp.s
 
 bufferoperations.o: bufferoperations.cpp.o
@@ -140,7 +140,7 @@ bufferoperations.o: bufferoperations.cpp.o
 
 # target to build an object file
 bufferoperations.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bufferoperations.cpp.o
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o
 .PHONY : bufferoperations.cpp.o
 
 bufferoperations.i: bufferoperations.cpp.i
@@ -148,7 +148,7 @@ bufferoperations.i: bufferoperations.cpp.i
 
 # target to preprocess a source file
 bufferoperations.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bufferoperations.cpp.i
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.i
 .PHONY : bufferoperations.cpp.i
 
 bufferoperations.s: bufferoperations.cpp.s
@@ -156,7 +156,7 @@ bufferoperations.s: bufferoperations.cpp.s
 
 # target to generate assembly for a file
 bufferoperations.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/bufferoperations.cpp.s
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
 classmpi3.o: classmpi3.cpp.o
@@ -164,7 +164,7 @@ classmpi3.o: classmpi3.cpp.o
 
 # target to build an object file
 classmpi3.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.o
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.o
 .PHONY : classmpi3.cpp.o
 
 classmpi3.i: classmpi3.cpp.i
@@ -172,7 +172,7 @@ classmpi3.i: classmpi3.cpp.i
 
 # target to preprocess a source file
 classmpi3.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.i
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.i
 .PHONY : classmpi3.cpp.i
 
 classmpi3.s: classmpi3.cpp.s
@@ -180,7 +180,7 @@ classmpi3.s: classmpi3.cpp.s
 
 # target to generate assembly for a file
 classmpi3.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/classmpi3.cpp.s
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.s
 .PHONY : classmpi3.cpp.s
 
 print.o: print.cpp.o
@@ -188,7 +188,7 @@ print.o: print.cpp.o
 
 # target to build an object file
 print.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.o
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.o
 .PHONY : print.cpp.o
 
 print.i: print.cpp.i
@@ -196,7 +196,7 @@ print.i: print.cpp.i
 
 # target to preprocess a source file
 print.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.i
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.i
 .PHONY : print.cpp.i
 
 print.s: print.cpp.s
@@ -204,39 +204,39 @@ print.s: print.cpp.s
 
 # target to generate assembly for a file
 print.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/print.cpp.s
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.s
 .PHONY : print.cpp.s
 
-sendrecv.o: sendrecv.cpp.o
-.PHONY : sendrecv.o
+sendrecv2.o: sendrecv2.cpp.o
+.PHONY : sendrecv2.o
 
 # target to build an object file
-sendrecv.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.o
-.PHONY : sendrecv.cpp.o
+sendrecv2.cpp.o:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o
+.PHONY : sendrecv2.cpp.o
 
-sendrecv.i: sendrecv.cpp.i
-.PHONY : sendrecv.i
+sendrecv2.i: sendrecv2.cpp.i
+.PHONY : sendrecv2.i
 
 # target to preprocess a source file
-sendrecv.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.i
-.PHONY : sendrecv.cpp.i
+sendrecv2.cpp.i:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.i
+.PHONY : sendrecv2.cpp.i
 
-sendrecv.s: sendrecv.cpp.s
-.PHONY : sendrecv.s
+sendrecv2.s: sendrecv2.cpp.s
+.PHONY : sendrecv2.s
 
 # target to generate assembly for a file
-sendrecv.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/sendrecv.cpp.s
-.PHONY : sendrecv.cpp.s
+sendrecv2.cpp.s:
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.s
+.PHONY : sendrecv2.cpp.s
 
 totaldatasendcalc.o: totaldatasendcalc.cpp.o
 .PHONY : totaldatasendcalc.o
 
 # target to build an object file
 totaldatasendcalc.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.o
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o
 .PHONY : totaldatasendcalc.cpp.o
 
 totaldatasendcalc.i: totaldatasendcalc.cpp.i
@@ -244,7 +244,7 @@ totaldatasendcalc.i: totaldatasendcalc.cpp.i
 
 # target to preprocess a source file
 totaldatasendcalc.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.i
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.i
 .PHONY : totaldatasendcalc.cpp.i
 
 totaldatasendcalc.s: totaldatasendcalc.cpp.s
@@ -252,7 +252,7 @@ totaldatasendcalc.s: totaldatasendcalc.cpp.s
 
 # target to generate assembly for a file
 totaldatasendcalc.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv.dir/build.make CMakeFiles/sendrecv.dir/totaldatasendcalc.cpp.s
+	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.s
 .PHONY : totaldatasendcalc.cpp.s
 
 # Help Target
@@ -263,7 +263,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... sendrecv"
+	@echo "... sendrecv2"
 	@echo "... bandwidthcalc.o"
 	@echo "... bandwidthcalc.i"
 	@echo "... bandwidthcalc.s"
@@ -276,9 +276,9 @@ help:
 	@echo "... print.o"
 	@echo "... print.i"
 	@echo "... print.s"
-	@echo "... sendrecv.o"
-	@echo "... sendrecv.i"
-	@echo "... sendrecv.s"
+	@echo "... sendrecv2.o"
+	@echo "... sendrecv2.i"
+	@echo "... sendrecv2.s"
 	@echo "... totaldatasendcalc.o"
 	@echo "... totaldatasendcalc.i"
 	@echo "... totaldatasendcalc.s"

@@ -15,7 +15,12 @@ void Totaldatasendcalc::setPackagesizeTmp(size_t p){
 
 void Totaldatasendcalc::readOptions(int &argc, char **argv){
     int opt;
-
+    startiteration = 1000000*128;
+    cutoff = 1000;
+    startPackageSize = 2;
+    sendmode = 1;
+    statisticaliterations=1000;
+    
     //int opterr = 0;
 
     while ((opt = getopt (argc, argv, "m:a:i:e:o:")) != -1)
@@ -43,11 +48,11 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'i':
             startiteration = atoi(optarg);
-            if (startiteration >=1 && startiteration<= 100000000) {
+            if (startiteration ==1) {
             }
             else {
-                startiteration = 20000000*128;
-                printf("#INFO \n-i: too many startiteration; limited to 128*1mio \n");
+                startiteration = 1000000*128;
+                printf("#INFO \n-i: you can only fix iteration to 1 (-i 1) for debugging. Default value is used: 128*20mio \n");
             }
             break;
         case 'e':
@@ -97,16 +102,34 @@ int Totaldatasendcalc::getstatisticaliterations(){
 }
 
 
-size_t Totaldatasendcalc::getinnerRuntimeIterations(){
+size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
     if(startiteration==1){
         iterations=1;
     }
-    else if (startiteration >=24000){
-        iterations=24000;
-    }
     else {
-        iterations = startiteration/packagesize_temp;
+        iterations = (startiteration/packagesize_temp);
+        int empiricalfactor = 10;
+        if (iterations*20 >=200000){
+            iterations=(startiteration/(packagesize_temp*10));
+            
+            if(z >=2 && z<=8){
+                //std::cout<<z<<"\n";
+                empiricalfactor=4;
+                iterations=(startiteration/(packagesize_temp*4));
+            }
+            
+            else if(z>=8){
+                empiricalfactor=1;
+                iterations=(startiteration/(packagesize_temp))*5;
+            }
+        }
+        
+        else{
+            iterations=iterations*20;
+        }
     }
+    
+   
     return iterations;
 }
     
