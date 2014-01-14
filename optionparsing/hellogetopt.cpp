@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
+
+using namespace std;
 
 int
 main (int argc, char **argv)
@@ -15,9 +18,14 @@ main (int argc, char **argv)
     
     opterr = 0;
     
-    while ((opt = getopt (argc, argv, "m:a:i:e:o:")) != -1)
+    while ((opt = getopt (argc, argv, "hm:a:i:e:o:")) != -1)
         switch (opt)
     {
+        case 'h':
+            cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
+            cout<<" -m      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend\n \t(DEFAULT = 1)\n";
+            cout<<" -a      start package size of data that is send between two processes and which will be doubled until cutoff\n\t(DEFAULT = 2B)\n";
+            return 0;
         case 'm':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 3) {

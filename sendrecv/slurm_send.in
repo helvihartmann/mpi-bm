@@ -2,10 +2,9 @@
 
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1
-#SBATCH -o send2.out
 #SBATCH --job-name=simplesendreceive
 
 
-mpirun --mca btl_openib_warn_no_device_params_found 0 build/sendrecv -a 32 -e 10000000000 -m 1
+mpirun --mca btl_openib_warn_no_device_params_found 0 build/sendrecv2 -a 524288 -e 524289 -m 1 -o 2
 
 exit 0

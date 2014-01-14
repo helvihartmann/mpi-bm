@@ -18,7 +18,7 @@ public:
     
     void printerrormessage(size_t*,size_t);
     
-    void printbandwidth(size_t, size_t, double , long double , double , long double , double , double*);
+    void printbandwidth(size_t&, size_t&, double& , double& , double& ,double&, double&);
     
 };
 #endif

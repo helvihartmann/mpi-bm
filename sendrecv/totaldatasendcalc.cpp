@@ -15,24 +15,34 @@ void Totaldatasendcalc::setPackagesizeTmp(size_t p){
 
 void Totaldatasendcalc::readOptions(int &argc, char **argv){
     int opt;
-    startiteration = 1000000*128;
+    startiteration = 100000*128;
     cutoff = 1000;
     startPackageSize = 2;
     sendmode = 1;
-    statisticaliterations=1000;
+    statisticaliterations=10;
     
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "m:a:i:e:o:")) != -1)
+    while ((opt = getopt (argc, argv, "hm:a:i:e:o:")) != -1)
         switch (opt)
     {
+       /* case 'h':
+            sendmode = atoi(optarg);
+            if (sendmode >= 1 && sendmode <= 3) {
+                //zwischen 1 und 3
+            }
+            else {
+                printf("ERROR -m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                exit(1);
+            }
+            break;*/
         case 'm':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 3) {
                 //zwischen 1 und 3
             }
             else {
-                printf("ERROR \n-m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                printf("ERROR -m: your options are 1 send; 2 Ssend, 3 Bsend\n");
                 exit(1);
             }
             break;
@@ -42,7 +52,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             if (startPackageSize >= 1 && startPackageSize<= 10000000000) {//10GiB max
             }
             else {
-                printf("ERROR \n-a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                printf("ERROR -a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
                 exit(1);
             }
             break;
@@ -52,7 +62,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             }
             else {
                 startiteration = 1000000*128;
-                printf("#INFO \n-i: you can only fix iteration to 1 (-i 1) for debugging. Default value is used: 128*20mio \n");
+                printf("#INFO -i: you can only fix iteration to 1 (-i 1) for debugging. Default value is used: 128*20mio \n");
             }
             break;
         case 'e':
@@ -61,7 +71,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             }
             else {
                 cutoff = startiteration;
-                printf("#INFO \n-e: max package size was set to %ld B \n",startiteration);
+                printf("#INFO -e: max package size was set to %ld B \n",startiteration);
             }
             break;
         case 'o':
@@ -70,7 +80,7 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             }
             else {
                 statisticaliterations=1000;
-                printf("#INFO \n-o: statistical iterations were limited to 1000 \n");
+                printf("#INFO -o: statistical iterations were limited to 1000 \n");
             }
             break;
         case '?':
