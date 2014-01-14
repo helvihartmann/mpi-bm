@@ -1,0 +1,31 @@
+[node0][[22012,1],0][btl_openib_ini.c:166:ompi_btl_openib_ini_query] Querying INI files for vendor 0x02c9, part ID 4099
+[node0][[22012,1],0][btl_openib_ini.c:185:ompi_btl_openib_ini_query] Found corresponding INI values: Mellanox Hermon
+[node0][[22012,1],0][btl_openib_ini.c:166:ompi_btl_openib_ini_query] Querying INI files for vendor 0x0000, part ID 0
+[node0][[22012,1],0][btl_openib_ini.c:185:ompi_btl_openib_ini_query] Found corresponding INI values: default
+[node1][[22012,1],1][btl_openib_ini.c:166:ompi_btl_openib_ini_query] Querying INI files for vendor 0x02c9, part ID 4099
+[node1][[22012,1],1][btl_openib_ini.c:185:ompi_btl_openib_ini_query] Found corresponding INI values: Mellanox Hermon
+[node1][[22012,1],1][btl_openib_ini.c:166:ompi_btl_openib_ini_query] Querying INI files for vendor 0x0000, part ID 0
+[node1][[22012,1],1][btl_openib_ini.c:185:ompi_btl_openib_ini_query] Found corresponding INI values: default
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   node0
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+WARNING: There was an error initializing an OpenFabrics device.
+
+  Local host:   node1
+  Local device: mlx4_0
+--------------------------------------------------------------------------
+# Prozess 0 von 2 on node0 
+#sendmode = 1, startPackageSize = 524288, start iterations = 12800000 cutoff = 524289, statistical iterations = 2 
+# Prozess 1 von 2 on node1 
+#sendmode = 1, startPackageSize = 524288, start iterations = 12800000 cutoff = 524289, statistical iterations = 2 
+4.48272 
+
+4.48006 
+
+#14.1.2014 - 14:5
+# repeats  packagesize time varianz sendbandwidth varianz load last: 1min 
+480 2097152 4.481386 0.000940 224625366.363948 47135.710529 - 0.030000 

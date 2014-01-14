@@ -3,39 +3,61 @@
 /*  */
 
     
-Bufferoperations::Bufferoperations(size_t p, size_t innerRuntimeIterations_, const int* sendmode_, Mpi *mpi1pter)
+Bufferoperations::Bufferoperations(const int* sendmode_, Mpi *mpi1pter)
     : sendmode(sendmode_)
 {
     mpi1 = *mpi1pter;
+}
+
+void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_){
     packagesize_temp = p;
     innerRuntimeIterations = innerRuntimeIterations_;
 }
 
-
 void Bufferoperations::allocateBuffer(){
-    buffer= new int [packagesize_temp];
+    //buffer= new int [packagesize_temp];
+    buffer= new int [buffersize];//von VoLi angewiesene Größe
+
 }
 
-void Bufferoperations::initalizeBuffer(){
-    for(size_t i=0; i<packagesize_temp; i++){
-        buffer[i]=1;
+void Bufferoperations::initalizeBuffer(int rank){
+    for(size_t i=0; i<buffersize; i++){
+        buffer[i]=rank;
 
     }
 }
+
+/*
+ buffer = new int[16]
+ 
+ send(buffer, 20) -> ganzer buffer
+ send(buffer, 4) -> nur die ersten 4 ints
+ send(buffer + 4, 4) -> die zweiten 4 ints
+ for (i = 0; i < 5; ++i)
+   send(buffer + i * 4, 4)
+ 
+ */
 
 /*void Bufferoperations::specifyBuffer(){
     mpi1.performBufferspecification(buffer,packagesize_temp);
 }*/
 
 void Bufferoperations::sendBuffer(){
-    for(int j=0; j<innerRuntimeIterations; j++){
-        mpi1.performsend(buffer,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
+    for(size_t j=0; j<innerRuntimeIterations; j++){
+        int* buffertmp;
+        buffertmp = buffer;
+        buffertmp = buffertmp + packagesize_temp;
+        std::cout<<"buffertmp"<<*buffertmp<<"\n";
+        mpi1.performsend(buffertmp,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
     }
 }
 
 void Bufferoperations::recvBuffer(){
-    for(int j=0; j<innerRuntimeIterations; j++){
-        mpi1.performrecv(buffer,packagesize_temp,MPI_INT,0,j,
+    for(size_t j=0; j<innerRuntimeIterations; j++){
+        int* buffertmp;
+        buffertmp = buffer;
+        buffertmp = buffertmp + packagesize_temp;
+        mpi1.performrecv(buffertmp,packagesize_temp,MPI_INT,0,j,
                          MPI_COMM_WORLD,MPI_STATUS_IGNORE);
     }
 }

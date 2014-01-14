@@ -14,15 +14,18 @@ private:
     int *buffer;//*rcounts;
     size_t packagesize_temp;
     size_t innerRuntimeIterations;
+    size_t buffersize = 50000000;
     const int* sendmode;
     Mpi mpi1;
 public:
     
-    Bufferoperations(size_t, size_t, const int*, Mpi* );
+    Bufferoperations(const int*, Mpi*);
+    
+    void setloopvariables(size_t, size_t);
     
     void allocateBuffer();
     
-    void initalizeBuffer();
+    void initalizeBuffer(int);
     
     //void specifyBuffer();
     
@@ -30,7 +33,7 @@ public:
     
     void recvBuffer();
     
-    void checkBuffer(size_t *everythingcorrect_check);
+    void checkBuffer(size_t *);
     
     //void detachBuffer();
     

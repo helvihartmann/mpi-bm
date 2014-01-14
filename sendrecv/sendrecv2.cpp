@@ -61,10 +61,15 @@ int main(int argc,char *argv[]){
     double send_summe[outerStatisticalIterations];
     size_t *everythingcorrect_check = 0;
     
+    
 
     for(int m=0; m<outerStatisticalIterations; m++){
         
         int z =0;
+        
+        Bufferoperations bufferop(sendmode, mpi1pnter);
+        bufferop.allocateBuffer();
+        bufferop.initalizeBuffer(rank);
         
         for(size_t p=startPackageSize; p<cutoff;p=p*2){
         
@@ -82,13 +87,12 @@ int main(int argc,char *argv[]){
                     innerRuntimeIterations_vector[z]=innerRuntimeIterations;
                     totaldatasent_vector[z]=totaldatasent;
                     
-                    Bufferoperations bufferop0(p, innerRuntimeIterations, sendmode, mpi1pnter);
-                    bufferop0.allocateBuffer();
-                    bufferop0.initalizeBuffer();
+                    bufferop.setloopvariables(p, innerRuntimeIterations);
+                    
                     
                     // time measure sending process
                     starttime_send = mpi1.get_mpitime();
-                    bufferop0.sendBuffer();//Objekt mpi1 mitübergeben
+                    bufferop.sendBuffer();//Objekt mpi1 mitübergeben
                     endtime_send = mpi1.get_mpitime();
                     sendtime[m][z]=(endtime_send-starttime_send);
                     
@@ -96,10 +100,7 @@ int main(int argc,char *argv[]){
                     
                     send_summe[z]+=sendtime[m][z];
                     
-                    bufferop0.freeBuffer();
-                    
-                    
-                    // systemload
+                    //systemload
                     int nelem=3;
                     double loadavg[nelem];
                     //int systemload = getloadavg(loadavg, nelem);
@@ -110,23 +111,24 @@ int main(int argc,char *argv[]){
                 //Process 1 receives the data
                 else if (rank == 1) {
                     
-                    Bufferoperations bufferop1(p, innerRuntimeIterations, sendmode, mpi1pnter);
-                    bufferop1.allocateBuffer();
+                    //Bufferoperations bufferop1(p, innerRuntimeIterations, sendmode, mpi1pnter);
+                    //bufferop1.allocateBuffer();
                     
                     //time measure receving data
                     starttime_recv = mpi1.get_mpitime();
-                    bufferop1.recvBuffer();
+                    bufferop.recvBuffer();
                     endtime_recv = mpi1.get_mpitime();
                     
                     recvtime[m][z]=(endtime_recv-starttime_recv);
                     recv_summe[z]+=recvtime[m][z];
                     
-                    bufferop1.checkBuffer(everythingcorrect_check);
-                    bufferop1.freeBuffer();
+                    bufferop.checkBuffer(everythingcorrect_check);
+                    //bufferop1.freeBuffer();
                 }//else if
             z++;
         }//for p iteration over package size
         cout<<"\n";
+        bufferop.freeBuffer();
     }//for iterations to get statistic errors
 
     /*------------------------------------ output-------------------------------*/
