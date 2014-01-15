@@ -7,17 +7,13 @@ Bufferoperations::Bufferoperations(const int* sendmode_, Mpi *mpi1pter)
     : sendmode(sendmode_)
 {
     mpi1 = *mpi1pter;
+    buffer = new int [buffersize];//von VoLi angewiesene Größe
+    std::cout<<buffersize*sizeof(int)<<"B allocated \n";
 }
 
 void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_){
     packagesize_temp = p;
     innerRuntimeIterations = innerRuntimeIterations_;
-}
-
-void Bufferoperations::allocateBuffer(){
-    //buffer= new int [packagesize_temp];
-    buffer= new int [buffersize];//von VoLi angewiesene Größe
-
 }
 
 void Bufferoperations::initalizeBuffer(int rank){
@@ -44,21 +40,24 @@ void Bufferoperations::initalizeBuffer(int rank){
 
 void Bufferoperations::sendBuffer(){
     for(size_t j=0; j<innerRuntimeIterations; j++){
-        int* buffertmp;
-        buffertmp = buffer;
-        buffertmp = buffertmp + packagesize_temp;
-        std::cout<<"buffertmp"<<*buffertmp<<"\n";
-        mpi1.performsend(buffertmp,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
+        /*int* buffertmp;
+        buffertmp = buffer+ (j*packagesize_temp);
+        std::cout<<"buffertmp "<<*buffertmp<<"\n";
+        mpi1.performsend(buffertmp,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);*/
+        mpi1.performsend((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
+
     }
 }
 
 void Bufferoperations::recvBuffer(){
     for(size_t j=0; j<innerRuntimeIterations; j++){
-        int* buffertmp;
-        buffertmp = buffer;
-        buffertmp = buffertmp + packagesize_temp;
+        /*int* buffertmp;
+        buffertmp = buffer+ (j*packagesize_temp);
         mpi1.performrecv(buffertmp,packagesize_temp,MPI_INT,0,j,
+                         MPI_COMM_WORLD,MPI_STATUS_IGNORE);*/
+        mpi1.performrecv((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,0,j,
                          MPI_COMM_WORLD,MPI_STATUS_IGNORE);
+
     }
 }
 

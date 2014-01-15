@@ -30,17 +30,12 @@ int main(int argc,char *argv[]){
     MPI_Get_processor_name(name, &length); //not yet handled in class
     cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
 
-    /*int *scounts,*rcounts;
-    int ncounts = 2;
+    size_t buffersize = 50000000000/sizeof(int);
+    int* buffer= new int [buffersize];//von VoLi angewiesene Größe
+    std::cout<<buffersize*sizeof(int)<<"B allocated \n";
     
-    scounts = (int*) calloc(ncounts,sizeof(int));
-    cout<<"#scounts"<<*scounts<<"\n";
-    //scounts= new int [ncounts];
-    rcounts= new int [ncounts];*/
-    
+    size_t packagesize =1000000;//1MB
     size_t innerRuntimeIterations=1;
-    //double starttime_send, endtime_send, starttime_recv, endtime_recv;
-    //double recvtime[outerStatisticalIterations], sendtime[outerStatisticalIterations];
     
     for(int j=0; j<innerRuntimeIterations; j++){
                //Process 0 sends the data
@@ -49,11 +44,12 @@ int main(int argc,char *argv[]){
             /*for(int i=0; i<ncounts; i++){
                 scounts[i]=1;
             }*/
-            int scounts =1;
-            //cout<<"# start sending \n";
-            MPI_Send(&scounts,1,MPI_INT,1, 2, MPI_COMM_WORLD);
             
-            //cout<<"# end sending\n";
+            double starttime = MPI_Wtime();
+            //cout<<"# start sending \n";
+            MPI_Send(buffer,packagesize,MPI_INT,1, packagesize+1, MPI_COMM_WORLD);
+            double endtime = MPI_Wtime();
+            cout<<"sending took "<<endtime-starttime<<"\n";
 
         }
     
@@ -61,7 +57,7 @@ int main(int argc,char *argv[]){
         else if (rank == 1) {
             int rcounts;
             //cout<<"# start receiving\n";
-            MPI_Recv(&rcounts, 1,MPI_INT, 0, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv(buffer, packagesize,MPI_INT, 0, packagesize+1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             //cout<<"# end receiving\n";
 
             
@@ -74,6 +70,7 @@ int main(int argc,char *argv[]){
 
         }//else if
     }//for j~innerRuntimeIterations
+    delete [] buffer;
     //free(scounts);
     MPI_Finalize();
 }
