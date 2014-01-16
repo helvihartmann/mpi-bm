@@ -19,7 +19,7 @@ private:
     Mpi mpi1;
 public:
     
-    Bufferoperations(const int*, Mpi*);
+    Bufferoperations(const int*, Mpi*, int);
     
     void setloopvariables(size_t, size_t);
     

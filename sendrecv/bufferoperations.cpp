@@ -3,12 +3,16 @@
 /*  */
 
     
-Bufferoperations::Bufferoperations(const int* sendmode_, Mpi *mpi1pter)
+Bufferoperations::Bufferoperations(const int* sendmode_, Mpi *mpi1pter,int rank)
     : sendmode(sendmode_)
 {
     mpi1 = *mpi1pter;
     buffer = new int [buffersize];//von VoLi angewiesene Größe
-    std::cout<<buffersize*sizeof(int)<<"B allocated \n";
+    std::cout<<"# "<<buffersize*sizeof(int)<<"B allocated \n";
+    for(size_t i=0; i<buffersize; i++){
+        buffer[i]=rank;
+        
+    }
 }
 
 void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_){
@@ -17,10 +21,7 @@ void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_
 }
 
 void Bufferoperations::initalizeBuffer(int rank){
-    for(size_t i=0; i<buffersize; i++){
-        buffer[i]=rank;
-
-    }
+    
 }
 
 /*

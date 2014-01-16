@@ -4,7 +4,7 @@ set output 'sendrecv.pdf'
 set terminal pdf
 set logscale x 2
 set xlabel "Package size [B]"
-set ylabel "Data rate [MB/s]"
+set xlabel "Package size [B]"
 set yrange [1:4]
 #set xrange [512:8192]
 set title "Data rate MPI send receive \n I,II sent at the same time; III sent separately"

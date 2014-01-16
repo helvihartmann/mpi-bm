@@ -68,7 +68,7 @@ int main(int argc,char *argv[]){
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
         int z =0;
-        Bufferoperations bufferop(sendmode, mpi1pnter);
+        Bufferoperations bufferop(sendmode, mpi1pnter,rank);
         
         for(size_t p=startPackageSize; p<cutoff;p=p*2){
         
@@ -192,9 +192,11 @@ int main(int argc,char *argv[]){
                 
                 for (int m=0;m<outerStatisticalIterations;m++){
                     diff[z]+= pow((send_mean[z] - sendtime[m][z]),2);
+                    cout<<"diff "<<diff[z]<<" ";
                 }
+                cout<<"\n"
                 rate[z]=totaldatasent_vector[z]/send_mean[z];
-                send_vartime[z] = sqrt(diff[z])/outerStatisticalIterations;
+                send_vartime[z] = diff[z]/outerStatisticalIterations;
                 send_var[z]=(send_vartime[z]/send_mean[z])*rate[z];
                 
                 out.printbandwidth(innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_vartime[z],rate[z], send_var[z], loadavg_vector[z]);
