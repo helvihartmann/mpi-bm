@@ -54,7 +54,7 @@ int main(int argc,char *argv[]){
     size_t totaldatasent_vector[numberofpackages];
     double loadavg_vector[numberofpackages];
     
-    double starttime_send, endtime_send, starttime_recv, endtime_recv;
+    double starttime, endtime;
     double recvtime[outerStatisticalIterations][numberofpackages];
     double sendtime[outerStatisticalIterations][numberofpackages];
     double summe[numberofpackages];
@@ -89,10 +89,10 @@ int main(int argc,char *argv[]){
                     totaldatasent_vector[z]=totaldatasent;
                     
                     // time measure sending process
-                    starttime_send = mpi1.get_mpitime();
+                    starttime = mpi1.get_mpitime();
                     bufferop.sendBuffer();//Objekt mpi1 mitübergeben
-                    endtime_send = mpi1.get_mpitime();
-                    sendtime[m][z]=(endtime_send-starttime_send);
+                    endtime = mpi1.get_mpitime();
+                    sendtime[m][z]=(endtime-starttime);
                     
                     cout<<sendtime[m][z]<<" ";
                     
@@ -113,11 +113,11 @@ int main(int argc,char *argv[]){
                     //bufferop1.allocateBuffer();
                     
                     //time measure receving data
-                    starttime_recv = mpi1.get_mpitime();
+                    starttime = mpi1.get_mpitime();
                     bufferop.recvBuffer();
-                    endtime_recv = mpi1.get_mpitime();
+                    endtime = mpi1.get_mpitime();
                     
-                    recvtime[m][z]=(endtime_recv-starttime_recv);
+                    recvtime[m][z]=(endtime-starttime);
                     summe[z]+=recvtime[m][z];
                     
                     bufferop.checkBuffer(everythingcorrect_check);
