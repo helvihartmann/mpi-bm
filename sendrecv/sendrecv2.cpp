@@ -57,8 +57,8 @@ int main(int argc,char *argv[]){
     double starttime_send, endtime_send, starttime_recv, endtime_recv;
     double recvtime[outerStatisticalIterations][numberofpackages];
     double sendtime[outerStatisticalIterations][numberofpackages];
-    double recv_summe[outerStatisticalIterations];
-    double send_summe[outerStatisticalIterations];
+    double recv_summe[numberofpackages];
+    double send_summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
     
     
@@ -72,8 +72,6 @@ int main(int argc,char *argv[]){
         
         for(size_t p=startPackageSize; p<cutoff;p=p*2){
         
-            
-
             /* -------------- make first calculations on datavolume-----------------------------------------*/
             data.setPackagesizeTmp(p);//p correct at this point
             size_t innerRuntimeIterations = data.getinnerRuntimeIterations(z);
@@ -148,7 +146,7 @@ int main(int argc,char *argv[]){
         double diff[numberofpackages];
         for(int z=0;z<numberofpackages;z++){
             recv_mean[z]=recv_summe[z]/outerStatisticalIterations;
-            
+            diff[z]=0;
             for (int m=0;m<outerStatisticalIterations;m++){
                 diff[z]+= pow((recv_mean[z] - recvtime[m][z]),2);
             }
@@ -184,19 +182,16 @@ int main(int argc,char *argv[]){
             double send_mean[numberofpackages];
             double send_vartime[numberofpackages];
             double send_var[numberofpackages];
-            double diff[numberofpackages];
             double rate[numberofpackages];
             
             for(int z=0;z<numberofpackages;z++){
                 send_mean[z]=send_summe[z]/outerStatisticalIterations;
-                
+                double diff = 0;
                 for (int m=0;m<outerStatisticalIterations;m++){
-                    diff[z]+= pow((send_mean[z] - sendtime[m][z]),2);
-                    cout<<"diff "<<diff[z]<<" ";
+                    diff+= (send_mean[z] - sendtime[m][z])*(send_mean[z] - sendtime[m][z]);
                 }
-                cout<<"\n"
                 rate[z]=totaldatasent_vector[z]/send_mean[z];
-                send_vartime[z] = diff[z]/outerStatisticalIterations;
+                send_vartime[z] = diff/outerStatisticalIterations;
                 send_var[z]=(send_vartime[z]/send_mean[z])*rate[z];
                 
                 out.printbandwidth(innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_vartime[z],rate[z], send_var[z], loadavg_vector[z]);
