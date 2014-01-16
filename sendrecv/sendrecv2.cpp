@@ -57,8 +57,7 @@ int main(int argc,char *argv[]){
     double starttime_send, endtime_send, starttime_recv, endtime_recv;
     double recvtime[outerStatisticalIterations][numberofpackages];
     double sendtime[outerStatisticalIterations][numberofpackages];
-    double recv_summe[numberofpackages];
-    double send_summe[numberofpackages];
+    double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
     
     
@@ -97,7 +96,7 @@ int main(int argc,char *argv[]){
                     
                     cout<<sendtime[m][z]<<" ";
                     
-                    send_summe[z]+=sendtime[m][z];
+                    summe[z]+=sendtime[m][z];
                     
                     //systemload
                     int nelem=3;
@@ -119,7 +118,7 @@ int main(int argc,char *argv[]){
                     endtime_recv = mpi1.get_mpitime();
                     
                     recvtime[m][z]=(endtime_recv-starttime_recv);
-                    recv_summe[z]+=recvtime[m][z];
+                    summe[z]+=recvtime[m][z];
                     
                     bufferop.checkBuffer(everythingcorrect_check);
                     //bufferop1.freeBuffer();
@@ -145,7 +144,7 @@ int main(int argc,char *argv[]){
         double recv_var[numberofpackages];
         double diff[numberofpackages];
         for(int z=0;z<numberofpackages;z++){
-            recv_mean[z]=recv_summe[z]/outerStatisticalIterations;
+            recv_mean[z]=summe[z]/outerStatisticalIterations;
             diff[z]=0;
             for (int m=0;m<outerStatisticalIterations;m++){
                 diff[z]+= pow((recv_mean[z] - recvtime[m][z]),2);
@@ -185,7 +184,7 @@ int main(int argc,char *argv[]){
             double rate[numberofpackages];
             
             for(int z=0;z<numberofpackages;z++){
-                send_mean[z]=send_summe[z]/outerStatisticalIterations;
+                send_mean[z]=summe[z]/outerStatisticalIterations;
                 double diff = 0;
                 for (int m=0;m<outerStatisticalIterations;m++){
                     diff+= (send_mean[z] - sendtime[m][z])*(send_mean[z] - sendtime[m][z]);
