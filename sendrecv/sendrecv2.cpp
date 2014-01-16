@@ -180,8 +180,8 @@ int main(int argc,char *argv[]){
             
             //bandwith calculations
             double send_mean[numberofpackages];
-            double send_vartime[numberofpackages];
-            double send_var[numberofpackages];
+            double send_stdtime[numberofpackages];
+            double send_std[numberofpackages];
             double rate[numberofpackages];
             
             for(int z=0;z<numberofpackages;z++){
@@ -191,10 +191,11 @@ int main(int argc,char *argv[]){
                     diff+= (send_mean[z] - sendtime[m][z])*(send_mean[z] - sendtime[m][z]);
                 }
                 rate[z]=totaldatasent_vector[z]/send_mean[z];
-                send_vartime[z] = diff/outerStatisticalIterations;
-                send_var[z]=(send_vartime[z]/send_mean[z])*rate[z];
+                double send_vartime = diff/outerStatisticalIterations;
+                send_stdtime[z] = sqrt(send_vartime);
+                send_std[z]=(send_stdtime[z]/send_mean[z])*rate[z];
                 
-                out.printbandwidth(innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_vartime[z],rate[z], send_var[z], loadavg_vector[z]);
+                out.printbandwidth(innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_stdtime[z],rate[z], send_std[z], loadavg_vector[z]);
             }
         }//if everything correct
         

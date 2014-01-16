@@ -31,7 +31,6 @@ for file in *.out
     echo "  '"$file"' using 2:(\$8*100) w linespoint ls 2 title '' axes x1y2" >> "$my_var".gnuplot
    chmod 700 $my_var.gnuplot
    ./$my_var.gnuplot
-    rm "$my_var".gnuplot
     mv "$my_var".* out
 done
 
