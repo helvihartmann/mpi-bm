@@ -14,7 +14,7 @@ private:
     int *buffer;//*rcounts;
     size_t packagesize_temp;
     size_t innerRuntimeIterations;
-    size_t buffersize = 50000000/sizeof(int);
+    size_t buffersize = 50000000000/sizeof(int);
     const int* sendmode;
     Mpi mpi1;
 public:

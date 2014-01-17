@@ -119,7 +119,10 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
     }
     else {
         iterations = (startiteration/packagesize_temp);
-        int empiricalfactor = 10;
+        if(iterations<=200){
+            iterations=200;
+        }
+        /*int empiricalfactor = 10;
         if (iterations*20 >=200000){
             iterations=(startiteration/(packagesize_temp*10));
             
@@ -137,7 +140,7 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         
         else{
             iterations=iterations*20;
-        }
+        }*/
     }
     
    

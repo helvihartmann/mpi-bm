@@ -55,8 +55,7 @@ int main(int argc,char *argv[]){
     double loadavg_vector[numberofpackages];
     
     double starttime, endtime;
-    double recvtime[outerStatisticalIterations][numberofpackages];
-    double sendtime[outerStatisticalIterations][numberofpackages];
+    double time[outerStatisticalIterations][numberofpackages];
     double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
     
@@ -92,11 +91,11 @@ int main(int argc,char *argv[]){
                     starttime = mpi1.get_mpitime();
                     bufferop.sendBuffer();//Objekt mpi1 mitübergeben
                     endtime = mpi1.get_mpitime();
-                    sendtime[m][z]=(endtime-starttime);
+                    time[m][z]=(endtime-starttime);
                     
-                    cout<<sendtime[m][z]<<" ";
+                    cout<<time[m][z]<<" ";
                     
-                    summe[z]+=sendtime[m][z];
+                    summe[z]+=time[m][z];
                     
                     //systemload
                     int nelem=3;
@@ -117,8 +116,8 @@ int main(int argc,char *argv[]){
                     bufferop.recvBuffer();
                     endtime = mpi1.get_mpitime();
                     
-                    recvtime[m][z]=(endtime-starttime);
-                    summe[z]+=recvtime[m][z];
+                    time[m][z]=(endtime-starttime);
+                    summe[z]+=time[m][z];
                     
                     bufferop.checkBuffer(everythingcorrect_check);
                     //bufferop1.freeBuffer();
@@ -147,7 +146,7 @@ int main(int argc,char *argv[]){
             recv_mean[z]=summe[z]/outerStatisticalIterations;
             diff[z]=0;
             for (int m=0;m<outerStatisticalIterations;m++){
-                diff[z]+= pow((recv_mean[z] - recvtime[m][z]),2);
+                diff[z]+= pow((recv_mean[z] - time[m][z]),2);
             }
             
             recv_var[z] = sqrt(diff[z])/outerStatisticalIterations;
@@ -187,9 +186,9 @@ int main(int argc,char *argv[]){
                 send_mean[z]=summe[z]/outerStatisticalIterations;
                 double diff = 0;
                 for (int m=0;m<outerStatisticalIterations;m++){
-                    diff+= (send_mean[z] - sendtime[m][z])*(send_mean[z] - sendtime[m][z]);
+                    diff+= (send_mean[z] - time[m][z])*(send_mean[z] - time[m][z]);
                 }
-                rate[z]=totaldatasent_vector[z]/send_mean[z];
+                rate[z]=(totaldatasent_vector[z]/send_mean[z])/1000000;
                 double send_vartime = diff/outerStatisticalIterations;
                 send_stdtime[z] = sqrt(send_vartime);
                 send_std[z]=(send_stdtime[z]/send_mean[z])*rate[z];
