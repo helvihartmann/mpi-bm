@@ -111,30 +111,6 @@ sendrecv2/fast:
 	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/build
 .PHONY : sendrecv2/fast
 
-bandwidthcalc.o: bandwidthcalc.cpp.o
-.PHONY : bandwidthcalc.o
-
-# target to build an object file
-bandwidthcalc.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o
-.PHONY : bandwidthcalc.cpp.o
-
-bandwidthcalc.i: bandwidthcalc.cpp.i
-.PHONY : bandwidthcalc.i
-
-# target to preprocess a source file
-bandwidthcalc.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.i
-.PHONY : bandwidthcalc.cpp.i
-
-bandwidthcalc.s: bandwidthcalc.cpp.s
-.PHONY : bandwidthcalc.s
-
-# target to generate assembly for a file
-bandwidthcalc.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.s
-.PHONY : bandwidthcalc.cpp.s
-
 bufferoperations.o: bufferoperations.cpp.o
 .PHONY : bufferoperations.o
 
@@ -264,9 +240,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sendrecv2"
-	@echo "... bandwidthcalc.o"
-	@echo "... bandwidthcalc.i"
-	@echo "... bandwidthcalc.s"
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"

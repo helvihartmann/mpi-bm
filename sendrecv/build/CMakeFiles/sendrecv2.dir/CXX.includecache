@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/hartmann/benchmark/sendrecv/bandwidthcalc.h
-cstddef
--
-totaldatasendcalc.h
-/home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
-mpi.h
-/home/hartmann/benchmark/sendrecv/mpi.h
+/home/hartmann/benchmark/sendrecv/bufferoperations.cpp
+bufferoperations.h
+/home/hartmann/benchmark/sendrecv/bufferoperations.h
 
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
+classmpi3.h
+/home/hartmann/benchmark/sendrecv/classmpi3.h
+
+/home/hartmann/benchmark/sendrecv/classmpi3.cpp
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 
@@ -53,14 +53,26 @@ unistd.h
 -
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
-bandwidthcalc.h
-/home/hartmann/benchmark/sendrecv/bandwidthcalc.h
 print.h
 /home/hartmann/benchmark/sendrecv/print.h
 totaldatasendcalc.h
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
+
+/home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
+totaldatasendcalc.h
+/home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
+ctype.h
+-
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+iostream
+-
 
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 cstddef

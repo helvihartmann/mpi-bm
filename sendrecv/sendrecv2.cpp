@@ -6,7 +6,6 @@
 #include <cmath>
 #include <unistd.h>
 #include "classmpi3.h"
-#include "bandwidthcalc.h"
 #include "print.h"
 #include "totaldatasendcalc.h"
 #include "bufferoperations.h"

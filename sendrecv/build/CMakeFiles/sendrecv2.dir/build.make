@@ -95,32 +95,9 @@ CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o.provides: CMakeFiles/sendrecv2.d
 
 CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o.provides.build: CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o
 
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o: CMakeFiles/sendrecv2.dir/flags.make
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o: ../bandwidthcalc.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o"
-	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o -c /home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp
-
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.i"
-	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp > CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.i
-
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.s"
-	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/hartmann/benchmark/sendrecv/bandwidthcalc.cpp -o CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.s
-
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.requires:
-.PHONY : CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.requires
-
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.provides: CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.requires
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.provides.build
-.PHONY : CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.provides
-
-CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.provides.build: CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o
-
 CMakeFiles/sendrecv2.dir/classmpi3.cpp.o: CMakeFiles/sendrecv2.dir/flags.make
 CMakeFiles/sendrecv2.dir/classmpi3.cpp.o: ../classmpi3.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sendrecv2.dir/classmpi3.cpp.o"
 	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sendrecv2.dir/classmpi3.cpp.o -c /home/hartmann/benchmark/sendrecv/classmpi3.cpp
 
@@ -143,7 +120,7 @@ CMakeFiles/sendrecv2.dir/classmpi3.cpp.o.provides.build: CMakeFiles/sendrecv2.di
 
 CMakeFiles/sendrecv2.dir/print.cpp.o: CMakeFiles/sendrecv2.dir/flags.make
 CMakeFiles/sendrecv2.dir/print.cpp.o: ../print.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sendrecv2.dir/print.cpp.o"
 	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sendrecv2.dir/print.cpp.o -c /home/hartmann/benchmark/sendrecv/print.cpp
 
@@ -166,7 +143,7 @@ CMakeFiles/sendrecv2.dir/print.cpp.o.provides.build: CMakeFiles/sendrecv2.dir/pr
 
 CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o: CMakeFiles/sendrecv2.dir/flags.make
 CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o: ../totaldatasendcalc.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o"
 	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o -c /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
 
@@ -191,7 +168,6 @@ CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o.provides.build: CMakeFiles/send
 sendrecv2_OBJECTS = \
 "CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o" \
 "CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o" \
-"CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o" \
 "CMakeFiles/sendrecv2.dir/classmpi3.cpp.o" \
 "CMakeFiles/sendrecv2.dir/print.cpp.o" \
 "CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o"
@@ -201,7 +177,6 @@ sendrecv2_EXTERNAL_OBJECTS =
 
 sendrecv2: CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o
 sendrecv2: CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o
-sendrecv2: CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o
 sendrecv2: CMakeFiles/sendrecv2.dir/classmpi3.cpp.o
 sendrecv2: CMakeFiles/sendrecv2.dir/print.cpp.o
 sendrecv2: CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o
@@ -216,7 +191,6 @@ CMakeFiles/sendrecv2.dir/build: sendrecv2
 
 CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o.requires
 CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o.requires
-CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o.requires
 CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/classmpi3.cpp.o.requires
 CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/print.cpp.o.requires
 CMakeFiles/sendrecv2.dir/requires: CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o.requires

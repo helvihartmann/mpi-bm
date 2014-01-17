@@ -1,7 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o"
   "CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o"
-  "CMakeFiles/sendrecv2.dir/bandwidthcalc.cpp.o"
   "CMakeFiles/sendrecv2.dir/classmpi3.cpp.o"
   "CMakeFiles/sendrecv2.dir/print.cpp.o"
   "CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o"
