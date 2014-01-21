@@ -68,11 +68,11 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
             break;
         case 'e':
             cutoff = atoi(optarg);
-            if (cutoff >= 1 && cutoff <= startiteration) {
+            if (cutoff >= 1 && cutoff <= 50000000000) {
             }
             else {
                 cutoff = startiteration;
-                printf("#INFO -e: max package size was set to %ld B \n",startiteration);
+                printf("#INFO -e: max package size was set to 50GB \n");
             }
             break;
         case 'o':
@@ -131,17 +131,17 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
             iterations = 10000;
         }
         else if (packagesize_temp*sizeof(int) >=1048576 & packagesize_temp*sizeof(int) < 4194304){
-            iterations = 1000;
+            iterations = 2000;
         }
-        else if (packagesize_temp*sizeof(int) >= 4194304 & packagesize_temp*sizeof(int) <=8388608){
+        else if (packagesize_temp*sizeof(int) >= 4194304 & packagesize_temp*sizeof(int) <8388608){
             iterations = 400;
         }
-        else if (packagesize_temp*sizeof(int) > 8388608 & packagesize_temp*sizeof(int) <= 16777216){
-            iterations = 200;
+        else if (packagesize_temp*sizeof(int) >= 8388608){
+            iterations = (400*(8388608/sizeof(int)))/packagesize_temp;
         }
-        else if (packagesize_temp*sizeof(int) > 16777216 & packagesize_temp*sizeof(int) <= 33554432){
+        /*else if (packagesize_temp*sizeof(int) > 16777216 & packagesize_temp*sizeof(int) <= 33554432){
             iterations = 100;
-        }
+        }*/
         
         /*iterations = (startiteration/packagesize_temp);
         if(iterations<=200){
@@ -149,10 +149,14 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         }*/
     }
     
-    if (iterations*packagesize_temp > 10000000000){
+    if (iterations*packagesize_temp*sizeof(int) > 45000000000){
         iterations = 10;
     }
    
+    if (iterations < 1){
+        iterations = 1;
+    }
+    
     return iterations;
 }
     

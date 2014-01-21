@@ -26,8 +26,8 @@ for file in *.out
     echo "set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 5 ps 0.6   # --- blue" >> "$my_var".gnuplot
     echo "set style line 2 lc rgb '#1E90FF' lt 1 lw 1 pt 4 ps 0.2   # --- blue" >> "$my_var".gnuplot
     echo "plot \\" >> "$my_var".gnuplot
-    echo "  '"$file"' using 2:5:6 w yerrorbars ls 1 title 'data' axes x1y1, \\" >> "$my_var".gnuplot
-    echo "  '' using 2:5 w lines ls 1 title '' axes x1y1, \\" >> "$my_var".gnuplot
+    echo "  '"$file"' using 3:6:7 w yerrorbars ls 1 title 'data' axes x1y1, \\" >> "$my_var".gnuplot
+    echo "  '' using 3:6 w lines ls 1 title '' axes x1y1, \\" >> "$my_var".gnuplot
     echo "  '"$file"' using 2:(\$8*100) w linespoint ls 2 title '' axes x1y2" >> "$my_var".gnuplot
    chmod 700 $my_var.gnuplot
    ./$my_var.gnuplot

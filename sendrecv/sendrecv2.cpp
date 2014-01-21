@@ -188,12 +188,12 @@ int main(int argc,char *argv[]){
                     diff+= (send_mean[z] - time[m][z])*(send_mean[z] - time[m][z]);
                 }
                 rate[z]=(totaldatasent_vector[z]/send_mean[z])/1000000;
-                cout << totaldatasent_vector[z]<< endl;
+                //cout << totaldatasent_vector[z]<< endl;
                 double send_vartime = diff/outerStatisticalIterations;
                 send_stdtime[z] = sqrt(send_vartime);
                 send_std[z]=(send_stdtime[z]/send_mean[z])*rate[z];
                 
-                out.printbandwidth(innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_stdtime[z],rate[z], send_std[z], loadavg_vector[z]);
+                out.printbandwidth(totaldatasent_vector[z] ,innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_stdtime[z],rate[z], send_std[z], loadavg_vector[z]);
             }
         }//if everything correct
         
