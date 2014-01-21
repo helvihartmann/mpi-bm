@@ -188,6 +188,7 @@ int main(int argc,char *argv[]){
                     diff+= (send_mean[z] - time[m][z])*(send_mean[z] - time[m][z]);
                 }
                 rate[z]=(totaldatasent_vector[z]/send_mean[z])/1000000;
+                cout << totaldatasent_vector[z]<< endl;
                 double send_vartime = diff/outerStatisticalIterations;
                 send_stdtime[z] = sqrt(send_vartime);
                 send_std[z]=(send_stdtime[z]/send_mean[z])*rate[z];

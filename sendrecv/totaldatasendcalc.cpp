@@ -118,30 +118,19 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         iterations=1;
     }
     else {
+        /*if (packagesize_temp <= 128){
+            iterations = 3200000;
+        }
+        else if (packagesize_temp =>128 & packagesize_temp <= 1024){
+            iteration = 100000;
+        }
+        else if (packagesize_temp =>1024*/
+        
         iterations = (startiteration/packagesize_temp);
         if(iterations<=200){
             iterations=200;
         }
-        /*int empiricalfactor = 10;
-        if (iterations*20 >=200000){
-            iterations=(startiteration/(packagesize_temp*10));
-            
-            if(z >=2 && z<=8){
-                //std::cout<<z<<"\n";
-                empiricalfactor=4;
-                iterations=(startiteration/(packagesize_temp*4));
             }
-            
-            else if(z>=8){
-                empiricalfactor=1;
-                iterations=(startiteration/(packagesize_temp))*5;
-            }
-        }
-        
-        else{
-            iterations=iterations*20;
-        }*/
-    }
     
    
     return iterations;
