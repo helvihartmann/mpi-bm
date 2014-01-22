@@ -99,24 +99,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sendrecv2
+# Target rules for targets named pingpong
 
 # Build rule for target.
-sendrecv2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sendrecv2
-.PHONY : sendrecv2
+pingpong: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pingpong
+.PHONY : pingpong
 
 # fast build rule for target.
-sendrecv2/fast:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/build
-.PHONY : sendrecv2/fast
+pingpong/fast:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/build
+.PHONY : pingpong/fast
 
 bufferoperations.o: bufferoperations.cpp.o
 .PHONY : bufferoperations.o
 
 # target to build an object file
 bufferoperations.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.o
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.o
 .PHONY : bufferoperations.cpp.o
 
 bufferoperations.i: bufferoperations.cpp.i
@@ -124,7 +124,7 @@ bufferoperations.i: bufferoperations.cpp.i
 
 # target to preprocess a source file
 bufferoperations.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.i
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.i
 .PHONY : bufferoperations.cpp.i
 
 bufferoperations.s: bufferoperations.cpp.s
@@ -132,7 +132,7 @@ bufferoperations.s: bufferoperations.cpp.s
 
 # target to generate assembly for a file
 bufferoperations.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/bufferoperations.cpp.s
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
 classmpi3.o: classmpi3.cpp.o
@@ -140,7 +140,7 @@ classmpi3.o: classmpi3.cpp.o
 
 # target to build an object file
 classmpi3.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.o
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.o
 .PHONY : classmpi3.cpp.o
 
 classmpi3.i: classmpi3.cpp.i
@@ -148,7 +148,7 @@ classmpi3.i: classmpi3.cpp.i
 
 # target to preprocess a source file
 classmpi3.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.i
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.i
 .PHONY : classmpi3.cpp.i
 
 classmpi3.s: classmpi3.cpp.s
@@ -156,15 +156,39 @@ classmpi3.s: classmpi3.cpp.s
 
 # target to generate assembly for a file
 classmpi3.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/classmpi3.cpp.s
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.s
 .PHONY : classmpi3.cpp.s
+
+pingpong.o: pingpong.cpp.o
+.PHONY : pingpong.o
+
+# target to build an object file
+pingpong.cpp.o:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/pingpong.cpp.o
+.PHONY : pingpong.cpp.o
+
+pingpong.i: pingpong.cpp.i
+.PHONY : pingpong.i
+
+# target to preprocess a source file
+pingpong.cpp.i:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/pingpong.cpp.i
+.PHONY : pingpong.cpp.i
+
+pingpong.s: pingpong.cpp.s
+.PHONY : pingpong.s
+
+# target to generate assembly for a file
+pingpong.cpp.s:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/pingpong.cpp.s
+.PHONY : pingpong.cpp.s
 
 print.o: print.cpp.o
 .PHONY : print.o
 
 # target to build an object file
 print.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.o
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.o
 .PHONY : print.cpp.o
 
 print.i: print.cpp.i
@@ -172,7 +196,7 @@ print.i: print.cpp.i
 
 # target to preprocess a source file
 print.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.i
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.i
 .PHONY : print.cpp.i
 
 print.s: print.cpp.s
@@ -180,39 +204,15 @@ print.s: print.cpp.s
 
 # target to generate assembly for a file
 print.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/print.cpp.s
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.s
 .PHONY : print.cpp.s
-
-sendrecv2.o: sendrecv2.cpp.o
-.PHONY : sendrecv2.o
-
-# target to build an object file
-sendrecv2.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.o
-.PHONY : sendrecv2.cpp.o
-
-sendrecv2.i: sendrecv2.cpp.i
-.PHONY : sendrecv2.i
-
-# target to preprocess a source file
-sendrecv2.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.i
-.PHONY : sendrecv2.cpp.i
-
-sendrecv2.s: sendrecv2.cpp.s
-.PHONY : sendrecv2.s
-
-# target to generate assembly for a file
-sendrecv2.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/sendrecv2.cpp.s
-.PHONY : sendrecv2.cpp.s
 
 totaldatasendcalc.o: totaldatasendcalc.cpp.o
 .PHONY : totaldatasendcalc.o
 
 # target to build an object file
 totaldatasendcalc.cpp.o:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.o
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o
 .PHONY : totaldatasendcalc.cpp.o
 
 totaldatasendcalc.i: totaldatasendcalc.cpp.i
@@ -220,7 +220,7 @@ totaldatasendcalc.i: totaldatasendcalc.cpp.i
 
 # target to preprocess a source file
 totaldatasendcalc.cpp.i:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.i
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.i
 .PHONY : totaldatasendcalc.cpp.i
 
 totaldatasendcalc.s: totaldatasendcalc.cpp.s
@@ -228,7 +228,7 @@ totaldatasendcalc.s: totaldatasendcalc.cpp.s
 
 # target to generate assembly for a file
 totaldatasendcalc.cpp.s:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/totaldatasendcalc.cpp.s
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.s
 .PHONY : totaldatasendcalc.cpp.s
 
 # Help Target
@@ -238,20 +238,20 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... pingpong"
 	@echo "... rebuild_cache"
-	@echo "... sendrecv2"
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"
 	@echo "... classmpi3.o"
 	@echo "... classmpi3.i"
 	@echo "... classmpi3.s"
+	@echo "... pingpong.o"
+	@echo "... pingpong.i"
+	@echo "... pingpong.s"
 	@echo "... print.o"
 	@echo "... print.i"
 	@echo "... print.s"
-	@echo "... sendrecv2.o"
-	@echo "... sendrecv2.i"
-	@echo "... sendrecv2.s"
 	@echo "... totaldatasendcalc.o"
 	@echo "... totaldatasendcalc.i"
 	@echo "... totaldatasendcalc.s"

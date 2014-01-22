@@ -53,38 +53,38 @@ CMAKE_SOURCE_DIR = /home/hartmann/benchmark/sendrecv
 CMAKE_BINARY_DIR = /home/hartmann/benchmark/sendrecv/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/sendrecv2.dir
+# Target rules for target CMakeFiles/pingpong.dir
 
 # All Build rule for target.
-CMakeFiles/sendrecv2.dir/all:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/depend
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/build
+CMakeFiles/pingpong.dir/all:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/depend
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles  1 2 3 4 5
-	@echo "Built target sendrecv2"
-.PHONY : CMakeFiles/sendrecv2.dir/all
+	@echo "Built target pingpong"
+.PHONY : CMakeFiles/pingpong.dir/all
 
 # Include target in all.
-all: CMakeFiles/sendrecv2.dir/all
+all: CMakeFiles/pingpong.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/sendrecv2.dir/rule: cmake_check_build_system
+CMakeFiles/pingpong.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sendrecv2.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/pingpong.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hartmann/benchmark/sendrecv/build/CMakeFiles 0
-.PHONY : CMakeFiles/sendrecv2.dir/rule
+.PHONY : CMakeFiles/pingpong.dir/rule
 
 # Convenience name for target.
-sendrecv2: CMakeFiles/sendrecv2.dir/rule
-.PHONY : sendrecv2
+pingpong: CMakeFiles/pingpong.dir/rule
+.PHONY : pingpong
 
 # clean rule for target.
-CMakeFiles/sendrecv2.dir/clean:
-	$(MAKE) -f CMakeFiles/sendrecv2.dir/build.make CMakeFiles/sendrecv2.dir/clean
-.PHONY : CMakeFiles/sendrecv2.dir/clean
+CMakeFiles/pingpong.dir/clean:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/clean
+.PHONY : CMakeFiles/pingpong.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/sendrecv2.dir/clean
+clean: CMakeFiles/pingpong.dir/clean
 .PHONY : clean
 
 #=============================================================================

@@ -15,25 +15,16 @@ Bufferoperations::Bufferoperations(const int* sendmode_, Mpi *mpi1pter,int rank)
     }
 }
 
-void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_){
+void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_, int tag_){
     packagesize_temp = p;
     innerRuntimeIterations = innerRuntimeIterations_;
+    tag = tag_;
 }
 
 void Bufferoperations::initalizeBuffer(int rank){
     
 }
 
-/*
- buffer = new int[16]
- 
- send(buffer, 20) -> ganzer buffer
- send(buffer, 4) -> nur die ersten 4 ints
- send(buffer + 4, 4) -> die zweiten 4 ints
- for (i = 0; i < 5; ++i)
-   send(buffer + i * 4, 4)
- 
- */
 
 /*void Bufferoperations::specifyBuffer(){
     mpi1.performBufferspecification(buffer,packagesize_temp);
@@ -41,22 +32,14 @@ void Bufferoperations::initalizeBuffer(int rank){
 
 void Bufferoperations::sendBuffer(){
     for(size_t j=0; j<innerRuntimeIterations; j++){
-        /*int* buffertmp;
-        buffertmp = buffer+ (j*packagesize_temp);
-        std::cout<<"buffertmp "<<*buffertmp<<"\n";
-        mpi1.performsend(buffertmp,packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);*/
-        mpi1.performsend((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,1,j,MPI_COMM_WORLD, sendmode);
+        mpi1.performsend((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,tag,j,MPI_COMM_WORLD, sendmode);
 
     }
 }
 
 void Bufferoperations::recvBuffer(){
     for(size_t j=0; j<innerRuntimeIterations; j++){
-        /*int* buffertmp;
-        buffertmp = buffer+ (j*packagesize_temp);
-        mpi1.performrecv(buffertmp,packagesize_temp,MPI_INT,0,j,
-                         MPI_COMM_WORLD,MPI_STATUS_IGNORE);*/
-        mpi1.performrecv((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,0,j,
+        mpi1.performrecv((buffer + (packagesize_temp*j)),packagesize_temp,MPI_INT,tag,j,
                          MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 
     }

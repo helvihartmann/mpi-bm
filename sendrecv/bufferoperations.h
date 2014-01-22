@@ -15,13 +15,14 @@ private:
     size_t packagesize_temp;
     size_t innerRuntimeIterations;
     size_t buffersize = 50000000000/sizeof(int);
+    int tag;
     const int* sendmode;
     Mpi mpi1;
 public:
     
     Bufferoperations(const int*, Mpi*, int);
     
-    void setloopvariables(size_t, size_t);
+    void setloopvariables(size_t, size_t,int);
     
     void initalizeBuffer(int);
     
