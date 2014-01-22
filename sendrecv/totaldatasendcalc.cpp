@@ -118,7 +118,7 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         iterations=1;
     }
     else {
-        /*if (packagesize_temp*sizeof(int) < 128){
+        if (packagesize_temp*sizeof(int) < 128){
             iterations = 3200000;
         }
         else if (packagesize_temp*sizeof(int) >= 128 & packagesize_temp*sizeof(int) < 1024){
@@ -138,12 +138,12 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         }
         else if (packagesize_temp*sizeof(int) >= 8388608){
             iterations = (400*(8388608/sizeof(int)))/packagesize_temp;
-        }*/
+        }
         
-        iterations = (startiteration/packagesize_temp);
+        /*iterations = (startiteration/packagesize_temp);
         if(iterations<=200){
             iterations=200;
-        }
+        }*/
     }
     
     if (iterations*packagesize_temp*sizeof(int) > 45000000000){
