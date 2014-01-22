@@ -90,9 +90,9 @@ int main(int argc,char *argv[]){
                     // time measure sending process
                     starttime = mpi1.get_mpitime();
                     bufferop.sendBuffer();//Objekt mpi1 mitübergeben
-                    
+                    bufferop.recvBuffer();
                     endtime = mpi1.get_mpitime();
-                    time[m][z]=(endtime-starttime);
+                    time[m][z]=(endtime-starttime)/2;
                     
                     cout<<time[m][z]<<" ";
                     
@@ -114,9 +114,10 @@ int main(int argc,char *argv[]){
                     //time measure receving data
                     starttime = mpi1.get_mpitime();
                     bufferop.recvBuffer();
+                    bufferop.sendBuffer();
                     endtime = mpi1.get_mpitime();
                     
-                    time[m][z]=(endtime-starttime);
+                    time[m][z]=(endtime-starttime)/2;
                     summe[z]+=time[m][z];
                     
                     bufferop.checkBuffer(everythingcorrect_check);

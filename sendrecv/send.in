@@ -4,8 +4,6 @@
 #SBATCH --job-name=send
 #SBATCH --output=send%j.out
 #SBATCH --ntasks-per-node=1
-#SBATCH --job-name=send
-
 
 # mpirun --mca btl_openib_warn_no_device_params_found 0 --mca orte_base_help_aggregate 0 build/sendrecv2 -a 524288 -e 524289 -m 1 -o 2
 mpirun --mca orte_base_help_aggregate 0 build/sendrecv2 -a 2 -m 1 -o 2 -e 10000000000
