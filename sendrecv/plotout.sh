@@ -21,9 +21,9 @@ for file in *.out
     echo "set y2tics nomirror" >> "$my_var".gnuplot
     echo "#set yrange [0:6000]" >> "$my_var".gnuplot
     echo "#set y2range [0:100]" >> "$my_var".gnuplot
-    echo "set xrange [1:268435456]" >> "$my_var".gnuplot
+    echo "set xrange [1:5e9]" >> "$my_var".gnuplot
     echo "set key left" >> "$my_var".gnuplot
-    echo 'set xtics ("1B" 1, " " 2, " " 4, "8B" 8," " 16, " " 32, "64B" 64, " " 128, " " 256, "512B" 512, " " 1024, " " 2048, "4kiB" 4096," " 8192, " " 16384, "32kiB" 32768, " " 65536, " " 131072, "256kiB" 262144, " " 524288, " " 1048576, "2MiB" 2097152, " " 4194304, " " 8388608, "16MiB" 16777216, " " 33554432, " " 67108864, "128MiB" 134217728," "268435456)' >> "$my_var".gnuplot
+    echo 'set xtics ("1B" 1, " " 2, " " 4, "8B" 8," " 16, " " 32, "64B" 64, " " 128, " " 256, "512B" 512, " " 1024, " " 2048, "4kiB" 4096," " 8192, " " 16384, "32kiB" 32768, " " 65536, " " 131072, " " 262144, "512kiB" 524288, " " 1048576, " " 2097152, " " 4194304, "8MiB" 8388608, " " 16777216, " " 33554432, " " 67108864, "128MiB" 134217728," "268435456," " 536870912," " 1073741824,"2GiB"2.147e9," "4.294e9)' >> "$my_var".gnuplot
     echo "set style line 1 lc rgb '#0060ad' lt 1 lw 2 pt 5 ps 0.6   # --- blue" >> "$my_var".gnuplot
     echo "set style line 2 lc rgb '#1E90FF' lt 1 lw 1 pt 4 ps 0.2   # --- blue" >> "$my_var".gnuplot
     echo "plot \\" >> "$my_var".gnuplot
