@@ -17,8 +17,3 @@ void Printoutput::printheader(){
 void Printoutput::printerrormessage(size_t *everythingcorrect_check,size_t packagesize_temp){
         printf("%ld errors were spotted sending %ld Byte\n", *everythingcorrect_check,packagesize_temp);
 }
-    
-void Printoutput::printbandwidth(size_t& totaldatasent_vector ,size_t &innerRuntimeIterations, size_t &packagesize_temp, double &send_mean, double &send_vartime, double &send_rate, double &send_var, double &loadavg){
-        printf("%ld %ld %ld %f %f %f %f - %f \n",totaldatasent_vector ,innerRuntimeIterations, packagesize_temp*sizeof(int),send_mean, send_vartime, send_rate, send_var, loadavg);
-}
-    

@@ -17,8 +17,6 @@ public:
     void printheader();
     
     void printerrormessage(size_t*,size_t);
-    
-    void printbandwidth(size_t&, size_t&, size_t&, double& , double& , double& ,double&, double&);
-    
+
 };
 #endif

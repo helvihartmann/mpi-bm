@@ -9,6 +9,7 @@
 #include "print.h"
 #include "totaldatasendcalc.h"
 #include "bufferoperations.h"
+#include <vector>
 using namespace std;
 
 /* fles:~/benchmark/sendrecv 27.11.2013
@@ -48,14 +49,22 @@ int main(int argc,char *argv[]){
     
     int outerStatisticalIterations = data.getstatisticaliterations();
     int numberofpackages = log(cutoff)/log(2)-log(startPackageSize)/log(2)+1;
-    size_t package_vector[numberofpackages];
-    size_t innerRuntimeIterations_vector[numberofpackages];
-    size_t totaldatasent_vector[numberofpackages];
-    double loadavg_vector[numberofpackages];
     
     double starttime, endtime;
     double time[outerStatisticalIterations][numberofpackages];
-    double summe[numberofpackages];
+    
+    //-------Vector definations-------------------
+    std::vector<double> summe(numberofpackages);
+    //size_t package_vector[numberofpackages];
+    std::vector<size_t>package_vector(numberofpackages);
+    //size_t innerRuntimeIterations_vector[numberofpackages];
+    std::vector<size_t>innerRuntimeIterations_vector(numberofpackages);
+    //size_t totaldatasent_vector[numberofpackages];
+    std::vector<size_t>totaldatasent_vector(numberofpackages);
+    //double loadavg_vector[numberofpackages];
+    std::vector<double> loadavg_vector(numberofpackages);
+    
+    //double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
     
     
@@ -167,35 +176,37 @@ int main(int argc,char *argv[]){
             //compare it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             
             //--------------calculate all needed parameters & print them------------------
-            
-            /*Bandwidthcalc send(sendtime,outerStatisticalIterations);
-            double send_mean = send.getmean();
-            long double send_rate = send.getrate(totaldatasent);
-            double send_var = send.getvar();*/
         
             // Header
             out.printtimestemp();
             out.printheader();
             
             //bandwith calculations
-            double send_mean[numberofpackages];
-            double send_stdtime[numberofpackages];
-            double send_std[numberofpackages];
-            double rate[numberofpackages];
+            //double send_mean[numberofpackages];
+            // std::vector<double> send_mean(numberofpackages)
+            //double send_stdtime[numberofpackages];
+            // std::vector<double> send_stdtime(numberofpackages)
+            //double send_std[numberofpackages];
+            // std::vector<double> send_std(numberofpackages)
+            //double rate[numberofpackages];
+            // std::vector<double> rate(numberofpackages)
             
             for(int z=0;z<numberofpackages;z++){
-                send_mean[z]=summe[z]/outerStatisticalIterations;
+                double send_mean=summe[z]/outerStatisticalIterations;
+                //cout<<"summe["<<z<<"]: "<<summe[z]<<endl;
+                //cout<<"send_mean "<<send_mean<<endl;
                 double diff = 0;
                 for (int m=0;m<outerStatisticalIterations;m++){
-                    diff+= (send_mean[z] - time[m][z])*(send_mean[z] - time[m][z]);
+                    diff+= (send_mean - time[m][z])*(send_mean - time[m][z]);
                 }
-                rate[z]=(totaldatasent_vector[z]/send_mean[z])/1000000;
+                double rate =(totaldatasent_vector[z]/send_mean)/1000000;
                 //cout << totaldatasent_vector[z]<< endl;
                 double send_vartime = diff/outerStatisticalIterations;
-                send_stdtime[z] = sqrt(send_vartime);
-                send_std[z]=(send_stdtime[z]/send_mean[z])*rate[z];
+                double send_stdtime = sqrt(send_vartime);
+                double send_std=(send_stdtime/send_mean)*rate;
                 
-                out.printbandwidth(totaldatasent_vector[z] ,innerRuntimeIterations_vector[z], package_vector[z], send_mean[z], send_stdtime[z],rate[z], send_std[z], loadavg_vector[z]);
+                printf("%ld %ld %ld %f %f %f %f - %f \n",totaldatasent_vector[z] ,innerRuntimeIterations_vector[z], package_vector[z] *sizeof(int),send_mean, send_stdtime, rate, send_std, loadavg_vector[z]);
+
             }
         }//if everything correct
         
