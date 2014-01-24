@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo sbatch pingpongSsend.in
+sbatch pingpongSsend.in
 #echo sbatch pingpong.in
 
 exit 0

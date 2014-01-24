@@ -37,7 +37,7 @@ for file in *.out
     mv "$my_var".* out
     chmod 700 out/$my_var.gnuplot
     ./out/$my_var.gnuplot
-    mv "$my_var".* out
+    mv "$my_var".* out/
 done
 
 

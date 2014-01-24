@@ -22,11 +22,10 @@ designed to send a lot of data between processes as specified in console
 int main(int argc,char *argv[]){
     
     /*--------------------------------------start MPI-----------------------------*/
-    //cout<<"\n hallo \n";
     int size, rank;
     int length;
     char name[MPI_MAX_PROCESSOR_NAME];
-    Mpi mpi1;//Pointer auf dings anlegen und mpi1.sendbuffer(mpi1pnter) übergeben
+    Mpi mpi1;
     Mpi *mpi1pnter;
     mpi1pnter = &mpi1;
     
@@ -36,7 +35,6 @@ int main(int argc,char *argv[]){
     MPI_Get_processor_name(name, &length); //not yet handled in class
     cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
 
-    
     /*--------------------- Iterate over packege size-----------------------------*/
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
@@ -54,15 +52,6 @@ int main(int argc,char *argv[]){
  
     //-------Vector definations-------------------
     Results calculate(outerStatisticalIterations,numberofpackages);
-    
-    //double time[outerStatisticalIterations][numberofpackages];
-    /*std::vector< vector<double> > time(outerStatisticalIterations, vector<double> (numberofpackages));*/
-    
-
-    /*std::vector<size_t>package_vector(numberofpackages);
-    std::vector<size_t>innerRuntimeIterations_vector(numberofpackages);
-    std::vector<size_t>totaldatasent_vector(numberofpackages);
-    std::vector<double> loadavg_vector(numberofpackages);*/
     
     //double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
@@ -93,9 +82,6 @@ int main(int argc,char *argv[]){
                     bufferop.setloopvariables(p, innerRuntimeIterations, 1);
 
                     calculate.setvectors(p, innerRuntimeIterations, totaldatasent,z);
-                    //package_vector.at(z)=p;
-                    //innerRuntimeIterations_vector.at(z)=innerRuntimeIterations;
-                    //totaldatasent_vector.at(z)=totaldatasent;
                     
                     // time measure sending process
                     starttime = mpi1.get_mpitime();
@@ -103,7 +89,6 @@ int main(int argc,char *argv[]){
                     bufferop.recvBuffer();
                     endtime = mpi1.get_mpitime();
                     calculate.settime(m,z,((endtime-starttime)/2));
-                    //time[m][z]=(endtime-starttime)/2;
                     
                     //systemload
                     int nelem=3;
@@ -125,8 +110,6 @@ int main(int argc,char *argv[]){
                     endtime = mpi1.get_mpitime();
                     
                     calculate.settime(m,z,((endtime-starttime)/2));
-                    /*time[m][z]=(endtime-starttime)/2;
-                    summe.at(z)+=time[m][z];*/
                     
                     bufferop.checkBuffer(everythingcorrect_check);
                     //bufferop1.freeBuffer();
