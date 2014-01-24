@@ -4,7 +4,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/pingpong.dir/classmpi3.cpp.o"
   "CMakeFiles/pingpong.dir/print.cpp.o"
   "CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o"
-  "CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o"
+  "CMakeFiles/pingpong.dir/results.cpp.o"
   "pingpong.pdb"
   "pingpong"
 )

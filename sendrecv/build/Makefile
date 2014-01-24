@@ -135,30 +135,6 @@ bufferoperations.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
-calculatebandwidth.o: calculatebandwidth.cpp.o
-.PHONY : calculatebandwidth.o
-
-# target to build an object file
-calculatebandwidth.cpp.o:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o
-.PHONY : calculatebandwidth.cpp.o
-
-calculatebandwidth.i: calculatebandwidth.cpp.i
-.PHONY : calculatebandwidth.i
-
-# target to preprocess a source file
-calculatebandwidth.cpp.i:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.i
-.PHONY : calculatebandwidth.cpp.i
-
-calculatebandwidth.s: calculatebandwidth.cpp.s
-.PHONY : calculatebandwidth.s
-
-# target to generate assembly for a file
-calculatebandwidth.cpp.s:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.s
-.PHONY : calculatebandwidth.cpp.s
-
 classmpi3.o: classmpi3.cpp.o
 .PHONY : classmpi3.o
 
@@ -231,6 +207,30 @@ print.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.s
 .PHONY : print.cpp.s
 
+results.o: results.cpp.o
+.PHONY : results.o
+
+# target to build an object file
+results.cpp.o:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/results.cpp.o
+.PHONY : results.cpp.o
+
+results.i: results.cpp.i
+.PHONY : results.i
+
+# target to preprocess a source file
+results.cpp.i:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/results.cpp.i
+.PHONY : results.cpp.i
+
+results.s: results.cpp.s
+.PHONY : results.s
+
+# target to generate assembly for a file
+results.cpp.s:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/results.cpp.s
+.PHONY : results.cpp.s
+
 totaldatasendcalc.o: totaldatasendcalc.cpp.o
 .PHONY : totaldatasendcalc.o
 
@@ -267,9 +267,6 @@ help:
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"
-	@echo "... calculatebandwidth.o"
-	@echo "... calculatebandwidth.i"
-	@echo "... calculatebandwidth.s"
 	@echo "... classmpi3.o"
 	@echo "... classmpi3.i"
 	@echo "... classmpi3.s"
@@ -279,6 +276,9 @@ help:
 	@echo "... print.o"
 	@echo "... print.i"
 	@echo "... print.s"
+	@echo "... results.o"
+	@echo "... results.i"
+	@echo "... results.s"
 	@echo "... totaldatasendcalc.o"
 	@echo "... totaldatasendcalc.i"
 	@echo "... totaldatasendcalc.s"

@@ -5,21 +5,23 @@ CMakeFiles/pingpong.dir/bufferoperations.cpp.o: ../bufferoperations.cpp
 CMakeFiles/pingpong.dir/bufferoperations.cpp.o: ../bufferoperations.h
 CMakeFiles/pingpong.dir/bufferoperations.cpp.o: ../classmpi3.h
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o: ../calculatebandwidth.cpp
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o: ../calculatebandwidth.h
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o: ../classmpi3.h
-
 CMakeFiles/pingpong.dir/classmpi3.cpp.o: ../classmpi3.cpp
 CMakeFiles/pingpong.dir/classmpi3.cpp.o: ../classmpi3.h
 
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../bufferoperations.h
-CMakeFiles/pingpong.dir/pingpong.cpp.o: ../calculatebandwidth.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../classmpi3.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../pingpong.cpp
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../print.h
+CMakeFiles/pingpong.dir/pingpong.cpp.o: ../results.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../totaldatasendcalc.h
 
 CMakeFiles/pingpong.dir/print.cpp.o: ../print.cpp
 CMakeFiles/pingpong.dir/print.cpp.o: ../print.h
 
+CMakeFiles/pingpong.dir/results.cpp.o: ../classmpi3.h
+CMakeFiles/pingpong.dir/results.cpp.o: ../results.cpp
+CMakeFiles/pingpong.dir/results.cpp.o: ../results.h
+
+CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o: ../totaldatasendcalc.cpp
+CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o: ../totaldatasendcalc.h
 

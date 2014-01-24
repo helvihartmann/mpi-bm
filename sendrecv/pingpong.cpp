@@ -8,7 +8,7 @@
 #include "print.h"
 #include "totaldatasendcalc.h"
 #include "bufferoperations.h"
-#include "calculatebandwidth.h"
+#include "results.h"
 #include <vector>
 using namespace std;
 
@@ -53,20 +53,16 @@ int main(int argc,char *argv[]){
     double starttime, endtime;
  
     //-------Vector definations-------------------
-    Calculatebandwidth calculate(outerStatisticalIterations,numberofpackages);
+    Results calculate(outerStatisticalIterations,numberofpackages);
     
     //double time[outerStatisticalIterations][numberofpackages];
-    /*std::vector< vector<double> > time(outerStatisticalIterations, vector<double> (numberofpackages));
+    /*std::vector< vector<double> > time(outerStatisticalIterations, vector<double> (numberofpackages));*/
     
-    std::vector<double> summe(numberofpackages);
-    std::vector<size_t>package_vector(numberofpackages);
+
+    /*std::vector<size_t>package_vector(numberofpackages);
     std::vector<size_t>innerRuntimeIterations_vector(numberofpackages);
     std::vector<size_t>totaldatasent_vector(numberofpackages);
     std::vector<double> loadavg_vector(numberofpackages);*/
-    std::vector<size_t>package_vector(numberofpackages);
-    std::vector<size_t>innerRuntimeIterations_vector(numberofpackages);
-    std::vector<size_t>totaldatasent_vector(numberofpackages);
-    std::vector<double> loadavg_vector(numberofpackages);
     
     //double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
@@ -82,7 +78,6 @@ int main(int argc,char *argv[]){
         
         //for(size_t p=startPackageSize; p<cutoff;p=p*2){
         for (int z=0; z < numberofpackages; z++){
-            std::cout << m << "," << z << "," << p << std::endl;
             
             /* -------------- make first calculations on datavolume---------------------------*/
             data.setPackagesizeTmp(p);//p correct at this point
@@ -97,13 +92,14 @@ int main(int argc,char *argv[]){
                     
                     bufferop.setloopvariables(p, innerRuntimeIterations, 1);
 
-                    package_vector.at(z)=p;
-                    innerRuntimeIterations_vector.at(z)=innerRuntimeIterations;
-                    totaldatasent_vector.at(z)=totaldatasent;
+                    calculate.setvectors(p, innerRuntimeIterations, totaldatasent,z);
+                    //package_vector.at(z)=p;
+                    //innerRuntimeIterations_vector.at(z)=innerRuntimeIterations;
+                    //totaldatasent_vector.at(z)=totaldatasent;
                     
                     // time measure sending process
                     starttime = mpi1.get_mpitime();
-                    bufferop.sendBuffer();//Objekt mpi1 mitübergeben
+                    bufferop.sendBuffer();
                     bufferop.recvBuffer();
                     endtime = mpi1.get_mpitime();
                     calculate.settime(m,z,((endtime-starttime)/2));
@@ -113,8 +109,8 @@ int main(int argc,char *argv[]){
                     int nelem=3;
                     double loadavg[nelem];
                     //int systemload = getloadavg(loadavg, nelem);
-                    getloadavg(loadavg, nelem);
-                    loadavg_vector.at(z)=loadavg[1];
+                    //getloadavg(loadavg, nelem);
+                    //loadavg_vector.at(z)=loadavg[1];
                  }
                 
                 //Process 1 receives the data
@@ -148,23 +144,10 @@ int main(int argc,char *argv[]){
     
     // send everything to process 0 to do the output
     if (rank == 1){
-
-        /*std::vector<double> recv_mean(numberofpackages);
-        //double recv_var[numberofpackages];
-        //double diff[numberofpackages];
-        for(int z=0;z<numberofpackages;z++){
-            recv_mean.at(z)=summe.at(z)/outerStatisticalIterations;
-            diff=0;
-            for (int m=0;m<outerStatisticalIterations;m++){
-                diff+= pow((recv_mean.at(z) - time[m][z]),2);
-            }
-            
-            recv_var = sqrt(diff)/outerStatisticalIterations;
-            //cout<<recv_mean[z]<<" r ";
-            //cout<<recv_var[z]<<"\n";
-        }
+    
+        //calculate.calculate();
      
-     mpi1.performsend(&recv_mean,numberofpackages,MPI_DOUBLE,0,numberofpackages+1,MPI_COMM_WORLD, sendmode);*/
+        //mpi1.performsend(&recv_mean,numberofpackages,MPI_DOUBLE,0,numberofpackages+1,MPI_COMM_WORLD, sendmode);*/
     }
     else if (rank == 0) {
 
@@ -181,24 +164,7 @@ int main(int argc,char *argv[]){
             out.printtimestemp();
             out.printheader();
             
-            calculate.calculate(totaldatasent_vector,package_vector,innerRuntimeIterations_vector,loadavg_vector);
-            /*for(int z=0;z<numberofpackages;z++){
-                double send_mean=summe.at(z)/outerStatisticalIterations;
-                //cout<<"summe["<<z<<"]: "<<summe[z]<<endl;
-                //cout<<"send_mean "<<send_mean<<endl;
-                double diff = 0;
-                for (int m=0;m<outerStatisticalIterations;m++){
-                    diff+= (send_mean - time[m][z])*(send_mean - time[m][z]);
-                }
-                double rate =(totaldatasent_vector[z]/send_mean)/1000000;
-                //cout << totaldatasent_vector[z]<< endl;
-                double send_vartime = diff/outerStatisticalIterations;
-                double send_stdtime = sqrt(send_vartime);
-                double send_std=(send_stdtime/send_mean)*rate;
-                
-                printf("%ld %ld %ld %f %f %f %f - %f \n",totaldatasent_vector.at(z) ,innerRuntimeIterations_vector.at(z), package_vector.at(z) *sizeof(int),send_mean, send_stdtime, rate, send_std, loadavg_vector.at(z));
-
-            }*/
+            calculate.calculate();
         }//if everything correct
         
         /*else{

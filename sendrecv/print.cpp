@@ -11,7 +11,7 @@ void Printoutput::printtimestemp(){
 }
     
 void Printoutput::printheader(){
-        printf("# totaldatasent repeats  packagesize time [s] std sendbandwidth [MB/s] std load last: 1min \n");
+        printf("# totaldatasent repeats  packagesize time [s] std sendbandwidth [MB/s] std \n");
 }
     
 void Printoutput::printerrormessage(size_t *everythingcorrect_check,size_t packagesize_temp){

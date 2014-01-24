@@ -164,28 +164,28 @@ CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o.provides: CMakeFiles/pingpong.di
 
 CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o.provides.build: CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o: CMakeFiles/pingpong.dir/flags.make
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o: ../calculatebandwidth.cpp
+CMakeFiles/pingpong.dir/results.cpp.o: CMakeFiles/pingpong.dir/flags.make
+CMakeFiles/pingpong.dir/results.cpp.o: ../results.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/hartmann/benchmark/sendrecv/build/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o"
-	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o -c /home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/pingpong.dir/results.cpp.o"
+	mpic++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/pingpong.dir/results.cpp.o -c /home/hartmann/benchmark/sendrecv/results.cpp
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pingpong.dir/calculatebandwidth.cpp.i"
-	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp > CMakeFiles/pingpong.dir/calculatebandwidth.cpp.i
+CMakeFiles/pingpong.dir/results.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pingpong.dir/results.cpp.i"
+	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/hartmann/benchmark/sendrecv/results.cpp > CMakeFiles/pingpong.dir/results.cpp.i
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pingpong.dir/calculatebandwidth.cpp.s"
-	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp -o CMakeFiles/pingpong.dir/calculatebandwidth.cpp.s
+CMakeFiles/pingpong.dir/results.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pingpong.dir/results.cpp.s"
+	mpic++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/hartmann/benchmark/sendrecv/results.cpp -o CMakeFiles/pingpong.dir/results.cpp.s
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.requires:
-.PHONY : CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.requires
+CMakeFiles/pingpong.dir/results.cpp.o.requires:
+.PHONY : CMakeFiles/pingpong.dir/results.cpp.o.requires
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.provides: CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.requires
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.provides.build
-.PHONY : CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.provides
+CMakeFiles/pingpong.dir/results.cpp.o.provides: CMakeFiles/pingpong.dir/results.cpp.o.requires
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/results.cpp.o.provides.build
+.PHONY : CMakeFiles/pingpong.dir/results.cpp.o.provides
 
-CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.provides.build: CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o
+CMakeFiles/pingpong.dir/results.cpp.o.provides.build: CMakeFiles/pingpong.dir/results.cpp.o
 
 # Object files for target pingpong
 pingpong_OBJECTS = \
@@ -194,7 +194,7 @@ pingpong_OBJECTS = \
 "CMakeFiles/pingpong.dir/classmpi3.cpp.o" \
 "CMakeFiles/pingpong.dir/print.cpp.o" \
 "CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o" \
-"CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o"
+"CMakeFiles/pingpong.dir/results.cpp.o"
 
 # External object files for target pingpong
 pingpong_EXTERNAL_OBJECTS =
@@ -204,7 +204,7 @@ pingpong: CMakeFiles/pingpong.dir/bufferoperations.cpp.o
 pingpong: CMakeFiles/pingpong.dir/classmpi3.cpp.o
 pingpong: CMakeFiles/pingpong.dir/print.cpp.o
 pingpong: CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o
-pingpong: CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o
+pingpong: CMakeFiles/pingpong.dir/results.cpp.o
 pingpong: CMakeFiles/pingpong.dir/build.make
 pingpong: CMakeFiles/pingpong.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable pingpong"
@@ -219,7 +219,7 @@ CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/bufferoperations.cpp.o
 CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/classmpi3.cpp.o.requires
 CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/print.cpp.o.requires
 CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o.requires
-CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o.requires
+CMakeFiles/pingpong.dir/requires: CMakeFiles/pingpong.dir/results.cpp.o.requires
 .PHONY : CMakeFiles/pingpong.dir/requires
 
 CMakeFiles/pingpong.dir/clean:
