@@ -21,10 +21,6 @@ void Bufferoperations::setloopvariables(size_t p, size_t innerRuntimeIterations_
     tag = tag_;
 }
 
-void Bufferoperations::initalizeBuffer(int rank){
-    
-}
-
 
 /*void Bufferoperations::specifyBuffer(){
     mpi1.performBufferspecification(buffer,packagesize_temp);

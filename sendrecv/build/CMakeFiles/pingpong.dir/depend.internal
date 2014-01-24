@@ -5,11 +5,16 @@ CMakeFiles/pingpong.dir/bufferoperations.cpp.o
  /home/hartmann/benchmark/sendrecv/bufferoperations.cpp
  /home/hartmann/benchmark/sendrecv/bufferoperations.h
  /home/hartmann/benchmark/sendrecv/classmpi3.h
+CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o
+ /home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp
+ /home/hartmann/benchmark/sendrecv/calculatebandwidth.h
+ /home/hartmann/benchmark/sendrecv/classmpi3.h
 CMakeFiles/pingpong.dir/classmpi3.cpp.o
  /home/hartmann/benchmark/sendrecv/classmpi3.cpp
  /home/hartmann/benchmark/sendrecv/classmpi3.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o
  /home/hartmann/benchmark/sendrecv/bufferoperations.h
+ /home/hartmann/benchmark/sendrecv/calculatebandwidth.h
  /home/hartmann/benchmark/sendrecv/classmpi3.h
  /home/hartmann/benchmark/sendrecv/pingpong.cpp
  /home/hartmann/benchmark/sendrecv/print.h
@@ -18,5 +23,3 @@ CMakeFiles/pingpong.dir/print.cpp.o
  /home/hartmann/benchmark/sendrecv/print.cpp
  /home/hartmann/benchmark/sendrecv/print.h
 CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o
- /home/hartmann/benchmark/sendrecv/totaldatasendcalc.cpp
- /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h

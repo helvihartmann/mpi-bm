@@ -5,6 +5,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/hartmann/benchmark/sendrecv/bufferoperations.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/pingpong.dir/bufferoperations.cpp.o"
+  "/home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o"
   "/home/hartmann/benchmark/sendrecv/classmpi3.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/pingpong.dir/classmpi3.cpp.o"
   "/home/hartmann/benchmark/sendrecv/pingpong.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/pingpong.dir/pingpong.cpp.o"
   "/home/hartmann/benchmark/sendrecv/print.cpp" "/home/hartmann/benchmark/sendrecv/build/CMakeFiles/pingpong.dir/print.cpp.o"

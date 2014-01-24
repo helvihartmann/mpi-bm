@@ -135,6 +135,30 @@ bufferoperations.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.s
 .PHONY : bufferoperations.cpp.s
 
+calculatebandwidth.o: calculatebandwidth.cpp.o
+.PHONY : calculatebandwidth.o
+
+# target to build an object file
+calculatebandwidth.cpp.o:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.o
+.PHONY : calculatebandwidth.cpp.o
+
+calculatebandwidth.i: calculatebandwidth.cpp.i
+.PHONY : calculatebandwidth.i
+
+# target to preprocess a source file
+calculatebandwidth.cpp.i:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.i
+.PHONY : calculatebandwidth.cpp.i
+
+calculatebandwidth.s: calculatebandwidth.cpp.s
+.PHONY : calculatebandwidth.s
+
+# target to generate assembly for a file
+calculatebandwidth.cpp.s:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/calculatebandwidth.cpp.s
+.PHONY : calculatebandwidth.cpp.s
+
 classmpi3.o: classmpi3.cpp.o
 .PHONY : classmpi3.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... bufferoperations.o"
 	@echo "... bufferoperations.i"
 	@echo "... bufferoperations.s"
+	@echo "... calculatebandwidth.o"
+	@echo "... calculatebandwidth.i"
+	@echo "... calculatebandwidth.s"
 	@echo "... classmpi3.o"
 	@echo "... classmpi3.i"
 	@echo "... classmpi3.s"

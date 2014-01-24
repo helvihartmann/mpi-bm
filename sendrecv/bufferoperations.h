@@ -24,8 +24,6 @@ public:
     
     void setloopvariables(size_t, size_t,int);
     
-    void initalizeBuffer(int);
-    
     //void specifyBuffer();
     
     void sendBuffer();

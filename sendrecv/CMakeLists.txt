@@ -10,5 +10,5 @@ set(CMAKE_CXX_COMPILER mpic++)
 #Sends the -std=c99 flag to the gcc compiler
 add_definitions(-std=c++11 -Wall -Wextra -g)
 #This tells CMake to do executable
-add_executable(pingpong pingpong.cpp bufferoperations.cpp classmpi3.cpp print.cpp totaldatasendcalc.cpp)
+add_executable(pingpong pingpong.cpp bufferoperations.cpp classmpi3.cpp print.cpp totaldatasendcalc.cpp calculatebandwidth.cpp)
 

@@ -10,6 +10,24 @@
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 
+/home/hartmann/benchmark/sendrecv/calculatebandwidth.cpp
+calculatebandwidth.h
+/home/hartmann/benchmark/sendrecv/calculatebandwidth.h
+cstdio
+-
+unistd.h
+-
+
+/home/hartmann/benchmark/sendrecv/calculatebandwidth.h
+classmpi3.h
+/home/hartmann/benchmark/sendrecv/classmpi3.h
+vector
+-
+array
+-
+cmath
+-
+
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 mpi.h
 -
@@ -27,8 +45,6 @@ cstdint
 -
 cmath
 -
-unistd.h
--
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 print.h
@@ -37,6 +53,8 @@ totaldatasendcalc.h
 /home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
 bufferoperations.h
 /home/hartmann/benchmark/sendrecv/bufferoperations.h
+calculatebandwidth.h
+/home/hartmann/benchmark/sendrecv/calculatebandwidth.h
 vector
 -
 
