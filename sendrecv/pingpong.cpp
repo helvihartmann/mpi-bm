@@ -114,7 +114,7 @@ int main(int argc,char *argv[]){
                     bufferop.checkBuffer(everythingcorrect_check);
                     //bufferop1.freeBuffer();
                 }//else if
-           p *= 2;
+           p += 200;
           //  z++;
         }//for p iteration over package size
         cout<<"\n";
