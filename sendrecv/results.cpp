@@ -48,7 +48,7 @@ void Results::calculate(){
         double send_stdtime = sqrt(send_vartime);
         double send_std=(send_stdtime/send_mean)*rate;
         
-        std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z) *sizeof(int)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<<" "<< send_std<<std::endl;
+        std::cout<<totaldatasent_vector.at(z)<<"\t"<<innerRuntimeIterations_vector.at(z)<<"\t"<<package_vector.at(z) *sizeof(int)<<"\t"<<send_mean<<"\t"<<send_stdtime<<"\t"<<rate<<"\t"<< send_std<<std::endl;
     }
 
 }

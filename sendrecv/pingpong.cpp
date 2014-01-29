@@ -12,12 +12,7 @@
 #include <vector>
 using namespace std;
 
-/* fles:~/benchmark/sendrecv 27.11.2013
-class Mpi contains all MPi related functions
-designed to send a lot of data between processes as specified in console
- This version iterates over the packege size to assure for every run the same conditions on the fles
- and prints everything into sendrecv.out when runned via 
- > sbatch slurm_test.in*/
+/* fles:~/benchmark/sendrecv 27.11.2013*/
 
 int main(int argc,char *argv[]){
     
@@ -25,21 +20,24 @@ int main(int argc,char *argv[]){
     int size, rank;
     int length;
     char name[MPI_MAX_PROCESSOR_NAME];
-    Mpi mpi1;
-    Mpi *mpi1pnter;
-    mpi1pnter = &mpi1;
+    //Mpi mpi1;
+    Mpi *mpi1pnter = new Mpi;
+    //mpi1pnter = &mpi1;
     
-    mpi1.init_it(&argc,&argv);
-    size = mpi1.get_size();
-    rank = mpi1.get_rank();
+    mpi1pnter->init_it(&argc,&argv);
+    size = mpi1pnter->get_size();
+    rank = mpi1pnter->get_rank();
     MPI_Get_processor_name(name, &length); //not yet handled in class
-    cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
+    
 
     /*--------------------- Iterate over packege size-----------------------------*/
     //get starting packege size; read in data to send from console (default =128B)
     Totaldatasendcalc data;
     
     data.readOptions(argc,argv);
+    
+    cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
+    
     size_t startPackageSize = data.getpackagesize();
     size_t cutoff = data.getcutoff();
     int tmp = data.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
@@ -53,9 +51,7 @@ int main(int argc,char *argv[]){
     //-------Vector definations-------------------
     Results calculate(outerStatisticalIterations,numberofpackages);
     
-    //double summe[numberofpackages];
     size_t *everythingcorrect_check = 0;
-    
     
     for(int m=0; m<outerStatisticalIterations; m++){
         
@@ -84,10 +80,10 @@ int main(int argc,char *argv[]){
                     calculate.setvectors(p, innerRuntimeIterations, totaldatasent,z);
                     
                     // time measure sending process
-                    starttime = mpi1.get_mpitime();
+                    starttime = mpi1pnter->get_mpitime();
                     bufferop.sendBuffer();
                     bufferop.recvBuffer();
-                    endtime = mpi1.get_mpitime();
+                    endtime = mpi1pnter->get_mpitime();
                     calculate.settime(m,z,((endtime-starttime)/2));
                     
                     //systemload
@@ -104,17 +100,18 @@ int main(int argc,char *argv[]){
                     bufferop.setloopvariables(p, innerRuntimeIterations, 0);
                     
                     //time measure receving data
-                    starttime = mpi1.get_mpitime();
+                    starttime = mpi1pnter->get_mpitime();
                     bufferop.recvBuffer();
                     bufferop.sendBuffer();
-                    endtime = mpi1.get_mpitime();
+                    endtime = mpi1pnter->get_mpitime();
                     
                     calculate.settime(m,z,((endtime-starttime)/2));
                     
                     bufferop.checkBuffer(everythingcorrect_check);
                     //bufferop1.freeBuffer();
                 }//else if
-           p += 200;
+           //p *= 2;
+            p=p/2;
           //  z++;
         }//for p iteration over package size
         cout<<"\n";
@@ -155,5 +152,5 @@ int main(int argc,char *argv[]){
         }*/
     }//if you are process 0
         
-    mpi1.endmpi();
+    mpi1pnter->endmpi();
 }

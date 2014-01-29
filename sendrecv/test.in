@@ -8,5 +8,5 @@
 
 #mpirun --mca btl_openib_warn_no_device_params_found 0 --mca orte_base_help_aggregate 0 build/sendrecv2 -a 524288 -e 524289 -m 1 -o 2
 # mpirun --mca btl_openib_verbose 1 --mca orte_base_help_aggregate 0 build/sendrecv2 -a 524288 -e 524289 -m 1 -o 2 -i 1
-mpirun build/sendrecv2 -a 524288 -e 524289 -m 1 -o 2
+mpirun build/pingpong -h
 exit 0

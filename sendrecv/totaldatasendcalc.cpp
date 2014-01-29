@@ -27,16 +27,14 @@ void Totaldatasendcalc::readOptions(int &argc, char **argv){
     while ((opt = getopt (argc, argv, "hm:a:i:e:o:")) != -1)
         switch (opt)
     {
-       /* case 'h':
-            sendmode = atoi(optarg);
-            if (sendmode >= 1 && sendmode <= 3) {
-                //zwischen 1 und 3
-            }
-            else {
-                printf("ERROR -m: your options are 1 send; 2 Ssend, 3 Bsend\n");
-                exit(1);
-            }
-            break;*/
+        case 'h':
+            std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
+            std::cout<<" -m      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend\n \t(DEFAULT = 1)\n";
+            std::cout<<" -a      start package size of data that is send between two processes and which will be doubled until cutoff\n\t(DEFAULT = 2B)\n";
+            std::cout<<" -e      cutoff, i.e. the maximum package sized that is being analyzed\n";
+            std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";
+            std::cout<<" -o      statisticaliterations\n";
+            exit(1);
         case 'm':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 3) {
