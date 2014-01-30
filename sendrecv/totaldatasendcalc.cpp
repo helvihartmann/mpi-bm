@@ -144,7 +144,7 @@ size_t Totaldatasendcalc::getinnerRuntimeIterations(int z){
         }
     }
     
-    if (iterations*packagesize_temp*sizeof(int) > 45000000000){
+    if (iterations*packagesize_temp*sizeof(int) > 4000000000){
         iterations = 10;
     }
    

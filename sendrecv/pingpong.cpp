@@ -44,7 +44,9 @@ int main(int argc,char *argv[]){
     const int* sendmode = &tmp;
     
     int outerStatisticalIterations = data.getstatisticaliterations();
-    int numberofpackages = log(cutoff)/log(2)-log(startPackageSize)/log(2)+1;
+    //int numberofpackages = log(cutoff)/log(2)-log(startPackageSize)/log(2)+1;
+    int numberofpackages = log(startPackageSize)/log(2)-log(cutoff)/log(2)+1;
+
     
     double starttime, endtime;
  
