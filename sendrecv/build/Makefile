@@ -111,29 +111,29 @@ pingpong/fast:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/build
 .PHONY : pingpong/fast
 
-bufferoperations.o: bufferoperations.cpp.o
-.PHONY : bufferoperations.o
+buffer.o: buffer.cpp.o
+.PHONY : buffer.o
 
 # target to build an object file
-bufferoperations.cpp.o:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.o
-.PHONY : bufferoperations.cpp.o
+buffer.cpp.o:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/buffer.cpp.o
+.PHONY : buffer.cpp.o
 
-bufferoperations.i: bufferoperations.cpp.i
-.PHONY : bufferoperations.i
+buffer.i: buffer.cpp.i
+.PHONY : buffer.i
 
 # target to preprocess a source file
-bufferoperations.cpp.i:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.i
-.PHONY : bufferoperations.cpp.i
+buffer.cpp.i:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/buffer.cpp.i
+.PHONY : buffer.cpp.i
 
-bufferoperations.s: bufferoperations.cpp.s
-.PHONY : bufferoperations.s
+buffer.s: buffer.cpp.s
+.PHONY : buffer.s
 
 # target to generate assembly for a file
-bufferoperations.cpp.s:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/bufferoperations.cpp.s
-.PHONY : bufferoperations.cpp.s
+buffer.cpp.s:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/buffer.cpp.s
+.PHONY : buffer.cpp.s
 
 classmpi3.o: classmpi3.cpp.o
 .PHONY : classmpi3.o
@@ -158,6 +158,30 @@ classmpi3.s: classmpi3.cpp.s
 classmpi3.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.s
 .PHONY : classmpi3.cpp.s
+
+parameters.o: parameters.cpp.o
+.PHONY : parameters.o
+
+# target to build an object file
+parameters.cpp.o:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/parameters.cpp.o
+.PHONY : parameters.cpp.o
+
+parameters.i: parameters.cpp.i
+.PHONY : parameters.i
+
+# target to preprocess a source file
+parameters.cpp.i:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/parameters.cpp.i
+.PHONY : parameters.cpp.i
+
+parameters.s: parameters.cpp.s
+.PHONY : parameters.s
+
+# target to generate assembly for a file
+parameters.cpp.s:
+	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/parameters.cpp.s
+.PHONY : parameters.cpp.s
 
 pingpong.o: pingpong.cpp.o
 .PHONY : pingpong.o
@@ -231,30 +255,6 @@ results.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/results.cpp.s
 .PHONY : results.cpp.s
 
-totaldatasendcalc.o: totaldatasendcalc.cpp.o
-.PHONY : totaldatasendcalc.o
-
-# target to build an object file
-totaldatasendcalc.cpp.o:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.o
-.PHONY : totaldatasendcalc.cpp.o
-
-totaldatasendcalc.i: totaldatasendcalc.cpp.i
-.PHONY : totaldatasendcalc.i
-
-# target to preprocess a source file
-totaldatasendcalc.cpp.i:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.i
-.PHONY : totaldatasendcalc.cpp.i
-
-totaldatasendcalc.s: totaldatasendcalc.cpp.s
-.PHONY : totaldatasendcalc.s
-
-# target to generate assembly for a file
-totaldatasendcalc.cpp.s:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/totaldatasendcalc.cpp.s
-.PHONY : totaldatasendcalc.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -264,12 +264,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... pingpong"
 	@echo "... rebuild_cache"
-	@echo "... bufferoperations.o"
-	@echo "... bufferoperations.i"
-	@echo "... bufferoperations.s"
+	@echo "... buffer.o"
+	@echo "... buffer.i"
+	@echo "... buffer.s"
 	@echo "... classmpi3.o"
 	@echo "... classmpi3.i"
 	@echo "... classmpi3.s"
+	@echo "... parameters.o"
+	@echo "... parameters.i"
+	@echo "... parameters.s"
 	@echo "... pingpong.o"
 	@echo "... pingpong.i"
 	@echo "... pingpong.s"
@@ -279,9 +282,6 @@ help:
 	@echo "... results.o"
 	@echo "... results.i"
 	@echo "... results.s"
-	@echo "... totaldatasendcalc.o"
-	@echo "... totaldatasendcalc.i"
-	@echo "... totaldatasendcalc.s"
 .PHONY : help
 
 

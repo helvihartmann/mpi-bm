@@ -28,7 +28,6 @@ public:
     
     void setvectors(size_t packagesize_tmp,
                              size_t innerRuntimeIterations,
-                             size_t totaldatasent,
                              int idx_numberofpackages);
     
     void settime(int idx_outeriter,

@@ -1,0 +1,126 @@
+#include "parameters.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <iostream>
+
+/* pfad
+27.11.2013
+*/
+
+void Parameters::readOptions(int argc, char **argv){
+    int opt;
+    factor = 100000*128;
+    
+    startPackageSize = 4;
+    endPackageSize = 1000;
+    packageSizeFactor = 2.0;
+    
+    sendmode = 1;
+    statisticaliterations=10;
+    
+    //int opterr = 0;
+
+    while ((opt = getopt (argc, argv, "hm:a:i:e:o:f:")) != -1)
+        switch (opt)
+    {
+        case 'h':
+            std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
+            std::cout<<" -m      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend\n \t(DEFAULT = 1)\n";
+            std::cout<<" -a      start package size of data that is send between two processes and which will be doubled until endPackageSize\n\t(DEFAULT = 2B)\n";
+            std::cout<<" -e      endPackageSize, i.e. the maximum package sized that is being analyzed\n";
+            std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";
+            std::cout<<" -o      statisticaliterations\n";
+            exit(1);
+        case 'm':
+            sendmode = atoi(optarg);
+            if (sendmode >= 1 && sendmode <= 3) {
+                //zwischen 1 und 3
+            }
+            else {
+                printf("ERROR -m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                exit(1);
+            }
+            break;
+        case 'i':
+            factor = atoi(optarg);
+            if (factor >= 1) {
+            }
+            else {
+                printf("#INFO -i: you can only fix iteration to 1 (-i 1) for debugging. Default value is used: 128*20mio \n");
+            }
+            break;
+        case 'a':
+            startPackageSize = atoi(optarg);
+            
+            if (startPackageSize >= 4 && startPackageSize <= 10000000000) {//10GiB max
+            }
+            else {
+                printf("ERROR -a: please enter vaild number for package size, which is not supposed to exceed 10GiB\n");
+                exit(1);
+            }
+            break;
+       case 'e':
+            endPackageSize = atoi(optarg);
+            if (endPackageSize >= 1 && endPackageSize <= 50000000000) {
+            }
+            else {
+                endPackageSize = startiteration;
+                printf("#INFO -e: max package size was set to 50GB \n");
+            }
+            break;
+        case 'f':
+            packageSizeFactor = atof(optarg);
+            
+            if (!(packageSizeFactor > 0)) {
+                printf("ERROR -f: please enter vaild number for step factor\n");
+                exit(1);
+            }
+            break;
+       case 'o':
+            statisticaliterations = atoi(optarg);
+            if (statisticaliterations >=1 && statisticaliterations <= 1000) {
+            }
+            else {
+                statisticaliterations=1000;
+                printf("#INFO -o: statistical iterations were limited to 1000 \n");
+            }
+            break;
+        case '?':
+            fprintf (stderr,
+                     "ERROR: Unknown option character `\\x%x'.\n",
+                     optopt);
+        default:
+            abort ();
+    }
+    printf ("#sendmode = %d, startPackageSize = %ld, start iterations = %ld endPackageSize = %ld, statistical iterations = %d \n",
+            sendmode, startPackageSize, startiteration, endPackageSize, statisticaliterations);
+    
+    if (startPackageSize <= endPackageSize)
+        for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)
+            packageSizes.push_back(p);
+    else
+        for (size_t p = startPackageSize; p >= endPackageSize; p = p * packageSizeFactor)
+            packageSizes.push_back(p);
+}
+
+size_t Parameters::getinnerRuntimeIterations(size_t packageSize) {
+    size_t iterations;
+    
+    if (factor==1) {
+        iterations=1;
+    }
+    else {
+        iterations = factor/ packageSize;
+        if (iterations<=200) {
+            iterations=200;
+        }
+    }
+    
+    if (iterations * packageSize > 4000000000){
+        iterations = 10;
+    }
+   
+    return iterations;
+}

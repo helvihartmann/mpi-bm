@@ -23,7 +23,7 @@ public:
     //void performBufferspecification(void*, size_t);
 
     
-    void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, const int*);
+    void performsend(void*, int, MPI_Datatype, int, int, MPI_Comm, int);
 
     
     void performrecv(void*, int, MPI_Datatype, int, int, MPI_Comm,MPI_Status*);

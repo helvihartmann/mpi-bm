@@ -6,12 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/home/hartmann/benchmark/sendrecv/bufferoperations.h
+/home/hartmann/benchmark/sendrecv/buffer.h
 classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 mpi.h
+-
+
+/home/hartmann/benchmark/sendrecv/parameters.h
+cstddef
+-
+cstdlib
+-
+vector
 -
 
 /home/hartmann/benchmark/sendrecv/pingpong.cpp
@@ -31,10 +39,10 @@ classmpi3.h
 /home/hartmann/benchmark/sendrecv/classmpi3.h
 print.h
 /home/hartmann/benchmark/sendrecv/print.h
-totaldatasendcalc.h
-/home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
-bufferoperations.h
-/home/hartmann/benchmark/sendrecv/bufferoperations.h
+parameters.h
+/home/hartmann/benchmark/sendrecv/parameters.h
+buffer.h
+/home/hartmann/benchmark/sendrecv/buffer.h
 results.h
 /home/hartmann/benchmark/sendrecv/results.h
 vector
@@ -58,11 +66,5 @@ vector
 array
 -
 cmath
--
-
-/home/hartmann/benchmark/sendrecv/totaldatasendcalc.h
-cstddef
--
-cstdlib
 -
 

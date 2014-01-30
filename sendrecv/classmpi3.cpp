@@ -23,9 +23,9 @@ int Mpi::get_rank(){
     
 }*/
 
-void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, const int* sendmode){
+void Mpi::performsend(void *sendbuff, int sendcount, MPI_Datatype sendtype, int destination, int tag, MPI_Comm comm, int sendmode){
     
-    switch (*sendmode) {
+    switch (sendmode) {
         case 1:
             MPI_Send(sendbuff,sendcount,sendtype, destination, tag, comm);
             break;

@@ -17,10 +17,11 @@ Results::Results(int outerStatisticalIterations_, int numberofpackages_) :
     //std::cout << "Sum size" << summe.size() << std::endl;
 }
 
-void Results::setvectors(size_t packagesize_tmp,size_t innerRuntimeIterations,size_t totaldatasent, int idx_numberofpackages){
+void Results::setvectors(size_t packagesize_tmp, size_t innerRuntimeIterations,
+                         int idx_numberofpackages) {
     package_vector.at(idx_numberofpackages)=packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
-    totaldatasent_vector.at(idx_numberofpackages)=totaldatasent;
+    totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations;
 }
 
 void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ ){
@@ -48,7 +49,7 @@ void Results::calculate(){
         double send_stdtime = sqrt(send_vartime);
         double send_std=(send_stdtime/send_mean)*rate;
         
-        std::cout<<totaldatasent_vector.at(z)<<"\t"<<innerRuntimeIterations_vector.at(z)<<"\t"<<package_vector.at(z) *sizeof(int)<<"\t"<<send_mean<<"\t"<<send_stdtime<<"\t"<<rate<<"\t"<< send_std<<std::endl;
+        std::cout<<totaldatasent_vector.at(z)<<"\t"<<innerRuntimeIterations_vector.at(z)<<"\t"<<package_vector.at(z)<<"\t"<<send_mean<<"\t"<<send_stdtime<<"\t"<<rate<<"\t"<< send_std<<std::endl;
     }
 
 }

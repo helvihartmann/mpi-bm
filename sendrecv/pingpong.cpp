@@ -6,8 +6,8 @@
 #include <cmath>
 #include "classmpi3.h"
 #include "print.h"
-#include "totaldatasendcalc.h"
-#include "bufferoperations.h"
+#include "parameters.h"
+#include "buffer.h"
 #include "results.h"
 #include <vector>
 using namespace std;
@@ -32,65 +32,51 @@ int main(int argc,char *argv[]){
 
     /*--------------------- Iterate over packege size-----------------------------*/
     //get starting packege size; read in data to send from console (default =128B)
-    Totaldatasendcalc data;
+    Parameters params;
+    params.readOptions(argc,argv);
+    cout << "# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
     
-    data.readOptions(argc,argv);
-    
-    cout<<"# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
-    
-    size_t startPackageSize = data.getpackagesize();
-    size_t cutoff = data.getcutoff();
-    int tmp = data.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
-    const int* sendmode = &tmp;
-    
-    int outerStatisticalIterations = data.getstatisticaliterations();
-    //int numberofpackages = log(cutoff)/log(2)-log(startPackageSize)/log(2)+1;
-    int numberofpackages = log(startPackageSize)/log(2)-log(cutoff)/log(2)+1;
-
+    int sendmode = params.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     
     double starttime, endtime;
  
     //-------Vector definations-------------------
-    Results calculate(outerStatisticalIterations,numberofpackages);
+    Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
     
-    size_t *everythingcorrect_check = 0;
+    size_t everythingcorrect_check = 0;
     
-    for(int m=0; m<outerStatisticalIterations; m++){
+#if (1)
+    for(int m = 0; m < params.getStatisticalIterations(); m++){
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
-        Bufferoperations bufferop(sendmode, mpi1pnter,rank);
+        Buffer buffer(sendmode, *mpi1pnter, rank);
         
-        size_t p(startPackageSize);
-        
-        //for(size_t p=startPackageSize; p<cutoff;p=p*2){
-        for (int z=0; z < numberofpackages; z++){
+        for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
+            size_t p = params.getPackageSizes().at(z);
             
             /* -------------- make first calculations on datavolume---------------------------*/
-            data.setPackagesizeTmp(p);//p correct at this point
-            size_t innerRuntimeIterations = data.getinnerRuntimeIterations(z);
-            size_t totaldatasent = data.getTotalDataSent();
-            
+            size_t innerRuntimeIterations = params.getinnerRuntimeIterations(p);
             
             /*----------------------repeadingly send the package---------------------*/
                 
                 //Process 0 sends the data
                 if (rank == 0) {
                     
-                    bufferop.setloopvariables(p, innerRuntimeIterations, 1);
+                    buffer.setloopvariables(p, innerRuntimeIterations, 1);
 
-                    calculate.setvectors(p, innerRuntimeIterations, totaldatasent,z);
+                    results.setvectors(p, innerRuntimeIterations, z);
                     
                     // time measure sending process
                     starttime = mpi1pnter->get_mpitime();
-                    bufferop.sendBuffer();
-                    bufferop.recvBuffer();
+                    buffer.sendBuffer();
+                    buffer.recvBuffer();
                     endtime = mpi1pnter->get_mpitime();
-                    calculate.settime(m,z,((endtime-starttime)/2));
+                    results.settime(m,z,((endtime-starttime)/2));
                     
                     //systemload
-                    int nelem=3;
-                    double loadavg[nelem];
+                    //int nelem=3;
+                    //double loadavg[nelem];
                     //int systemload = getloadavg(loadavg, nelem);
                     //getloadavg(loadavg, nelem);
                     //loadavg_vector.at(z)=loadavg[1];
@@ -99,27 +85,25 @@ int main(int argc,char *argv[]){
                 //Process 1 receives the data
                 else if (rank == 1) {
                     
-                    bufferop.setloopvariables(p, innerRuntimeIterations, 0);
+                    buffer.setloopvariables(p, innerRuntimeIterations, 0);
                     
                     //time measure receving data
                     starttime = mpi1pnter->get_mpitime();
-                    bufferop.recvBuffer();
-                    bufferop.sendBuffer();
+                    buffer.recvBuffer();
+                    buffer.sendBuffer();
                     endtime = mpi1pnter->get_mpitime();
                     
-                    calculate.settime(m,z,((endtime-starttime)/2));
+                    results.settime(m,z,((endtime-starttime)/2));
                     
-                    bufferop.checkBuffer(everythingcorrect_check);
-                    //bufferop1.freeBuffer();
+                    buffer.checkBuffer(&everythingcorrect_check);
+                    //buffer1.freeBuffer();
                 }//else if
-           //p *= 2;
-            p=p/2;
-          //  z++;
-        }//for p iteration over package size
+        }
+        
         cout<<"\n";
-        bufferop.freeBuffer();
+        
     }//for iterations to get statistic errors
-
+    
     /*------------------------------------ output-------------------------------*/
     MPI_Barrier(MPI_COMM_WORLD);
     Printoutput out;
@@ -127,7 +111,7 @@ int main(int argc,char *argv[]){
     // send everything to process 0 to do the output
     if (rank == 1){
     
-        //calculate.calculate();
+        //results.results();
      
         //mpi1.performsend(&recv_mean,numberofpackages,MPI_DOUBLE,0,numberofpackages+1,MPI_COMM_WORLD, sendmode);*/
     }
@@ -140,19 +124,20 @@ int main(int argc,char *argv[]){
             //mpi1.performrecv(recv_mean,numberofpackages,MPI_DOUBLE,1,numberofpackages+1,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
             //compare it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             
-            //--------------calculate all needed parameters & print them------------------
+            //--------------results all needed parameters & print them------------------
         
             // Header
             out.printtimestemp();
             out.printheader();
             
-            calculate.calculate();
+            results.calculate();
         }//if everything correct
         
         /*else{
             out.printerrormessage(everythingcorrect_check,p);
         }*/
     }//if you are process 0
-        
+#endif
+    
     mpi1pnter->endmpi();
 }

@@ -1,5 +1,5 @@
-#ifndef BUFFEROPERATIONS_H
-#define BUFFEROPERATIONS_H
+#ifndef BUFFER_H
+#define BUFFER_H
 
 #include "classmpi3.h"
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
@@ -9,33 +9,29 @@ designed to send a lot of data between processes even more than 1GB
  This version iterates over the packege size to assure for every run the same conditions on the fles
  and prints everything into 503.out*/
 
-class Bufferoperations{
+class Buffer{
 private:
-    int *buffer;//*rcounts;
-    size_t packagesize_temp;
+    const size_t buffersize = 50000000000;
+
+    const int sendmode;
+    Mpi &mpi;
+    int *buffer;
+    
+    size_t packageCount;
     size_t innerRuntimeIterations;
-    size_t buffersize = 50000000000/sizeof(int);
-    int tag;
-    const int* sendmode;
-    Mpi mpi1;
+    int remoteRank;
 public:
     
-    Bufferoperations(const int*, Mpi*, int);
-    
+    Buffer(int, Mpi&, int);
+    ~Buffer();
+
     void setloopvariables(size_t, size_t,int);
-    
-    //void specifyBuffer();
     
     void sendBuffer();
     
     void recvBuffer();
     
     void checkBuffer(size_t *);
-    
-    //void detachBuffer();
-    
-    void freeBuffer();
-    
 };
 
-#endif /*BUFFEROPERATIONS_H*/
+#endif /*BUFFER_H*/
