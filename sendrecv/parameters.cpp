@@ -17,12 +17,13 @@ void Parameters::readOptions(int argc, char **argv){
     endPackageSize = 1000;
     packageSizeFactor = 2.0;
     
+    buffersize=50000000000;//50GB
     sendmode = 1;
     statisticaliterations=10;
     
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hm:a:i:e:o:f:")) != -1)
+    while ((opt = getopt (argc, argv, "hm:a:i:e:o:f:b:")) != -1)
         switch (opt)
     {
         case 'h':
@@ -32,6 +33,8 @@ void Parameters::readOptions(int argc, char **argv){
             std::cout<<" -e      endPackageSize, i.e. the maximum package sized that is being analyzed\n";
             std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";
             std::cout<<" -o      statisticaliterations\n";
+            std::cout<<" -f      factor to determine number of inner runtime iterations\n";
+            std::cout<<" -b      size of allocated buffer\n";
             exit(1);
         case 'm':
             sendmode = atoi(optarg);
@@ -48,7 +51,8 @@ void Parameters::readOptions(int argc, char **argv){
             if (factor >= 1) {
             }
             else {
-                printf("#INFO -i: you can only fix iteration to 1 (-i 1) for debugging. Default value is used: 128*20mio \n");
+                printf("ERROR -i: please enter vaild iteration factor\n");
+                exit(1);
             }
             break;
         case 'a':
@@ -66,7 +70,7 @@ void Parameters::readOptions(int argc, char **argv){
             if (endPackageSize >= 1 && endPackageSize <= 50000000000) {
             }
             else {
-                endPackageSize = startiteration;
+                endPackageSize = factor;
                 printf("#INFO -e: max package size was set to 50GB \n");
             }
             break;
@@ -87,6 +91,15 @@ void Parameters::readOptions(int argc, char **argv){
                 printf("#INFO -o: statistical iterations were limited to 1000 \n");
             }
             break;
+        case 'b':
+            buffersize = atoi(optarg);
+            if (buffersize > 0 && buffersize <= 50000000000) {
+            }
+            else {
+                printf("ERROR -b: please enter vaild buffersize\n");
+                exit(1);
+            }
+            break;
         case '?':
             fprintf (stderr,
                      "ERROR: Unknown option character `\\x%x'.\n",
@@ -94,8 +107,7 @@ void Parameters::readOptions(int argc, char **argv){
         default:
             abort ();
     }
-    printf ("#sendmode = %d, startPackageSize = %ld, start iterations = %ld endPackageSize = %ld, statistical iterations = %d \n",
-            sendmode, startPackageSize, startiteration, endPackageSize, statisticaliterations);
+    std::cout<<"# sendmode"<<sendmode<<", start packagesize "<<startPackageSize<<", factor "<<factor<<", end packagesize "<<endPackageSize<<", statistical iterations "<<statisticaliterations<<", buffersize "<< buffersize <<std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)

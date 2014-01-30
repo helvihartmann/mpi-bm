@@ -13,10 +13,12 @@ class Parameters{
 private:
     int sendmode; //"MPI_Send" by default
     size_t factor;
+    size_t buffersize;
+    
     size_t startPackageSize;
     size_t endPackageSize;
     double packageSizeFactor;
-    size_t startiteration;
+
     int statisticaliterations;
     std::vector<size_t> packageSizes;
 
@@ -26,14 +28,11 @@ public:
     
     void readOptions(int, char**);
     
-    size_t getStartPackageSize()
-    { return startPackageSize; }
+    size_t getStartPackageSize() { return startPackageSize; }
     
-    size_t getEndPackageSize()
-    { return endPackageSize; }
+    size_t getEndPackageSize() { return endPackageSize; }
     
-    double getPackageSizeFactor()
-    { return packageSizeFactor; }
+    double getPackageSizeFactor() { return packageSizeFactor; }
     
     const std::vector<size_t>& getPackageSizes() { return packageSizes; }
     
@@ -42,6 +41,8 @@ public:
     int getStatisticalIterations() { return statisticaliterations; }
     
     int getsendmode() { return sendmode; }
+    
+    size_t getBuffersize() { return buffersize; }
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/

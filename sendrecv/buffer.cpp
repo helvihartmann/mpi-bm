@@ -3,9 +3,9 @@
 /*  */
 
     
-Buffer::Buffer(int sendmode_, Mpi &mpi_, int rank) :
-    sendmode(sendmode_),
-    mpi(mpi_)
+Buffer::Buffer(int sendmode_, int rank, size_t buffersize_) :
+    buffersize(buffersize_),
+    sendmode(sendmode_)
 {
     std::cout << "# allocating buffer..." << std::endl;
 
@@ -31,15 +31,37 @@ void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remo
 }
 
 void Buffer::sendBuffer(){
-    for(size_t j=0; j<innerRuntimeIterations; j++){
-        mpi.performsend((buffer + (packageCount*j)), packageCount, MPI_INT,remoteRank, j, MPI_COMM_WORLD, sendmode);
+    
+    switch (sendmode) {
+        case 1:
+            for(size_t j=0; j<innerRuntimeIterations; j++){
+                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            }
+            break;
+                case 2:
+            for(size_t j=0; j<innerRuntimeIterations; j++){
+                MPI_Ssend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            }
+            break;
+        case 3:
+            for(size_t j=0; j<innerRuntimeIterations; j++){
+                MPI_Bsend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            }
+
+            break;
+            
+        default:
+            for(size_t j=0; j<innerRuntimeIterations; j++){
+                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            }
+            break;
     }
+
 }
 
 void Buffer::recvBuffer(){
     for(size_t j=0; j<innerRuntimeIterations; j++){
-        mpi.performrecv((buffer + (packageCount*j)), packageCount,MPI_INT,remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
+        MPI_Recv((buffer + (packageCount*j)), packageCount,MPI_INT,remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
 }
 

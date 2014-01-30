@@ -1,1 +1,1 @@
-mpic++       CMakeFiles/pingpong.dir/pingpong.cpp.o CMakeFiles/pingpong.dir/buffer.cpp.o CMakeFiles/pingpong.dir/classmpi3.cpp.o CMakeFiles/pingpong.dir/print.cpp.o CMakeFiles/pingpong.dir/parameters.cpp.o CMakeFiles/pingpong.dir/results.cpp.o  -o pingpong -rdynamic 
+mpic++       CMakeFiles/pingpong.dir/pingpong.cpp.o CMakeFiles/pingpong.dir/buffer.cpp.o CMakeFiles/pingpong.dir/print.cpp.o CMakeFiles/pingpong.dir/parameters.cpp.o CMakeFiles/pingpong.dir/results.cpp.o  -o pingpong -rdynamic 

@@ -135,30 +135,6 @@ buffer.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/buffer.cpp.s
 .PHONY : buffer.cpp.s
 
-classmpi3.o: classmpi3.cpp.o
-.PHONY : classmpi3.o
-
-# target to build an object file
-classmpi3.cpp.o:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.o
-.PHONY : classmpi3.cpp.o
-
-classmpi3.i: classmpi3.cpp.i
-.PHONY : classmpi3.i
-
-# target to preprocess a source file
-classmpi3.cpp.i:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.i
-.PHONY : classmpi3.cpp.i
-
-classmpi3.s: classmpi3.cpp.s
-.PHONY : classmpi3.s
-
-# target to generate assembly for a file
-classmpi3.cpp.s:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/classmpi3.cpp.s
-.PHONY : classmpi3.cpp.s
-
 parameters.o: parameters.cpp.o
 .PHONY : parameters.o
 
@@ -267,9 +243,6 @@ help:
 	@echo "... buffer.o"
 	@echo "... buffer.i"
 	@echo "... buffer.s"
-	@echo "... classmpi3.o"
-	@echo "... classmpi3.i"
-	@echo "... classmpi3.s"
 	@echo "... parameters.o"
 	@echo "... parameters.i"
 	@echo "... parameters.s"

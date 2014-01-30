@@ -1,7 +1,7 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
-#include "classmpi3.h"
+#include <mpi.h>
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
  14.11.2013
 class Mpi contains all MPi related functions
@@ -11,10 +11,9 @@ designed to send a lot of data between processes even more than 1GB
 
 class Buffer{
 private:
-    const size_t buffersize = 50000000000;
+    size_t buffersize;
 
     const int sendmode;
-    Mpi &mpi;
     int *buffer;
     
     size_t packageCount;
@@ -22,7 +21,7 @@ private:
     int remoteRank;
 public:
     
-    Buffer(int, Mpi&, int);
+    Buffer(int, int, size_t);
     ~Buffer();
 
     void setloopvariables(size_t, size_t,int);

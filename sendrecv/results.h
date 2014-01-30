@@ -1,10 +1,10 @@
 #ifndef RESULTS_H
 #define RESULTS_H
 
-#include "classmpi3.h"
 #include <vector>
 #include <array>
 #include <cmath>
+#include <iostream>
 /* ~/benchmark/sendrecv/calculatebandwidth.cpp
  23.01.14*/
 
