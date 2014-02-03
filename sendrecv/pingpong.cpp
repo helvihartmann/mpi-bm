@@ -41,11 +41,13 @@ int main(int argc,char *argv[]){
     
     //----------------------------- MEASUREMENT --------------------------------------
     //----------------------------- outer statistical iteration loop-------------------
+    
+    Buffer buffer(sendmode, rank,params.getBuffersize());
     for(int m = 0; m < params.getStatisticalIterations(); m++){
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
-        Buffer buffer(sendmode, rank,params.getBuffersize());
+        
         TimeStampCounter timeStampCounter;
         unsigned long long cycle;
         
@@ -60,20 +62,31 @@ int main(int argc,char *argv[]){
                     results.setvectors(p, innerRuntimeIterations, z);
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 1);
+                    
                     starttime =MPI_Wtime();
+                    
+                    //double starttime_inner, endtime_inner;
                     timeStampCounter.start();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
-                        
+                        ///starttime_inner =MPI_Wtime();
+                        //timeStampCounter.start();
                         buffer.sendBuffer(j);
                         buffer.recvBuffer(j);
+                        //endtime_inner = MPI_Wtime();
+                        //timeStampCounter.stop();
+                        //cycle = timeStampCounter.cycles();
+                        //cout << "# j: "<< j << " timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << 0.5*cycle/3600 << " us" << endl;
+                        //cout << j << " p: "<< p <<" mpi_wtime: "<< (endtime_inner-starttime_inner)/2 << " - datarate: " << p/((endtime_inner-starttime_inner)/2) << endl;
                     }
                     endtime = MPI_Wtime();
                     timeStampCounter.stop();
-                    cout << " timestampcounter: " << timeStampCounter.cycles() << endl;
                     cycle = timeStampCounter.cycles();
-                    cout << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
-
-                    results.settime(m,z,((endtime-starttime)/2));
+                    cout <<" timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
+                    
+                    if(m==0){
+                        results.settime(m,z,((endtime-starttime)/2));
+                    }
+                    
 
                  }
                 
