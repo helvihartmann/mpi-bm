@@ -30,7 +30,7 @@ void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remo
     remoteRank = remoteRank_;
 }
 
-void Buffer::sendBuffer(){
+/*void Buffer::sendBuffer(){
     
     switch (sendmode) {
         case 1:
@@ -38,7 +38,7 @@ void Buffer::sendBuffer(){
                 MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             }
             break;
-                case 2:
+        case 2:
             for(size_t j=0; j<innerRuntimeIterations; j++){
                 MPI_Ssend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             }
@@ -57,12 +57,30 @@ void Buffer::sendBuffer(){
             break;
     }
 
+}*/
+
+void Buffer::sendBuffer(size_t j){
+    
+    switch (sendmode) {
+        case 1:
+            MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            break;
+        case 2:
+            MPI_Ssend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            break;
+        case 3:
+            MPI_Bsend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            break;
+            
+        default:
+                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            break;
+    }
+    
 }
 
-void Buffer::recvBuffer(){
-    for(size_t j=0; j<innerRuntimeIterations; j++){
-        MPI_Recv((buffer + (packageCount*j)), packageCount,MPI_INT,remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-    }
+void Buffer::recvBuffer(size_t j){
+    MPI_Recv((buffer + (packageCount*j)), packageCount,MPI_INT,remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 }
 
 void Buffer::checkBuffer(size_t *everythingcorrect_check){

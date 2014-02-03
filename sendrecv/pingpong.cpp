@@ -8,6 +8,7 @@
 #include "parameters.h"
 #include "buffer.h"
 #include "results.h"
+#include "tsc.h"
 #include <vector>
 using namespace std;
 
@@ -45,6 +46,8 @@ int main(int argc,char *argv[]){
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
         Buffer buffer(sendmode, rank,params.getBuffersize());
+        TimeStampCounter timeStampCounter;
+        unsigned long long cycle;
         
         //-------------------------iterate over package size-------------------
         for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
@@ -58,21 +61,33 @@ int main(int argc,char *argv[]){
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 1);
                     starttime =MPI_Wtime();
-                    buffer.sendBuffer();
-                    buffer.recvBuffer();
+                    timeStampCounter.start();
+                    for(size_t j=0; j<innerRuntimeIterations; j++){
+                        
+                        buffer.sendBuffer(j);
+                        buffer.recvBuffer(j);
+                    }
                     endtime = MPI_Wtime();
-                    
+                    timeStampCounter.stop();
+                    cout << " timestampcounter: " << timeStampCounter.cycles() << endl;
+                    cycle = timeStampCounter.cycles();
+                    cout << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
+
                     results.settime(m,z,((endtime-starttime)/2));
+
                  }
                 
                 //Process 1 receives the data and sends it back
                 else if (rank == 1) {
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 0);
-                    starttime = MPI_Wtime();
-                    buffer.recvBuffer();
-                    buffer.sendBuffer();
+                    starttime =MPI_Wtime();
+                    for(size_t j=0; j<innerRuntimeIterations; j++){
+                        buffer.recvBuffer(j);
+                        buffer.sendBuffer(j);
+                    }
                     endtime = MPI_Wtime();
+                    
                     buffer.checkBuffer(&everythingcorrect_check);
                     
                     results.settime(m,z,((endtime-starttime)/2));
@@ -87,7 +102,7 @@ int main(int argc,char *argv[]){
     
     // maybe input for rank =1 to send everything to process 0 to compare results...
 
-    else if (rank == 0) {
+    if (rank == 0) {
 
         if(everythingcorrect_check==0){
             

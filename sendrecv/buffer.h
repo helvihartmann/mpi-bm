@@ -2,6 +2,7 @@
 #define BUFFER_H
 
 #include <mpi.h>
+#include <iostream>
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
  14.11.2013
 class Mpi contains all MPi related functions
@@ -26,9 +27,9 @@ public:
 
     void setloopvariables(size_t, size_t,int);
     
-    void sendBuffer();
+    void sendBuffer(size_t);
     
-    void recvBuffer();
+    void recvBuffer(size_t);
     
     void checkBuffer(size_t *);
 };
