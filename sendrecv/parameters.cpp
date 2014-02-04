@@ -125,8 +125,8 @@ size_t Parameters::getinnerRuntimeIterations(size_t packageSize) {
     }
     else {
         iterations = factor/ packageSize;
-            if (iterations<=10) {
-            iterations=10;
+            if (iterations<=200) {
+            iterations=200;
         }
     }
     

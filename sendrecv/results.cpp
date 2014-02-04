@@ -37,16 +37,16 @@ void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ )
 
 void Results::calculate(){
     for(int z=0;z<numberofpackages;z++){
-        double send_mean=summe.at(z)/outerStatisticalIterations;
+        double send_mean=summe.at(z)/(outerStatisticalIterations-1);//!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //std::cout <<"summe " <<summe.at(z)<<" send_mean "<<send_mean<<" outeriterations "<<outerStatisticalIterations<<std::endl;
         double diff = 0;
-        for (int m=0;m<outerStatisticalIterations;m++){
+        for (int m=1;m<outerStatisticalIterations;m++){//!!!!!!!!!!!!!!!!!!!!!!!!!!!
             int index = m*numberofpackages+z;
             diff+= (send_mean - time.at(index))*(send_mean - time.at(index));
         }
         double rate =(totaldatasent_vector.at(z)/send_mean)/1000000;
         //std::cout <<"totaldatasent " <<totaldatasent_vector.at(z)<<" send_mean "<<send_mean<<std::endl;
-        double send_vartime = diff/outerStatisticalIterations;
+        double send_vartime = diff/(outerStatisticalIterations-1);//!!!!!!!!!!!!!!!!!!!!!!!!!!!
         double send_stdtime = sqrt(send_vartime);
         double send_std=(send_stdtime/send_mean)*rate;
         

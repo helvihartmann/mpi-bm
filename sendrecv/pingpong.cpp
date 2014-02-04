@@ -83,7 +83,7 @@ int main(int argc,char *argv[]){
                     cycle = timeStampCounter.cycles();
                     cout <<" timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
                     
-                    if(m==0){
+                    if(m==1){
                         results.settime(m,z,((endtime-starttime)/2));
                     }
                     
