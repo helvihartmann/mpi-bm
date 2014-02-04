@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdint>
 #include <cmath>
+#include <stdio.h>
 #include "print.h"
 #include "parameters.h"
 #include "buffer.h"
@@ -63,7 +64,7 @@ int main(int argc,char *argv[]){
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 1);
                     
-                    starttime =MPI_Wtime();
+                    starttime = MPI_Wtime();
                     
                     //double starttime_inner, endtime_inner;
                     timeStampCounter.start();
@@ -74,10 +75,13 @@ int main(int argc,char *argv[]){
                     endtime = MPI_Wtime();
                     timeStampCounter.stop();
                     cycle = timeStampCounter.cycles();
-                    cout <<" timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
                     
                     if(m!=0){
+                        cout <<"# timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
                         results.settime((m-1), z, ((endtime-starttime)/2));
+                    }
+                    else {
+                        cout << z << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime)/2)*1000000) << endl;
                     }
                    
                     buffer.checkBuffer(&everythingcorrect_check);
@@ -118,6 +122,7 @@ int main(int argc,char *argv[]){
             out.printheader();
             
             results.calculate();
+            
         }//if everything correct
         
         else{

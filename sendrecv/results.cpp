@@ -14,7 +14,7 @@ Results::Results(int outerStatisticalIterations_, int numberofpackages_) :
 {
 //    std::vector<double> summe(numberofpackages);
     
-    std::cout << "m " << outerStatisticalIterations << " time.size " << time.size() << std::endl;
+    //std::cout << "m " << outerStatisticalIterations << " time.size " << time.size() << std::endl;
     //std::cout << "Sum size" << summe.size() << std::endl;
 }
 
@@ -26,11 +26,11 @@ void Results::setvectors(size_t packagesize_tmp, size_t innerRuntimeIterations,
 }
 
 void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ ){
-    std::cout<< "m: "<<idx_outeriter<<" z: "<<idx_numberofpackages<<" time "<<time_<<std::endl;
+    //std::cout<< "m: "<<idx_outeriter<<" z: "<<idx_numberofpackages<<" time "<<time_<<std::endl;
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
     
-    std::cout << " " << time.at(index) <<" " << std::endl;
+    std::cout << "# " << time.at(index) <<" " << std::endl;
     
     summe.at(idx_numberofpackages) += time_;
 }
