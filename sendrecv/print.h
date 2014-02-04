@@ -16,7 +16,7 @@ public:
     
     void printheader();
     
-    void printerrormessage(size_t*,size_t);
+    void printerrormessage(size_t*);
 
 };
 #endif

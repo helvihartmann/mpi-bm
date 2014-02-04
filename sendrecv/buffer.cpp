@@ -3,9 +3,10 @@
 /*  */
 
     
-Buffer::Buffer(int sendmode_, int rank, size_t buffersize_) :
+Buffer::Buffer(int sendmode_, int rank_, size_t buffersize_) :
     buffersize(buffersize_),
-    sendmode(sendmode_)
+    sendmode(sendmode_),
+    rank(rank_)
 {
     std::cout << "# allocating buffer..." << std::endl;
 
@@ -30,34 +31,6 @@ void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remo
     remoteRank = remoteRank_;
 }
 
-/*void Buffer::sendBuffer(){
-    
-    switch (sendmode) {
-        case 1:
-            for(size_t j=0; j<innerRuntimeIterations; j++){
-                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            }
-            break;
-        case 2:
-            for(size_t j=0; j<innerRuntimeIterations; j++){
-                MPI_Ssend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            }
-            break;
-        case 3:
-            for(size_t j=0; j<innerRuntimeIterations; j++){
-                MPI_Bsend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            }
-
-            break;
-            
-        default:
-            for(size_t j=0; j<innerRuntimeIterations; j++){
-                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            }
-            break;
-    }
-
-}*/
 
 void Buffer::sendBuffer(size_t j){
     
@@ -85,8 +58,8 @@ void Buffer::recvBuffer(size_t j){
 
 void Buffer::checkBuffer(size_t *everythingcorrect_check){
     for (size_t i=0; i<packageCount; i++){
-        if (buffer[i]!=1){
-            everythingcorrect_check++;
+        if (buffer[i]!=rank){
+            *everythingcorrect_check++;
         }
     }
 }

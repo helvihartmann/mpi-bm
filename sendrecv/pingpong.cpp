@@ -43,7 +43,7 @@ int main(int argc,char *argv[]){
     //----------------------------- outer statistical iteration loop-------------------
     
     Buffer buffer(sendmode, rank,params.getBuffersize());
-    for(int m = 0; m < params.getStatisticalIterations(); m++){
+    for(int m = 0; m <= params.getStatisticalIterations(); m++){//minimum two iterations m=0 warm up and m=1 first measurement
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
@@ -68,26 +68,19 @@ int main(int argc,char *argv[]){
                     //double starttime_inner, endtime_inner;
                     timeStampCounter.start();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
-                        ///starttime_inner =MPI_Wtime();
-                        //timeStampCounter.start();
                         buffer.sendBuffer(j);
                         buffer.recvBuffer(j);
-                        //endtime_inner = MPI_Wtime();
-                        //timeStampCounter.stop();
-                        //cycle = timeStampCounter.cycles();
-                        //cout << "# j: "<< j << " timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << 0.5*cycle/3600 << " us" << endl;
-                        //cout << j << " p: "<< p <<" mpi_wtime: "<< (endtime_inner-starttime_inner)/2 << " - datarate: " << p/((endtime_inner-starttime_inner)/2) << endl;
                     }
                     endtime = MPI_Wtime();
                     timeStampCounter.stop();
                     cycle = timeStampCounter.cycles();
                     cout <<" timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
                     
-                    if(m==1){
-                        results.settime(m,z,((endtime-starttime)/2));
+                    if(m!=0){
+                        results.settime((m-1), z, ((endtime-starttime)/2));
                     }
-                    
-
+                   
+                    buffer.checkBuffer(&everythingcorrect_check);
                  }
                 
                 //Process 1 receives the data and sends it back
@@ -100,10 +93,11 @@ int main(int argc,char *argv[]){
                         buffer.sendBuffer(j);
                     }
                     endtime = MPI_Wtime();
-                    
-                    buffer.checkBuffer(&everythingcorrect_check);
-                    
-                    results.settime(m,z,((endtime-starttime)/2));
+                     
+                     if(m!=0){
+                     results.settime((m-1), z, ((endtime-starttime)/2));
+                     }
+
                 }//else if
         }
         cout<<"\n";
@@ -117,7 +111,7 @@ int main(int argc,char *argv[]){
 
     if (rank == 0) {
 
-        if(everythingcorrect_check==0){
+        if(everythingcorrect_check == 0){
             
             // Header
             out.printtimestemp();
@@ -126,9 +120,9 @@ int main(int argc,char *argv[]){
             results.calculate();
         }//if everything correct
         
-        /*else{
-            out.printerrormessage(everythingcorrect_check,p);
-        }*/
+        else{
+            cout<<everythingcorrect_check<<" errors were spotted\n"<<endl;
+        }
     }//if you are process 0
     MPI_Finalize();
 }

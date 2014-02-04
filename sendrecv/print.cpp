@@ -14,6 +14,6 @@ void Printoutput::printheader(){
         printf("# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n");
 }
     
-void Printoutput::printerrormessage(size_t *everythingcorrect_check,size_t packagesize_temp){
-        printf("%ld errors were spotted sending %ld Byte\n", *everythingcorrect_check,packagesize_temp);
+void Printoutput::printerrormessage(size_t *everythingcorrect_check){
+        printf("%ld errors were spotted\n", &everythingcorrect_check);
 }

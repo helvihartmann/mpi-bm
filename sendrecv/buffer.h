@@ -15,6 +15,7 @@ private:
     size_t buffersize;
 
     const int sendmode;
+    int rank;
     int *buffer;
     
     size_t packageCount;
