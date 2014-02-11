@@ -36,13 +36,13 @@ void Buffer::sendBuffer(size_t j){
     
     switch (sendmode) {
         case 1:
-            MPI_Send((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 2:
-            MPI_Ssend((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Ssend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 3:
-            MPI_Bsend((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Bsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 4:
             MPI_Request send_obj;
@@ -61,7 +61,7 @@ void Buffer::sendBuffer(size_t j){
             }
             break;
         default:
-                MPI_Send((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+                MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
     }
     
@@ -72,13 +72,13 @@ void Buffer::recvBuffer(size_t j){
         case 1:
         case 2:
         case 3:
-            MPI_Recv((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Recv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             break;
         case 4:
             MPI_Request recv_obj;
             MPI_Status status;
             int *buffer_recv;
-            buffer_recv = &buffer[packageCount*j];
+            buffer_recv = &buffer[(packageCount*j)%buffersize];
             if(j == 0){
                 MPI_Request recv_obj;
                 MPI_Recv_init (buffer_recv, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);

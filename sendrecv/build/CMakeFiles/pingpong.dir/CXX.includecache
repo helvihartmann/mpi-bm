@@ -16,27 +16,3 @@ mpi.h
 iostream
 -
 
-/home/hartmann/benchmark/sendrecv/parameters.cpp
-parameters.h
-/home/hartmann/benchmark/sendrecv/parameters.h
-ctype.h
--
-stdio.h
--
-stdlib.h
--
-unistd.h
--
-iostream
--
-cmath
--
-
-/home/hartmann/benchmark/sendrecv/parameters.h
-cstddef
--
-cstdlib
--
-vector
--
-

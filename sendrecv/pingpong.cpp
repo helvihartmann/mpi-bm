@@ -69,7 +69,7 @@ int main(int argc,char *argv[]){
                     
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.sendBuffer(j);
-                        //buffer.recvBuffer(j);
+                        buffer.recvBuffer(j);
                     }
                     endtime = MPI_Wtime();
                     
@@ -90,7 +90,7 @@ int main(int argc,char *argv[]){
                     starttime =MPI_Wtime();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.recvBuffer(j);
-                        //buffer.sendBuffer(j);
+                        buffer.sendBuffer(j);
                     }
                     endtime = MPI_Wtime();
                      
