@@ -55,6 +55,7 @@ int main(int argc,char *argv[]){
         //-------------------------iterate over package size-------------------
         for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
             size_t p = params.getPackageSizes().at(z);
+            size_t packageCount = p/sizeof(int);
             size_t innerRuntimeIterations = params.getinnerRuntimeIterations(p);
                 
                 //Process 0 sends the data and gets it back
@@ -66,18 +67,13 @@ int main(int argc,char *argv[]){
                     
                     starttime = MPI_Wtime();
                     
-                    //double starttime_inner, endtime_inner;
-                    timeStampCounter.start();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.sendBuffer(j);
-                        buffer.recvBuffer(j);
+                        //buffer.recvBuffer(j);
                     }
                     endtime = MPI_Wtime();
-                    timeStampCounter.stop();
-                    cycle = timeStampCounter.cycles();
                     
                     if(m!=0){
-                        cout <<"# timestampcounter: " << timeStampCounter.cycles() << " cycle/3.6GHz: " << cycle/3600 << " us" << endl;
                         results.settime((m-1), z, ((endtime-starttime)/2));
                     }
                     else {
@@ -94,7 +90,7 @@ int main(int argc,char *argv[]){
                     starttime =MPI_Wtime();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.recvBuffer(j);
-                        buffer.sendBuffer(j);
+                        //buffer.sendBuffer(j);
                     }
                     endtime = MPI_Wtime();
                      

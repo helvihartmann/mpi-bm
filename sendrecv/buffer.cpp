@@ -36,24 +36,61 @@ void Buffer::sendBuffer(size_t j){
     
     switch (sendmode) {
         case 1:
-            MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Send((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 2:
-            MPI_Ssend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Ssend((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 3:
-            MPI_Bsend((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Bsend((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
-            
+        case 4:
+            MPI_Request send_obj;
+            MPI_Status status;
+            int *buffer_send;
+            buffer_send = &buffer[(packageCount*j)%buffersize];
+            if(j==0){
+                MPI_Request send_obj;
+                MPI_Send_init (buffer_send, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+            }
+            MPI_Start (&send_obj);
+            MPI_Wait (&send_obj, &status);
+            if(j == (innerRuntimeIterations - 1)){
+                //buffer=&buffer[0];
+                MPI_Request_free (&send_obj);
+            }
+            break;
         default:
-                MPI_Send((buffer + (packageCount*j)), packageCount,MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+                MPI_Send((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
     }
     
 }
 
 void Buffer::recvBuffer(size_t j){
-    MPI_Recv((buffer + (packageCount*j)), packageCount,MPI_INT,remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    switch (sendmode) {
+        case 1:
+        case 2:
+        case 3:
+            MPI_Recv((buffer + (packageCount*j)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            break;
+        case 4:
+            MPI_Request recv_obj;
+            MPI_Status status;
+            int *buffer_recv;
+            buffer_recv = &buffer[packageCount*j];
+            if(j == 0){
+                MPI_Request recv_obj;
+                MPI_Recv_init (buffer_recv, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+            }
+            MPI_Start (&recv_obj);
+            MPI_Wait (&recv_obj, &status);
+            if(j == (innerRuntimeIterations - 1)){
+                MPI_Request_free (&recv_obj);
+                buffer=&buffer[0];
+            }
+            break;
+    }
 }
 
 void Buffer::checkBuffer(size_t *everythingcorrect_check){

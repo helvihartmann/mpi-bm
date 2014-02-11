@@ -30,7 +30,7 @@ void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ )
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
     
-    std::cout << "# " << time.at(index) <<" " << std::endl;
+    //std::cout << "# " << time.at(index) <<" " << std::endl;
     
     summe.at(idx_numberofpackages) += time_;
 }

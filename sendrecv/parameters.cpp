@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <iostream>
+#include <cmath>
 
 /* pfad
 27.11.2013
@@ -17,7 +18,7 @@ void Parameters::readOptions(int argc, char **argv){
     endPackageSize = 1000;
     packageSizeFactor = 2.0;
     
-    buffersize=50000000000;//50GB
+    buffersize=pow(2,35);//34GB
     sendmode = 1;
     statisticaliterations=10;
     
@@ -38,7 +39,7 @@ void Parameters::readOptions(int argc, char **argv){
             exit(1);
         case 'm':
             sendmode = atoi(optarg);
-            if (sendmode >= 1 && sendmode <= 3) {
+            if (sendmode >= 1 && sendmode <= 4) {
                 //zwischen 1 und 3
             }
             else {
