@@ -47,11 +47,7 @@ int main(int argc,char *argv[]){
     for(int m = 0; m <= params.getStatisticalIterations(); m++){//minimum two iterations m=0 warm up and m=1 first measurement
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
-        
-        
-        TimeStampCounter timeStampCounter;
-        unsigned long long cycle;
-        
+                
         //-------------------------iterate over package size-------------------
         for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
             size_t p = params.getPackageSizes().at(z);
@@ -69,15 +65,15 @@ int main(int argc,char *argv[]){
                     
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.sendBuffer(j);
-                        buffer.recvBuffer(j);
+                        //buffer.recvBuffer(j);
                     }
                     endtime = MPI_Wtime();
                     
                     if(m!=0){
-                        results.settime((m-1), z, ((endtime-starttime)/2));
+                        results.settime((m-1), z, ((endtime-starttime)));
                     }
                     else {
-                        cout << z << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime)/2)*1000000) << endl;
+                        cout << z << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime))*1000000) << endl;
                     }
                    
                     buffer.checkBuffer(&everythingcorrect_check);
@@ -90,7 +86,7 @@ int main(int argc,char *argv[]){
                     starttime =MPI_Wtime();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.recvBuffer(j);
-                        buffer.sendBuffer(j);
+                        //buffer.sendBuffer(j);
                     }
                     endtime = MPI_Wtime();
                      
