@@ -39,7 +39,7 @@ void Parameters::readOptions(int argc, char **argv){
             exit(1);
         case 'm':
             sendmode = atoi(optarg);
-            if (sendmode >= 1 && sendmode <= 4) {
+            if (sendmode >= 1 && sendmode <= 5) {
                 //zwischen 1 und 3
             }
             else {

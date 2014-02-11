@@ -4,8 +4,6 @@
 CMakeFiles/pingpong.dir/buffer.cpp.o: ../buffer.cpp
 CMakeFiles/pingpong.dir/buffer.cpp.o: ../buffer.h
 
-CMakeFiles/pingpong.dir/parameters.cpp.o: ../parameters.cpp
-CMakeFiles/pingpong.dir/parameters.cpp.o: ../parameters.h
 
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../buffer.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../parameters.h
