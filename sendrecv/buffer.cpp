@@ -10,7 +10,7 @@ Buffer::Buffer(int sendmode_, int rank_, size_t buffersize_) :
 {
     std::cout << "# allocating buffer..." << std::endl;
 
-    buffer = new int [buffersize / sizeof(int)];//von VoLi angewiesene Größe
+    buffer = new int [buffersize / sizeof(int)];
 
     std::cout << "# " << buffersize << " B allocated, initializing...\n" << std::endl;
 
@@ -50,7 +50,7 @@ void Buffer::sendBuffer(size_t j){
             int *buffer_send;
             buffer_send = &buffer[(packageCount*j)%buffersize];
             if(j==0){
-                MPI_Request send_obj;
+                //MPI_Request send_obj;
                 MPI_Send_init (buffer_send, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             }
             MPI_Start (&send_obj);
@@ -59,6 +59,10 @@ void Buffer::sendBuffer(size_t j){
                 //buffer=&buffer[0];
                 MPI_Request_free (&send_obj);
             }
+            break;
+        case 5:
+             MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+            MPI_Wait (&send_obj, &status);
             break;
         default:
                 MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
@@ -80,7 +84,7 @@ void Buffer::recvBuffer(size_t j){
             int *buffer_recv;
             buffer_recv = &buffer[(packageCount*j)%buffersize];
             if(j == 0){
-                MPI_Request recv_obj;
+                //MPI_Request recv_obj;
                 MPI_Recv_init (buffer_recv, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
             }
             MPI_Start (&recv_obj);
@@ -89,6 +93,10 @@ void Buffer::recvBuffer(size_t j){
                 MPI_Request_free (&recv_obj);
                 buffer=&buffer[0];
             }
+            break;
+        case 5:
+            MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+            MPI_Wait (&recv_obj, &status);
             break;
     }
 }
