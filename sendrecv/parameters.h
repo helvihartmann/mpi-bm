@@ -21,6 +21,8 @@ private:
 
     int statisticaliterations;
     std::vector<size_t> packageSizes;
+    
+    size_t numberofcalls;
 
 public:
     
@@ -42,8 +44,11 @@ public:
     
     int getsendmode() { return sendmode; }
     
-    int getrecvmode() { return recvmode; }    
+    int getrecvmode() { return recvmode; }
+    
     size_t getBuffersize() { return buffersize; }
+    
+    size_t getnumberofcalls() { return numberofcalls; }
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/

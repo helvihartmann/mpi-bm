@@ -5,7 +5,7 @@ echo " <    >"
 echo "  _'""'__"
 echo " "
 rm *.out
-sbatch send.in
+sbatch persistent.in
 #echo sbatch pingpong.in
 sleep 2
 echo starting script

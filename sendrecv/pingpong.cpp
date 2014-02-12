@@ -34,6 +34,7 @@ int main(int argc,char *argv[]){
     params.readOptions(argc,argv);
     int sendmode = params.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     int recvmode = params.getrecvmode();
+    size_t numberofcalls = params.getnumberofcalls();
     
     //------- initaliz stuff for later -------------------
     Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
@@ -44,7 +45,7 @@ int main(int argc,char *argv[]){
     //----------------------------- MEASUREMENT --------------------------------------
     //----------------------------- outer statistical iteration loop-------------------
     
-    Buffer buffer(sendmode, recvmode, rank, params.getBuffersize());
+    Buffer buffer(sendmode, recvmode, numberofcalls, rank, params.getBuffersize());
     for(int m = 0; m <= params.getStatisticalIterations(); m++){//minimum two iterations m=0 warm up and m=1 first measurement
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";

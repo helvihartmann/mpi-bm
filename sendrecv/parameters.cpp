@@ -23,9 +23,11 @@ void Parameters::readOptions(int argc, char **argv){
     recvmode = 1;
     statisticaliterations=10;
     
+    numberofcalls = 1;
+    
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:")) != -1)
+    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:n:")) != -1)
         switch (opt)
     {
         case 'h':
@@ -38,6 +40,7 @@ void Parameters::readOptions(int argc, char **argv){
             std::cout<<" -o      statisticaliterations\n";
             std::cout<<" -f      factor to determine number of inner runtime iterations\n";
             std::cout<<" -b      size of allocated buffer\n";
+            std::cout<<" -n      number for number of calls (i.e. how many times a package is sent/received without waiting)\n";
             exit(1);
         case 's':
             sendmode = atoi(optarg);
@@ -113,6 +116,15 @@ void Parameters::readOptions(int argc, char **argv){
                 exit(1);
             }
             break;
+        case 'n':
+            numberofcalls = atof(optarg);
+            
+            if (!(numberofcalls > 0)) {
+                printf("ERROR -n: please enter vaild number for number of calls (i.e. how many times a package is sent/received without waiting) \n");
+                exit(1);
+            }
+            break;
+
         case '?':
             fprintf (stderr,
                      "ERROR: Unknown option character `\\x%x'.\n",
@@ -120,7 +132,7 @@ void Parameters::readOptions(int argc, char **argv){
         default:
             abort ();
     }
-    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", factor " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize <<std::endl;
+    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)

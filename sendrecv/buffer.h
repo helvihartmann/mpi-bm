@@ -16,6 +16,7 @@ private:
 
     const int sendmode;
     const int recvmode;
+    size_t numberofcalls;
     int rank;
     int *buffer;
     
@@ -24,7 +25,7 @@ private:
     int remoteRank;
 public:
     
-    Buffer(int, int, int, size_t);
+    Buffer(int, int, size_t, int, size_t);
     ~Buffer();
 
     void setloopvariables(size_t, size_t,int);

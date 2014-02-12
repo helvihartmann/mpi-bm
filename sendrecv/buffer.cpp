@@ -3,10 +3,11 @@
 /*  */
 
     
-Buffer::Buffer(int sendmode_, int recvmode_, int rank_, size_t buffersize_) :
+Buffer::Buffer(int sendmode_, int recvmode_, size_t numberofcalls_, int rank_, size_t buffersize_) :
     buffersize(buffersize_),
     sendmode(sendmode_),
-recvmode(recvmode_),
+    recvmode(recvmode_),
+    numberofcalls(numberofcalls_),
     rank(rank_)
 {
     std::cout << "# allocating buffer..." << std::endl;
@@ -55,8 +56,12 @@ void Buffer::sendBuffer(size_t j){
                 MPI_Send_init (buffer_send, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             }
             MPI_Start (&send_obj);
-            MPI_Wait (&send_obj, &status);
-            if(j == (innerRuntimeIterations - 1)){
+            if (j%numberofcalls == 0 && j != (innerRuntimeIterations - 1)){
+                std::cout << "# Waiting...." << j << " " << packageCount << std::endl;
+                MPI_Wait (&send_obj, &status);
+            }
+            else if(j == (innerRuntimeIterations - 1)){
+
                 //buffer=&buffer[0];
                 MPI_Request_free (&send_obj);
             }
@@ -81,13 +86,15 @@ void Buffer::recvBuffer(size_t j){
             MPI_Status status;
             int *buffer_recv;
             buffer_recv = &buffer[(packageCount*j)%buffersize];
-            if(j == 0){
+            if (j == 0){
                 //MPI_Request recv_obj;
                 MPI_Recv_init (buffer_recv, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
             }
             MPI_Start (&recv_obj);
-            MPI_Wait (&recv_obj, &status);
-            if(j == (innerRuntimeIterations - 1)){
+            if (j%numberofcalls == 0 && j != (innerRuntimeIterations - 1)){
+                MPI_Wait (&recv_obj, &status);
+            }
+            else if(j == (innerRuntimeIterations - 1)){
                 MPI_Request_free (&recv_obj);
                 buffer=&buffer[0];
             }
