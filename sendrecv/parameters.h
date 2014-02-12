@@ -11,7 +11,7 @@
     //get starting packege size; read in data to send from console (default =128B)
 class Parameters{
 private:
-    int sendmode; //"MPI_Send" by default
+    int sendmode, recvmode; //"MPI_Send" by default
     size_t factor;
     size_t buffersize;
     
@@ -42,6 +42,7 @@ public:
     
     int getsendmode() { return sendmode; }
     
+    int getrecvmode() { return recvmode; }    
     size_t getBuffersize() { return buffersize; }
 
 /* calculate the number of sending the package to have process occur in seconds regime

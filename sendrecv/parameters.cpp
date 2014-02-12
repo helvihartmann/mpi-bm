@@ -20,16 +20,18 @@ void Parameters::readOptions(int argc, char **argv){
     
     buffersize=pow(2,35);//34GB
     sendmode = 1;
+    recvmode = 1;
     statisticaliterations=10;
     
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hm:a:i:e:o:f:b:")) != -1)
+    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:")) != -1)
         switch (opt)
     {
         case 'h':
             std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
-            std::cout<<" -m      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend\n \t(DEFAULT = 1)\n";
+            std::cout<<" -s      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend, 4 = MPI_Send_Init, 5 = MPI_Isend \n \t(DEFAULT = 1)\n";
+            std::cout<<" -r      sendmode: 1 = 2 = 3 = MPI_Recv, 4 = MPI_Recv_Init, 5 = MPI_Irecv \n \t(DEFAULT = 1)\n";
             std::cout<<" -a      start package size of data that is send between two processes and which will be doubled until endPackageSize\n\t(DEFAULT = 2B)\n";
             std::cout<<" -e      endPackageSize, i.e. the maximum package sized that is being analyzed\n";
             std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";
@@ -37,13 +39,23 @@ void Parameters::readOptions(int argc, char **argv){
             std::cout<<" -f      factor to determine number of inner runtime iterations\n";
             std::cout<<" -b      size of allocated buffer\n";
             exit(1);
-        case 'm':
+        case 's':
             sendmode = atoi(optarg);
             if (sendmode >= 1 && sendmode <= 5) {
                 //zwischen 1 und 3
             }
             else {
-                printf("ERROR -m: your options are 1 send; 2 Ssend, 3 Bsend\n");
+                printf("ERROR -s: your options are 1 send; 2 Ssend, 3 Bsend, 4 send_init and 5 Isend \n");
+                exit(1);
+            }
+            break;
+        case 'r':
+            recvmode = atoi(optarg);
+            if (recvmode >= 1 && recvmode <= 5) {
+                //zwischen 1 und 3
+            }
+            else {
+                printf("ERROR -r: your options are 1,2,3 recv, 4 recv_init and 5 Irecv\n");
                 exit(1);
             }
             break;
@@ -108,7 +120,7 @@ void Parameters::readOptions(int argc, char **argv){
         default:
             abort ();
     }
-    std::cout<<"# sendmode"<<sendmode<<", start packagesize "<<startPackageSize<<", factor "<<factor<<", end packagesize "<<endPackageSize<<", statistical iterations "<<statisticaliterations<<", buffersize "<< buffersize <<std::endl;
+    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", factor " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize <<std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)

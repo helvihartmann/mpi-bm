@@ -15,6 +15,7 @@ private:
     size_t buffersize;
 
     const int sendmode;
+    const int recvmode;
     int rank;
     int *buffer;
     
@@ -23,7 +24,7 @@ private:
     int remoteRank;
 public:
     
-    Buffer(int, int, size_t);
+    Buffer(int, int, int, size_t);
     ~Buffer();
 
     void setloopvariables(size_t, size_t,int);

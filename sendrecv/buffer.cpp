@@ -3,9 +3,10 @@
 /*  */
 
     
-Buffer::Buffer(int sendmode_, int rank_, size_t buffersize_) :
+Buffer::Buffer(int sendmode_, int recvmode_, int rank_, size_t buffersize_) :
     buffersize(buffersize_),
     sendmode(sendmode_),
+recvmode(recvmode_),
     rank(rank_)
 {
     std::cout << "# allocating buffer..." << std::endl;
@@ -64,15 +65,12 @@ void Buffer::sendBuffer(size_t j){
              MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             MPI_Wait (&send_obj, &status);
             break;
-        default:
-                MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            break;
     }
     
 }
 
 void Buffer::recvBuffer(size_t j){
-    switch (sendmode) {
+    switch (recvmode) {
         case 1:
         case 2:
         case 3:
