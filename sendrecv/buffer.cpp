@@ -67,8 +67,11 @@ void Buffer::sendBuffer(size_t j){
             }
             break;
         case 5:
-             MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
-            MPI_Wait (&send_obj, &status);
+            MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+            if (j%numberofcalls == 0){
+                 MPI_Wait (&send_obj, &status);
+            }
+            
             break;
     }
     
@@ -101,7 +104,9 @@ void Buffer::recvBuffer(size_t j){
             break;
         case 5:
             MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
-            MPI_Wait (&recv_obj, &status);
+            if (j%numberofcalls == 0){
+                MPI_Wait (&recv_obj, &status);
+            }
             break;
     }
 }

@@ -2,7 +2,7 @@
 echo
 
 p=1
-for i in {1..30}
+for i in {1..20}
     do
     echo $p
     p=$((p * 2 ))
@@ -16,7 +16,7 @@ for i in {1..30}
     echo "#SBATCH --ntasks-per-node=1" >> single.in
     echo "" >> single.in
     echo "" >> single.in
-    echo "mpirun --mca orte_base_help_aggregate 0 --mca btl_openib_if_include mlx4_0 build/pingpong -m 2 -o 10 -a "$p" -e "$((p+1)) >> single.in
+    echo "mpirun --mca btl_openib_if_include mlx4_0 build/pingpong -s 5 -r 1 -o 2 -e 10000000000 -n "$p >> single.in
     echo "" >> single.in
     echo "exit 0" >> single.in
     sbatch single.in
