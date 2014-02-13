@@ -57,7 +57,7 @@ void Buffer::sendBuffer(size_t j){
             }
             MPI_Start (&send_obj);
             if (j%numberofcalls == 0 && j != (innerRuntimeIterations - 1)){
-                std::cout << "# Waiting...." << j << " " << packageCount << std::endl;
+                //std::cout << "# Waiting...." << j << " " << packageCount << std::endl;
                 MPI_Wait (&send_obj, &status);
             }
             else if(j == (innerRuntimeIterations - 1)){
