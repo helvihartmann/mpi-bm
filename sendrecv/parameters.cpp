@@ -24,7 +24,7 @@ void Parameters::readOptions(int argc, char **argv){
     statisticaliterations=10;
     
     numberofcalls = 1;
-    numberofwarmups = 1;
+    numberofwarmups = 10;
     
     //int opterr = 0;
 
