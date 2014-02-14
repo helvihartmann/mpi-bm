@@ -24,10 +24,11 @@ void Parameters::readOptions(int argc, char **argv){
     statisticaliterations=10;
     
     numberofcalls = 1;
+    numberofwarmups = 1;
     
     //int opterr = 0;
 
-    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:n:")) != -1)
+    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:n:w:")) != -1)
         switch (opt)
     {
         case 'h':
@@ -41,6 +42,8 @@ void Parameters::readOptions(int argc, char **argv){
             std::cout<<" -f      factor to determine number of inner runtime iterations\n";
             std::cout<<" -b      size of allocated buffer\n";
             std::cout<<" -n      number for number of calls (i.e. how many times a package is sent/received without waiting)\n";
+            std::cout<<" -w      number for number warm ups (i.e. how many times a package is sent/received in advance)\n       (DEFAULT=??)\n";
+
             exit(1);
         case 's':
             sendmode = atoi(optarg);
@@ -124,7 +127,13 @@ void Parameters::readOptions(int argc, char **argv){
                 exit(1);
             }
             break;
-
+        case 'w':
+            numberofwarmups = atof(optarg);
+            if (!(numberofwarmups > 0)) {
+                printf("ERROR -w: please enter vaild number for number of warmups (i.e. how many times a package is sent/received in advance) \n");
+                exit(1);
+            }
+            break;
         case '?':
             fprintf (stderr,
                      "ERROR: Unknown option character `\\x%x'.\n",

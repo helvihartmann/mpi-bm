@@ -35,6 +35,7 @@ int main(int argc,char *argv[]){
     int sendmode = params.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     int recvmode = params.getrecvmode();
     size_t numberofcalls = params.getnumberofcalls();
+    size_t numberofwarmups = params.getnumberofwarmups();
     
     //------- initaliz stuff for later -------------------
     Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
@@ -49,12 +50,19 @@ int main(int argc,char *argv[]){
     for(int m = 0; m <= params.getStatisticalIterations(); m++){//minimum two iterations m=0 warm up and m=1 first measurement
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
-                
+        
         //-------------------------iterate over package size-------------------
         for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
             size_t p = params.getPackageSizes().at(z);
             size_t packageCount = p/sizeof(int);
-            size_t innerRuntimeIterations = params.getinnerRuntimeIterations(p);
+            size_t innerRuntimeIterations;
+            if(m == 0){
+                innerRuntimeIterations = numberofwarmups;
+            }
+            else{
+                innerRuntimeIterations = params.getinnerRuntimeIterations(p);
+            }
+            
                 
                 //Process 0 sends the data and gets it back
                 if (rank == 0) {
