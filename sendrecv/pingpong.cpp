@@ -11,6 +11,7 @@
 #include "results.h"
 #include "tsc.h"
 #include <vector>
+#include <unistd.h>
 using namespace std;
 
 /* fles:~/benchmark/sendrecv 30.01.14
@@ -27,8 +28,6 @@ int main(int argc,char *argv[]){
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Get_processor_name(name, &length);
     
-    cout << "# Prozess " << rank << " von " <<size<<" on "<< name<<" \n";
-
     /*--------------------- read in parameters-----------------------------*/
     Parameters params;
     params.readOptions(argc,argv);
@@ -52,24 +51,27 @@ int main(int argc,char *argv[]){
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
         //-------------------------iterate over package size-------------------
-        for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
-            size_t p = params.getPackageSizes().at(z);
-            size_t packageCount = p/sizeof(int);
-            size_t innerRuntimeIterations;
-            if(m == 0){
-                innerRuntimeIterations = numberofwarmups;
-            }
-            else{
-                innerRuntimeIterations = params.getinnerRuntimeIterations(p);
-            }
+        for (int i = 0; i < (size-1); i++){
             
+            for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
+                size_t p = params.getPackageSizes().at(z);
+                size_t packageCount = p/sizeof(int);
+                size_t innerRuntimeIterations;
+                if(m == 0){
+                    innerRuntimeIterations = numberofwarmups;
+                }
+                else{
+                    innerRuntimeIterations = params.getinnerRuntimeIterations(p);
+                }
+            
+                results.setvectors(p, innerRuntimeIterations, z);
                 
                 //Process 0 sends the data and gets it back
                 if (rank == 0) {
                     
-                    results.setvectors(p, innerRuntimeIterations, z);
                     
-                    buffer.setloopvariables(p, innerRuntimeIterations, 1);
+                    
+                    buffer.setloopvariables(p, innerRuntimeIterations, (i+1));
                     
                     starttime = MPI_Wtime();
                     
@@ -83,14 +85,22 @@ int main(int argc,char *argv[]){
                         results.settime((m-1), z, ((endtime-starttime)));
                     }
                     else {
-                        cout << z << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime))*1000000) << endl;
+                        if(z == 0){
+                            cout << "# processes " << size << endl;
+                            cout << "# data sent to "  << i+1 << endl;
+                        }
+                        cout << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime))*1000000) << " " << rank << endl;
                     }
-                   
-                    buffer.checkBuffer(&everythingcorrect_check);
-                 }
+                    
+                    //buffer.checkBuffer(&everythingcorrect_check);
+                }
+                    
                 
                 //Process 1 receives the data and sends it back
-                else if (rank == 1) {
+                else if (rank == i+1) {
+                    
+                    //cout << "# Prozess " << rank << " von " <<size<<" on "<< name << " receiving data \n";
+                   
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 0);
                     starttime =MPI_Wtime();
@@ -101,35 +111,39 @@ int main(int argc,char *argv[]){
                     endtime = MPI_Wtime();
                      
                      if(m!=0){
-                     results.settime((m-1), z, ((endtime-starttime)/2));
+                     results.settime((m-1), z, ((endtime-starttime)));
                      }
 
-                }//else if
+                }//else
+            }
+            cout<<"\n";
         }
+        cout << "# process " << rank << " reports back";
+        MPI_Barrier(MPI_COMM_WORLD);
         cout<<"\n";
     }//for iterations to get statistic errors
     
     /*------------------------------------ OUTPUT -------------------------------*/
-    MPI_Barrier(MPI_COMM_WORLD);
+    
     Printoutput out;
     
     // maybe input for rank =1 to send everything to process 0 to compare results...
 
-    if (rank == 0) {
+    for (int i=0; i<size; i++) {
 
-        if(everythingcorrect_check == 0){
+        if(i == rank){
             
             // Header
             out.printtimestemp();
             out.printheader();
             
-            results.calculate();
-            
-        }//if everything correct
-        
-        else{
-            cout<<everythingcorrect_check<<" errors were spotted\n"<<endl;
+            results.calculate(rank);
+            cout << "\n\n" << endl;
+            MPI_Barrier(MPI_COMM_WORLD);
+            sleep(5);
         }
-    }//if you are process 0
+        
+
+    }
     MPI_Finalize();
 }

@@ -35,7 +35,8 @@ void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ )
     summe.at(idx_numberofpackages) += time_;
 }
 
-void Results::calculate(){
+void Results::calculate(int rank){
+    std::cout << "# process " << rank << " printing" << std::endl;
     for(int z=0;z<numberofpackages;z++){
         double send_mean=summe.at(z)/(outerStatisticalIterations);
         //std::cout <<"summe " <<summe.at(z)<<" send_mean "<<send_mean<<" outeriterations "<<outerStatisticalIterations<<std::endl;
@@ -50,7 +51,7 @@ void Results::calculate(){
         double send_stdtime = sqrt(send_vartime);
         double send_std=(send_stdtime/send_mean)*rate;
         
-        std::cout<<totaldatasent_vector.at(z)<<"\t"<<innerRuntimeIterations_vector.at(z)<<"\t"<<package_vector.at(z)<<"\t"<<send_mean<<"\t"<<send_stdtime<<"\t"<<rate<<"\t"<< send_std<<std::endl;
+        std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << std::endl;
     }
 
 }

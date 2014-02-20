@@ -42,7 +42,7 @@ void Parameters::readOptions(int argc, char **argv){
             std::cout<<" -f      factor to determine number of inner runtime iterations\n";
             std::cout<<" -b      size of allocated buffer\n";
             std::cout<<" -n      number for number of calls (i.e. how many times a package is sent/received without waiting)\n";
-            std::cout<<" -w      number for number warm ups (i.e. how many times a package is sent/received in advance)\n       (DEFAULT=??)\n";
+            std::cout<<" -w      number for number warm ups (i.e. how many times a package is sent/received in advance)\n       (DEFAULT=10)\n";
 
             exit(1);
         case 's':
@@ -141,7 +141,7 @@ void Parameters::readOptions(int argc, char **argv){
         default:
             abort ();
     }
-    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << std::endl;
+    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << ", number of warm ups " << numberofwarmups << std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)

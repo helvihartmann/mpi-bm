@@ -34,7 +34,7 @@ public:
                  int idx_numberofpackages,
                  double time_);
     
-    void calculate();
+    void calculate(int rank);
 };
 
 #endif /*BUFFEROPERATIONS_H*/
