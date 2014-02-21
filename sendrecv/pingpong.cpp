@@ -139,10 +139,10 @@ int main(int argc,char *argv[]){
             
             results.calculate(rank);
             cout << "\n\n" << endl;
-            MPI_Barrier(MPI_COMM_WORLD);
-            sleep(5);
+            
+            //sleep(20);
         }
-        
+        MPI_Barrier(MPI_COMM_WORLD);
 
     }
     MPI_Finalize();
