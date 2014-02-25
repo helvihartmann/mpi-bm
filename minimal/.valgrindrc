@@ -1,5 +1,0 @@
---memcheck:leak-check=full
---show-reachable=no
---gen-suppressions=all
---track-origins=yes
---suppressions=val.supp

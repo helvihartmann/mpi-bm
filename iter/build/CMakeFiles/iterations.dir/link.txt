@@ -1,1 +1,0 @@
-mpic++       CMakeFiles/iterations.dir/iterations.cpp.o CMakeFiles/iterations.dir/bufferoperations.cpp.o CMakeFiles/iterations.dir/bandwidthcalc.cpp.o CMakeFiles/iterations.dir/classmpi3.cpp.o CMakeFiles/iterations.dir/print.cpp.o CMakeFiles/iterations.dir/totaldatasendcalc.cpp.o  -o iterations -rdynamic 
