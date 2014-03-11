@@ -43,8 +43,6 @@ buffer.h
 /home/hartmann/benchmark/sendrecv/buffer.h
 results.h
 /home/hartmann/benchmark/sendrecv/results.h
-tsc.h
-/home/hartmann/benchmark/sendrecv/tsc.h
 vector
 -
 unistd.h
@@ -68,9 +66,5 @@ array
 cmath
 -
 iostream
--
-
-/home/hartmann/benchmark/sendrecv/tsc.h
-intrin.h
 -
 

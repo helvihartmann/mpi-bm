@@ -18,7 +18,7 @@ for file in *.out
     echo "set terminal pdf" >> "$my_var".gnuplot
     echo "set logscale x 2" >> "$my_var".gnuplot
     echo 'set ylabel "Data rate [MB/s]"' >> "$my_var".gnuplot
-    echo "set grid" >> "$my_var".gnuplot
+    echo "#set grid" >> "$my_var".gnuplot
     echo "#set yrange [1:6000]" >> "$my_var".gnuplot
     echo "set xrange [1:5e9]" >> "$my_var".gnuplot
     echo "set key left" >> "$my_var".gnuplot

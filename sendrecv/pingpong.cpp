@@ -9,7 +9,6 @@
 #include "parameters.h"
 #include "buffer.h"
 #include "results.h"
-#include "tsc.h"
 #include <vector>
 #include <unistd.h>
 using namespace std;
@@ -51,7 +50,7 @@ int main(int argc,char *argv[]){
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
         
         //-------------------------iterate over package size-------------------
-        for (int i = 0; i < (size-1); i++){
+        for (int i = 1; i < size; i++){
             
             for(size_t z = 0; z < params.getNumberOfPackageSizes(); ++z) {
                 size_t p = params.getPackageSizes().at(z);
@@ -69,16 +68,16 @@ int main(int argc,char *argv[]){
                 //Process 0 sends the data and gets it back
                 if (rank == 0) {
                     
+                    buffer.setloopvariables(p, innerRuntimeIterations, i);
                     
-                    
-                    buffer.setloopvariables(p, innerRuntimeIterations, (i+1));
-                    
+                    MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
                     
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.sendBuffer(j);
                         //buffer.recvBuffer(j);
                     }
+                    MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                     
                     if(m!=0){
@@ -97,17 +96,18 @@ int main(int argc,char *argv[]){
                     
                 
                 //Process 1 receives the data and sends it back
-                else if (rank == i+1) {
+                else if (rank == i) {
                     
                     //cout << "# Prozess " << rank << " von " <<size<<" on "<< name << " receiving data \n";
-                   
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 0);
+                    MPI_Barrier(MPI_COMM_WORLD);
                     starttime =MPI_Wtime();
                     for(size_t j=0; j<innerRuntimeIterations; j++){
                         buffer.recvBuffer(j);
                         //buffer.sendBuffer(j);
                     }
+                    MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                      
                      if(m!=0){
@@ -115,6 +115,11 @@ int main(int argc,char *argv[]){
                      }
 
                 }//else
+                
+                else{
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    MPI_Barrier(MPI_COMM_WORLD);
+                }
             }
             cout<<"\n";
         }

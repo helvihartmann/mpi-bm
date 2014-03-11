@@ -10,7 +10,6 @@ CMakeFiles/pingpong.dir/pingpong.cpp.o: ../parameters.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../pingpong.cpp
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../print.h
 CMakeFiles/pingpong.dir/pingpong.cpp.o: ../results.h
-CMakeFiles/pingpong.dir/pingpong.cpp.o: ../tsc.h
 
 CMakeFiles/pingpong.dir/print.cpp.o: ../print.cpp
 CMakeFiles/pingpong.dir/print.cpp.o: ../print.h
