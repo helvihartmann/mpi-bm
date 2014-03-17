@@ -89,7 +89,7 @@ int main(int argc,char *argv[]){
                             cout << "# data sent to "  << i << " warumup" << endl;
                         }
                         //cout << " packagesize " << p << " time " << ((endtime-starttime)/2) << " rate " << (innerRuntimeIterations*p)/(((endtime-starttime))*1000000) << " " << rank << endl;
-                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << ((endtime-starttime)) << " - " << (p*innerRuntimeIterations)/(endtime-starttime) << " - " << rank << endl;
+                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << ((endtime-starttime)) << " - " << (p*innerRuntimeIterations)/(endtime-starttime) << " - " << i << endl;
                     }
                     
                     //buffer.checkBuffer(&everythingcorrect_check);
@@ -122,6 +122,7 @@ int main(int argc,char *argv[]){
                     MPI_Barrier(MPI_COMM_WORLD);
                 }
             }
+            
             cout<<"\n";
         }
         cout << "# process " << rank << " reports back";
