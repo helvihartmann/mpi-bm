@@ -33,8 +33,8 @@ void Parameters::readOptions(int argc, char **argv){
     {
         case 'h':
             std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
-            std::cout<<" -s      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Bsend, 4 = MPI_Send_Init, 5 = MPI_Isend \n \t(DEFAULT = 1)\n";
-            std::cout<<" -r      sendmode: 1 = 2 = 3 = MPI_Recv, 4 = MPI_Recv_Init, 5 = MPI_Irecv \n \t(DEFAULT = 1)\n";
+            std::cout<<" -s      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Rsend, 4 = MPI_Bsend, 5 = MPI_Isend, 6 = MPI_Send_Init \n \t(DEFAULT = 1)\n";
+            std::cout<<" -r      sendmode: 1 = 2 = 3 = 4 = MPI_Recv, 5 = MPI_Irecv, 6 = MPI_Recv_Init \n \t(DEFAULT = 1)\n";
             std::cout<<" -a      start package size of data that is send between two processes and which will be doubled until endPackageSize\n\t(DEFAULT = 2B)\n";
             std::cout<<" -e      endPackageSize, i.e. the maximum package sized that is being analyzed\n";
             std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";

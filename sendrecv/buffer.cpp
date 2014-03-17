@@ -44,9 +44,22 @@ void Buffer::sendBuffer(size_t j){
             MPI_Ssend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 3:
-            MPI_Bsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Rsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
         case 4:
+            MPI_Bsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            break;
+        
+        case 5:{
+            MPI_Request send_obj;
+            MPI_Status status;
+            MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+            if (j%numberofcalls == 0){
+                MPI_Wait (&send_obj, &status);
+            }
+        }
+            break;
+        case 6:{
             MPI_Request send_obj;
             MPI_Status status;
             int *buffer_send;
@@ -61,17 +74,11 @@ void Buffer::sendBuffer(size_t j){
                 MPI_Wait (&send_obj, &status);
             }
             else if(j == (innerRuntimeIterations - 1)){
-
+                
                 //buffer=&buffer[0];
                 MPI_Request_free (&send_obj);
             }
-            break;
-        case 5:
-            MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
-            if (j%numberofcalls == 0){
-                 MPI_Wait (&send_obj, &status);
-            }
-            
+        }
             break;
     }
     
@@ -82,9 +89,20 @@ void Buffer::recvBuffer(size_t j){
         case 1:
         case 2:
         case 3:
+        case 4:
             MPI_Recv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             break;
-        case 4:
+        
+        case 5:{
+            MPI_Request recv_obj;
+            MPI_Status status;
+            MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+            if (j%numberofcalls == 0){
+                MPI_Wait (&recv_obj, &status);
+            }
+        }
+            break;
+        case 6:{
             MPI_Request recv_obj;
             MPI_Status status;
             int *buffer_recv;
@@ -101,12 +119,7 @@ void Buffer::recvBuffer(size_t j){
                 MPI_Request_free (&recv_obj);
                 buffer=&buffer[0];
             }
-            break;
-        case 5:
-            MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
-            if (j%numberofcalls == 0){
-                MPI_Wait (&recv_obj, &status);
-            }
+        }
             break;
     }
 }
