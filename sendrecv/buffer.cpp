@@ -46,10 +46,14 @@ void Buffer::sendBuffer(size_t j){
         case 3:
             MPI_Rsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             break;
-        case 4:
+        case 4:{
+            int size = packageCount*MPI_BSEND_OVERHEAD;
+            int *localbuffer = new int [size];
+            MPI_Buffer_attach(localbuffer,size);
             MPI_Bsend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Buffer_detach(localbuffer, &size);
+        }
             break;
-        
         case 5:{
             MPI_Request send_obj;
             MPI_Status status;
