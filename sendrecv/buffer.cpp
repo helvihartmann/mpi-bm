@@ -117,7 +117,7 @@ void Buffer::recvBuffer(size_t j){
                 queue_request.pop();
             }
             
-            MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+            MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
             queue_status.push(status);
             queue_request.push(recv_obj);
         }break;
@@ -151,7 +151,7 @@ void Buffer::finalizeBuffer(){
         case 4:break;
         case 5:{
             while (!queue_request.empty()){
-                MPI_Wait (&queue_request.front(), &queue_status.front());
+                MPI_Wait(&queue_request.front(), &queue_status.front());
                 queue_request.pop();
                 queue_status.pop();
             }
