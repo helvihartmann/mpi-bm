@@ -1,5 +1,6 @@
 #include "buffer.h"
 
+
 /*  */
 
     
@@ -11,7 +12,7 @@ Buffer::Buffer(int sendmode_, int recvmode_, size_t numberofcalls_, int rank_, s
     rank(rank_)
 {
     std::cout << "# allocating buffer..." << std::endl;
-
+    
     buffer = new int [buffersize / sizeof(int)];
 
     std::cout << "# " << buffersize << " B allocated, initializing...\n" << std::endl;
@@ -21,6 +22,8 @@ Buffer::Buffer(int sendmode_, int recvmode_, size_t numberofcalls_, int rank_, s
     }
 
     std::cout << "# buffer initialized.\n" << std::endl;
+    
+    
 }
 
 Buffer::~Buffer(){
@@ -58,8 +61,15 @@ void Buffer::sendBuffer(size_t j){
             MPI_Request send_obj;
             MPI_Status status;
             MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
-            if (j%numberofcalls == 0){
-                MPI_Wait (&send_obj, &status);
+            myqueue.push (send_obj);
+            if (j >= 4 ){
+                while (!myqueue.empty())
+                {
+                    MPI_Request send_obj_queueout = myqueue.front();
+                    MPI_Wait (&send_obj_queueout, &status);
+                    myqueue.pop();
+                }
+                
             }
         }
             break;
@@ -101,9 +111,18 @@ void Buffer::recvBuffer(size_t j){
             MPI_Request recv_obj;
             MPI_Status status;
             MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
-            if (j%numberofcalls == 0){
-                MPI_Wait (&recv_obj, &status);
+            myqueue.push (recv_obj);
+            if (j >= numberofcalls){
+                while (!myqueue.empty())
+                {
+                    MPI_Request recv_obj_queueout = myqueue.front();
+                    ///std::cout << "recv_obj: " << *recv_obj;
+                    MPI_Wait (&recv_obj_queueout, &status);
+                  
+                myqueue.pop();
+                }
             }
+
         }
             break;
         case 6:{

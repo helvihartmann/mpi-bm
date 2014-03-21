@@ -3,6 +3,7 @@
 
 #include <mpi.h>
 #include <iostream>
+#include <queue>
 /* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
  14.11.2013
 class Mpi contains all MPi related functions
@@ -23,6 +24,8 @@ private:
     size_t packageCount;
     size_t innerRuntimeIterations;
     int remoteRank;
+    
+    std::queue<MPI_Request> myqueue;
 public:
     
     Buffer(int, int, size_t, int, size_t);
