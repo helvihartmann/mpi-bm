@@ -43,11 +43,11 @@ void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remo
 void Buffer::sendBuffer(size_t j){
     switch (sendmode) {
         case 1:{
-            int size = packageCount*MPI_BSEND_OVERHEAD;
-            int *localbuffer = new int [size];
-            MPI_Buffer_attach(localbuffer,size);
+            //int size = packageCount*MPI_BSEND_OVERHEAD;
+            //int *localbuffer = new int [size];
+            //MPI_Buffer_attach(localbuffer,size);
             MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
-            MPI_Buffer_detach(localbuffer, &size);
+            //MPI_Buffer_detach(localbuffer, &size);
         }
             break;
         case 2:
