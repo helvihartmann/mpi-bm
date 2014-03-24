@@ -2,10 +2,10 @@
 echo
 
 p=1
-for i in {2..20}
+for i in {2..10}
     do
     echo $p
-    p=$((p * 2 ))
+
     touch single.in
     echo "#!/bin/bash " > single.in
 #sbatch pingpongSsend.in
@@ -20,5 +20,6 @@ for i in {2..20}
     echo "" >> single.in
     echo "exit 0" >> single.in
     sbatch single.in
+    p=$((p * 2 ))
 done
 exit 0

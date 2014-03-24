@@ -42,8 +42,13 @@ void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remo
 
 void Buffer::sendBuffer(size_t j){
     switch (sendmode) {
-        case 1:
+        case 1:{
+            int size = packageCount*MPI_BSEND_OVERHEAD;
+            int *localbuffer = new int [size];
+            MPI_Buffer_attach(localbuffer,size);
             MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
+            MPI_Buffer_detach(localbuffer, &size);
+        }
             break;
         case 2:
             MPI_Ssend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
@@ -70,7 +75,7 @@ void Buffer::sendBuffer(size_t j){
                 queue_request.pop();
             }
             //std::cout << "sending j: " << j << std::endl;
-            MPI_Isend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+            MPI_Issend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             queue_status.push(status);
             queue_request.push (send_obj);
         }
