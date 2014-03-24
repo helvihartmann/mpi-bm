@@ -57,10 +57,33 @@ int main(int argc,char *argv[]){
                 size_t packageCount = p/sizeof(int);
                 size_t innerRuntimeIterations;
                 if(m == 0){
-                    innerRuntimeIterations = numberofwarmups;
+                    switch (sendmode){
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            innerRuntimeIterations = numberofwarmups;
+                            break;
+                        case 6:
+                            innerRuntimeIterations = 1;
+                            break;
+                    }
+                    
                 }
                 else{
-                    innerRuntimeIterations = params.getinnerRuntimeIterations(p);
+                    switch (sendmode){
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            innerRuntimeIterations = params.getinnerRuntimeIterations(p);;
+                            break;
+                        case 6:
+                            innerRuntimeIterations = 1;
+                            break;
+                    }
                 }
             
                 results.setvectors(p, innerRuntimeIterations, z);
@@ -97,8 +120,6 @@ int main(int argc,char *argv[]){
                 
                 //Process 1 receives the data and sends it back
                 else if (rank == i) {
-                    
-                    //cout << "# Prozess " << rank << " von " <<size<<" on "<< name << " receiving data \n";
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 0);
                     MPI_Barrier(MPI_COMM_WORLD);
