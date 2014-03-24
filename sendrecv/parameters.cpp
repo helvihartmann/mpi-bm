@@ -47,21 +47,21 @@ void Parameters::readOptions(int argc, char **argv){
             exit(1);
         case 's':
             sendmode = atoi(optarg);
-            if (sendmode >= 1 && sendmode <= 5) {
+            if (sendmode >= 1 && sendmode <= 6) {
                 //zwischen 1 und 3
             }
             else {
-                printf("ERROR -s: your options are 1 send; 2 Ssend, 3 Bsend, 4 send_init and 5 Isend \n");
+                printf("ERROR -s: your options are 1 send; 2 Ssend, 3 Rsend, 4 = Bsend and 5 Issend, 6 send_init \n");
                 exit(1);
             }
             break;
         case 'r':
             recvmode = atoi(optarg);
-            if (recvmode >= 1 && recvmode <= 5) {
+            if (recvmode >= 1 && recvmode <= 6) {
                 //zwischen 1 und 3
             }
             else {
-                printf("ERROR -r: your options are 1,2,3 recv, 4 recv_init and 5 Irecv\n");
+                printf("ERROR -r: your options are 1,2,3,4 recv and 5 Irecv, 6 recv_init\n");
                 exit(1);
             }
             break;

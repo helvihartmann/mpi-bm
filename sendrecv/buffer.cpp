@@ -67,38 +67,32 @@ void Buffer::sendBuffer(size_t j){
         case 5:{
             MPI_Request send_obj;
             MPI_Status status;
-            //std::cout << queue_request.size() << std::endl;
             if (queue_request.size() >= numberofcalls){
-                //std::cout << " clearing j: " << j << " numberofcalls: " << numberofcalls << std::endl;
                 MPI_Wait (&queue_request.front(), &queue_status.front());
                 queue_status.pop();
                 queue_request.pop();
             }
-            //std::cout << "sending j: " << j << std::endl;
             MPI_Issend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             queue_status.push(status);
             queue_request.push (send_obj);
         }
             break;
         case 6:{
-            MPI_Request send_obj;
             MPI_Status status;
+            MPI_Request send_obj;
             int *buffer_send;
             buffer_send = &buffer[(packageCount*j)%buffersize];
             if(j==0){
-                //MPI_Request send_obj;
                 MPI_Send_init (buffer_send, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
+                queue_request.push (send_obj);
             }
+            if (queue_status.size() >= numberofcalls){
+                MPI_Wait (&queue_request.front(), &queue_status.front());
+                queue_status.pop();
+            }
+            
             MPI_Start (&send_obj);
-            if (j%numberofcalls == 0 && j != (innerRuntimeIterations - 1)){
-                //std::cout << "# Waiting...." << j << " " << packageCount << std::endl;
-                MPI_Wait (&send_obj, &status);
-            }
-            else if(j == (innerRuntimeIterations - 1)){
-                
-                //buffer=&buffer[0];
-                MPI_Request_free (&send_obj);
-            }
+            queue_status.push(status);
         }
             break;
     }
@@ -127,24 +121,23 @@ void Buffer::recvBuffer(size_t j){
             queue_request.push(recv_obj);
         }break;
         case 6:{
-            MPI_Request recv_obj;
             MPI_Status status;
+            MPI_Request recv_obj;
             int *buffer_recv;
             buffer_recv = &buffer[(packageCount*j)%buffersize];
-            if (j == 0){
-                //MPI_Request recv_obj;
-                MPI_Recv_init (buffer_recv, packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+            if(j==0){
+                MPI_Recv_init (buffer_recv , packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
+                queue_request.push (recv_obj);
             }
+            if (queue_request.size() >= numberofcalls){
+                MPI_Wait (&queue_request.front(), &queue_status.front());
+                queue_status.pop();
+                queue_request.pop();
+            }
+            
             MPI_Start (&recv_obj);
-            if (j%numberofcalls == 0 && j != (innerRuntimeIterations - 1)){
-                MPI_Wait (&recv_obj, &status);
-            }
-            else if(j == (innerRuntimeIterations - 1)){
-                MPI_Request_free (&recv_obj);
-                buffer=&buffer[0];
-            }
-        }
-            break;
+            queue_status.push(status);
+        }break;
     }
 }
 
@@ -161,7 +154,13 @@ void Buffer::finalizeBuffer(){
                 queue_status.pop();
             }
         }break;
-        case 6:break;
+        case 6:{
+            while (!queue_request.empty()){
+                MPI_Request_free(&queue_request.front());
+                queue_request.pop();
+                queue_status.pop();
+            }
+        }break;
     }
 }
 
