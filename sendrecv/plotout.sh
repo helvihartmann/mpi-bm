@@ -44,7 +44,7 @@ for file in *.out
     do
         echo "  'out/"$file"' i 'process" "$i" "printing' using 3:6 w lines ls " "$i" " title '', \\" >> "$my_var".gnuplot
         echo "  'out/"$file"' i 'process" "$i" "printing' using 3:6:7 w yerrorbars ls " "$i" " title 'node 0 -" "$i" "' axes x1y1, \\" >> "$my_var".gnuplot
-#echo "  'out/"$file"' i 'data sent to" "$i""' using 3:(\$6/1000000) w lines ls " "$i" " title 'warmup ""$i""', \\" >> "$my_var".gnuplot
+echo "  'out/"$file"' i 'data sent to" "$i""' using 3:(\$6/1000000) w lines ls " "$i" " title 'warmup ""$i""', \\" >> "$my_var".gnuplot
     done
     echo "  'out/imb.out' using 1:4 w linespoint ls 9 title 'intel',\\" >> "$my_var".gnuplot
     echo "  'out/ib_rdma_bw.out' using 1:4 w linespoint ls 10 title 'ib_write_bw'" >> "$my_var".gnuplot
@@ -56,7 +56,7 @@ for file in *.out
     do
     echo "  'out/"$file"' i 'process" "$i" "printing' using 3:6 w lines ls " "$i" " title '', \\" >> "$my_var".gnuplot
     echo "  'out/"$file"' i 'process" "$i" "printing' using 3:6:7 w yerrorbars ls " "$i" " title 'node 0 -" "$i" "' axes x1y1, \\" >> "$my_var".gnuplot
-#echo "  'out/"$file"' i 'data sent to" "$i""' using 3:(\$6/1000000) w lines ls " "$i" " title 'warmup ""$i""', \\" >> "$my_var".gnuplot
+echo "  'out/"$file"' i 'data sent to" "$i""' using 3:(\$6/1000000) w lines ls " "$i" " title 'warmup ""$i""', \\" >> "$my_var".gnuplot
     done
     echo "  '' using 3:6 w lines ls 1 title '' axes x1y1, \\" >> "$my_var".gnuplot
     echo "  'out/imb.out' using 1:4 w linespoint ls 9 title 'intel',\\" >> "$my_var".gnuplot

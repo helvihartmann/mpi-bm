@@ -25,8 +25,6 @@ private:
     size_t innerRuntimeIterations;
     int remoteRank;
     
-    std::queue<MPI_Request> queue_request;
-    std::queue<MPI_Status> queue_status;
 public:
     
     Buffer(int, int, size_t, int, size_t);
@@ -37,8 +35,6 @@ public:
     void sendBuffer(size_t);
     
     void recvBuffer(size_t);
-
-    void finalizeBuffer();
     
     void checkBuffer(size_t *);
 };

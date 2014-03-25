@@ -57,33 +57,10 @@ int main(int argc,char *argv[]){
                 size_t packageCount = p/sizeof(int);
                 size_t innerRuntimeIterations;
                 if(m == 0){
-                    switch (sendmode){
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                            innerRuntimeIterations = numberofwarmups;
-                            break;
-                        case 6:
-                            innerRuntimeIterations = 1;
-                            break;
-                    }
-                    
+                    innerRuntimeIterations = numberofwarmups;
                 }
                 else{
-                    switch (sendmode){
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                            innerRuntimeIterations = params.getinnerRuntimeIterations(p);;
-                            break;
-                        case 6:
-                            innerRuntimeIterations = 1;
-                            break;
-                    }
+                    innerRuntimeIterations = params.getinnerRuntimeIterations(p);;
                 }
             
                 results.setvectors(p, innerRuntimeIterations, z);
@@ -95,12 +72,7 @@ int main(int argc,char *argv[]){
                     
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
-                    
-                    for(size_t j=0; j<innerRuntimeIterations; j++){
-                        buffer.sendBuffer(j);
-                    }
-                    
-                    buffer.finalizeBuffer();
+                    buffer.sendBuffer(innerRuntimeIterations);//send innerRuntimeIterations times
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                     
@@ -122,13 +94,10 @@ int main(int argc,char *argv[]){
                 else if (rank == i) {
                     
                     buffer.setloopvariables(p, innerRuntimeIterations, 0);
+                    
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime =MPI_Wtime();
-                    for(size_t j=0; j<innerRuntimeIterations; j++){
-                        buffer.recvBuffer(j);
-                    }
-                    
-                    buffer.finalizeBuffer();
+                    buffer.recvBuffer(innerRuntimeIterations);
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                      
