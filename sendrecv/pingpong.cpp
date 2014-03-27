@@ -29,7 +29,7 @@ int main(int argc,char *argv[]){
     
     /*--------------------- read in parameters-----------------------------*/
     Parameters params;
-    params.readOptions(argc,argv);
+    params.readOptions(argc,argv,rank);
     int sendmode = params.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
     int recvmode = params.getrecvmode();
     size_t numberofcalls = params.getnumberofcalls();

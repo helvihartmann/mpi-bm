@@ -21,6 +21,8 @@ cstdlib
 -
 vector
 -
+getopt.h
+-
 
 /home/hartmann/benchmark/sendrecv/pingpong.cpp
 mpi.h

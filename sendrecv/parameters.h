@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <vector>
+#include <getopt.h>
 /* pfad
  14.11.2013
 */
@@ -30,7 +31,7 @@ public:
     
     void setPackagesizeTmp(size_t);
     
-    void readOptions(int, char**);
+    void readOptions(int, char**, int);
     
     size_t getStartPackageSize() { return startPackageSize; }
     

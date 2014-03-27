@@ -10,7 +10,7 @@
 27.11.2013
 */
 
-void Parameters::readOptions(int argc, char **argv){
+void Parameters::readOptions(int argc, char **argv, int rank){
     int opt;
     factor = 100000*128;
     
@@ -21,28 +21,46 @@ void Parameters::readOptions(int argc, char **argv){
     buffersize=pow(2,35);//34GB
     sendmode = 1;
     recvmode = 1;
-    statisticaliterations=10;
+    statisticaliterations=2;
     
     numberofcalls = 1;
     numberofwarmups = 10;
     
     //int opterr = 0;
-
-    while ((opt = getopt (argc, argv, "hs:r:a:i:e:o:f:b:n:w:")) != -1)
+    
+    static struct option longopts[] = {
+        { "help",               no_argument,              NULL,	     'h' },
+        { "sendmode",           required_argument,	     NULL,	     's' },
+        { "recvmode",           required_argument,	     NULL,	     'r' },
+        { "iterations",         required_argument,	     NULL,       'i' },
+        { "start_package_size",    required_argument,	     NULL,	     'a' },
+        { "cutoff",             required_argument,	     NULL,       'e' },
+        { "package_size_factor",         required_argument,                 NULL,       'f' },
+        { "outer_statistical_iteations",         optional_argument,	      NULL,       'o' },
+        { "buffer_size",            required_argument,	     NULL,       'b' },
+        { "pipeline_depths",         required_argument,	     NULL,       'p' },
+        { "warmups",                required_argument,	     NULL,       'w' },
+        { NULL,	     0,			     NULL,	     0 }
+    };
+    
+    while ((opt = getopt_long (argc, argv, "hs:r:a:i:e:o:f:b:n:w:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
-            std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
-            std::cout<<" -s      sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Rsend, 4 = MPI_Bsend, 5 = MPI_Isend, 6 = MPI_Send_Init \n \t(DEFAULT = 1)\n";
-            std::cout<<" -r      sendmode: 1 = 2 = 3 = 4 = MPI_Recv, 5 = MPI_Irecv, 6 = MPI_Recv_Init \n \t(DEFAULT = 1)\n";
-            std::cout<<" -a      start package size of data that is send between two processes and which will be doubled until endPackageSize\n\t(DEFAULT = 2B)\n";
-            std::cout<<" -e      endPackageSize, i.e. the maximum package sized that is being analyzed\n";
-            std::cout<<" -i      choose -i 1 for only one iteration for every package size to be fast\n";
-            std::cout<<" -o      statisticaliterations\n";
-            std::cout<<" -f      factor to determine number of inner runtime iterations\n";
-            std::cout<<" -b      size of allocated buffer\n";
-            std::cout<<" -n      number for number of calls (i.e. how many times a package is sent/received without waiting)\n";
-            std::cout<<" -w      number for number warm ups (i.e. how many times a package is sent/received in advance)\n       (DEFAULT=10)\n";
+            if (rank == 0){
+                std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
+                std::cout<<" --buffer_size                 -b       size of allocated buffer\n (DEFAULT = " << buffersize << ")\n\n";
+                std::cout<<" --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = " << endPackageSize << ")\n\n";
+                std::cout<<" --iterations                  -i       factor to determine number of inner runtime iterations\n (DEFAULT = "<< factor << ")\n\n";
+                std::cout<<" --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "<< statisticaliterations << ")\n\n";
+                std::cout << " --help                        -h       to view this help tutorial \n\n";
+                std::cout<<" --sendmode                    -s       sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Rsend, 4 = MPI_Bsend, 5 = MPI_Isend, 6 = MPI_Send_Init \n (DEFAULT = "<< sendmode << ")\n\n";
+                std::cout<<" --start_package_size          -a       start package size of data \n (DEFAULT = "<< startPackageSize << ")\n\n";
+                std::cout<<" --recvmode                    -r       receive mode: 1 = 2 = 3 = 4 = MPI_Recv, 5 = MPI_Irecv, 6 = MPI_Recv_Init \n (DEFAULT = "<< recvmode << ")\n\n";
+                std::cout<<" --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = " << packageSizeFactor << ")\n\n";
+                std::cout<<" --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << numberofcalls << ")\n\n";
+                std::cout<<" --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "<< numberofwarmups << ")\n\n";
+            };
 
             exit(1);
         case 's':
@@ -119,7 +137,7 @@ void Parameters::readOptions(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 'n':
+        case 'p':
             numberofcalls = atof(optarg);
             
             if (!(numberofcalls > 0)) {
@@ -159,8 +177,8 @@ size_t Parameters::getinnerRuntimeIterations(size_t packageSize) {
     }
     else {
         iterations = factor/ packageSize;
-            if (iterations<=10) {
-            iterations=10;
+            if (iterations<=5) {
+            iterations=5;
         }
     }
     
