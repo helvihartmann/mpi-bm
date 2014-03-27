@@ -46,7 +46,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:a:i:e:o:f:b:n:w:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:a:i:e:o:f:b:p:w:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -145,7 +145,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
             numberofcalls = atof(optarg);
             
             if (!(numberofcalls > 0)) {
-                printf("ERROR -n: please enter vaild number for number of calls (i.e. how many times a package is sent/received without waiting) \n");
+                printf("ERROR -p: please enter vaild number for number of calls (i.e. how many times a package is sent/received without waiting) \n");
                 exit(1);
             }
             break;
@@ -170,7 +170,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         default:
             abort ();
     }
-    std::cout<<"# sendmode " << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of root processes " << numberofRootProcesses << std::endl;
+    std::cout<<"# sendmode " << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", pipeline depth " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of root processes " << numberofRootProcesses << std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)
