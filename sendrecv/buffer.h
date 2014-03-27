@@ -30,11 +30,11 @@ public:
     Buffer(int, int, size_t, int, size_t);
     ~Buffer();
 
-    void setloopvariables(size_t, size_t,int);
+    void setloopvariables(size_t, size_t);
     
-    void sendBuffer(size_t);
+    void sendBuffer(unsigned int);
     
-    void recvBuffer(size_t);
+    void recvBuffer(unsigned int);
     
     void checkBuffer(size_t *);
 };

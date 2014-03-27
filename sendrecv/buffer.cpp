@@ -30,17 +30,16 @@ Buffer::~Buffer(){
     delete [] buffer;
 }
 
-void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_, int remoteRank_){
+void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_){
     packageCount = p / sizeof(int);
     innerRuntimeIterations = innerRuntimeIterations_;
     if (numberofcalls >= innerRuntimeIterations){
         numberofcalls = innerRuntimeIterations-1;
     }
-    remoteRank = remoteRank_;
 }
 
 
-void Buffer::sendBuffer(size_t innerRuntimeIterations){
+void Buffer::sendBuffer(unsigned int remoteRank){
     switch (sendmode) {
         case 1:{
             //int size = packageCount*MPI_BSEND_OVERHEAD;
@@ -108,7 +107,7 @@ void Buffer::sendBuffer(size_t innerRuntimeIterations){
     }
 }
 
-void Buffer::recvBuffer(size_t innerRuntimeIterations){
+void Buffer::recvBuffer(unsigned int remoteRank){
     switch (recvmode) {
         case 1:
         case 2:
