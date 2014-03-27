@@ -26,6 +26,7 @@ private:
     size_t numberofcalls;
     size_t numberofwarmups;
 
+    int numberofRootProcesses;
 
 public:
     
@@ -54,6 +55,8 @@ public:
     size_t getnumberofcalls() { return numberofcalls; }
     
     size_t getnumberofwarmups() { return numberofwarmups; }
+    
+    int getnumberofRootProcesses() { return numberofRootProcesses; }
 
 /* calculate the number of sending the package to have process occur in seconds regime
  sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/

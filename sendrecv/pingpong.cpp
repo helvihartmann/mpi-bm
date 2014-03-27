@@ -34,6 +34,7 @@ int main(int argc,char *argv[]){
     int recvmode = params.getrecvmode();
     size_t numberofcalls = params.getnumberofcalls();
     size_t numberofwarmups = params.getnumberofwarmups();
+    int numberofRootProcesses = params.getnumberofRootProcesses();
     
     //------- initaliz stuff for later -------------------
     Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
@@ -65,52 +66,54 @@ int main(int argc,char *argv[]){
         
             results.setvectors(p, innerRuntimeIterations, z);
             
-            //Process 0 sends the data and gets it back
-            if (rank == 0) {
-                
-                buffer.setloopvariables(p, innerRuntimeIterations);
-                
-                
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                for (int i = 1; i < size; i++) {
-                    buffer.sendBuffer(i);//send innerRuntimeIterations times
-                }
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                
-                double time = (endtime-starttime)/(size - 1);
-                if(m!=0){
-                    results.settime((m-1), z, time);
-                }
-                else {
-                    if(z == 0){
-                        cout << "# processes " << size << endl;
-                        cout << "# data sent to "  << size << " processes warumup" << endl;
+            buffer.setloopvariables(p, innerRuntimeIterations);
+            for (int x = 0; x < numberofRootProcesses; x++){
+                //Process 0 sends the data and gets it back
+                if (rank == x) {
+                    cout << "sending: " << rank << endl;
+                    
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    starttime = MPI_Wtime();
+                    for (int i = 0; i < size; i++) {
+                        if ( i != rank){
+                            buffer.sendBuffer(i);//send innerRuntimeIterations times
+                        }
+                        
                     }
-                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << ((endtime-starttime)/(size-1)) << " - " << (p*innerRuntimeIterations)/time << " - " << size << endl;
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    endtime = MPI_Wtime();
+                    
+                    double time = (endtime-starttime)/(size - 1);
+                    if(m!=0){
+                        results.settime((m-1), z, time);
+                    }
+                    else {
+                        if(z == 0){
+                            cout << "# processes " << size << endl;
+                            cout << "# data sent to "  << size << " processes warumup" << endl;
+                        }
+                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << ((endtime-starttime)/(size-1)) << " - " << (p*innerRuntimeIterations)/time << " - " << size << endl;
+                    }
+                    
+                    //buffer.checkBuffer(&everythingcorrect_check);
                 }
-                
-                //buffer.checkBuffer(&everythingcorrect_check);
+            
+                //Process 1 receives the data and sends it back
+                else {
+                    
+                    cout << "receiving: " << rank << " from: " << x << endl;
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    starttime =MPI_Wtime();
+                    buffer.recvBuffer(x);
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    endtime = MPI_Wtime();
+                    
+                     if(m!=0){
+                     results.settime((m-1), z, ((endtime-starttime)));
+                     }
+
+                }//else
             }
-        
-            //Process 1 receives the data and sends it back
-            else {
-                
-                
-                buffer.setloopvariables(p, innerRuntimeIterations);
-
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime =MPI_Wtime();
-                buffer.recvBuffer(0);
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                
-                 if(m!=0){
-                 results.settime((m-1), z, ((endtime-starttime)));
-                 }
-
-            }//else
         }
     MPI_Barrier(MPI_COMM_WORLD);
     cout<<"\n";

@@ -26,6 +26,8 @@ void Parameters::readOptions(int argc, char **argv, int rank){
     numberofcalls = 1;
     numberofwarmups = 10;
     
+    numberofRootProcesses = 1;
+    
     //int opterr = 0;
     
     static struct option longopts[] = {
@@ -40,26 +42,28 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         { "buffer_size",            required_argument,	     NULL,       'b' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
         { "warmups",                required_argument,	     NULL,       'w' },
+        { "number_of_root_processes",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:a:i:e:o:f:b:n:w:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:a:i:e:o:f:b:n:w:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
             if (rank == 0){
-                std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------\n";
-                std::cout<<" --buffer_size                 -b       size of allocated buffer\n (DEFAULT = " << buffersize << ")\n\n";
-                std::cout<<" --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = " << endPackageSize << ")\n\n";
-                std::cout<<" --iterations                  -i       factor to determine number of inner runtime iterations\n (DEFAULT = "<< factor << ")\n\n";
-                std::cout<<" --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "<< statisticaliterations << ")\n\n";
+                std::cout<<"----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------" << std::endl;
+                std::cout<<" --buffer_size                 -b       size of allocated buffer\n (DEFAULT = " << buffersize << ")\n" << std::endl;
+                std::cout<<" --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = " << endPackageSize << ")\n" << std::endl;
+                std::cout<<" --iterations                  -i       factor to determine number of inner runtime iterations\n (DEFAULT = "<< factor << ")\n" << std::endl;
+                std::cout<<" --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "<< statisticaliterations << ")\n" << std::endl;
                 std::cout << " --help                        -h       to view this help tutorial \n\n";
-                std::cout<<" --sendmode                    -s       sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Rsend, 4 = MPI_Bsend, 5 = MPI_Isend, 6 = MPI_Send_Init \n (DEFAULT = "<< sendmode << ")\n\n";
-                std::cout<<" --start_package_size          -a       start package size of data \n (DEFAULT = "<< startPackageSize << ")\n\n";
-                std::cout<<" --recvmode                    -r       receive mode: 1 = 2 = 3 = 4 = MPI_Recv, 5 = MPI_Irecv, 6 = MPI_Recv_Init \n (DEFAULT = "<< recvmode << ")\n\n";
-                std::cout<<" --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = " << packageSizeFactor << ")\n\n";
-                std::cout<<" --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << numberofcalls << ")\n\n";
-                std::cout<<" --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "<< numberofwarmups << ")\n\n";
+                std::cout<<" --sendmode                    -s       sendmode: 1 = MPI_Send, 2 = MPI_Ssend, 3 = MPI_Rsend, 4 = MPI_Bsend, 5 = MPI_Isend, 6 = MPI_Send_Init \n (DEFAULT = "<< sendmode << ")\n" << std::endl;
+                std::cout<<" --start_package_size          -a       start package size of data \n (DEFAULT = "<< startPackageSize << ")\n" << std::endl;
+                std::cout<<" --recvmode                    -r       receive mode: 1 = 2 = 3 = 4 = MPI_Recv, 5 = MPI_Irecv, 6 = MPI_Recv_Init \n (DEFAULT = "<< recvmode << ")\n" << std::endl;
+                std::cout<<" --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = " << packageSizeFactor << ")\n" << std::endl;
+                std::cout<<" --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << numberofcalls << ")\n" << std::endl;
+                std::cout<<" --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "<< numberofwarmups << ")\n" << std::endl;
+                std::cout << " --number_of_root_processes   -x       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = " << numberofRootProcesses << ") \n" << std::endl;
             };
 
             exit(1);
@@ -152,6 +156,13 @@ void Parameters::readOptions(int argc, char **argv, int rank){
                 exit(1);
             }
             break;
+        case 'x':
+            numberofRootProcesses = atof(optarg);
+            if (!(numberofRootProcesses > 0 && numberofRootProcesses <=8)) {
+                printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
+                exit(1);
+            }
+            break;
         case '?':
             fprintf (stderr,
                      "ERROR: Unknown option character `\\x%x'.\n",
@@ -159,7 +170,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         default:
             abort ();
     }
-    std::cout<<"# sendmode" << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << ", number of warm ups " << numberofwarmups << std::endl;
+    std::cout<<"# sendmode " << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", number of calls " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of root processes " << numberofRootProcesses << std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)
