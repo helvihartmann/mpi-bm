@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <iostream>
+#include <getopt.h>
 
 using namespace std;
 
@@ -18,7 +19,17 @@ main (int argc, char **argv)
     
     opterr = 0;
     
-    while ((opt = getopt (argc, argv, "hm:a:i:e:o:")) != -1)
+    static struct option longopts[] = {
+        { "help",              no_argument,	     NULL,	     'h' },
+        { "mode",               required_argument,	     NULL,	     'm' },
+        { "startpackagesize",    required_argument,	     NULL,	     's' },
+        { "iterations",         required_argument,	     NULL,       'i' },
+        { "cutoff",             required_argument,	     NULL,       'e' },
+        { "outerstatisticaliteations",         optional_argument,	     NULL,       'o' },
+        { NULL,	     0,			     NULL,	     0 }
+    };
+    
+    while ((opt = getopt_long (argc, argv, "hm:a:i:e:o:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
