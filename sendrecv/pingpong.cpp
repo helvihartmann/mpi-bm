@@ -66,12 +66,10 @@ int main(int argc,char *argv[]){
         
             results.setvectors(p, innerRuntimeIterations, z);
             
-            buffer.setloopvariables(p, innerRuntimeIterations);
+            buffer.setloopvariables(packageCount, innerRuntimeIterations);
             for (int x = 0; x < numberofRootProcesses; x++){
                 //Process 0 sends the data and gets it back
-                if (rank == x) {
-                    cout << "sending: " << rank << endl;
-                    
+                if (rank == x) {                    
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
                     for (int i = 0; i < size; i++) {
@@ -100,8 +98,6 @@ int main(int argc,char *argv[]){
             
                 //Process 1 receives the data and sends it back
                 else {
-                    
-                    cout << "receiving: " << rank << " from: " << x << endl;
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime =MPI_Wtime();
                     buffer.recvBuffer(x);

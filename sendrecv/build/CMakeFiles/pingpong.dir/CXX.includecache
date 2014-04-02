@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/home/hartmann/benchmark/sendrecv/buffer.cpp
+buffer.h
+/home/hartmann/benchmark/sendrecv/buffer.h
+
 /home/hartmann/benchmark/sendrecv/buffer.h
 mpi.h
 -

@@ -30,8 +30,8 @@ Buffer::~Buffer(){
     delete [] buffer;
 }
 
-void Buffer::setloopvariables(size_t p, size_t innerRuntimeIterations_){
-    packageCount = p / sizeof(int);
+void Buffer::setloopvariables(size_t packageCount_, size_t innerRuntimeIterations_){
+    packageCount = packageCount_;
     innerRuntimeIterations = innerRuntimeIterations_;
     if (numberofcalls >= innerRuntimeIterations){
         numberofcalls = innerRuntimeIterations-1;
