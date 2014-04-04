@@ -45,6 +45,7 @@ void Buffer::sendBuffer(unsigned int remoteRank){
             //int size = packageCount*MPI_BSEND_OVERHEAD;
             //int *localbuffer = new int [size];
             //MPI_Buffer_attach(localbuffer,size);
+            //std::cout << "Overhead: " << MPI_BSEND_OVERHEAD << std::endl;
             for(size_t j=0; j<innerRuntimeIterations; j++){
                 MPI_Send((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD);
             }
