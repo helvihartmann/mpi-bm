@@ -39,6 +39,8 @@ int main(int argc,char *argv[]){
     Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
     
     double starttime, endtime;
+    double totaltime;
+    int counter = 1;
     size_t everythingcorrect_check = 0;
     
     //----------------------------- MEASUREMENT --------------------------------------
@@ -78,16 +80,17 @@ int main(int argc,char *argv[]){
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                     
-                    double time = (endtime-starttime);
+                    totaltime = (endtime-starttime)/(size - numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
                     if(m!=0){
-                        results.settime((m-1), z, time);
+                        //cout << time << " packagesize " << p << " process " << rank << endl;
+                        results.settime((m-1), z, totaltime);
                     }
                     else {
                         if(z == 0){
                             cout << "# processes " << size << endl;
                             cout << "# data sent to "  << size << " processes warumup" << endl;
                         }
-                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/time << " - " << size << endl;
+                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
                     }
                     
                     //buffer.checkBuffer(&everythingcorrect_check);
@@ -103,8 +106,21 @@ int main(int argc,char *argv[]){
                     endtime = MPI_Wtime();
                     
                      if(m!=0){
-                     results.settime((m-1), z, ((endtime-starttime)/numberofRootProcesses));
-                     }
+                         //make him send only once for all senders
+                         if (counter < numberofRootProcesses){
+                             counter++;
+                             totaltime += (endtime-starttime)/(numberofRootProcesses*(size - numberofRootProcesses));
+                             cout << p << " rank " << rank << " time " << totaltime << endl;
+                           // scale with number of senders and consider full amount of data received (packagesize*iterations*numberofsenders)
+                         }
+                         else {
+                             totaltime += (endtime-starttime)/(numberofRootProcesses*(size - numberofRootProcesses));
+                             results.settime((m-1), z, totaltime);
+                             totaltime = 0;
+                             counter = 1;
+
+                         }
+                    }
 
                 }//else
                 
@@ -135,7 +151,7 @@ int main(int argc,char *argv[]){
                 std::cout << "#" << nun->tm_mday << '.' << nun->tm_mon+1 << '.'<< nun->tm_year+1900 << " - " << nun->tm_hour << ':' << nun->tm_min << std::endl;
             
                 
-                cout << "#----------------------- SENDER ----------------------------------------------" << endl;
+                cout << "#----------------------- SENDER ---------------------------" << endl;
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate(rank);
                 cout << "\n\n" << endl;
@@ -144,15 +160,14 @@ int main(int argc,char *argv[]){
             else if ( rank < numberofRootProcesses){
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                cout << "#----------------------- RECEIVER (Bandwidth * number of senders)--------------" << endl;
+                cout << "#-------- RECEIVER (Bandwidth * number of senders )--------------" << endl;
             }
             
             else {
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                sleep(5);
             }
-            
+            sleep(5);
         }
         MPI_Barrier(MPI_COMM_WORLD);
 
