@@ -71,7 +71,6 @@ int main(int argc,char *argv[]){
             for (int x = 0; x < numberofRootProcesses; x++){
                 //Process 0 sends the data and gets it back
                 if (rank == x) {
-                    //cout << "# Process " << rank << " sending" << endl;
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
                     for (int i = numberofRootProcesses; i < size; i++) {
@@ -82,7 +81,6 @@ int main(int argc,char *argv[]){
                     
                     totaltime = (endtime-starttime)/(size - numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
                     if(m!=0){
-                        //cout << time << " packagesize " << p << " process " << rank << endl;
                         results.settime((m-1), z, totaltime);
                     }
                     else {
@@ -110,7 +108,6 @@ int main(int argc,char *argv[]){
                          if (counter < numberofRootProcesses){
                              counter++;
                              totaltime += (endtime-starttime)/(numberofRootProcesses*(size - numberofRootProcesses));
-                             cout << p << " rank " << rank << " time " << totaltime << endl;
                            // scale with number of senders and consider full amount of data received (packagesize*iterations*numberofsenders)
                          }
                          else {
@@ -155,6 +152,9 @@ int main(int argc,char *argv[]){
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate(rank);
                 cout << "\n\n" << endl;
+                if(numberofRootProcesses == 1){
+                    cout << "#-------- RECEIVER (Bandwidth * number of senders )--------------" << endl;
+                }
             }
             
             else if ( rank < numberofRootProcesses){
