@@ -183,30 +183,6 @@ pingpong.cpp.s:
 	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/pingpong.cpp.s
 .PHONY : pingpong.cpp.s
 
-print.o: print.cpp.o
-.PHONY : print.o
-
-# target to build an object file
-print.cpp.o:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.o
-.PHONY : print.cpp.o
-
-print.i: print.cpp.i
-.PHONY : print.i
-
-# target to preprocess a source file
-print.cpp.i:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.i
-.PHONY : print.cpp.i
-
-print.s: print.cpp.s
-.PHONY : print.s
-
-# target to generate assembly for a file
-print.cpp.s:
-	$(MAKE) -f CMakeFiles/pingpong.dir/build.make CMakeFiles/pingpong.dir/print.cpp.s
-.PHONY : print.cpp.s
-
 results.o: results.cpp.o
 .PHONY : results.o
 
@@ -249,9 +225,6 @@ help:
 	@echo "... pingpong.o"
 	@echo "... pingpong.i"
 	@echo "... pingpong.s"
-	@echo "... print.o"
-	@echo "... print.i"
-	@echo "... print.s"
 	@echo "... results.o"
 	@echo "... results.i"
 	@echo "... results.s"

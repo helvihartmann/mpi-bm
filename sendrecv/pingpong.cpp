@@ -5,7 +5,6 @@
 #include <cstdint>
 #include <cmath>
 #include <stdio.h>
-#include "print.h"
 #include "parameters.h"
 #include "buffer.h"
 #include "results.h"
@@ -104,7 +103,7 @@ int main(int argc,char *argv[]){
                     endtime = MPI_Wtime();
                     
                      if(m!=0){
-                     results.settime((m-1), z, ((endtime-starttime)));
+                     results.settime((m-1), z, ((endtime-starttime)/numberofRootProcesses));
                      }
 
                 }//else
@@ -121,8 +120,6 @@ int main(int argc,char *argv[]){
     }//for iterations to get statistic errors
     
     /*------------------------------------ OUTPUT -------------------------------*/
-    
-    Printoutput out;
     
     // maybe input for rank =1 to send everything to process 0 to compare results...
 
@@ -147,15 +144,15 @@ int main(int argc,char *argv[]){
             else if ( rank < numberofRootProcesses){
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                cout << "#----------------------- RECEIVER ----------------------------------------------" << endl;
+                cout << "#----------------------- RECEIVER (Bandwidth * number of senders)--------------" << endl;
             }
             
             else {
                 results.calculate(rank);
                 cout << "\n\n" << endl;
+                sleep(5);
             }
-        
-            //sleep(5);
+            
         }
         MPI_Barrier(MPI_COMM_WORLD);
 

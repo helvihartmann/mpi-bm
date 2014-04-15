@@ -1,7 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/pingpong.dir/pingpong.cpp.o"
   "CMakeFiles/pingpong.dir/buffer.cpp.o"
-  "CMakeFiles/pingpong.dir/print.cpp.o"
   "CMakeFiles/pingpong.dir/parameters.cpp.o"
   "CMakeFiles/pingpong.dir/results.cpp.o"
   "pingpong.pdb"

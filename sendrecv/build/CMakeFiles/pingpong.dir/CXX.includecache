@@ -39,8 +39,6 @@ cmath
 -
 stdio.h
 -
-print.h
-/home/hartmann/benchmark/sendrecv/print.h
 parameters.h
 /home/hartmann/benchmark/sendrecv/parameters.h
 buffer.h
@@ -50,16 +48,6 @@ results.h
 vector
 -
 unistd.h
--
-
-/home/hartmann/benchmark/sendrecv/print.h
-fstream
--
-string
--
-iostream
--
-cstddef
 -
 
 /home/hartmann/benchmark/sendrecv/results.h
