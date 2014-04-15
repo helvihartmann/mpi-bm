@@ -69,19 +69,17 @@ int main(int argc,char *argv[]){
             buffer.setloopvariables(packageCount, innerRuntimeIterations);
             for (int x = 0; x < numberofRootProcesses; x++){
                 //Process 0 sends the data and gets it back
-                if (rank == x) {                    
+                if (rank == x) {
+                    //cout << "# Process " << rank << " sending" << endl;
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
-                    for (int i = 0; i < size; i++) {
-                        if ( i != rank){
-                            buffer.sendBuffer(i);//send innerRuntimeIterations times
-                        }
-                        
+                    for (int i = numberofRootProcesses; i < size; i++) {
+                        buffer.sendBuffer(i);//send innerRuntimeIterations times
                     }
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                     
-                    double time = (endtime-starttime)/(size - 1);
+                    double time = (endtime-starttime);
                     if(m!=0){
                         results.settime((m-1), z, time);
                     }
@@ -90,14 +88,15 @@ int main(int argc,char *argv[]){
                             cout << "# processes " << size << endl;
                             cout << "# data sent to "  << size << " processes warumup" << endl;
                         }
-                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << ((endtime-starttime)/(size-1)) << " - " << (p*innerRuntimeIterations)/time << " - " << size << endl;
+                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/time << " - " << size << endl;
                     }
                     
                     //buffer.checkBuffer(&everythingcorrect_check);
                 }
             
                 //Process 1 receives the data and sends it back
-                else {
+                else if(rank >= numberofRootProcesses){
+                    //cout << "# Process " << rank << " receiving" << endl;
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime =MPI_Wtime();
                     buffer.recvBuffer(x);
@@ -109,6 +108,12 @@ int main(int argc,char *argv[]){
                      }
 
                 }//else
+                
+                else {
+                    //cout << "# Process " << rank << " pending" << endl;
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    MPI_Barrier(MPI_COMM_WORLD);
+                }
             }
         }
     MPI_Barrier(MPI_COMM_WORLD);
@@ -122,17 +127,35 @@ int main(int argc,char *argv[]){
     // maybe input for rank =1 to send everything to process 0 to compare results...
 
     for (int i=0; i<size; i++) {
-
-        if(i == rank){
+        if (rank == i){
+            if(rank == 0){
+                
+                // Header
+                time_t Zeitstempel;
+                tm *nun;
+                Zeitstempel = time(0);
+                nun = localtime(&Zeitstempel);
+                std::cout << "#" << nun->tm_mday << '.' << nun->tm_mon+1 << '.'<< nun->tm_year+1900 << " - " << nun->tm_hour << ':' << nun->tm_min << std::endl;
             
-            // Header
-            out.printtimestemp();
-            out.printheader();
+                
+                cout << "#----------------------- SENDER ----------------------------------------------" << endl;
+                cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
+                results.calculate(rank);
+                cout << "\n\n" << endl;
+            }
             
-            results.calculate(rank);
-            cout << "\n\n" << endl;
+            else if ( rank < numberofRootProcesses){
+                results.calculate(rank);
+                cout << "\n\n" << endl;
+                cout << "#----------------------- RECEIVER ----------------------------------------------" << endl;
+            }
             
-            //sleep(20);
+            else {
+                results.calculate(rank);
+                cout << "\n\n" << endl;
+            }
+        
+            //sleep(5);
         }
         MPI_Barrier(MPI_COMM_WORLD);
 
