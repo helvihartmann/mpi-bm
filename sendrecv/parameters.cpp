@@ -12,7 +12,7 @@
 
 void Parameters::readOptions(int argc, char **argv, int rank){
     int opt;
-    factor = 100000*128;
+    factor = 10000*128;
     
     startPackageSize = 4;
     endPackageSize = 1000;

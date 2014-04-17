@@ -107,11 +107,11 @@ int main(int argc,char *argv[]){
                          //make him send only once for all senders
                          if (counter < numberofRootProcesses){
                              counter++;
-                             totaltime += (endtime-starttime)/(numberofRootProcesses*(size - numberofRootProcesses));
+                             totaltime += (endtime-starttime)/(numberofRootProcesses);
                            // scale with number of senders and consider full amount of data received (packagesize*iterations*numberofsenders)
                          }
                          else {
-                             totaltime += (endtime-starttime)/(numberofRootProcesses*(size - numberofRootProcesses));
+                             totaltime += (endtime-starttime)/(numberofRootProcesses);
                              results.settime((m-1), z, totaltime);
                              totaltime = 0;
                              counter = 1;
@@ -153,14 +153,15 @@ int main(int argc,char *argv[]){
                 results.calculate(rank);
                 cout << "\n\n" << endl;
                 if(numberofRootProcesses == 1){
-                    cout << "#-------- RECEIVER (Bandwidth * number of senders )--------------" << endl;
+                    cout << "#--- RECEIVER (Bandwidth * number of receivers(" << size - numberofRootProcesses << ") )--------------" << endl;
                 }
             }
             
             else if ( rank < numberofRootProcesses){
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                cout << "#-------- RECEIVER (Bandwidth * number of senders )--------------" << endl;
+                cout << "#--- RECEIVER ----------------------------" << endl;
+                cout << " number of receivers = " << size - numberofRootProcesses << endl;
             }
             
             else {
