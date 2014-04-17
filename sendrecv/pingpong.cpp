@@ -152,19 +152,16 @@ int main(int argc,char *argv[]){
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                if(numberofRootProcesses == 1){
-                    cout << "#--- RECEIVER (Bandwidth * number of receivers(" << size - numberofRootProcesses << ") )--------------" << endl;
-                }
             }
             
             else if ( rank < numberofRootProcesses){
                 results.calculate(rank);
                 cout << "\n\n" << endl;
-                cout << "#--- RECEIVER ----------------------------" << endl;
-                cout << " number of receivers = " << size - numberofRootProcesses << endl;
             }
             
             else {
+                cout << "#--- RECEIVER ----------------------------" << endl;
+                cout << " number of receivers = " << size - numberofRootProcesses << endl;
                 results.calculate(rank);
                 cout << "\n\n" << endl;
             }
