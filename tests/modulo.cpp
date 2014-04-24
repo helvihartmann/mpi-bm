@@ -1,8 +1,6 @@
 
 #include <iostream>
 
-/* fles:~/benchmark/sendrecv 30.01.14
- this is the main.cpp (pingpong.cpp) to perform a MPI benchmark where process 0 sends data to process 1 and gets it back, for which the time is meassured in order to calculate the data rate*/
 
 int main(int argc,char *argv[]){
     unsigned int size = 8; 
