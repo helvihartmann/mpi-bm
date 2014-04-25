@@ -104,7 +104,7 @@ int main(int argc,char *argv[]){
                     }
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    totaltime = endtime - starttime/(numberofRootProcesses);
+                    totaltime = (endtime - starttime)/(numberofRootProcesses);
                      if(m!=0){
                          results.settime((m-1), z, totaltime);
                     }
