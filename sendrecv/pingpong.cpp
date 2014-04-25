@@ -68,65 +68,49 @@ int main(int argc,char *argv[]){
             results.setvectors(p, innerRuntimeIterations, z);
             
             buffer.setloopvariables(packageCount, innerRuntimeIterations);
-            for (int x = 0; x < numberofRootProcesses; x++){
-                //Process 0 sends the data and gets it back
-                if (rank == x) {
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    starttime = MPI_Wtime();
-                    for (int i = numberofRootProcesses; i < size; i++) {
-                        buffer.sendBuffer(i);//send innerRuntimeIterations times
-                    }
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    endtime = MPI_Wtime();
-                    
-                    totaltime = (endtime-starttime)/(size - numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
-                    if(m!=0){
-                        results.settime((m-1), z, totaltime);
-                    }
-                    else {
-                        if(z == 0){
-                            cout << "# processes " << size << endl;
-                            cout << "# data sent to "  << size << " processes warumup" << endl;
-                        }
-                        cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
-                    }
-                    
-                    //buffer.checkBuffer(&everythingcorrect_check);
+            //Rootprocess send the data
+            if (rank < numberofRootProcesses) {
+                MPI_Barrier(MPI_COMM_WORLD);
+                starttime = MPI_Wtime();
+                for (int i = numberofRootProcesses; i < size; i++) {
+                    buffer.sendBuffer(i);//send innerRuntimeIterations times
                 }
+                MPI_Barrier(MPI_COMM_WORLD);
+                endtime = MPI_Wtime();
+                
+                totaltime = (endtime-starttime)/(size-numberofRootProcesses);
+                //totaltime = (endtime-starttime)/(size - numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
+                if(m!=0){
+                    results.settime((m-1), z, totaltime);
+                }
+                else {
+                    if(z == 0){
+                        cout << "# processes " << size << endl;
+                        cout << "# data sent to "  << size << " processes warumup" << endl;
+                    }
+                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
+                }
+            }
             
+                    //buffer.checkBuffer(&everythingcorrect_check);
+ 
                 //Process 1 receives the data and sends it back
-                else if(rank >= numberofRootProcesses){
+                else {
                     //cout << "# Process " << rank << " receiving" << endl;
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime =MPI_Wtime();
-                    buffer.recvBuffer(x);
+                    for (int i = 0; i < numberofRootProcesses; i++) {
+                        buffer.recvBuffer(i);//send innerRuntimeIterations times
+                    }
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    
+                    totaltime = endtime - starttime/(numberofRootProcesses);
                      if(m!=0){
-                         //make him send only once for all senders
-                         if (counter < numberofRootProcesses){
-                             counter++;
-                             totaltime += (endtime-starttime)/(numberofRootProcesses);
-                           // scale with number of senders and consider full amount of data received (packagesize*iterations*numberofsenders)
-                         }
-                         else {
-                             totaltime += (endtime-starttime)/(numberofRootProcesses);
-                             results.settime((m-1), z, totaltime);
-                             totaltime = 0;
-                             counter = 1;
-
-                         }
+                         results.settime((m-1), z, totaltime);
                     }
 
                 }//else
-                
-                else {
-                    //cout << "# Process " << rank << " pending" << endl;
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    MPI_Barrier(MPI_COMM_WORLD);
-                }
-            }
+
         }
     MPI_Barrier(MPI_COMM_WORLD);
     cout<<"\n";
