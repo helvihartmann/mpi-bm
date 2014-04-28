@@ -42,11 +42,11 @@ void Buffer::setloopvariables(size_t packageCount_, size_t innerRuntimeIteration
 void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::queue<MPI_Request> queue_request;
     std::queue<MPI_Status> queue_status;
-    
+    MPI_Request send_obj;
+    MPI_Status status;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         for (int remoteRank = numberofRootProcesses; remoteRank < size; remoteRank++) {
-            MPI_Request send_obj;
-            MPI_Status status;
+            
             if (queue_request.size() >= numberofcalls){
                 MPI_Wait (&queue_request.front(), &queue_status.front());
                 queue_status.pop();
@@ -67,10 +67,10 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
 void Buffer::recvBuffer(unsigned int numberofRootProcesses,int size){
     std::queue<MPI_Request> queue_request;
     std::queue<MPI_Status> queue_status;
+    MPI_Request recv_obj;
+    MPI_Status status;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         for (int remoteRank = 0; remoteRank < numberofRootProcesses; remoteRank++) {
-            MPI_Request recv_obj;
-            MPI_Status status;
             if (queue_request.size() >= numberofcalls){
                 MPI_Wait (&queue_request.front(), &queue_status.front());
                 queue_status.pop();
