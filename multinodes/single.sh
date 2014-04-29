@@ -25,7 +25,7 @@ do
         echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 --mca btl_openib_eager_limit 128 build/multinodes -s "$m" -r "$m "-o 2 -e 10000000 -p" $p "-x" $x >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 --mca btl_openib_eager_limit 128 build/multinodes -s "$m" -r "$m "-o 10 -e 10000000 -p" $p "-x" $x >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in

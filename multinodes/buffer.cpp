@@ -42,11 +42,10 @@ void Buffer::setloopvariables(size_t packageCount_, size_t innerRuntimeIteration
 void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::queue<MPI_Request> queue_request;
     std::queue<MPI_Status> queue_status;
-    MPI_Request send_obj;
-    MPI_Status status;
     for(size_t j=0; j<innerRuntimeIterations; j++){
+        MPI_Request send_obj;
+        MPI_Status status;
         for (int remoteRank = numberofRootProcesses; remoteRank < size; remoteRank++) {
-            
             if (queue_request.size() >= numberofcalls){
                 MPI_Wait (&queue_request.front(), &queue_status.front());
                 queue_status.pop();
@@ -56,20 +55,21 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
             queue_status.push(status);
             queue_request.push (send_obj);
         }
-        while (!queue_request.empty()){
-            MPI_Wait(&queue_request.front(), &queue_status.front());
-            queue_request.pop();
-            queue_status.pop();
-        }
+    }
+    while (!queue_request.empty()){
+        MPI_Wait(&queue_request.front(), &queue_status.front());
+        queue_request.pop();
+        queue_status.pop();
     }
 }
 
 void Buffer::recvBuffer(unsigned int numberofRootProcesses,int size){
     std::queue<MPI_Request> queue_request;
     std::queue<MPI_Status> queue_status;
-    MPI_Request recv_obj;
-    MPI_Status status;
     for(size_t j=0; j<innerRuntimeIterations; j++){
+        MPI_Request recv_obj;
+        MPI_Status status;
+        
         for (int remoteRank = 0; remoteRank < numberofRootProcesses; remoteRank++) {
             if (queue_request.size() >= numberofcalls){
                 MPI_Wait (&queue_request.front(), &queue_status.front());
@@ -81,11 +81,11 @@ void Buffer::recvBuffer(unsigned int numberofRootProcesses,int size){
             queue_status.push(status);
             queue_request.push(recv_obj);
         }
-        while (!queue_request.empty()){
-            MPI_Wait(&queue_request.front(), &queue_status.front());
-            queue_request.pop();
-            queue_status.pop();
-        }
+    }
+    while (!queue_request.empty()){
+        MPI_Wait(&queue_request.front(), &queue_status.front());
+        queue_request.pop();
+        queue_status.pop();
     }
 }
 
