@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NODES=(node6 node7)
+NODES=(node0 node1)
 #CMD=(ib_write_bw -a -n 10)
 #CMD=(ib_write_bw -s 8388608 -n 1000)
 #CMD=(ib_write_bw -a -n 1000 -I 10)

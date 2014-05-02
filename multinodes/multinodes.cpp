@@ -89,23 +89,21 @@ int main(int argc,char *argv[]){
                     cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
                 }
             }
-            
-                    //buffer.checkBuffer(&everythingcorrect_check);
  
-                //Process 1 receives the data and sends it back
-                else {
-                    //cout << "# Process " << rank << " receiving" << endl;
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    starttime =MPI_Wtime();
-                    buffer.recvBuffer(numberofRootProcesses, size);//send innerRuntimeIterations times
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    endtime = MPI_Wtime();
-                    totaltime = (endtime - starttime)/(numberofRootProcesses);
-                     if(m!=0){
-                         results.settime((m-1), z, totaltime);
-                    }
+            //Process 1 receives the data and sends it back
+            else {
+                //cout << "# Process " << rank << " receiving" << endl;
+                MPI_Barrier(MPI_COMM_WORLD);
+                starttime =MPI_Wtime();
+                buffer.recvBuffer(numberofRootProcesses, size);//send innerRuntimeIterations times
+                MPI_Barrier(MPI_COMM_WORLD);
+                endtime = MPI_Wtime();
+                totaltime = (endtime - starttime)/(numberofRootProcesses);
+                 if(m!=0){
+                     results.settime((m-1), z, totaltime);
+                }
 
-                }//else
+            }//else
 
         }
     MPI_Barrier(MPI_COMM_WORLD);

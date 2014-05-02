@@ -35,8 +35,7 @@ public:
     void sendBuffer(unsigned int, int);
     
     void recvBuffer(unsigned int, int);
-    
-    void checkBuffer(size_t *);
+
 };
 
 #endif /*BUFFER_H*/
