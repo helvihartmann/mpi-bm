@@ -1,4 +1,4 @@
-~/benchmark/sendrecv/build
+build/
 *.out
 *.in
 *.pdf
