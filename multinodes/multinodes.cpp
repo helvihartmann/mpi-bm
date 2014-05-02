@@ -40,8 +40,6 @@ int main(int argc,char *argv[]){
     
     double starttime, endtime;
     double totaltime;
-    int counter = 1;
-    size_t everythingcorrect_check = 0;
     
     //----------------------------- MEASUREMENT --------------------------------------
     //----------------------------- outer statistical iteration loop-------------------
@@ -76,8 +74,7 @@ int main(int argc,char *argv[]){
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
                 
-                totaltime = (endtime-starttime)/(size-numberofRootProcesses);
-                //totaltime = (endtime-starttime)/(size - numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
+                totaltime = (endtime-starttime)/(size-numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
                 if(m!=0){
                     results.settime((m-1), z, totaltime);
                 }
@@ -86,16 +83,15 @@ int main(int argc,char *argv[]){
                         cout << "# processes " << size << endl;
                         cout << "# data sent to "  << size << " processes warumup" << endl;
                     }
-                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << time << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
+                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << totaltime << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
                 }
             }
  
             //Process 1 receives the data and sends it back
             else {
-                //cout << "# Process " << rank << " receiving" << endl;
                 MPI_Barrier(MPI_COMM_WORLD);
                 starttime =MPI_Wtime();
-                buffer.recvBuffer(numberofRootProcesses, size);//send innerRuntimeIterations times
+                buffer.recvBuffer(numberofRootProcesses);//send innerRuntimeIterations times
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
                 totaltime = (endtime - starttime)/(numberofRootProcesses);

@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/hartmann/benchmark/multinodes/buffer.cpp
-buffer.h
-/home/hartmann/benchmark/multinodes/buffer.h
-
 /home/hartmann/benchmark/multinodes/buffer.h
 mpi.h
 -

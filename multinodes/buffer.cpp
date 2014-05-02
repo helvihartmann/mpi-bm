@@ -22,8 +22,6 @@ Buffer::Buffer(int sendmode_, int recvmode_, size_t numberofcalls_, int rank_, s
     }
 
     std::cout << "# buffer initialized.\n" << std::endl;
-    
-    
 }
 
 Buffer::~Buffer(){
@@ -68,7 +66,7 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::cout << "raus " << raus << std::endl;
 }
 
-void Buffer::recvBuffer(unsigned int numberofRootProcesses,int size){
+void Buffer::recvBuffer(unsigned int numberofRootProcesses){
     MPI_Status status;
     MPI_Request recv_obj;
     size_t received = 0;
@@ -81,6 +79,3 @@ void Buffer::recvBuffer(unsigned int numberofRootProcesses,int size){
     }
     std::cout << "received " << received << std::endl;
 }
-
-
-
