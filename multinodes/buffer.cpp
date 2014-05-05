@@ -70,12 +70,28 @@ void Buffer::recvBuffer(unsigned int numberofRootProcesses){
     MPI_Status status;
     MPI_Request recv_obj;
     //size_t received = 0;
+    std::queue<MPI_Request> queue_request;
+    std::queue<MPI_Status> queue_status;
     for(size_t j=0; j<innerRuntimeIterations; j++){
+        while (queue_request.size() >= numberofcalls){
+            MPI_Wait (&queue_request.front(), &queue_status.front());
+            queue_status.pop();
+            queue_request.pop();
+        }
         for (int remoteRank = 0; remoteRank < numberofRootProcesses; remoteRank++) {
             MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
-            MPI_Wait(&recv_obj,&status);
+            queue_status.push(status);
+            queue_request.push (recv_obj);
+            //MPI_Wait(&recv_obj,&status);
             //received++;
         }
+    }
+    while (!queue_request.empty()){
+        MPI_Wait(&queue_request.front(), &queue_status.front());
+        queue_request.pop();
+        queue_status.pop();
+        //raus++;
+        
     }
     //std::cout << "received " << received << std::endl;
 }
