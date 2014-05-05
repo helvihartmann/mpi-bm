@@ -45,7 +45,7 @@ void Results::calculate(int rank){
             int index = m*numberofpackages+z;
             diff+= (send_mean - time.at(index))*(send_mean - time.at(index));
         }
-        double rate =(totaldatasent_vector.at(z)/send_mean)/(1<<20);
+        double rate =(totaldatasent_vector.at(z)/send_mean)/1000000;//(1<<20);
         //std::cout <<"totaldatasent " <<totaldatasent_vector.at(z)<<" send_mean "<<send_mean<<std::endl;
         double send_vartime = diff/(outerStatisticalIterations);
         double send_stdtime = sqrt(send_vartime);
