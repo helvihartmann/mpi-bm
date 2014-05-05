@@ -6,29 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/hartmann/benchmark/multinodes/parameters.cpp
-parameters.h
-/home/hartmann/benchmark/multinodes/parameters.h
-ctype.h
--
-stdio.h
--
-stdlib.h
+/home/hartmann/benchmark/multinodes/results.cpp
+results.h
+/home/hartmann/benchmark/multinodes/results.h
+cstdio
 -
 unistd.h
 -
-iostream
+
+/home/hartmann/benchmark/multinodes/results.h
+vector
+-
+array
 -
 cmath
 -
-
-/home/hartmann/benchmark/multinodes/parameters.h
-cstddef
--
-cstdlib
--
-vector
--
-getopt.h
+iostream
 -
 
