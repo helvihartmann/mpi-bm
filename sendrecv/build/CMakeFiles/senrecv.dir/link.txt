@@ -1,2 +1,0 @@
-/usr/bin/ar cr libsenrecv.a  CMakeFiles/senrecv.dir/sendrecv.cpp.o
-/usr/bin/ranlib libsenrecv.a

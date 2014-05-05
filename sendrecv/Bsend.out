@@ -1,8 +1,0 @@
-# Prozess 0 von 2 on node4 
-# start Packagesize: 32 cutoff 513
-# Prozess 1 von 2 on node5 
-# start Packagesize: 32 cutoff 513
-#sendmode: Bsend 
-#12.12.2013 - 11:49
-# repeats  packagesize time sendbandwidth varianz receivebandwidth varianz load last: 1min 5min 15min 
-20000000 128 8.900147 287635704.478070 0.033837 287635669.804531 0.033836 - 0.780000 0.270000 0.130000 

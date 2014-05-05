@@ -1,2 +1,5 @@
-~/benchmark/sendrecv/build
-*5*
+build/
+*.out
+*.in
+*.pdf
+*.gnuplot
