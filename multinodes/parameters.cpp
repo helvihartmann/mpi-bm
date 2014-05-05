@@ -15,7 +15,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
     factor = 100000*128;
     
     startPackageSize = 4;
-    endPackageSize = 1000;
+    endPackageSize = 20;
     packageSizeFactor = 2.0;
     
     buffersize=pow(2,35);//34GB
@@ -97,7 +97,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
             }
             break;
         case 'a':
-            startPackageSize = atoi(optarg);
+            startPackageSize = 1<<atoi(optarg);
             
             if (startPackageSize >= 4 && startPackageSize <= 10000000000) {//10GiB max
             }
@@ -107,11 +107,10 @@ void Parameters::readOptions(int argc, char **argv, int rank){
             }
             break;
        case 'e':
-            endPackageSize = atoi(optarg);
+            endPackageSize = 1<<atoi(optarg);
             if (endPackageSize >= 1 && endPackageSize <= 50000000000) {
             }
             else {
-                endPackageSize = factor;
                 printf("#INFO -e: max package size was set to 50GB \n");
             }
             break;
@@ -176,7 +175,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)
             packageSizes.push_back(p);
     else
-        for (size_t p = startPackageSize; p >= endPackageSize; p = p * packageSizeFactor)
+        for (size_t p = startPackageSize; p >= endPackageSize; p = p/packageSizeFactor)
             packageSizes.push_back(p);
 }
 

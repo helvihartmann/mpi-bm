@@ -6,38 +6,20 @@
 
 #IncludeRegexTransform: 
 
-/home/hartmann/benchmark/multinodes/buffer.h
-mpi.h
--
-iostream
--
-queue
--
-
-/home/hartmann/benchmark/multinodes/multinodes.cpp
-mpi.h
--
-fstream
--
-string
--
-iostream
--
-cstdint
--
-cmath
+/home/hartmann/benchmark/multinodes/parameters.cpp
+parameters.h
+/home/hartmann/benchmark/multinodes/parameters.h
+ctype.h
 -
 stdio.h
 -
-parameters.h
-/home/hartmann/benchmark/multinodes/parameters.h
-buffer.h
-/home/hartmann/benchmark/multinodes/buffer.h
-results.h
-/home/hartmann/benchmark/multinodes/results.h
-vector
+stdlib.h
 -
 unistd.h
+-
+iostream
+-
+cmath
 -
 
 /home/hartmann/benchmark/multinodes/parameters.h
@@ -48,15 +30,5 @@ cstdlib
 vector
 -
 getopt.h
--
-
-/home/hartmann/benchmark/multinodes/results.h
-vector
--
-array
--
-cmath
--
-iostream
 -
 

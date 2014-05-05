@@ -76,6 +76,7 @@ int main(int argc,char *argv[]){
                 
                 totaltime = (endtime-starttime)/(size-numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
                 if(m!=0){
+                    cout << "totaltime: " << totaltime << endl;
                     results.settime((m-1), z, totaltime);
                 }
                 else {

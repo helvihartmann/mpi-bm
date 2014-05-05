@@ -39,43 +39,43 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::queue<MPI_Status> queue_status;
     MPI_Request send_obj;
     MPI_Status status;
-    size_t rein = 0;
-    size_t raus = 0;
+    //size_t rein = 0;
+    //size_t raus = 0;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         while (queue_request.size() >= numberofcalls){
             MPI_Wait (&queue_request.front(), &queue_status.front());
             queue_status.pop();
             queue_request.pop();
-            raus++;
+            //raus++;
         }
         for (int remoteRank = numberofRootProcesses; remoteRank < size; remoteRank++) {
             MPI_Issend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
             queue_status.push(status);
             queue_request.push (send_obj);
-            rein++;
+            //rein++;
         }
     }
-    std::cout << "rein " << rein << std::endl;
+    //std::cout << "rein " << rein << std::endl;
     while (!queue_request.empty()){
         MPI_Wait(&queue_request.front(), &queue_status.front());
         queue_request.pop();
         queue_status.pop();
-        raus++;
+        //raus++;
         
     }
-    std::cout << "raus " << raus << std::endl;
+    //std::cout << "raus " << raus << std::endl;
 }
 
 void Buffer::recvBuffer(unsigned int numberofRootProcesses){
     MPI_Status status;
     MPI_Request recv_obj;
-    size_t received = 0;
+    //size_t received = 0;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         for (int remoteRank = 0; remoteRank < numberofRootProcesses; remoteRank++) {
             MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
             MPI_Wait(&recv_obj,&status);
-            received++;
+            //received++;
         }
     }
-    std::cout << "received " << received << std::endl;
+    //std::cout << "received " << received << std::endl;
 }
