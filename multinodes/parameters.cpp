@@ -169,7 +169,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
         default:
             abort ();
     }
-    std::cout<<"# sendmode " << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", pipeline depth " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of root processes " << numberofRootProcesses << std::endl;
+    std::cout<<"# sendmode " << sendmode << " ,receivemode " << recvmode << ", start packagesize " << startPackageSize << ", inner iterations " << factor << ", end packagesize " << endPackageSize << ", statistical iterations " <<statisticaliterations << ", buffersize " << buffersize << ", pipeline depth " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << std::endl;
     
     if (startPackageSize <= endPackageSize)
         for (size_t p = startPackageSize; p <= endPackageSize; p = p * packageSizeFactor)
