@@ -13,12 +13,11 @@ designed to send a lot of data between processes even more than 1GB
 
 class Buffer{
 private:
-    size_t buffersize;
+    
 
-    const int sendmode;
-    const int recvmode;
     size_t numberofcalls;
     int rank;
+    size_t buffersize;
     int *buffer;
     
     size_t packageCount;
@@ -27,7 +26,7 @@ private:
     
 public:
     
-    Buffer(int, int, size_t, int, size_t);
+    Buffer(size_t, int, size_t);
     ~Buffer();
 
     void setloopvariables(size_t, size_t);

@@ -4,12 +4,10 @@
 /*  */
 
     
-Buffer::Buffer(int sendmode_, int recvmode_, size_t numberofcalls_, int rank_, size_t buffersize_) :
-    buffersize(buffersize_),
-    sendmode(sendmode_),
-    recvmode(recvmode_),
+Buffer::Buffer(size_t numberofcalls_, int rank_, size_t buffersize_) :
     numberofcalls(numberofcalls_),
-    rank(rank_)
+    rank(rank_),
+    buffersize(buffersize_)
 {
     std::cout << "# allocating buffer..." << std::endl;
     
@@ -39,8 +37,7 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::queue<MPI_Status> queue_status;
     MPI_Request send_obj;
     MPI_Status status;
-    //size_t rein = 0;
-    //size_t raus = 0;
+    std::cout << "function buffer: inner runtime iterations: " << innerRuntimeIterations << " .package size: " << packageCount << ", pipeline depth: " << numberofcalls << std::endl;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         while (queue_request.size() >= numberofcalls){
             MPI_Wait (&queue_request.front(), &queue_status.front());

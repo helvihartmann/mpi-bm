@@ -29,8 +29,6 @@ int main(int argc,char *argv[]){
     /*--------------------- read in parameters-----------------------------*/
     Parameters params;
     params.readOptions(argc,argv,rank);
-    int sendmode = params.getsendmode(); // 1 Send, 2 Ssend, 3 Bsend
-    int recvmode = params.getrecvmode();
     size_t numberofcalls = params.getnumberofcalls();
     size_t numberofwarmups = params.getnumberofwarmups();
     int numberofRootProcesses = params.getnumberofRootProcesses();
@@ -44,11 +42,12 @@ int main(int argc,char *argv[]){
     //----------------------------- MEASUREMENT --------------------------------------
     //----------------------------- outer statistical iteration loop-------------------
     
-    Buffer buffer(sendmode, recvmode, numberofcalls, rank, params.getBuffersize());
+    Buffer buffer(numberofcalls, rank, params.getBuffersize());
     
     for(int m = 0; m <= params.getStatisticalIterations(); m++){//minimum two iterations m=0 warm up and m=1 first measurement
         
         cout<<"# Statistical Iteration cycle "<<m<<"\n";
+        //std::cout<<"# statistical iterations " <<params.getStatisticalIterations() << ", pipeline depth " << numberofcalls << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << " , number of packages " << params.getNumberOfPackageSizes() << std::endl;
         
         //-------------------------iterate over package size-------------------
     
@@ -65,6 +64,8 @@ int main(int argc,char *argv[]){
         
             results.setvectors(p, innerRuntimeIterations, z);
             
+            //cout << "inner runtime iterations: " << innerRuntimeIterations << " .package size: " << packageCount << endl;
+            
             buffer.setloopvariables(packageCount, innerRuntimeIterations);
             //Rootprocess send the data
             if (rank < numberofRootProcesses) {
@@ -76,7 +77,7 @@ int main(int argc,char *argv[]){
                 
                 totaltime = (endtime-starttime)/(size-numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
                 if(m!=0){
-                    cout << "totaltime: " << totaltime << endl;
+                    cout << "totaltime = (endtime-starttime) = " << (endtime-starttime) << " = " << totaltime << endl;
                     results.settime((m-1), z, totaltime);
                 }
                 else {
