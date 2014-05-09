@@ -12,6 +12,7 @@ class Results{
 private:
     int outerStatisticalIterations;
     int numberofpackages;
+    int rank;
     std::vector<double> summe;
     std::vector<double> time;
     
@@ -24,7 +25,7 @@ private:
     //std::array<std::array<double,outerStatisticalIterations>,numberofpackages> time;
 public:
     
-    Results(int, int);
+    Results(int, int, int);
     
     void setvectors(size_t packagesize_tmp,
                              size_t innerRuntimeIterations,
@@ -34,7 +35,7 @@ public:
                  int idx_numberofpackages,
                  double time_);
     
-    void calculate(int rank);
+    void calculate();
 };
 
 #endif /*BUFFEROPERATIONS_H*/

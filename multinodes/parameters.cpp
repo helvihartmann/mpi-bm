@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <iostream>
-#include <cmath>
 
 /* pfad
 27.11.2013
@@ -18,7 +17,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
     endPackageSize = 1<<20;
     packageSizeFactor = 2;
     
-    buffersize=pow(2,35);//34GB
+    buffersize=1<<30;
     statisticaliterations=2;
     
     numberofcalls = 8;

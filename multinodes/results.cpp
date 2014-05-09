@@ -3,9 +3,10 @@
 #include <unistd.h>
 
 
-Results::Results(int outerStatisticalIterations_, int numberofpackages_) :
+Results::Results(int outerStatisticalIterations_, int numberofpackages_, int rank_) :
   outerStatisticalIterations(outerStatisticalIterations_),
   numberofpackages(numberofpackages_),
+  rank(rank_),
   summe(numberofpackages),
   time(outerStatisticalIterations * numberofpackages),
   package_vector(numberofpackages),
@@ -35,7 +36,7 @@ void Results::settime(int idx_outeriter, int idx_numberofpackages,double time_ )
     summe.at(idx_numberofpackages) += time_;
 }
 
-void Results::calculate(int rank){
+void Results::calculate(){
     std::cout << "# process " << rank << " printing" << std::endl;
     for(int z=0;z<numberofpackages;z++){
         double send_mean=summe.at(z)/(outerStatisticalIterations);

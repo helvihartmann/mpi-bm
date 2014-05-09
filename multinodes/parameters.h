@@ -18,7 +18,7 @@ private:
     
     size_t startPackageSize;
     size_t endPackageSize;
-    double packageSizeFactor;
+    int packageSizeFactor;
 
     int statisticaliterations;
     std::vector<size_t> packageSizes;

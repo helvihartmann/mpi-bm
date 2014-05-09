@@ -37,7 +37,7 @@ void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
     std::queue<MPI_Status> queue_status;
     MPI_Request send_obj;
     MPI_Status status;
-    std::cout << "function buffer: inner runtime iterations: " << innerRuntimeIterations << " .package size: " << packageCount << ", pipeline depth: " << numberofcalls << std::endl;
+    std::cout << "function buffer: inner runtime iterations: " << innerRuntimeIterations << ", package size: " << packageCount << ", pipeline depth: " << numberofcalls << std::endl;
     for(size_t j=0; j<innerRuntimeIterations; j++){
         while (queue_request.size() >= numberofcalls){
             MPI_Wait (&queue_request.front(), &queue_status.front());

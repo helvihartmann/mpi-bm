@@ -34,10 +34,9 @@ int main(int argc,char *argv[]){
     int numberofRootProcesses = params.getnumberofRootProcesses();
     
     //------- initaliz stuff for later -------------------
-    Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes());
+    Results results(params.getStatisticalIterations(), params.getNumberOfPackageSizes(), rank);
     
-    double starttime, endtime;
-    double totaltime;
+    double starttime, endtime, totaltime;
     
     //----------------------------- MEASUREMENT --------------------------------------
     //----------------------------- outer statistical iteration loop-------------------
@@ -75,17 +74,12 @@ int main(int argc,char *argv[]){
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
                 
-                totaltime = (endtime-starttime)/(size-numberofRootProcesses);//consider full amount of Data sent to all processes (packagsize * number of receivers)
-                if(m!=0){
-                    cout << "totaltime = (endtime-starttime) = " << (endtime-starttime) << " = " << totaltime << endl;
-                    results.settime((m-1), z, totaltime);
-                }
-                else {
+                if(m == 0){
                     if(z == 0){
                         cout << "# processes " << size << endl;
                         cout << "# data sent to "  << size << " processes warumup" << endl;
                     }
-                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << totaltime << " - " << (p*innerRuntimeIterations)/totaltime << " - " << size << endl;
+                    cout << (p*innerRuntimeIterations) << " " << innerRuntimeIterations << " " << p << " " << (endtime-starttime) << " - " << (p*innerRuntimeIterations*(1-numberofRootProcesses))/totaltime << " - " << size << endl;
                 }
             }
  
@@ -96,13 +90,12 @@ int main(int argc,char *argv[]){
                 buffer.recvBuffer(numberofRootProcesses);//send innerRuntimeIterations times
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
-                totaltime = (endtime - starttime)/(numberofRootProcesses);
-                 if(m!=0){
-                     results.settime((m-1), z, totaltime);
-                }
-
             }//else
-
+            
+            if(m!=0){
+                totaltime = (endtime-starttime);
+                results.settime((m-1), z, totaltime);
+            }
         }
     MPI_Barrier(MPI_COMM_WORLD);
     cout<<"\n";
@@ -126,19 +119,19 @@ int main(int argc,char *argv[]){
                 
                 cout << "#----------------------- SENDER ---------------------------" << endl;
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
-                results.calculate(rank);
+                results.calculate();
                 cout << "\n\n" << endl;
             }
             
             else if ( rank < numberofRootProcesses){
-                results.calculate(rank);
+                results.calculate();
                 cout << "\n\n" << endl;
             }
             
             else {
                 cout << "#--- RECEIVER ----------------------------" << endl;
                 cout << " number of receivers = " << size - numberofRootProcesses << endl;
-                results.calculate(rank);
+                results.calculate();
                 cout << "\n\n" << endl;
             }
             sleep(5);
