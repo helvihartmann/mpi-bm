@@ -5,12 +5,17 @@
 
 class Buffer{
 private:
+    int size;
     int rank;
+    
+    int pipelinedepth;
+    int numberofRootProcesses;
+    size_t buffersize;
 
     
 public:
     
-    Buffer(int rank);
+    Buffer(int size, int rank, int pipelinedepth, int numberofrootprocesses, size_t buffersize);
     
 };
 

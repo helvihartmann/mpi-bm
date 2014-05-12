@@ -31,11 +31,8 @@ public:
     
     size_t getpipelinedepth() { return pipelinedepth; }
     
-    size_t getnumberofwarmups() { return numberofwarmups; }
-    
     int getnumberofRootProcesses() { return numberofRootProcesses; }
 
-    
     size_t getinnerRuntimeIterations(int z, int m);
     
 };

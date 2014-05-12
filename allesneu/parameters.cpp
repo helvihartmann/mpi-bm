@@ -31,14 +31,26 @@ size_t Parameters::getinnerRuntimeIterations(int z, int m) {
     size_t innerRuntimeIterations;
     
     if (m == 0){
+        if (z == 0){
+            std::cout << "#WARMUP" << std::endl;
+        }
         innerRuntimeIterations = numberofwarmups;
     }
-    if (packageSizes.at(z) <= 10000)  {
-        innerRuntimeIterations = factor;
-    }
     else{
-        innerRuntimeIterations = 6000/packageSizes.at(z);
+        if (z == 0){
+            std::cout << "# " << m << ". iteration" << std::endl;
+        }
+        if (packageSizes.at(z) <= 10000)  {
+            innerRuntimeIterations = factor;
+        }
+        else{
+            innerRuntimeIterations = 6000000/packageSizes.at(z);
+        }
+        if (innerRuntimeIterations <= 5){
+            innerRuntimeIterations = 5;
+        }
     }
+    
     
     return innerRuntimeIterations;
 }
