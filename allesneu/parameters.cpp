@@ -1,7 +1,7 @@
 #include "parameters.h"
 
 Parameters::Parameters(int argc, char **argv){
-    numberofwarmups = 10;
+    numberofwarmups = 20;
     pipelinedepth = 8;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
@@ -10,7 +10,7 @@ Parameters::Parameters(int argc, char **argv){
     
     
     startpackagesize = 1 << 2;
-    endpackagesize = 1 << 24;
+    endpackagesize = 1 << 20;
     int packageSizeFactor = 2;
     if (startpackagesize <= endpackagesize){
         for (size_t p = startpackagesize; p <= endpackagesize; p = p * packageSizeFactor){
@@ -40,7 +40,7 @@ size_t Parameters::getinnerRuntimeIterations(int z, int m) {
         if (z == 0){
             std::cout << "# " << m << ". iteration" << std::endl;
         }
-        if (packageSizes.at(z) <= 10000)  {
+        if (packageSizes.at(z) <= 1000)  {
             innerRuntimeIterations = factor;
         }
         else{
