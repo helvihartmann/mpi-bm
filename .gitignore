@@ -4,3 +4,4 @@ build/
 *.in
 *.pdf
 *.gnuplot
+*.hist

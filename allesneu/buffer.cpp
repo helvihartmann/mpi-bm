@@ -18,9 +18,16 @@ Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, int numberofRo
     }
     
     std::cout << "# buffer initialized.\n" << std::endl;
+    
 }
 
-void Buffer::sendbuffer(size_t packagecount, size_t innerRuntimeIterations){
+void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIterations_){
+    innerRuntimeIterations = innerRuntimeIterations_;
+    packagecount = packagecount_;
+    singletime.resize(innerRuntimeIterations);
+}
+
+void Buffer::sendbuffer(){
     std::queue<MPI_Request> queue_request;
     MPI_Request send_obj;
     for(size_t j = 0; j < innerRuntimeIterations; j++){
@@ -29,8 +36,11 @@ void Buffer::sendbuffer(size_t packagecount, size_t innerRuntimeIterations){
             queue_request.pop();
         }
         for(int remoterank = numberofRootProcesses; remoterank < size; remoterank++){
+            timestamp.stop();
+            singletime.at(j)=timestamp.cycles();
+            timestamp.start();
             MPI_Issend((buffer + ((packagecount*j)%buffersize)), packagecount, MPI_INT, remoterank, j, MPI_COMM_WORLD, &send_obj);
-            queue_request.push (send_obj);
+            queue_request.push(send_obj);
         }
     }
     while(!queue_request.empty()){
@@ -39,7 +49,7 @@ void Buffer::sendbuffer(size_t packagecount, size_t innerRuntimeIterations){
     }
 }
 
-void Buffer::receivebuffer(size_t packagecount, size_t innerRuntimeIterations){
+void Buffer::receivebuffer(){
     std::queue<MPI_Request> queue_request;
     MPI_Request recv_obj;
     for(size_t j = 0; j < innerRuntimeIterations; j++){
@@ -56,4 +66,22 @@ void Buffer::receivebuffer(size_t packagecount, size_t innerRuntimeIterations){
         MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
         queue_request.pop();
     }
+}
+
+void Buffer::printsingletime(double time){
+    size_t i;
+    ostringstream oss;
+    oss << (packagecount*sizeof(int)) << ".hist";
+    
+    
+    ofstream myfile;
+    myfile.open(oss.str());
+    myfile << "# average time = " << (time/innerRuntimeIterations)*1000000 << " microseconds for " << innerRuntimeIterations << " iterations\n";
+    myfile << "# processor cycles time[ms]" << "\n";
+    for(size_t j = 0; j < innerRuntimeIterations; j++){
+        myfile << singletime.at(j) << " " << (singletime.at(j)/2000) << " " << i << "\n";
+        i++;
+    }
+    
+    myfile.close();
 }

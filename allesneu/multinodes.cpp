@@ -4,6 +4,7 @@
 #include "results.h"
 #include "buffer.h"
 #include <unistd.h>
+#include "tsc.h"
 
 using namespace std;
 
@@ -23,32 +24,48 @@ int main (int argc, char *argv[]){
     Buffer buffer(size, rank, pipelinedepth, numberofRootProcesses, params.getBuffersize());
     double starttime, endtime;
     
+    double singletime;
+    
+    TimeStampCounter timestamp;
+
     for (int m = 0; m <= statisticaliteration; m++){
         for (int z = 0; z < numberofpackages; z++){
             size_t packagesize = params.getPackageSizes().at(z);
             size_t packacount = packagesize/sizeof(int);
             size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z, m);
             
+            buffer.setloopvariables(packacount, innerRuntimeIterations);
             //cout << "package size: " << packagesize << ", iterations: " << innerRuntimeIterations << endl;
             
             if (rank < numberofRootProcesses){
                 MPI_Barrier(MPI_COMM_WORLD);
                 starttime = MPI_Wtime();
-                buffer.sendbuffer(packacount, innerRuntimeIterations);
+                timestamp.start();
+                buffer.sendbuffer();
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
+                timestamp.stop();
+                singletime=(double)timestamp.cycles();
             }
+            
             else{
                 MPI_Barrier(MPI_COMM_WORLD);
                 starttime = MPI_Wtime();
-                buffer.receivebuffer(packacount, innerRuntimeIterations);
+                buffer.receivebuffer();
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
             }
             
             
             if  (m != 0){
+                
+                //Write time-----------------------------------------------------------------
+                cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
+                cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
+                //---------------------------------------------------------------------------
                 results.setvectors((m-1), z, innerRuntimeIterations, packagesize, (endtime-starttime));
+                buffer.printsingletime((endtime-starttime));
+
             }
         }
     }
@@ -71,7 +88,8 @@ int main (int argc, char *argv[]){
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate();
                 cout << "\n\n" << endl;
-            }
+                
+                            }
             
             else if ( rank < numberofRootProcesses){
                 results.calculate();

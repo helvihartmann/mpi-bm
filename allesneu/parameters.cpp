@@ -2,7 +2,7 @@
 
 Parameters::Parameters(int argc, char **argv){
     numberofwarmups = 20;
-    pipelinedepth = 8;
+    pipelinedepth = 1;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
     factor = 1<<20;
@@ -44,7 +44,7 @@ size_t Parameters::getinnerRuntimeIterations(int z, int m) {
             innerRuntimeIterations = factor;
         }
         else{
-            innerRuntimeIterations = 6000000/packageSizes.at(z);
+            innerRuntimeIterations = 50000000/packageSizes.at(z);
         }
         if (innerRuntimeIterations <= 5){
             innerRuntimeIterations = 5;

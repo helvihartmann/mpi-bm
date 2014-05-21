@@ -23,7 +23,7 @@ void Results::setvectors(int idx_outeriter, size_t idx_numberofpackages, size_t 
     
     summe.at(idx_numberofpackages) += time_;
     
-    std::cout << time.at(index) << std::endl;
+    //std::cout << time.at(index)*1000000 << std::endl;
 }
         
 void Results::calculate(){
