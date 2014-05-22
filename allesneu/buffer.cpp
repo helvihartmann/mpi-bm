@@ -13,7 +13,7 @@ Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, int numberofRo
     
     std::cout << "# " << buffersize << " B allocated, initializing...\n" << std::endl;
     
-    for (size_t i=0; i<buffersize / sizeof(int); i++){
+    for (size_t i=0; i < (buffersize / sizeof(int)); i++){
         buffer[i]=rank;
     }
     
@@ -39,7 +39,10 @@ void Buffer::sendbuffer(){
             timestamp.stop();
             singletime.at(j)=timestamp.cycles();
             timestamp.start();
-            MPI_Issend((buffer + ((packagecount*j)%buffersize)), packagecount, MPI_INT, remoterank, j, MPI_COMM_WORLD, &send_obj);
+            //std::cout << "buffer " << buffer << " pointer at: " << (packagecount*j)%buffersize << endl;
+            MPI_Issend((buffer + ((packagecount*j)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+            //MPI_Issend( &buffer[j%buffersize],  packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj)
+            //
             queue_request.push(send_obj);
         }
     }
@@ -58,7 +61,7 @@ void Buffer::receivebuffer(){
             queue_request.pop();
         }
         for(int remoterank = 0; remoterank < numberofRootProcesses; remoterank++){
-            MPI_Irecv((buffer + ((packagecount*j)%buffersize)), packagecount, MPI_INT, remoterank, j, MPI_COMM_WORLD, &recv_obj);
+            MPI_Irecv((buffer + ((packagecount*j)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
             queue_request.push(recv_obj);
         }
     }

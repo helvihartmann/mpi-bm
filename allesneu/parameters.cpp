@@ -6,8 +6,8 @@ Parameters::Parameters(int argc, char **argv){
     pipelinedepth = 1;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
-    factor = 1<<20;
-    buffersize = 1<<30;
+    factor = (1<<19);
+    buffersize = 4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     
     
     startpackagesize = 1 << 2;
@@ -92,7 +92,7 @@ Parameters::Parameters(int argc, char **argv){
             break;
         case 'b':
             buffersize = atoi(optarg);
-            if (buffersize > 0 && buffersize <= 50000000000) {
+            if (buffersize > 0 && buffersize <= 500000000000) {
             }
             else {
                 printf("ERROR -b: please enter vaild buffersize\n");
@@ -158,7 +158,7 @@ size_t Parameters::getinnerRuntimeIterations(int z, int m) {
         if (z == 0){
             std::cout << "# " << m << ". iteration" << std::endl;
         }
-        if (packageSizes.at(z) <= 1000)  {
+        if (packageSizes.at(z) <= 4000)  {
             innerRuntimeIterations = factor;
         }
         else{

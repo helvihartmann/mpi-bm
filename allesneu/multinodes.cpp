@@ -64,7 +64,7 @@ int main (int argc, char *argv[]){
                 cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
                 //---------------------------------------------------------------------------
                 results.setvectors((m-1), z, innerRuntimeIterations, packagesize, (endtime-starttime));
-                buffer.printsingletime((endtime-starttime));
+                //buffer.printsingletime((endtime-starttime));
 
             }
         }
@@ -108,8 +108,6 @@ int main (int argc, char *argv[]){
         
     }
 
-    
-    
     MPI_Finalize();
     return 0;
 }
