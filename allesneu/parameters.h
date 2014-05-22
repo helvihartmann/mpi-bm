@@ -13,6 +13,7 @@ private:
     int numberofRootProcesses;
     int statisticaliteration;
     size_t factor;
+    size_t factor_fix;
     size_t buffersize;
     size_t startpackagesize;
     size_t endpackagesize;
