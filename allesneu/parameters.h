@@ -2,6 +2,8 @@
 #define PARAMETERS_H
 #include <iostream>
 #include <vector>
+#include <unistd.h>
+#include <getopt.h>
 /**/
 
 class Parameters{
