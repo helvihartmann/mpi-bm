@@ -29,46 +29,66 @@ int main (int argc, char *argv[]){
     TimeStampCounter timestamp;
 
     for (int m = 0; m <= statisticaliteration; m++){
-        for (int z = 0; z < numberofpackages; z++){
-            size_t packagesize = params.getPackageSizes().at(z);
-            size_t packacount = packagesize/sizeof(int);
-            size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z, m);
-            
-            buffer.setloopvariables(packacount, innerRuntimeIterations);
-            //cout << "package size: " << packagesize << ", iterations: " << innerRuntimeIterations << endl;
-            
-            if (rank < numberofRootProcesses){
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                timestamp.start();
-                buffer.sendbuffer();
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                timestamp.stop();
-                singletime=(double)timestamp.cycles();
-            }
-            
-            else{
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                buffer.receivebuffer();
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-            }
-            
-            
-            if  (m != 0){
+        if (m == 0){
+            for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
+                buffer.setloopvariables(packagecount, params.getnumberofwarmups());
                 
-                //Write time-----------------------------------------------------------------
-                cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
-                cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
-                //---------------------------------------------------------------------------
-                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, (endtime-starttime));
-                //buffer.printsingletime((endtime-starttime));
+                if (rank < numberofRootProcesses){
+                    cout << "# warmup: package size: " << packagecount*sizeof(int) << ", iterations: " << params.getnumberofwarmups() << endl;
+                    buffer.sendbuffer();
+                }
+                else{
+                    buffer.receivebuffer();
+                }
 
             }
+        
         }
-    }
+        
+        else{
+            for (int z = 0; z < numberofpackages; z++){
+                size_t packagesize = params.getPackageSizes().at(z);
+                size_t packacount = packagesize/sizeof(int);
+                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
+                
+                buffer.setloopvariables(packacount, innerRuntimeIterations);
+                
+                
+                if (rank < numberofRootProcesses){
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    starttime = MPI_Wtime();
+                    timestamp.start();
+                    buffer.sendbuffer();
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    endtime = MPI_Wtime();
+                    timestamp.stop();
+                    singletime=(double)timestamp.cycles();
+                }
+                
+                else{
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    starttime = MPI_Wtime();
+                    buffer.receivebuffer();
+                    MPI_Barrier(MPI_COMM_WORLD);
+                    endtime = MPI_Wtime();
+                }
+                
+                
+                //Write time-----------------------------------------------------------------
+                //cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
+                //cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
+                //---------------------------------------------------------------------------
+                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, (endtime-starttime));
+                if (packagesize == 16384 & rank == 0){
+                    buffer.printsingletime((endtime-starttime),m);
+                }
+            }//z
+            if (rank == 0){
+                cout << m << ". iteration-------------------" << endl;
+                results.printstatisticaliteration();
+            }
+        }
+    }//m
     
     //-----------------------------------Output-------------------------
     

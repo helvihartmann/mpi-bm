@@ -15,6 +15,7 @@ private:
     std::vector<size_t>innerRuntimeIterations_vector;
     std::vector<size_t>totaldatasent_vector;
     
+    int idx_outeriter;
     std::vector<double> time;
     std::vector<double> summe;
     
@@ -23,6 +24,8 @@ public:
     Results(int rank, int statisticaliteration, int numberofpackages);
     
     void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, double time);
+    
+    void printstatisticaliteration();
     
     void calculate();
     

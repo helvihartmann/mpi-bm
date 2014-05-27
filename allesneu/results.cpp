@@ -10,10 +10,11 @@ Results::Results(int rank_, int statisticaliteration_, int numberofpackages_) :
   time(statisticaliteration * numberofpackages),
   summe(numberofpackages)
 {
-    std::cout << "bla" << std::endl;
 }
 
-void Results::setvectors(int idx_outeriter, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, double time_){
+void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, double time_){
+    idx_outeriter = idx_outeriter_;
+    
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
     totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations;
@@ -22,10 +23,19 @@ void Results::setvectors(int idx_outeriter, size_t idx_numberofpackages, size_t 
     time.at(index) = time_;
     
     summe.at(idx_numberofpackages) += time_;
-    
-    //std::cout << time.at(index)*1000000 << std::endl;
 }
-        
+
+
+void Results::printstatisticaliteration(){
+    std::cout << "# printing " << idx_outeriter+1 << " statistical iteration" << std::endl;
+    for(int idx_numberofpackages = 0; idx_numberofpackages < numberofpackages; idx_numberofpackages++){
+        int index = idx_outeriter*numberofpackages+idx_numberofpackages;
+        std::cout<<totaldatasent_vector.at(idx_numberofpackages)<<" "<<innerRuntimeIterations_vector.at(idx_numberofpackages)<<" "<<package_vector.at(idx_numberofpackages)<<" " << time.at(index) <<" - "<< (totaldatasent_vector.at(idx_numberofpackages)/time.at(index))/1000000 << " - " << rank <<  std::endl;
+    }
+    
+    std::cout  << "\n\n" << std::endl;
+}
+
 void Results::calculate(){
     std::cout << "# process " << rank << " printing" << std::endl;
     for(int z=0;z<numberofpackages;z++){

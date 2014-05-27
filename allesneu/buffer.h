@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 
+
 using namespace std;
 /**/
 
@@ -36,7 +37,7 @@ public:
     
     void receivebuffer();
     
-    void printsingletime(double time);
+    void printsingletime(double time, int statisticaliteration);
 };
 
 #endif /*BUFFER_H*/

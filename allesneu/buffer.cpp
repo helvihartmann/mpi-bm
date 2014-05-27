@@ -39,10 +39,7 @@ void Buffer::sendbuffer(){
             timestamp.stop();
             singletime.at(j)=timestamp.cycles();
             timestamp.start();
-            //std::cout << "buffer " << buffer << " pointer at: " << (packagecount*j)%buffersize << endl;
             MPI_Issend((buffer + ((packagecount*j)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
-            //MPI_Issend( &buffer[j%buffersize],  packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj)
-            //
             queue_request.push(send_obj);
         }
     }
@@ -71,10 +68,10 @@ void Buffer::receivebuffer(){
     }
 }
 
-void Buffer::printsingletime(double time){
+void Buffer::printsingletime(double time, int statisticaliteration){
     size_t i;
     ostringstream oss;
-    oss << (packagecount*sizeof(int)) << ".hist";
+    oss << (packagecount*sizeof(int)) << "_p" << pipelinedepth << "_i" << innerRuntimeIterations << "_o" << statisticaliteration << ".hist";
     
     
     ofstream myfile;

@@ -36,7 +36,9 @@ public:
     
     int getnumberofRootProcesses() { return numberofRootProcesses; }
 
-    size_t getinnerRuntimeIterations(int z, int m);
+    size_t getinnerRuntimeIterations(int z);
+    
+    int getnumberofwarmups() { return numberofwarmups; }
     
 };
 

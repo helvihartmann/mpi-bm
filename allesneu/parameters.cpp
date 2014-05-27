@@ -6,8 +6,8 @@ Parameters::Parameters(int argc, char **argv){
     pipelinedepth = 1;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
-    factor = 50000000;
-    factor_fix = (1<<19);
+    factor = (10*1000000);
+    factor_fix = (1<<20);
     buffersize = 4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     
     
@@ -38,7 +38,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << "----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------"       << std::endl;
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
-            std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations\n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
+            std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
             std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --help                        -h       to view this help tutorial \n\n";
             std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
@@ -50,6 +50,7 @@ Parameters::Parameters(int argc, char **argv){
         case 'i':
             factor = atoi(optarg);
             if (factor >= 1) {
+                factor = 1000000*factor;
             }
             else {
                 printf("ERROR -i: please enter vaild iteration factor\n");
@@ -146,30 +147,18 @@ Parameters::Parameters(int argc, char **argv){
 }
 
 
-size_t Parameters::getinnerRuntimeIterations(int z, int m) {
+size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
-    if (m == 0){
-        if (z == 0){
-            std::cout << "#WARMUP" << std::endl;
-        }
-        innerRuntimeIterations = numberofwarmups;
+    if (packageSizes.at(z) <= 10000)  {
+        innerRuntimeIterations = factor_fix;
     }
     else{
-        if (z == 0){
-            std::cout << "# " << m << ". iteration" << std::endl;
-        }
-        if (packageSizes.at(z) <= 10000)  {
-            innerRuntimeIterations = factor_fix;
-        }
-        else{
-            innerRuntimeIterations = factor/packageSizes.at(z);
-        }
-        if (innerRuntimeIterations <= 5){
-            innerRuntimeIterations = 5;
-        }
+        innerRuntimeIterations = factor/packageSizes.at(z);
     }
-    
+    if (innerRuntimeIterations <= 5){
+        innerRuntimeIterations = 5;
+    }
     
     return innerRuntimeIterations;
 }
