@@ -3,7 +3,7 @@ echo
 
 p=1
 
-for i in 10000
+for i in 4000
     do
     for w in {1..23}
         do
