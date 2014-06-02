@@ -1,9 +1,9 @@
 #!/bin/bash
 echo
 
-p=1
+p=8
 
-for i in 4000
+for i in 10000
     do
     for w in {1..23}
         do

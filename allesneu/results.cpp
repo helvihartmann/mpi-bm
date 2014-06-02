@@ -52,8 +52,8 @@ void Results::calculate(){
         
         std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << std::endl;
         
-        if (send_std >=5){
-            std::cout << " WARNING!  standarddeviation greater than 5MB/s....measurements are not similiar enough" << std::endl;
+        if (send_std >=50){
+            std::cout << " WARNING!  standarddeviation greater than 50MB/s....measurements are not similiar enough" << std::endl;
         }
     }
 }

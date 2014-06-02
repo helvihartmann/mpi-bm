@@ -2,11 +2,11 @@
 
 Parameters::Parameters(int argc, char **argv){
     int opt;
-    numberofwarmups = 20;
+    numberofwarmups = 130;
     pipelinedepth = 1;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
-    factor = (10*1000000);
+    factor = (6*1000000000);
     factor_fix = (1<<20);
     buffersize = 4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     
@@ -111,7 +111,7 @@ Parameters::Parameters(int argc, char **argv){
             break;
         case 'w':
             numberofwarmups = atof(optarg);
-            if (!(numberofwarmups > 0)) {
+            if (!(numberofwarmups >= 0)) {
                 printf("ERROR -w: please enter vaild number for number of warmups (i.e. how many times a package is sent/received in advance) \n");
                 exit(1);
             }

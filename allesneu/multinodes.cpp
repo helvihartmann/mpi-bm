@@ -15,8 +15,9 @@ int main (int argc, char *argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     
     Parameters params(argc, argv);
-    unsigned int pipelinedepth = params.getpipelinedepth();
+    
     int numberofRootProcesses = params.getnumberofRootProcesses();
+    unsigned int pipelinedepth = params.getpipelinedepth()*(size - numberofRootProcesses);
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     
