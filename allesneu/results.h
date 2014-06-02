@@ -23,7 +23,7 @@ public:
     
     Results(int rank, int statisticaliteration, int numberofpackages);
     
-    void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, double time);
+    void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor,double time);
     
     void printstatisticaliteration();
     

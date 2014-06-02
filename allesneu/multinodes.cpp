@@ -17,12 +17,14 @@ int main (int argc, char *argv[]){
     Parameters params(argc, argv);
     
     int numberofRootProcesses = params.getnumberofRootProcesses();
-    unsigned int pipelinedepth = params.getpipelinedepth()*(size - numberofRootProcesses);
+    int numberofReceivers = (size - numberofRootProcesses);
+    unsigned int pipelinedepth = params.getpipelinedepth()*numberofReceivers;
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, numberofRootProcesses, params.getBuffersize());
+    int dataamountfactor;
     double starttime, endtime;
     
     double singletime;
@@ -50,6 +52,13 @@ int main (int argc, char *argv[]){
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
+                if (numberofRootProcesses <= numberofReceivers){
+                    innerRuntimeIterations = innerRuntimeIterations*(numberofRootProcesses/numberofReceivers);
+                }
+                else{
+                    innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
+                }
+                
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
                 
                 
@@ -62,6 +71,8 @@ int main (int argc, char *argv[]){
                     endtime = MPI_Wtime();
                     timestamp.stop();
                     singletime=(double)timestamp.cycles();
+                    dataamountfactor = numberofReceivers;
+                    
                 }
                 
                 else{
@@ -70,6 +81,7 @@ int main (int argc, char *argv[]){
                     buffer.receivebuffer();
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
+                    dataamountfactor = numberofRootProcesses;
                 }
                 
                 
@@ -77,7 +89,7 @@ int main (int argc, char *argv[]){
                 //cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
                 //cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
                 //---------------------------------------------------------------------------
-                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, (endtime-starttime));
+                results.setvectors((m-1), z, innerRuntimeIterations, dataamountfactor, packagesize, (endtime-starttime));
                 if (packagesize == 16384 & rank == 0){
                     buffer.printsingletime((endtime-starttime),m);
                 }
@@ -117,7 +129,7 @@ int main (int argc, char *argv[]){
             
             else {
                 cout << "#--- RECEIVER ----------------------------" << endl;
-                cout << " number of receivers = " << size - numberofRootProcesses << endl;
+                cout << " number of receivers = " << numberofReceivers << endl;
                 results.calculate();
                 cout << "\n\n" << endl;
             }

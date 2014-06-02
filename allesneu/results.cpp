@@ -12,12 +12,12 @@ Results::Results(int rank_, int statisticaliteration_, int numberofpackages_) :
 {
 }
 
-void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, double time_){
+void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor, double time_){
     idx_outeriter = idx_outeriter_;
     
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
-    totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations;
+    totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*dataamountfactor;
     
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
