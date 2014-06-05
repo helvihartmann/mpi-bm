@@ -24,7 +24,7 @@ do
         echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 2 -p" $p "-x" $x >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 10 -p" $p "-x" $x >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in

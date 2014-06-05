@@ -4,9 +4,10 @@ Parameters::Parameters(int argc, char **argv){
     int opt;
     numberofwarmups = 130;
     pipelinedepth = 1;
+    pipeline = 0;
     numberofRootProcesses = 1;
     statisticaliteration = 1;
-    factor = (6*1000000000);
+    factor = (6000000000);
     factor_fix = (1<<20);
     buffersize = 4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     
@@ -26,12 +27,13 @@ Parameters::Parameters(int argc, char **argv){
         { "outer_statistical_iteations",         optional_argument,	      NULL,       'o' },
         { "buffer_size",            required_argument,	     NULL,       'b' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
+        { "pipeline",               required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_of_root_processes",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:p:w:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:p:q:w:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -43,6 +45,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --help                        -h       to view this help tutorial \n\n";
             std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
+            std::cout << " --pipeline                    -q       nature of pipeline, 0 = shared or 1 = one pipe for each receiver                       \n (DEFAULT = " << pipeline << ")\n"          << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_of_root_processes    -x       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofRootProcesses << ") \n" << std::endl;
             
@@ -109,6 +112,10 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
+        case 'q':
+            pipeline = atoi(optarg);
+        
+            break;
         case 'w':
             numberofwarmups = atof(optarg);
             if (!(numberofwarmups >= 0)) {
@@ -143,7 +150,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << std::endl;
 }
 
 

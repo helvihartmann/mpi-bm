@@ -10,6 +10,7 @@ class Parameters{
 private:
     int numberofwarmups;
     unsigned int pipelinedepth;
+    int pipeline;
     int numberofRootProcesses;
     int statisticaliteration;
     size_t factor;
@@ -33,6 +34,8 @@ public:
     size_t getBuffersize() { return buffersize; }
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
+    
+    int getpipeline() { return pipeline; }
     
     int getnumberofRootProcesses() { return numberofRootProcesses; }
 

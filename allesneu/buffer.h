@@ -17,6 +17,7 @@ private:
     int rank;
     
     int pipelinedepth;
+    int pipeline;
     int numberofRootProcesses;
     size_t buffersize;
 
@@ -28,9 +29,11 @@ private:
     std::vector<unsigned long long>singletime;
     
     TimeStampCounter timestamp;
+    
+    
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, int numberofrootprocesses, size_t buffersize);
+    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, int numberofrootprocesses, size_t buffersize);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     void sendbuffer();

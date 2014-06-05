@@ -16,14 +16,16 @@ int main (int argc, char *argv[]){
     
     Parameters params(argc, argv);
     
-    int numberofRootProcesses = params.getnumberofRootProcesses();
-    int numberofReceivers = (size - numberofRootProcesses);
-    unsigned int pipelinedepth = params.getpipelinedepth()*numberofReceivers;
+    double numberofRootProcesses = (double)params.getnumberofRootProcesses();
+    double numberofReceivers = (size - numberofRootProcesses);
+    
+    unsigned int pipelinedepth = params.getpipelinedepth();
+    int pipeline = params.getpipeline();
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, numberofRootProcesses, params.getBuffersize());
+    Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize());
     int dataamountfactor;
     double starttime, endtime;
     
@@ -37,7 +39,6 @@ int main (int argc, char *argv[]){
                 buffer.setloopvariables(packagecount, params.getnumberofwarmups());
                 
                 if (rank < numberofRootProcesses){
-                    cout << "# warmup: package size: " << packagecount*sizeof(int) << ", iterations: " << params.getnumberofwarmups() << endl;
                     buffer.sendbuffer();
                 }
                 else{
@@ -53,7 +54,7 @@ int main (int argc, char *argv[]){
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
                 if (numberofRootProcesses <= numberofReceivers){
-                    innerRuntimeIterations = innerRuntimeIterations*(numberofRootProcesses/numberofReceivers);
+                    innerRuntimeIterations = innerRuntimeIterations * (numberofRootProcesses/numberofReceivers);
                 }
                 else{
                     innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
@@ -89,7 +90,7 @@ int main (int argc, char *argv[]){
                 //cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
                 //cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
                 //---------------------------------------------------------------------------
-                results.setvectors((m-1), z, innerRuntimeIterations, dataamountfactor, packagesize, (endtime-starttime));
+                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, dataamountfactor,(endtime-starttime));
                 if (packagesize == 16384 & rank == 0){
                     buffer.printsingletime((endtime-starttime),m);
                 }
