@@ -2,8 +2,8 @@
 echo
 #not iterated over
 p=8 #pipeline Depth
-START=1
-ENDx=7
+START=2
+ENDx=2
 ENDn=8
 for x in $(eval echo "{$START..$ENDx}")
 do
@@ -24,7 +24,7 @@ do
         echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 10 -p" $p "-x" $x >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -q 1 -o 10 -p" $p "-x" $x >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in
