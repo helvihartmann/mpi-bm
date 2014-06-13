@@ -96,7 +96,8 @@ Parameters::Parameters(int argc, char **argv){
             }
             break;
         case 'b':
-            buffersize = atoi(optarg);
+            buffersize = atoll(optarg);
+            std::cout << buffersize << std::endl;
             if (buffersize > 0 && buffersize <= 500000000000) {
             }
             else {
@@ -157,7 +158,7 @@ Parameters::Parameters(int argc, char **argv){
 size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
-    if (packageSizes.at(z) <= 10000)  {
+    if (packageSizes.at(z) <= 8000)  {
         innerRuntimeIterations = factor_fix;
     }
     else{
