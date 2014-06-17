@@ -9,8 +9,8 @@ Parameters::Parameters(int argc, char **argv){
     statisticaliteration = 1;
     factor = (6000000000);
     factor_fix = (1<<20);
-    buffersize = 4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
-    
+    buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
+    histcheck = 0;
     
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 20;
@@ -30,10 +30,11 @@ Parameters::Parameters(int argc, char **argv){
         { "pipeline",               required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_of_root_processes",                required_argument,	     NULL,       'x' },
+        { "timedistribution",                required_argument,	     NULL,       't' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:p:q:w:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:p:q:w:x:t:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -48,6 +49,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --pipeline                    -q       nature of pipeline, 0 = shared or 1 = one pipe for each receiver                       \n (DEFAULT = " << pipeline << ")\n"          << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_of_root_processes    -x       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofRootProcesses << ") \n" << std::endl;
+            std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
             
             exit(1);
         case 'i':
@@ -128,6 +130,13 @@ Parameters::Parameters(int argc, char **argv){
             numberofRootProcesses = atof(optarg);
             if (!(numberofRootProcesses > 0 && numberofRootProcesses <=8)) {
                 printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
+                exit(1);
+            }
+            break;
+        case 't':
+            histcheck = atoi(optarg);
+            if (!(histcheck > 0 && histcheck <=1)) {
+                printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
                 exit(1);
             }
             break;

@@ -29,8 +29,8 @@
 class TimeStampCounter
 {
     public:
-        void start();
-        void stop();
+        unsigned long long start();
+        unsigned long long stop();
         unsigned long long cycles() const;
 
     private:
@@ -40,7 +40,7 @@ class TimeStampCounter
         } m_start, m_end;
 };
 
-inline void TimeStampCounter::start()
+inline unsigned long long TimeStampCounter::start()
 {
 #ifdef VC_IMPL_MIC
     asm volatile("xor %%eax,%%eax\n\tcpuid\n\trdtsc" : "=a"(m_start.b[0]), "=d"(m_start.b[1]) :: "ebx", "ecx" );
@@ -50,18 +50,21 @@ inline void TimeStampCounter::start()
 #else
     asm volatile("rdtscp" : "=a"(m_start.b[0]), "=d"(m_start.b[1]) :: "ecx" );
 #endif
+    return m_start.a;
 }
 
-inline void TimeStampCounter::stop()
+inline unsigned long long TimeStampCounter::stop()
 {
 #ifdef VC_IMPL_MIC
     asm volatile("xor %%eax,%%eax\n\tcpuid\n\trdtsc" : "=a"(m_end.b[0]), "=d"(m_end.b[1]) :: "ebx", "ecx" );
 #elif defined _MSC_VER
 	unsigned int tmp;
     m_end.a = __rdtscp(&tmp);
+    
 #else
     asm volatile("rdtscp" : "=a"(m_end.b[0]), "=d"(m_end.b[1]) :: "ecx" );
 #endif
+    return m_end.a;
 }
 
 inline unsigned long long TimeStampCounter::cycles() const

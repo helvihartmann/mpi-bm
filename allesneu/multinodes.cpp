@@ -27,13 +27,11 @@ int main (int argc, char *argv[]){
     int pipeline = params.getpipeline();
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
-    
+    int histcheck = params.gethistcheck();
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize());
     int dataamountfactor;
     double starttime, endtime;
-    
-    double singletime;
     
     TimeStampCounter timestamp;
 
@@ -42,7 +40,7 @@ int main (int argc, char *argv[]){
             for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
                 buffer.setloopvariables(packagecount, params.getnumberofwarmups());
                 
-                if (rank < numberofRootProcesses){
+                if ((rank%2)==0 & rank < numberofRootProcesses*2){
                     buffer.sendbuffer();
                 }
                 else{
@@ -67,15 +65,16 @@ int main (int argc, char *argv[]){
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
                 
                 
-                if (rank < numberofRootProcesses){
+                if ((rank%2)==0 && rank < (numberofRootProcesses*2)){
+                    //only processes with an even rank should be senders and as many as speciefied in numberofRootProcesses
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
-                    timestamp.start();
+                    //timestamp.start();
                     buffer.sendbuffer();
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    timestamp.stop();
-                    singletime=(double)timestamp.cycles();
+                    //timestamp.stop();
+                    //singletime=(double)timestamp.cycles();
                     dataamountfactor = numberofReceivers;
                     
                 }
@@ -95,9 +94,17 @@ int main (int argc, char *argv[]){
                 //cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
                 //---------------------------------------------------------------------------
                 results.setvectors((m-1), z, innerRuntimeIterations, packagesize, dataamountfactor,(endtime-starttime));
-                if (packagesize == 16384 & rank == 0){
-                    buffer.printsingletime((endtime-starttime),m);
+                switch (histcheck) {
+                    case 1:
+                        if (packagesize >= 8192 && packagesize <= 16384){
+                            buffer.printsingletime();
+                        }
+                        break;
+                        
+                    default:
+                        break;
                 }
+                
             }//z
             if (rank == 0){
                 cout << m << ". iteration-------------------" << endl;
@@ -120,17 +127,15 @@ int main (int argc, char *argv[]){
                 std::cout << "#" << nun->tm_mday << '.' << nun->tm_mon+1 << '.'<< nun->tm_year+1900 << " - " << nun->tm_hour << ':' << nun->tm_min << std::endl;
                 
                 cout << "# processes " << size << endl;
+            }
+            
+            if ((rank%2)==0 && rank < (numberofRootProcesses*2)){
                 cout << "#----------------------- SENDER ---------------------------" << endl;
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate();
                 cout << "\n\n" << endl;
                 
                             }
-            
-            else if ( rank < numberofRootProcesses){
-                results.calculate();
-                cout << "\n\n" << endl;
-            }
             
             else {
                 cout << "#--- RECEIVER ----------------------------" << endl;

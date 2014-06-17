@@ -16,6 +16,7 @@ private:
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
+    int histcheck;
     size_t startpackagesize;
     size_t endpackagesize;
     
@@ -32,6 +33,8 @@ public:
     int getStatisticalIterations() { return statisticaliteration; }
     
     size_t getBuffersize() { return buffersize; }
+    
+    int gethistcheck() { return histcheck; }
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
     

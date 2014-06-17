@@ -24,7 +24,14 @@ Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, int pipeline_,
 void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIterations_){
     innerRuntimeIterations = innerRuntimeIterations_;
     packagecount = packagecount_;
-    singletime.resize(innerRuntimeIterations);
+    sendstart.resize(innerRuntimeIterations);
+    sendstop.resize(innerRuntimeIterations);
+    waitstart.resize(innerRuntimeIterations);
+    waitstop.resize(innerRuntimeIterations);
+    recvstart.resize(innerRuntimeIterations);
+    recvstop.resize(innerRuntimeIterations);
+    waitrstart.resize(innerRuntimeIterations);
+    waitrstop.resize(innerRuntimeIterations);
 }
 
 void Buffer::sendbuffer(){
@@ -35,16 +42,25 @@ void Buffer::sendbuffer(){
             size_t i = 0;
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 while (queue_request.size() >= pipelinedepth*(size-numberofRootProcesses)){
+                    waitstart.at(j) = timestamp.start();
                     MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
+                    waitstop.at(j) = timestamp.stop();
                     queue_request.pop();
                 }
-                for(int remoterank = numberofRootProcesses; remoterank < size; remoterank++){
-                    timestamp.stop();
-                    singletime.at(j)=timestamp.cycles();
-                    timestamp.start();
-                    MPI_Issend((buffer + (((packagecount*j)+i)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
-                    queue_request.push(send_obj);
-                    i++;
+                for(int remoterank = 1; remoterank < size; remoterank++){
+                    if ((remoterank%2) == 0 && remoterank < (numberofRootProcesses*2)){
+                    }
+                    else{
+                        //std::cout << "remoterank: " << remoterank << " sender: " << rank << std::endl;
+                        
+                        
+                        sendstart.at(j) = timestamp.start();
+                        MPI_Issend((buffer + (((packagecount*j)+i)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                        sendstop.at(j) = timestamp.stop();
+                        queue_request.push(send_obj);
+                        i++;
+                    }
+                    
                 }
             }
             while(!queue_request.empty()){
@@ -56,14 +72,17 @@ void Buffer::sendbuffer(){
         case 1:{
             std::vector<queue<MPI_Request>> vec;
             int flag = 0;
+            size_t index;
             for (int remoterank = 0; remoterank < size; remoterank++){
                 vec.push_back(queue<MPI_Request>());
             }
              for(size_t j = 0; j < innerRuntimeIterations; j++){
                  size_t i = 0;
                  for(int remoterank = numberofRootProcesses; remoterank < size; remoterank++){
+                     index = packagecount*((j*size)+rank)%(buffersize/sizeof(int));
+                     std::cout << "sender: " << index << std::endl;
                      if (vec[remoterank].size() <= pipelinedepth){
-                         MPI_Issend((buffer + (packagecount*((j*size)+rank))%(buffersize/sizeof(int))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                         MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                          vec[remoterank].push(send_obj);
                      }
                      else{
@@ -71,7 +90,7 @@ void Buffer::sendbuffer(){
                          
                          if (flag == 1){
                              vec[remoterank].pop();
-                             MPI_Issend((buffer + (packagecount*((j*size)+rank))%(buffersize/sizeof(int))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                             MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                              vec[remoterank].push(send_obj);
                          }
                      }
@@ -96,12 +115,17 @@ void Buffer::receivebuffer(){
             size_t i = 0;
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 while(queue_request.size() >= pipelinedepth*(size-numberofRootProcesses)){
+                    waitrstart.at(j) = timestamp.start();
                     MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
+                    waitrstop.at(j) = timestamp.stop();
                     queue_request.pop();
                 }
-                for(int remoterank = 0; remoterank < numberofRootProcesses; remoterank++){
+                for(int remoterank = 0; remoterank < (numberofRootProcesses*2); remoterank = remoterank + 2){
+                    recvstart.at(j) = timestamp.start();
                     MPI_Irecv((buffer + (((packagecount*j)+i)%(buffersize/sizeof(int)))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
-                    queue_request.push(recv_obj);
+                        queue_request.push(recv_obj);
+                    recvstop.at(j) = timestamp.stop();
+                    
                 }
                 i++;
             }
@@ -119,9 +143,7 @@ void Buffer::receivebuffer(){
                 vec.push_back(queue<MPI_Request>());
             }
             for(size_t j = 0; j < innerRuntimeIterations; j++){
-                for(int remoterank = 0; remoterank < numberofRootProcesses; remoterank++){
-                    index = packagecount*((j*size)+remoterank);
-                    //%(buffersize/sizeof(int));
+                for(int remoterank = 0; remoterank < numberofRootProcesses; remoterank++){index = packagecount*((j*size)+remoterank)%(buffersize/sizeof(int));
                     if (vec[remoterank].size() <= pipelinedepth){
                         MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                         vec[remoterank].push(recv_obj);
@@ -133,7 +155,7 @@ void Buffer::receivebuffer(){
                         std::cout << " tested " <<  flag << std::endl;
                         if (flag == 1){
                             vec[remoterank].pop();
-                            MPI_Irecv((buffer + (packagecount*((j*size)+remoterank))%(buffersize/sizeof(int))), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                            MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                             vec[remoterank].push(recv_obj);
                         }
                     }
@@ -156,18 +178,18 @@ void Buffer::receivebuffer(){
     }
 }*/
 
-void Buffer::printsingletime(double time, int statisticaliteration){
+void Buffer::printsingletime(){
     size_t i;
     ostringstream oss;
-    oss << (packagecount*sizeof(int)) << "_p" << pipelinedepth << "_i" << innerRuntimeIterations << "_o" << statisticaliteration << ".hist";
+    oss << (packagecount*sizeof(int)) << "_x" << numberofRootProcesses << "_p" << pipelinedepth << "_n" << size << "_" << rank << ".hist";
     
     
     ofstream myfile;
     myfile.open(oss.str());
-    myfile << "# average time = " << (time/innerRuntimeIterations)*1000000 << " microseconds for " << innerRuntimeIterations << " iterations\n";
-    myfile << "# processor cycles time[ms]" << "\n";
+    //myfile << "# average time = " << (time/innerRuntimeIterations)*1000000 << " microseconds for " << innerRuntimeIterations << " iterations\n";
+    myfile << "# P(s)IS P(e)Is TIS P(s)Ws P(e)Ws TWs P(s)RS P(e)Rs TIS P(s)Wr P(e)Wr TWr" << "\n";
     for(size_t j = 0; j < innerRuntimeIterations; j++){
-        myfile << singletime.at(j) << " " << (singletime.at(j)/2000) << " " << i << "\n";
+        myfile << sendstart.at(j) << " " << sendstop.at(j) << " " << ((sendstop.at(j)-sendstart.at(j))/2000) << " " << waitstart.at(j) << " " << waitstop.at(j) << " " << ((waitstop.at(j)-waitstart.at(j))/2000) << " " << recvstart.at(j) << " " << recvstop.at(j) << " " << ((recvstop.at(j)-recvstart.at(j))/2000) << " " << waitrstart.at(j) << " " << waitrstop.at(j) << " " << ((waitrstop.at(j)-waitrstart.at(j))/2000) << i << "\n";
         i++;
     }
     
