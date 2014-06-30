@@ -20,7 +20,8 @@ private:
     int pipeline;
     int numberofRootProcesses;
     size_t buffersize;
-
+    std::vector<int>sender_vec;
+    std::vector<int>receiver_vec;
     int *buffer;
     
     size_t innerRuntimeIterations;
@@ -40,7 +41,7 @@ private:
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, int numberofrootprocesses, size_t buffersize);
+    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, int numberofrootprocesses, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     void sendbuffer();

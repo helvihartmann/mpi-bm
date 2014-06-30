@@ -28,19 +28,42 @@ int main (int argc, char *argv[]){
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
+    
+    //set flag for ranks if they are sender or receiver
+    vector<int>sender_vec;
+    vector<int>receiver_vec;
+    int commflag; //decides wether process is sender (0) or receiver (1)
+    for (int sender = 0; sender < numberofRootProcesses; sender++){
+        //for (sender = 0; sender < numberofRootProcesses, sender = sender +2){ //in case of two processes per node
+        sender_vec.push_back(sender);
+        if (rank == sender){
+            commflag = 0;
+        }
+    }
+    cout << numberofRootProcesses << " " << size << endl;
+    for (int receiver = numberofRootProcesses; receiver < size; receiver++){
+        //for (receiver = 1; receiver < size, receiver = receiver +2;){
+        receiver_vec.push_back(receiver);
+        if (rank == receiver){
+            commflag = 1;
+        }
+    }
+    
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize());
+    Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize(), sender_vec, receiver_vec);
     int dataamountfactor;
     double starttime, endtime;
     
     TimeStampCounter timestamp;
+    
+    
 
     for (int m = 0; m <= statisticaliteration; m++){
+        //-------------------------------------Warmup--------------------------------------------------
         if (m == 0){
             for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
                 buffer.setloopvariables(packagecount, params.getnumberofwarmups());
-                
-                if ((rank%2)==0 & rank < numberofRootProcesses*2){
+                if (commflag == 0){
                     buffer.sendbuffer();
                 }
                 else{
@@ -48,25 +71,23 @@ int main (int argc, char *argv[]){
                 }
             }
         }
-        
+         //-------------------------------------Warmup End--------------------------------------------------
         else{
             for (int z = 0; z < numberofpackages; z++){
                 size_t packagesize = params.getPackageSizes().at(z);
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
-                if (numberofRootProcesses <= numberofReceivers){
+                /*if (numberofRootProcesses <= numberofReceivers){
                     innerRuntimeIterations = innerRuntimeIterations * (numberofRootProcesses/numberofReceivers);
                 }
                 else{
                     innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
-                }
+                }*/
+                innerRuntimeIterations = 1;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
-                
-                
-                if ((rank%2)==0 && rank < (numberofRootProcesses*2)){
-                    //only processes with an even rank should be senders and as many as speciefied in numberofRootProcesses
+                if (commflag == 0){
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
                     //timestamp.start();
@@ -76,8 +97,7 @@ int main (int argc, char *argv[]){
                     //timestamp.stop();
                     //singletime=(double)timestamp.cycles();
                     dataamountfactor = numberofReceivers;
-                    
-                }
+                                    }
                 
                 else{
                     MPI_Barrier(MPI_COMM_WORLD);
@@ -129,7 +149,7 @@ int main (int argc, char *argv[]){
                 cout << "# processes " << size << endl;
             }
             
-            if ((rank%2)==0 && rank < (numberofRootProcesses*2)){
+            if (commflag == 0){
                 cout << "#----------------------- SENDER ---------------------------" << endl;
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
                 results.calculate();

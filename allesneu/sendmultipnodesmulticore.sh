@@ -2,7 +2,7 @@
 echo
 #not iterated over
 p=8 #pipeline Depth
-START=4
+START=1
 ENDx=8
 for x in $(eval echo "{$START..$ENDx}")
 do
