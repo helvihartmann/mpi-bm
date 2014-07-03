@@ -39,6 +39,8 @@ private:
     
     TimeStampCounter timestamp;
     
+    std::vector<unsigned long long>cycles_issend;
+    
     
 public:
     
@@ -50,6 +52,8 @@ public:
     void receivebuffer();
     
     void printsingletime();
+    
+    std::vector<unsigned long long> getcyclesissend() { return cycles_issend; }
 };
 
 #endif /*BUFFER_H*/

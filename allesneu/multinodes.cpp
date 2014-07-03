@@ -9,6 +9,8 @@
 using namespace std;
 
 int main (int argc, char *argv[]){
+    
+    //initiate MPI----------------------------------------------------------------
     int rank, size, length;
     char name[MPI_MAX_PROCESSOR_NAME];
     
@@ -18,18 +20,19 @@ int main (int argc, char *argv[]){
     MPI_Get_processor_name(name, &length);
     
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
+    
+    //get parameters from corresponding class--------------------------------------
     Parameters params(argc, argv);
     
     double numberofRootProcesses = (double)params.getnumberofRootProcesses();
     double numberofReceivers = (size - numberofRootProcesses);
-    
     unsigned int pipelinedepth = params.getpipelinedepth();
     int pipeline = params.getpipeline();
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
     
-    //set flag for ranks if they are sender or receiver
+    //set flag for ranks if they are sender or receiver----------------------------
     vector<int>sender_vec;
     vector<int>receiver_vec;
     int commflag; //decides wether process is sender (0) or receiver (1)
@@ -51,15 +54,11 @@ int main (int argc, char *argv[]){
             }
         }
     }
-    
-    
+    // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize(), sender_vec, receiver_vec);
-    int dataamountfactor;
+    int numberofRemotranks;
     double starttime, endtime;
-    
-    TimeStampCounter timestamp;
-    
     
 
     for (int m = 0; m <= statisticaliteration; m++){
@@ -75,13 +74,15 @@ int main (int argc, char *argv[]){
                 }
             }
         }
-         //-------------------------------------Warmup End--------------------------------------------------
+         //Iterate over packagesize ------------------------------------------------------------------------------------
         else{
             for (int z = 0; z < numberofpackages; z++){
+                // get loop variables----------------------------------------------------------------------------------
                 size_t packagesize = params.getPackageSizes().at(z);
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
+                // set up innerRuntimeIterations
                 if (numberofRootProcesses <= numberofReceivers){
                     innerRuntimeIterations = innerRuntimeIterations * (numberofRootProcesses/numberofReceivers);
                 }
@@ -91,33 +92,28 @@ int main (int argc, char *argv[]){
                 //innerRuntimeIterations = 12;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
+                
+                // send-----------------------------------------------------------
                 if (commflag == 0){
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
-                    //timestamp.start();
                     buffer.sendbuffer();
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    //timestamp.stop();
-                    //singletime=(double)timestamp.cycles();
-                    dataamountfactor = numberofReceivers;
+                    numberofRemotranks = numberofReceivers;
                                     }
-                
+                // receive-------------------------------------------------------
                 else{
                     MPI_Barrier(MPI_COMM_WORLD);
                     starttime = MPI_Wtime();
                     buffer.receivebuffer();
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    dataamountfactor = numberofRootProcesses;
+                    numberofRemotranks = numberofRootProcesses;
                 }
                 
-                
                 //Write time-----------------------------------------------------------------
-                //cout << "# packagesize: " << packagesize << " processor cycles time[ms]" << "\n";
-                //cout << singletime << " " << singletime/2000 << " " << (endtime-starttime)/1000000 << "\n";
-                //---------------------------------------------------------------------------
-                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, dataamountfactor,(endtime-starttime));
+                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclesissend());
                 switch (histcheck) {
                     case 1:
                         if (packagesize >= 8192 && packagesize <= 16384){
@@ -128,8 +124,8 @@ int main (int argc, char *argv[]){
                     default:
                         break;
                 }
-                
             }//z
+            
             if (rank == 0){
                 cout << m << ". iteration-------------------" << endl;
                 results.printstatisticaliteration();
@@ -137,8 +133,8 @@ int main (int argc, char *argv[]){
         }
     }//m
     
-    //-----------------------------------Output-------------------------
-    
+    //-----------------------------------Output----------------------------------------------------------------------------------------
+    //-----------------------------------Output----------------------------------------------------------------------------------------
     for (int i=0; i<size; i++) {
         if (rank == i){
             if(rank == 0){

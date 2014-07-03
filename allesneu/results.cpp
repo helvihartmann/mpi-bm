@@ -12,12 +12,16 @@ Results::Results(int rank_, int statisticaliteration_, int numberofpackages_) :
 {
 }
 
-void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor, double time_){
+void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int numberofRemoteranks_, double time_, std::vector<unsigned long long>cycles_issend_){
     idx_outeriter = idx_outeriter_;
-    
+    numberofRemoteranks = numberofRemoteranks_;
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
-    totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*dataamountfactor;
+    totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*numberofRemoteranks;
+    
+    for (int i = 0; i < numberofRemoteranks; i++){
+        avg_cycles_issend.push_back(cycles_issend_.at(i)/innerRuntimeIterations);
+    }
     
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
@@ -50,7 +54,12 @@ void Results::calculate(){
         double send_stdtime = sqrt(send_vartime);
         double send_std=(send_stdtime/send_mean)*rate;
         
-        std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << std::endl;
+        std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << " - ";
+        
+        for (int i = 0; i < numberofRemoteranks; i++){
+            std::cout << avg_cycles_issend.at(i*numberofpackages+z) << " ";
+        }
+        std::cout << " " << std::endl;
         
         /*if (send_std >=50){
             std::cout << " WARNING!  standarddeviation greater than 50MB/s....measurements are not similiar enough" << std::endl;
