@@ -19,6 +19,7 @@ private:
     int pipelinedepth;
     int pipeline;
     int numberofRootProcesses;
+    int numberofReceivers = size - numberofRootProcesses;
     size_t buffersize;
     std::vector<int>sender_vec;
     std::vector<int>receiver_vec;

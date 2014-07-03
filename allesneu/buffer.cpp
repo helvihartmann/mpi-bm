@@ -52,8 +52,7 @@ void Buffer::sendbuffer(){
                 }
                 for(int index_receiver = 0; index_receiver < (size - numberofRootProcesses); index_receiver++){
                     remoterank = receiver_vec.at(index_receiver);
-                    index = packagecount*((j*(size-numberofRootProcesses))+index_receiver)%(buffersize/sizeof(int));
-                    //std::cout <<"index(" << index << ") packagecount(" << packagecount << "*((j(" << innerRuntimeIterations << ") *(size(" << size << ") -numberofRootProcesses(" << numberofRootProcesses << ") ))+index_receiver(" << index_receiver << ") )%buffersize/*sizeof(int)" << std::endl;
+                    index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
                     MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                     queue_request.push(send_obj);
                 }
@@ -67,6 +66,8 @@ void Buffer::sendbuffer(){
         case 1:{
             std::vector<queue<MPI_Request>> vec;
             int flag = 0;
+            int testflag = 0;
+            std::vector<int>testflagvector;
             size_t rein = 0;
             size_t raus = 0;
             for (int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
@@ -74,45 +75,47 @@ void Buffer::sendbuffer(){
             }
              for(size_t j = 0; j < pipelinedepth; j++){
                  for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
-                     if (index_receiver < numberofRootProcesses){
-                         remoterank = (index_receiver*2)+1;
-                     }
-                     else{
-                         remoterank = index_receiver+numberofRootProcesses;
-                     }
-                     index = packagecount*((j*(size-numberofRootProcesses))+index_receiver)%(buffersize/sizeof(int));
+                     remoterank = receiver_vec.at(index_receiver);
+                     index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
                      MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                      vec[index_receiver].push(send_obj);
                  }
              }
             for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
-                for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
-                    if (index_receiver < numberofRootProcesses){
-                        remoterank = (index_receiver*2)+1;
+                testflag = 0;
+                testflagvector.assign(numberofReceivers,0);
+                //std::cout << testflag << " < " << numberofReceivers << std::endl;
+                while (testflag < numberofReceivers){
+                    testflag = 0;
+                    for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
+                        //std::cout << "sender at " << packagecount * sizeof(int) << "," << j << "; " << testflagvector.at(index_receiver) << "(" << index_receiver << ")" << std::endl;
+                        if (testflagvector.at(index_receiver) == 0){
+                            remoterank = receiver_vec.at(index_receiver);
+                            
+                            index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
+                             MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
+                            
+                             if (flag == 1){
+                                 vec[index_receiver].pop();
+                                 //std::cout << rank << " sending to " << remoterank << "; " << packagecount * sizeof(int) << "," << j << std::endl;
+                                 MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                                 vec[index_receiver].push(send_obj);
+                                 testflagvector.at(index_receiver)=1;
+                             }
+                        }
+                        testflag = testflag + testflagvector.at(index_receiver);
+                        //std::cout << testflagvector.at(index_receiver) << "(" << index_receiver << ")" << std::endl;
                     }
-                    else{
-                        remoterank = index_receiver+numberofRootProcesses;
-                    }
-                    index = packagecount*((j*(size-numberofRootProcesses))+index_receiver)%(buffersize/sizeof(int));
-                     while (vec[index_receiver].size() >= pipelinedepth){
-                         //std::cout << " sender,index(" << index << ") = packagecount(" << packagecount << ")*[j( " << j << ")*size(" << size << ")+ rank(" << rank << ")%" << buffersize/sizeof(int) << std::endl;
-                         MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
-                         if (flag == 1){
-                             vec[index_receiver].pop();
-                             MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
-                             vec[index_receiver].push(send_obj);
-                         }
-                     }
                 }
             }
-            for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
+            for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
                 while(!vec[index_receiver].empty()){
                     MPI_Wait(&vec[index_receiver].front(), MPI_STATUS_IGNORE);
                     vec[index_receiver].pop();
                     raus++;
                 }
             }
-            std::cout << "rein: " << rein << ", raus: " << raus << std::endl;
+            //std::cout << "rein: " << rein << ", raus: " << raus << std::endl;
         }
         break;
     }
@@ -134,9 +137,7 @@ void Buffer::receivebuffer(){
                 }
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                     remoterank = sender_vec.at(index_sender);
-                    
-                    index = packagecount*((j*(size-numberofRootProcesses))+index_sender)%(buffersize/sizeof(int));
-                    std::cout <<"index(" << index << ") packagecount(" << packagecount << ") *((j(" << innerRuntimeIterations << ") *(size(" << size << ") -numberofRootProcesses(" << numberofRootProcesses << ") ))+index_sender(" << index_sender << ") )%buffersize/*sizeof(int)" << std::endl;
+                    index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                     queue_request.push(recv_obj);
                 }
@@ -151,29 +152,41 @@ void Buffer::receivebuffer(){
             std::vector<queue<MPI_Request>> vec;
             int flag = 0;
             size_t index;
+            int testflag = 0;
+            std::vector<int>testflagvector;
             for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                 vec.push_back(queue<MPI_Request>());
             }
             for(size_t j = 0; j < pipelinedepth; j++){
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
-                    remoterank = index_sender*2;
+                    remoterank = sender_vec.at(index_sender);
                     index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                     vec[index_sender].push(recv_obj);
                 }
             }
             for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
-                for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
-                    index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
-                    remoterank = index_sender*2;
-                    while(vec[index_sender].size() >= pipelinedepth){
-                        //std::cout << " test for receive,index(" << index << ") = packagecount(" << packagecount << ")*[j( " << j << ")*size(" << size << ")+remoterank(" << remoterank << ")%" << buffersize/sizeof(int) << std::endl;
-                        MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
-                        if (flag == 1){
-                            vec[index_sender].pop();
-                            MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
-                            vec[index_sender].push(recv_obj);
+                testflag = 0;
+                testflagvector.assign(numberofRootProcesses,0);
+                while (testflag < numberofRootProcesses){
+                    //std::cout << testflag << " < " << numberofRootProcesses << std::endl;
+                    testflag = 0;
+                    for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
+                        //std::cout << "receiver at " << packagecount * sizeof(int) << "," << j << "; " << testflagvector.at(index_sender) << "(" << index_sender << ")" << std::endl;
+                        if (testflagvector.at(index_sender) == 0){
+                            remoterank = sender_vec.at(index_sender);
+                            index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
+                            //std::cout << remoterank << std::endl;
+                            MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
+                            if (flag == 1){
+                                vec[index_sender].pop();
+                                MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                                vec[index_sender].push(recv_obj);
+                                testflagvector.at(index_sender)=1;
+                            }
                         }
+                        testflag = testflag + testflagvector.at(index_sender);
+                        //std::cout << testflagvector.at(index_sender) << "(" << index_sender << ")" << std::endl;
                     }
                 }
             }

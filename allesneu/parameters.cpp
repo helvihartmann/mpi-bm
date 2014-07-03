@@ -135,7 +135,7 @@ Parameters::Parameters(int argc, char **argv){
             break;
         case 't':
             histcheck = atoi(optarg);
-            if (!(histcheck > 0 && histcheck <=1)) {
+            if (!(histcheck >= 0 && histcheck <=1)) {
                 printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
                 exit(1);
             }

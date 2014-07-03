@@ -33,21 +33,25 @@ int main (int argc, char *argv[]){
     vector<int>sender_vec;
     vector<int>receiver_vec;
     int commflag; //decides wether process is sender (0) or receiver (1)
-    for (int sender = 0; sender < numberofRootProcesses; sender++){
-        //for (sender = 0; sender < numberofRootProcesses, sender = sender +2){ //in case of two processes per node
-        sender_vec.push_back(sender);
-        if (rank == sender){
-            commflag = 0;
+    for (int rank_index = 0; rank_index < size; rank_index++){
+        if (rank_index < numberofRootProcesses){
+        //if(rank_index%2 == 0){ //in case of two processes per node
+            sender_vec.push_back(rank_index);
+            
+            if (rank == rank_index){
+                cout << "I am sender " << rank_index << endl;
+                commflag = 0;
+            }
+        }
+        else{
+            receiver_vec.push_back(rank_index);
+            if (rank == rank_index){
+                cout << "I am receiver " << rank_index << endl;
+                commflag = 1;
+            }
         }
     }
-    cout << numberofRootProcesses << " " << size << endl;
-    for (int receiver = numberofRootProcesses; receiver < size; receiver++){
-        //for (receiver = 1; receiver < size, receiver = receiver +2;){
-        receiver_vec.push_back(receiver);
-        if (rank == receiver){
-            commflag = 1;
-        }
-    }
+    
     
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize(), sender_vec, receiver_vec);
@@ -78,13 +82,13 @@ int main (int argc, char *argv[]){
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
-                /*if (numberofRootProcesses <= numberofReceivers){
+                if (numberofRootProcesses <= numberofReceivers){
                     innerRuntimeIterations = innerRuntimeIterations * (numberofRootProcesses/numberofReceivers);
                 }
                 else{
                     innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
-                }*/
-                innerRuntimeIterations = 1;
+                }
+                //innerRuntimeIterations = 12;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
                 if (commflag == 0){
