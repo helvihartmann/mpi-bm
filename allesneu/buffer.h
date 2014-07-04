@@ -39,7 +39,8 @@ private:
     
     TimeStampCounter timestamp;
     
-    std::vector<unsigned long long>cycles_issend;
+    std::vector<unsigned long long>cycles_comm;
+    std::vector<size_t>testwaitcounter;
     
     
 public:
@@ -53,7 +54,9 @@ public:
     
     void printsingletime();
     
-    std::vector<unsigned long long> getcyclesissend() { return cycles_issend; }
+    std::vector<unsigned long long> getcyclescomm() { return cycles_comm; }
+    
+    std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
 };
 
 #endif /*BUFFER_H*/

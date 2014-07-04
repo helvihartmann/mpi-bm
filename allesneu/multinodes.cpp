@@ -113,7 +113,7 @@ int main (int argc, char *argv[]){
                 }
                 
                 //Write time-----------------------------------------------------------------
-                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclesissend());
+                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
                 switch (histcheck) {
                     case 1:
                         if (packagesize >= 8192 && packagesize <= 16384){
@@ -126,10 +126,19 @@ int main (int argc, char *argv[]){
                 }
             }//z
             
-            if (rank == 0){
-                cout << m << ". iteration-------------------" << endl;
-                results.printstatisticaliteration();
+            MPI_Barrier(MPI_COMM_WORLD);
+            for (int i=0; i<size; i++) {
+                if (rank == i){
+                    if (rank == 0){
+                        cout << m << ". iteration-------------------" << endl;
+                        
+                    }
+                    results.printstatisticaliteration();
+                    sleep(2);
+                }
+                MPI_Barrier(MPI_COMM_WORLD);
             }
+            
         }
     }//m
     

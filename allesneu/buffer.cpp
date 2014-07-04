@@ -41,15 +41,17 @@ void Buffer::sendbuffer(){
     MPI_Request send_obj;
     int remoterank;
     size_t index;
-    cycles_issend.assign(numberofReceivers,0);
+    cycles_comm.assign(numberofReceivers,0);
+    testwaitcounter.assign(numberofReceivers,0);
     switch (pipeline){
         case 0:{
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 // wait for objects---------------------------
                 while (queue_request.size() >= pipelinedepth*(size - numberofRootProcesses)){
-                    //waitstart.at(j) = timestamp.start();
+                    waitstart.at(j) = timestamp.start();
                     MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
-                    //waitstop.at(j) = timestamp.stop();
+                    waitstop.at(j) = timestamp.stop();
+                    testwaitcounter.front()+= timestamp.cycles();
                     queue_request.pop();
                 }
                 // fill queue---------------------------------
@@ -60,7 +62,7 @@ void Buffer::sendbuffer(){
                     MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                     timestamp.stop();
                     queue_request.push(send_obj);
-                    cycles_issend.at(index_receiver)+= timestamp.cycles();
+                    cycles_comm.at(index_receiver)+= timestamp.cycles();
                 }
             }
             // empty queue---------------------------------
@@ -84,7 +86,10 @@ void Buffer::sendbuffer(){
                  for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
                      remoterank = receiver_vec.at(index_receiver);
                      index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
+                     timestamp.start();
                      MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                     timestamp.stop();
+                     cycles_comm.at(index_receiver)+= timestamp.cycles();
                      vec[index_receiver].push(send_obj);
                  }
              }
@@ -98,8 +103,8 @@ void Buffer::sendbuffer(){
                         if (testflagvector.at(index_receiver) == 0){
                             remoterank = receiver_vec.at(index_receiver);
                             index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
-                             MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
-                            
+                            MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
+                            testwaitcounter.at(index_receiver)++;
                              if (flag == 1){
                                  vec[index_receiver].pop();
                                  timestamp.start();
@@ -107,6 +112,7 @@ void Buffer::sendbuffer(){
                                  timestamp.stop();
                                  vec[index_receiver].push(send_obj);
                                  testflagvector.at(index_receiver)=1;
+                                 cycles_comm.at(index_receiver)+= timestamp.cycles();
                              }
                         }
                         testflag = testflag + testflagvector.at(index_receiver);
@@ -130,22 +136,27 @@ void Buffer::receivebuffer(){
     MPI_Request recv_obj;
     int remoterank;
     size_t index;
-    cycles_issend.assign(numberofRootProcesses,0);
+    cycles_comm.assign(numberofRootProcesses,0);
+    testwaitcounter.assign(numberofRootProcesses,0);
     switch (pipeline){
         case 0:{
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 // wait for objects in queue-------------------------------------
                 while(queue_request.size() >= pipelinedepth*(size-numberofRootProcesses)){
-                    waitrstart.at(j) = timestamp.start();
+                    timestamp.start();
                     MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
-                    waitrstop.at(j) = timestamp.stop();
+                    timestamp.stop();
+                    testwaitcounter.front()+=timestamp.cycles();
                     queue_request.pop();
                 }
                 // fill queue-------------------------------------
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                     remoterank = sender_vec.at(index_sender);
                     index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
+                    timestamp.start();
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                    timestamp.stop();
+                    cycles_comm.at(index_sender)+= timestamp.cycles();
                     queue_request.push(recv_obj);
                 }
             }
@@ -171,7 +182,10 @@ void Buffer::receivebuffer(){
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                     remoterank = sender_vec.at(index_sender);
                     index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
+                    timestamp.start();
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                    timestamp.stop();
+                    cycles_comm.at(index_sender)+= timestamp.cycles();
                     vec[index_sender].push(recv_obj);
                 }
             }
@@ -186,9 +200,13 @@ void Buffer::receivebuffer(){
                             remoterank = sender_vec.at(index_sender);
                             index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
                             MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
+                            testwaitcounter.at(index_sender)++;
                             if (flag == 1){
                                 vec[index_sender].pop();
+                                timestamp.start();
                                 MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                                timestamp.stop();
+                                cycles_comm.at(index_sender)+= timestamp.cycles();
                                 vec[index_sender].push(recv_obj);
                                 testflagvector.at(index_sender)=1;
                             }
