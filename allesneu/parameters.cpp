@@ -3,7 +3,7 @@
 Parameters::Parameters(int argc, char **argv){
     int opt;
     numberofwarmups = 130;
-    pipelinedepth = 1;
+    pipelinedepth = 8;
     pipeline = 0;
     numberofRootProcesses = 1;
     statisticaliteration = 1;

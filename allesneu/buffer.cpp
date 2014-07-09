@@ -55,9 +55,10 @@ void Buffer::sendbuffer(){
                     queue_request.pop();
                 }
                 // fill queue---------------------------------
-                for(int index_receiver = 0; index_receiver < (size - numberofRootProcesses); index_receiver++){
+                for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
                     remoterank = receiver_vec.at(index_receiver);
-                    index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
+                    index = (packagecount*((j*numberofReceivers)+index_receiver))%(buffersize/sizeof(int));
+                    //std::cout << rank << " sending to " << remoterank << ", index: " << index << ", packagecount" << packagecount << std::endl;
                     timestamp.start();
                     MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                     timestamp.stop();
@@ -152,7 +153,8 @@ void Buffer::receivebuffer(){
                 // fill queue-------------------------------------
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                     remoterank = sender_vec.at(index_sender);
-                    index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
+                    index = (packagecount*((j*numberofRootProcesses)+index_sender))%(buffersize/sizeof(int));
+                    //std::cout << rank << " receiving from " << remoterank << ", index: " << index << ", packagecount" << packagecount << ", j: " << j << std::endl;
                     timestamp.start();
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                     timestamp.stop();
