@@ -57,7 +57,8 @@ void Buffer::sendbuffer(){
                 // fill queue---------------------------------
                 for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
                     remoterank = receiver_vec.at(index_receiver);
-                    index = (packagecount*((j*numberofReceivers)+index_receiver))%(buffersize/sizeof(int));
+                    //index = (packagecount*((j*numberofReceivers)+index_receiver))%(buffersize/sizeof(int));
+                    index = packagecount*((j*size)+rank)%(buffersize/sizeof(int));
                     //std::cout << rank << " sending to " << remoterank << ", index: " << index << ", packagecount" << packagecount << std::endl;
                     timestamp.start();
                     MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
@@ -86,7 +87,8 @@ void Buffer::sendbuffer(){
              for(size_t j = 0; j < pipelinedepth; j++){
                  for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
                      remoterank = receiver_vec.at(index_receiver);
-                     index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
+                     //index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
+                     index = packagecount*((j*size)+rank)%(buffersize/sizeof(int));
                      timestamp.start();
                      MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
                      timestamp.stop();
