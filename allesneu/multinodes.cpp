@@ -89,7 +89,7 @@ int main (int argc, char *argv[]){
                 else{
                     innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
                 }
-                //innerRuntimeIterations = 12;
+                //innerRuntimeIterations = 15;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
                 
