@@ -24,8 +24,6 @@ int main (int argc, char *argv[]){
     //get parameters from corresponding class--------------------------------------
     Parameters params(argc, argv);
     
-    double numberofRootProcesses = (double)params.getnumberofRootProcesses();
-    double numberofReceivers = (size - numberofRootProcesses);
     unsigned int pipelinedepth = params.getpipelinedepth();
     int pipeline = params.getpipeline();
     int statisticaliteration = params.getStatisticalIterations();
@@ -33,27 +31,13 @@ int main (int argc, char *argv[]){
     int histcheck = params.gethistcheck();
     
     //set flag for ranks if they are sender or receiver----------------------------
-    vector<int>sender_vec;
-    vector<int>receiver_vec;
-    int commflag; //decides wether process is sender (0) or receiver (1)
-    for (int rank_index = 0; rank_index < size; rank_index++){
-        if (rank_index < numberofRootProcesses){
-        //if(rank_index%2 == 0){ //in case of two processes per node
-            sender_vec.push_back(rank_index);
-            
-            if (rank == rank_index){
-                cout << "I am sender " << rank_index << endl;
-                commflag = 0;
-            }
-        }
-        else{
-            receiver_vec.push_back(rank_index);
-            if (rank == rank_index){
-                cout << "I am receiver " << rank_index << endl;
-                commflag = 1;
-            }
-        }
-    }
+    params.sendrecvvector(size, rank);
+    double numberofRootProcesses = (double)params.getnumberofRootProcesses();
+    double numberofReceivers = (double)params.getnumberofReceivers();
+    vector<int>sender_vec = params.getsendervec();
+    vector<int>receiver_vec = params.getrecvvec();
+    int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
+    
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize(), sender_vec, receiver_vec);
@@ -101,7 +85,7 @@ int main (int argc, char *argv[]){
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
                     numberofRemotranks = numberofReceivers;
-                                    }
+                }
                 // receive-------------------------------------------------------
                 else{
                     MPI_Barrier(MPI_COMM_WORLD);

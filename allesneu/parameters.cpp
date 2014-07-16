@@ -179,3 +179,48 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
     
     return innerRuntimeIterations;
 }
+
+void Parameters::sendrecvvector(int size, int rank){
+    int multicore = 1;
+    numberofReceivers = size - numberofRootProcesses;
+    switch (multicore) {
+            case 1: {
+                for (int rank_index = 0; rank_index < size; rank_index++){
+                    if (rank_index < numberofRootProcesses){
+                        sender_vec.push_back(rank_index);
+                        if (rank == rank_index){
+                            std::cout << "I am sender " << rank_index << std::endl;
+                            commflag = 0;
+                        }
+                    }
+                    else{
+                        receiver_vec.push_back(rank_index);
+                        if (rank == rank_index){
+                            std::cout << "I am receiver " << rank_index << std::endl;
+                            commflag = 1;
+                        }
+                    }
+                }
+            }
+            break;
+            case 2: {
+                for (int rank_index = 0; rank_index < size; rank_index++){
+                    if(rank_index%2 == 0){
+                        sender_vec.push_back(rank_index);
+                        if (rank == rank_index){
+                            std::cout << "I am sender " << rank_index << std::endl;
+                            commflag = 0;
+                        }
+                    }
+                    else{
+                        receiver_vec.push_back(rank_index);
+                        if (rank == rank_index){
+                            std::cout << "I am receiver " << rank_index << std::endl;
+                            commflag = 1;
+                        }
+                    }
+                }
+            }
+            break;
+    }
+}

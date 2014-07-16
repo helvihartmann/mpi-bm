@@ -12,6 +12,7 @@ private:
     unsigned int pipelinedepth;
     int pipeline;
     int numberofRootProcesses;
+    int numberofReceivers;
     int statisticaliteration;
     size_t factor;
     size_t factor_fix;
@@ -22,6 +23,10 @@ private:
     
     std::vector<size_t> packageSizes;
     
+    std::vector<int>sender_vec;
+    std::vector<int>receiver_vec;
+    
+    int commflag;
 public:
     
     Parameters(int argc, char **argv);
@@ -41,10 +46,20 @@ public:
     int getpipeline() { return pipeline; }
     
     int getnumberofRootProcesses() { return numberofRootProcesses; }
+    
+    int getnumberofReceivers() { return numberofReceivers; }
 
     size_t getinnerRuntimeIterations(int z);
     
     int getnumberofwarmups() { return numberofwarmups; }
+    
+    void sendrecvvector(int size, int rank);
+    
+    std::vector<int> getsendervec() { return sender_vec; }
+    
+    std::vector<int> getrecvvec() { return receiver_vec; }
+    
+    int getcommflag() { return commflag; }
     
 };
 
