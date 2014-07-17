@@ -1,14 +1,15 @@
 #include "buffer.h"
 
-Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, int pipeline_, int numberofRootProcesses_, size_t buffersize_, std::vector<int>sender_vec_, std::vector<int>receiver_vec_) :
+Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, int pipeline_, size_t buffersize_, std::vector<int>sender_vec_, std::vector<int>receiver_vec_, int numberofRootProcesses_, int numberofReceivers_) :
     size(size_),
     rank(rank_),
     pipelinedepth(pipelinedepth_),
     pipeline(pipeline_),
-    numberofRootProcesses(numberofRootProcesses_),
     buffersize(buffersize_),
     sender_vec(sender_vec_),
-    receiver_vec(receiver_vec_)
+    receiver_vec(receiver_vec_),
+    numberofRootProcesses(numberofRootProcesses_),
+    numberofReceivers(numberofReceivers_)
 {
     std::cout << "# allocating buffer..." << std::endl;
     
@@ -145,7 +146,7 @@ void Buffer::receivebuffer(){
             size_t i = 0;
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 // wait for objects in queue-------------------------------------
-                while(queue_request.size() >= pipelinedepth*(size-numberofRootProcesses)){
+                while(queue_request.size() >= pipelinedepth*numberofReceivers){
                     timestamp.start();
                     MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
                     timestamp.stop();
@@ -154,8 +155,10 @@ void Buffer::receivebuffer(){
                 }
                 // fill queue-------------------------------------
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
+                    //std::cout << index_sender << "/" << numberofRootProcesses << std::endl;
+                    //std::cout << rank << ", " << sender_vec.at(index_sender) << std::endl;
                     remoterank = sender_vec.at(index_sender);
-                    index = (packagecount*((j*numberofRootProcesses)+index_sender))%(buffersize/sizeof(int));
+                    index = (packagecount * ((j * numberofRootProcesses) + index_sender))%(buffersize/sizeof(int));
                     timestamp.start();
                     MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
                     timestamp.stop();

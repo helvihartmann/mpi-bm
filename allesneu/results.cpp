@@ -21,6 +21,7 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
     
     for (int i = 0; i < numberofRemoteranks; i++){
         avg_cyclescomm.push_back(cycles_issend_.at(i)/innerRuntimeIterations);
+        //std::cout << innerRuntimeIterations << ", " << pipelinedepth << std::endl;
         avg_waittestcounter.push_back(waittestcounter_.at(i)/(innerRuntimeIterations-pipelinedepth));
     }
     

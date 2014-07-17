@@ -173,8 +173,17 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
     else{
         innerRuntimeIterations = factor/packageSizes.at(z);
     }
-    if (innerRuntimeIterations <= 5){
-        innerRuntimeIterations = 5;
+    
+    // set up innerRuntimeIterations
+    if (numberofRootProcesses <= numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofRootProcesses/(double)numberofReceivers);
+    }
+    else{
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofRootProcesses);
+    }
+    
+    if (innerRuntimeIterations <= 10){
+        innerRuntimeIterations = 10;
     }
     
     return innerRuntimeIterations;
@@ -204,22 +213,39 @@ void Parameters::sendrecvvector(int size, int rank){
             }
             break;
             case 2: {
-                for (int rank_index = 0; rank_index < size; rank_index++){
-                    if(rank_index%2 == 0){
-                        sender_vec.push_back(rank_index);
-                        if (rank == rank_index){
-                            std::cout << "I am sender " << rank_index << std::endl;
-                            commflag = 0;
+                numberofRootProcesses = (size/2) - 1;
+                numberofReceivers = numberofReceivers - 1;
+                if(rank%2 == 0 ){
+                    for (int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
+                        if (rank_index != (rank + 1)){
+                            receiver_vec.push_back(rank_index);
                         }
                     }
-                    else{
-                        receiver_vec.push_back(rank_index);
-                        if (rank == rank_index){
-                            std::cout << "I am receiver " << rank_index << std::endl;
-                            commflag = 1;
+                    std::cout << "I am sender " << rank << std::endl;
+                    commflag = 0;
+                }
+
+                else {
+                    for (int rank_index = 0; rank_index < (size - 1); rank_index = (rank_index + 2)){
+                        if (rank_index != (rank - 1)){
+                            sender_vec.push_back(rank_index);
                         }
+                    }
+                    std::cout << "I am receiver " << rank << std::endl;
+                    commflag = 1;
+                }
+                for (int i=0; i<size; i++) {
+                    if (rank == i){
+                        for (int rank_index = 0; rank_index < sender_vec.size(); rank_index++){
+                            std::cout << "my (" << rank << ") sender list is: " << sender_vec.at(rank_index) << std::endl;
+                        }
+                        for (int rank_index = 0; rank_index < receiver_vec.size(); rank_index++){
+                            std::cout << "my (" << rank << ") receiver list is: " << receiver_vec.at(rank_index) << std::endl;
+                        }
+                        
                     }
                 }
+               
             }
             break;
     }

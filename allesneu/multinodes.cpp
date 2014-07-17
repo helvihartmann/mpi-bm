@@ -5,10 +5,16 @@
 #include "buffer.h"
 #include <unistd.h>
 #include "tsc.h"
+#include "timestamp.h"
 
 using namespace std;
 
 int main (int argc, char *argv[]){
+    
+    Timestamp timestamp;
+    timestamp.printtimestamp();
+    // Header
+    
     
     //initiate MPI----------------------------------------------------------------
     int rank, size, length;
@@ -31,16 +37,19 @@ int main (int argc, char *argv[]){
     int histcheck = params.gethistcheck();
     
     //set flag for ranks if they are sender or receiver----------------------------
+    MPI_Barrier(MPI_COMM_WORLD);
     params.sendrecvvector(size, rank);
-    double numberofRootProcesses = (double)params.getnumberofRootProcesses();
-    double numberofReceivers = (double)params.getnumberofReceivers();
+    MPI_Barrier(MPI_COMM_WORLD);
+    sleep(5);
+    int numberofRootProcesses = params.getnumberofRootProcesses();
+    int numberofReceivers = params.getnumberofReceivers();
     vector<int>sender_vec = params.getsendervec();
     vector<int>receiver_vec = params.getrecvvec();
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
     
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, pipeline, numberofRootProcesses, params.getBuffersize(), sender_vec, receiver_vec);
+    Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofRootProcesses, numberofReceivers);
     int numberofRemotranks;
     double starttime, endtime;
     
@@ -66,13 +75,6 @@ int main (int argc, char *argv[]){
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
                 
-                // set up innerRuntimeIterations
-                if (numberofRootProcesses <= numberofReceivers){
-                    innerRuntimeIterations = innerRuntimeIterations * (numberofRootProcesses/numberofReceivers);
-                }
-                else{
-                    innerRuntimeIterations = innerRuntimeIterations * (numberofReceivers/numberofRootProcesses);
-                }
                 //innerRuntimeIterations = 15;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
@@ -132,13 +134,6 @@ int main (int argc, char *argv[]){
         if (rank == i){
             if(rank == 0){
                 
-                // Header
-                time_t Zeitstempel;
-                tm *nun;
-                Zeitstempel = time(0);
-                nun = localtime(&Zeitstempel);
-                std::cout << "#" << nun->tm_mday << '.' << nun->tm_mon+1 << '.'<< nun->tm_year+1900 << " - " << nun->tm_hour << ':' << nun->tm_min << std::endl;
-                
                 cout << "# processes " << size << endl;
             }
             
@@ -163,5 +158,6 @@ int main (int argc, char *argv[]){
     }
 
     MPI_Finalize();
+    timestamp.printtimestamp();
     return 0;
 }
