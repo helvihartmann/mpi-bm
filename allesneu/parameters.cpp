@@ -175,32 +175,6 @@ Parameters::Parameters(int argc, char **argv){
     std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << ", multicore " << multicore << std::endl;
 }
 
-
-size_t Parameters::getinnerRuntimeIterations(int z) {
-    size_t innerRuntimeIterations;
-    
-    if (packageSizes.at(z) <= 8000)  {
-        innerRuntimeIterations = factor_fix;
-    }
-    else{
-        innerRuntimeIterations = factor/packageSizes.at(z);
-    }
-    
-    // set up innerRuntimeIterations
-    if (numberofRootProcesses <= numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofRootProcesses/(double)numberofReceivers);
-    }
-    else{
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofRootProcesses);
-    }
-    
-    if (innerRuntimeIterations <= 10){
-        innerRuntimeIterations = 10;
-    }
-    
-    return innerRuntimeIterations;
-}
-
 void Parameters::sendrecvvector(int size, int rank){
     numberofReceivers = size - numberofRootProcesses;
     switch (multicore) {
@@ -260,4 +234,32 @@ void Parameters::sendrecvvector(int size, int rank){
             }
             break;
     }
+}
+
+
+size_t Parameters::getinnerRuntimeIterations(int z, int size) {
+    size_t innerRuntimeIterations;
+    
+    if (packageSizes.at(z) <= 8000)  {
+        innerRuntimeIterations = factor_fix;
+    }
+    else{
+        innerRuntimeIterations = factor/packageSizes.at(z);
+    }
+    
+    if (numberofRootProcesses < numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofRootProcesses/(double)numberofReceivers);
+    }
+    else if (numberofRootProcesses > numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofRootProcesses);
+    }
+    else if (numberofRootProcesses == numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
+    }
+    
+    if (innerRuntimeIterations <= 10){
+        innerRuntimeIterations = 10;
+    }
+    
+    return innerRuntimeIterations;
 }

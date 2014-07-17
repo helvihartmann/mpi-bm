@@ -73,7 +73,7 @@ int main (int argc, char *argv[]){
                 // get loop variables----------------------------------------------------------------------------------
                 size_t packagesize = params.getPackageSizes().at(z);
                 size_t packacount = packagesize/sizeof(int);
-                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
+                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z, size);
                 
                 //innerRuntimeIterations = 15;
                 

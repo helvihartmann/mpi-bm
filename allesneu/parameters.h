@@ -49,18 +49,18 @@ public:
     int getnumberofRootProcesses() { return numberofRootProcesses; }
     
     int getnumberofReceivers() { return numberofReceivers; }
-
-    size_t getinnerRuntimeIterations(int z);
     
     int getnumberofwarmups() { return numberofwarmups; }
-    
-    void sendrecvvector(int size, int rank);
     
     std::vector<int> getsendervec() { return sender_vec; }
     
     std::vector<int> getrecvvec() { return receiver_vec; }
     
     int getcommflag() { return commflag; }
+    
+    size_t getinnerRuntimeIterations(int z, int size);
+    
+    void sendrecvvector(int size, int rank);
     
 };
 
