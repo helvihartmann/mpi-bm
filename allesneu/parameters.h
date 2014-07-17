@@ -9,6 +9,7 @@
 class Parameters{
 private:
     int numberofwarmups;
+    int multicore;
     unsigned int pipelinedepth;
     int pipeline;
     int numberofRootProcesses;

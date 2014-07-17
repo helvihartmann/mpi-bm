@@ -49,7 +49,7 @@ void Buffer::sendbuffer(){
             size_t i = 0;
             for(size_t j = 0; j < innerRuntimeIterations; j++){
                 // wait for objects---------------------------
-                while (queue_request.size() >= pipelinedepth*(size - numberofRootProcesses)){
+                while (queue_request.size() >= pipelinedepth*numberofReceivers){
                     waitstart.at(j) = timestamp.start();
                     MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
                     waitstop.at(j) = timestamp.stop();

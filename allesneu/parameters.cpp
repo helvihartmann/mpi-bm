@@ -3,6 +3,7 @@
 Parameters::Parameters(int argc, char **argv){
     int opt;
     numberofwarmups = 130;
+    multicore = 1;
     pipelinedepth = 8;
     pipeline = 0;
     numberofRootProcesses = 1;
@@ -26,6 +27,7 @@ Parameters::Parameters(int argc, char **argv){
         { "package_size_factor",         required_argument,                 NULL,       'f' },
         { "outer_statistical_iteations",         optional_argument,	      NULL,       'o' },
         { "buffer_size",            required_argument,	     NULL,       'b' },
+        { "multicore",              required_argument,        NULL,       'm' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
         { "pipeline",               required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
@@ -34,17 +36,19 @@ Parameters::Parameters(int argc, char **argv){
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:p:q:w:x:t:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:x:t:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
             std::cout << "----------------------------------------\nWelcome to this MPI Benchmark program\n you may choose the following options\n -------------------------------------------"       << std::endl;
-            std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
-            std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
-            std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
-            std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --help                        -h       to view this help tutorial \n\n";
+            std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
+            std::cout << " --start_package_size          -a       start package size\n (DEFAULT = "                                                         << startpackagesize << ")\n"       << std::endl;
+            std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
             std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
+            std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
+            std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
+            std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
             std::cout << " --pipeline                    -q       nature of pipeline, 0 = shared or 1 = one pipe for each receiver                       \n (DEFAULT = " << pipeline << ")\n"          << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
@@ -99,11 +103,19 @@ Parameters::Parameters(int argc, char **argv){
             break;
         case 'b':
             buffersize = atoll(optarg);
-            std::cout << buffersize << std::endl;
             if (buffersize > 0 && buffersize <= 500000000000) {
             }
             else {
                 printf("ERROR -b: please enter vaild buffersize\n");
+                exit(1);
+            }
+            break;
+        case 'm':
+            multicore = atoll(optarg);
+            if (multicore > 0 && multicore <= 2) {
+            }
+            else {
+                printf("ERROR -m: only valid for 1 and 2 thus far\n");
                 exit(1);
             }
             break;
@@ -160,7 +172,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << ", multicore " << multicore << std::endl;
 }
 
 
@@ -190,7 +202,6 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
 }
 
 void Parameters::sendrecvvector(int size, int rank){
-    int multicore = 1;
     numberofReceivers = size - numberofRootProcesses;
     switch (multicore) {
             case 1: {
@@ -214,7 +225,7 @@ void Parameters::sendrecvvector(int size, int rank){
             break;
             case 2: {
                 numberofRootProcesses = (size/2) - 1;
-                numberofReceivers = numberofReceivers - 1;
+                numberofReceivers = numberofRootProcesses;
                 if(rank%2 == 0 ){
                     for (int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
                         if (rank_index != (rank + 1)){
