@@ -1,9 +1,9 @@
 #!/bin/bash
 echo
 #not iterated over
-q=0 #pipeline Depth
-START=2
-ENDx=8
+q=1 #pipeline Depth
+START=4
+ENDx=4
 for x in $(eval echo "{$START..$ENDx}")
 do
     touch single.in
@@ -17,7 +17,7 @@ do
     echo "#SBATCH --distribution=cyclic" >> single.in
     echo "" >> single.in
     echo "" >> single.in
-    echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -q 0 -o 2 -b 17179869184 -i 1000 -w 300 -q" $q "-x" $x >> single.in
+    echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 2 -b 17179869184 -m 2 -q" $q >> single.in
     echo "" >> single.in
     echo "exit 0" >> single.in
     sbatch single.in

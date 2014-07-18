@@ -2,7 +2,7 @@
 
 Parameters::Parameters(int argc, char **argv){
     int opt;
-    numberofwarmups = 130;
+    numberofwarmups = 300;
     multicore = 1;
     pipelinedepth = 8;
     pipeline = 0;
@@ -180,7 +180,7 @@ void Parameters::sendrecvvector(int size, int rank){
     switch (multicore) {
             case 1: {
                 for (int rank_index = 0; rank_index < size; rank_index++){
-                    if (rank_index < numberofRootProcesses){
+                    if (rank_index >= numberofRootProcesses){
                         sender_vec.push_back(rank_index);
                         if (rank == rank_index){
                             std::cout << "I am sender " << rank_index << std::endl;

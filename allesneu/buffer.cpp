@@ -41,9 +41,10 @@ void Buffer::sendbuffer(){
     std::queue<MPI_Request> queue_request;
     MPI_Request send_obj;
     int remoterank;
-    size_t index;
+    size_t index = 0;
     cycles_comm.assign(numberofReceivers,0);
     testwaitcounter.assign(numberofReceivers,0);
+    
     switch (pipeline){
         case 0:{
             size_t i = 0;
@@ -81,12 +82,12 @@ void Buffer::sendbuffer(){
             std::vector<queue<MPI_Request>> vec(numberofReceivers);
             // flags to keep track of status of objects
             int flag = 0;
-            int testflag = 0;
-            std::vector<int>testflagvector;
+            std::vector<size_t>sendcount (numberofReceivers,0);
+            size_t sendcountsum = 0;
             
             // fill queue---------------------------------
              for(size_t j = 0; j < pipelinedepth; j++){
-                 for(int index_receiver = 0; index_receiver < (size-numberofRootProcesses); index_receiver++){
+                 for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
                      remoterank = receiver_vec.at(index_receiver);
                      index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
                      timestamp.start();
@@ -97,31 +98,31 @@ void Buffer::sendbuffer(){
                  }
              }
             // queue management ----------------------------
-            for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
-                testflag = 0;
-                testflagvector.assign(numberofReceivers,0);
-                while (testflag < numberofReceivers){
-                    testflag = 0;
-                    for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
-                        if (testflagvector.at(index_receiver) == 0){
+            
+            while (sendcountsum != (numberofReceivers * innerRuntimeIterations)) {
+                for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
+                    while (sendcount.at(index_receiver) != innerRuntimeIterations){ //loop over one receiver, while request objects say that sending is finished keeps sending new messages
+                        MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
+                        testwaitcounter.at(index_receiver)++; //counts how often Wait was called for every receiver
+                        if (flag == 1){
+                            vec[index_receiver].pop();
+                            timestamp.start();
+                            index = packagecount*((sendcount.at(index_receiver)*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
                             remoterank = receiver_vec.at(index_receiver);
-                            index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
-                            MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
-                            testwaitcounter.at(index_receiver)++;
-                             if (flag == 1){
-                                 vec[index_receiver].pop();
-                                 timestamp.start();
-                                 MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
-                                 timestamp.stop();
-                                 vec[index_receiver].push(send_obj);
-                                 testflagvector.at(index_receiver)=1;
-                                 cycles_comm.at(index_receiver)+= timestamp.cycles();
-                             }
+                            MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+                            sendcount.at(index_receiver)++;
+                            sendcountsum++;
+                            timestamp.stop();
+                            vec[index_receiver].push(send_obj);
+                            cycles_comm.at(index_receiver)+= timestamp.cycles();
                         }
-                        testflag = testflag + testflagvector.at(index_receiver);
+                        else {
+                            break;//breaks out of while loop
+                        }
                     }
                 }
             }
+            
             // empy queue---------------------------------------
             for(int index_receiver = 0; index_receiver < numberofReceivers; index_receiver++){
                 while(!vec[index_receiver].empty()){
@@ -138,7 +139,7 @@ void Buffer::receivebuffer(){
     std::queue<MPI_Request> queue_request;
     MPI_Request recv_obj;
     int remoterank;
-    size_t index;
+    size_t index = 0;
     cycles_comm.assign(numberofRootProcesses,0);
     testwaitcounter.assign(numberofRootProcesses,0);
     switch (pipeline){
@@ -181,9 +182,8 @@ void Buffer::receivebuffer(){
             // flags
             int flag = 0;
             size_t index;
-            int testflag = 0;
-            std::vector<int>testflagvector;
-            
+            std::vector<size_t>recvcount (numberofRootProcesses,0);
+            size_t recvcountsum = 0;
             // fill queue-----------------------------------
             for(size_t j = 0; j < pipelinedepth; j++){
                 for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
@@ -197,7 +197,31 @@ void Buffer::receivebuffer(){
                 }
             }
             // queue management-----------------------------
-            for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
+            while (recvcountsum != (numberofRootProcesses * innerRuntimeIterations)) {
+                for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
+                    while (recvcount.at(index_sender) != innerRuntimeIterations){ //loop over one receiver, while request objects say that sending is finished keeps sending new messages
+                        MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
+                        testwaitcounter.at(index_sender)++; //counts how often Wait was called for every receiver
+                        if (flag == 1){
+                            vec[index_sender].pop();
+                            timestamp.start();
+                            index = packagecount*((recvcount.at(index_sender)*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
+                            remoterank = sender_vec.at(index_sender);
+                            MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                            recvcount.at(index_sender)++;
+                            recvcountsum++;
+                            timestamp.stop();
+                            vec[index_sender].push(recv_obj);
+                            cycles_comm.at(index_sender)+= timestamp.cycles();
+                        }
+                        else {
+                            break;//breaks out of while loop
+                        }
+                    }
+                }
+            }
+            
+            /*for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
                 testflag = 0;
                 testflagvector.assign(numberofRootProcesses,0);
                 while (testflag < numberofRootProcesses){
@@ -221,7 +245,7 @@ void Buffer::receivebuffer(){
                         testflag = testflag + testflagvector.at(index_sender);
                     }
                 }
-            }
+            }*/
             // empty queue-------------------------------------
             for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                 while(!vec[index_sender].empty()){
@@ -241,7 +265,7 @@ void Buffer::receivebuffer(){
 }*/
 
 void Buffer::printsingletime(){
-    size_t i;
+    size_t i = 0;
     ostringstream oss;
     oss << (packagecount*sizeof(int)) << "_x" << numberofRootProcesses << "_p" << pipelinedepth << "_n" << size << "_" << rank << ".hist";
     ofstream myfile;

@@ -31,6 +31,7 @@ int main (int argc, char *argv[]){
     Parameters params(argc, argv);
     
     unsigned int pipelinedepth = params.getpipelinedepth();
+    
     int pipeline = params.getpipeline();
     int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
@@ -74,7 +75,9 @@ int main (int argc, char *argv[]){
                 size_t packagesize = params.getPackageSizes().at(z);
                 size_t packacount = packagesize/sizeof(int);
                 size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z, size);
-                
+                if (pipelinedepth > innerRuntimeIterations){
+                    pipelinedepth = innerRuntimeIterations-2;
+                }
                 //innerRuntimeIterations = 15;
                 
                 buffer.setloopvariables(packacount, innerRuntimeIterations);
