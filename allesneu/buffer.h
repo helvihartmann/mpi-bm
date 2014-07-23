@@ -6,7 +6,7 @@
 #include "tsc.h"
 #include <fstream>
 #include <sstream>
-
+#include <unistd.h>
 
 using namespace std;
 /**/
@@ -44,10 +44,15 @@ private:
     std::vector<unsigned long long>cycles_comm;
     std::vector<size_t>testwaitcounter;
     
+    size_t errorcounter = 0;
+    
+    
     
 public:
     
     Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, int numberofRootProcesses, int numberofReceivers);
+   
+    void checkbuffer(int value, int remoterank);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     void sendbuffer();
@@ -59,6 +64,8 @@ public:
     std::vector<unsigned long long> getcyclescomm() { return cycles_comm; }
     
     std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
+    
+    size_t geterrorcounter() { return errorcounter; }
 };
 
 #endif /*BUFFER_H*/

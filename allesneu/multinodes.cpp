@@ -21,6 +21,8 @@ int main (int argc, char *argv[]){
     char name[MPI_MAX_PROCESSOR_NAME];
     
     MPI_Init(&argc, &argv);
+
+    //MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
@@ -102,6 +104,8 @@ int main (int argc, char *argv[]){
                 }
                 
                 //Write time-----------------------------------------------------------------
+                
+                
                 results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
                 switch (histcheck) {
                     case 1:

@@ -9,7 +9,7 @@ Parameters::Parameters(int argc, char **argv){
     numberofRootProcesses = 1;
     statisticaliteration = 1;
     factor = (6000000000);
-    factor_fix = (1<<20);
+    factor_fix = ((1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
     
@@ -180,7 +180,7 @@ void Parameters::sendrecvvector(int size, int rank){
     switch (multicore) {
             case 1: {
                 for (int rank_index = 0; rank_index < size; rank_index++){
-                    if (rank_index >= numberofRootProcesses){
+                    if (rank_index < numberofRootProcesses){
                         sender_vec.push_back(rank_index);
                         if (rank == rank_index){
                             std::cout << "I am sender " << rank_index << std::endl;

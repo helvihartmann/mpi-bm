@@ -2,9 +2,9 @@
 echo
 #not iterated over
 q=0 #nature of pipe
-START=3
-ENDx=3
-ENDn=6
+START=2
+ENDx=7
+ENDn=8
 for x in $(eval echo "{$START..$ENDx}")
 do
     if [ $ENDn -lt $ENDx ]; then
@@ -24,7 +24,7 @@ do
         echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 10 -q" $q "-x" $x >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i 180000 -w 1000 -o 2 -q" $q "-x" $x >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in

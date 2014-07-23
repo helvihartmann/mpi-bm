@@ -208,6 +208,7 @@ void Buffer::receivebuffer(){
                             index = packagecount*((recvcount.at(index_sender)*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
                             remoterank = sender_vec.at(index_sender);
                             MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                            
                             recvcount.at(index_sender)++;
                             recvcountsum++;
                             timestamp.stop();
@@ -220,32 +221,10 @@ void Buffer::receivebuffer(){
                     }
                 }
             }
-            
-            /*for(size_t j = pipelinedepth; j < innerRuntimeIterations; j++){
-                testflag = 0;
-                testflagvector.assign(numberofRootProcesses,0);
-                while (testflag < numberofRootProcesses){
-                    testflag = 0;
-                    for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
-                        if (testflagvector.at(index_sender) == 0){
-                            remoterank = sender_vec.at(index_sender);
-                            index = packagecount*((j*numberofRootProcesses)+index_sender)%(buffersize/sizeof(int));
-                            MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
-                            testwaitcounter.at(index_sender)++;
-                            if (flag == 1){
-                                vec[index_sender].pop();
-                                timestamp.start();
-                                MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
-                                timestamp.stop();
-                                cycles_comm.at(index_sender)+= timestamp.cycles();
-                                vec[index_sender].push(recv_obj);
-                                testflagvector.at(index_sender)=1;
-                            }
-                        }
-                        testflag = testflag + testflagvector.at(index_sender);
-                    }
-                }
-            }*/
+
+                            
+                            //std::thread t1(Buffer::checkbuffer, buffer[index], remoterank);
+
             // empty queue-------------------------------------
             for(int index_sender = 0; index_sender < numberofRootProcesses; index_sender++){
                 while(!vec[index_sender].empty()){
@@ -258,11 +237,11 @@ void Buffer::receivebuffer(){
     }
 }
 
-/*void Buffer::everythingcorrectcheck(){
-    for (size_t i=0; i < (packagecount*inn); i++){
-        buffer[i]=rank;
+void Buffer::checkbuffer(int value, int remoterank){
+    if (value != remoterank){
+        errorcounter++;
     }
-}*/
+}
 
 void Buffer::printsingletime(){
     size_t i = 0;
