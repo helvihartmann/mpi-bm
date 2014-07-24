@@ -6,7 +6,7 @@ Parameters::Parameters(int argc, char **argv){
     multicore = 1;
     pipelinedepth = 8;
     pipeline = 0;
-    numberofRootProcesses = 1;
+    numberofSenders = 1;
     statisticaliteration = 1;
     factor = (6000000000);
     factor_fix = ((1<<20));
@@ -31,12 +31,12 @@ Parameters::Parameters(int argc, char **argv){
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
         { "pipeline",               required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
-        { "number_of_root_processes",                required_argument,	     NULL,       'x' },
+        { "number_senders",                required_argument,	     NULL,       's' },
         { "timedistribution",                required_argument,	     NULL,       't' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:x:t:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:s:t:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -52,7 +52,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
             std::cout << " --pipeline                    -q       nature of pipeline, 0 = shared or 1 = one pipe for each receiver                       \n (DEFAULT = " << pipeline << ")\n"          << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
-            std::cout << " --number_of_root_processes    -x       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofRootProcesses << ") \n" << std::endl;
+            std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
             
             exit(1);
@@ -138,9 +138,9 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 'x':
-            numberofRootProcesses = atof(optarg);
-            if (!(numberofRootProcesses > 0 && numberofRootProcesses <=8)) {
+        case 's':
+            numberofSenders = atof(optarg);
+            if (!(numberofSenders > 0 && numberofSenders <=8)) {
                 printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
                 exit(1);
             }
@@ -172,15 +172,15 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofRootProcesses << ", multicore " << multicore << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
 }
 
 void Parameters::sendrecvvector(int size, int rank){
-    numberofReceivers = size - numberofRootProcesses;
+    numberofReceivers = size - numberofSenders;
     switch (multicore) {
             case 1: {
                 for (int rank_index = 0; rank_index < size; rank_index++){
-                    if (rank_index < numberofRootProcesses){
+                    if (rank_index < numberofSenders){
                         sender_vec.push_back(rank_index);
                         if (rank == rank_index){
                             std::cout << "I am sender " << rank_index << std::endl;
@@ -198,8 +198,8 @@ void Parameters::sendrecvvector(int size, int rank){
             }
             break;
             case 2: {
-                numberofRootProcesses = (size/2) - 1;
-                numberofReceivers = numberofRootProcesses;
+                numberofSenders = (size/2) - 1;
+                numberofReceivers = numberofSenders;
                 if(rank%2 == 0 ){
                     for (int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
                         if (rank_index != (rank + 1)){
@@ -247,13 +247,13 @@ size_t Parameters::getinnerRuntimeIterations(int z, int size) {
         innerRuntimeIterations = factor/packageSizes.at(z);
     }
     
-    if (numberofRootProcesses < numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofRootProcesses/(double)numberofReceivers);
+    if (numberofSenders < numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofSenders/(double)numberofReceivers);
     }
-    else if (numberofRootProcesses > numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofRootProcesses);
+    else if (numberofSenders > numberofReceivers){
+        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofSenders);
     }
-    else if (numberofRootProcesses == numberofReceivers){
+    else if (numberofSenders == numberofReceivers){
         innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
     }
     

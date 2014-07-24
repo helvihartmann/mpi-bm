@@ -16,14 +16,14 @@ private:
     int size;
     int rank;
     
-    int pipelinedepth;
+    unsigned int pipelinedepth;
     int pipeline;
     size_t buffersize;
     std::vector<int>sender_vec;
     std::vector<int>receiver_vec;
     
-    int numberofRootProcesses; // now every process has his own
-    int numberofReceivers;
+    unsigned int numberofSenders; // now every process has his own
+    unsigned int numberofReceivers;
     
     int *buffer;
     
@@ -50,7 +50,7 @@ private:
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, int numberofRootProcesses, int numberofReceivers);
+    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, unsigned int numberofSenders, unsigned int numberofReceivers);
    
     void checkbuffer(int value, int remoterank);
     

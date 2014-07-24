@@ -12,9 +12,9 @@ private:
     int multicore;
     unsigned int pipelinedepth;
     int pipeline;
-    int numberofRootProcesses;
-    int numberofReceivers;
-    int statisticaliteration;
+    unsigned int numberofSenders;
+    unsigned int numberofReceivers;
+    unsigned int statisticaliteration;
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
@@ -36,7 +36,7 @@ public:
     
     size_t getNumberOfPackageSizes() { return packageSizes.size(); }
     
-    int getStatisticalIterations() { return statisticaliteration; }
+    unsigned int getStatisticalIterations() { return statisticaliteration; }
     
     size_t getBuffersize() { return buffersize; }
     
@@ -46,9 +46,9 @@ public:
     
     int getpipeline() { return pipeline; }
     
-    int getnumberofRootProcesses() { return numberofRootProcesses; }
+    unsigned int getnumberofSenders() { return numberofSenders; }
     
-    int getnumberofReceivers() { return numberofReceivers; }
+    unsigned int getnumberofReceivers() { return numberofReceivers; }
     
     int getnumberofwarmups() { return numberofwarmups; }
     

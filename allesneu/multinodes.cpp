@@ -35,7 +35,7 @@ int main (int argc, char *argv[]){
     unsigned int pipelinedepth = params.getpipelinedepth();
     
     int pipeline = params.getpipeline();
-    int statisticaliteration = params.getStatisticalIterations();
+    unsigned int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
     
@@ -44,20 +44,20 @@ int main (int argc, char *argv[]){
     params.sendrecvvector(size, rank);
     MPI_Barrier(MPI_COMM_WORLD);
     sleep(5);
-    int numberofRootProcesses = params.getnumberofRootProcesses();
-    int numberofReceivers = params.getnumberofReceivers();
+    unsigned int numberofSenders = params.getnumberofSenders();
+    unsigned int numberofReceivers = params.getnumberofReceivers();
     vector<int>sender_vec = params.getsendervec();
     vector<int>receiver_vec = params.getrecvvec();
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
     
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofRootProcesses, numberofReceivers);
+    Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
     int numberofRemotranks;
     double starttime, endtime;
     
 
-    for (int m = 0; m <= statisticaliteration; m++){
+    for (unsigned int m = 0; m <= statisticaliteration; m++){
         //-------------------------------------Warmup--------------------------------------------------
         if (m == 0){
             for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
@@ -100,7 +100,7 @@ int main (int argc, char *argv[]){
                     buffer.receivebuffer();
                     MPI_Barrier(MPI_COMM_WORLD);
                     endtime = MPI_Wtime();
-                    numberofRemotranks = numberofRootProcesses;
+                    numberofRemotranks = numberofSenders;
                 }
                 
                 //Write time-----------------------------------------------------------------
