@@ -2,7 +2,7 @@
 echo
 #not iterated over
 q=0 #nature of pipe
-START=2
+START=5
 ENDx=7
 ENDn=8
 for x in $(eval echo "{$START..$ENDx}")

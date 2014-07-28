@@ -58,9 +58,9 @@ public:
     
     int getcommflag() { return commflag; }
     
-    size_t getinnerRuntimeIterations(int z, int size);
+    size_t getinnerRuntimeIterations(int z);
     
-    void sendrecvvector(int size, int rank);
+    void sendrecvvector(unsigned int size,unsigned int rank);
     
 };
 

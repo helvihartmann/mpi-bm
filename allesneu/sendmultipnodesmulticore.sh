@@ -1,9 +1,9 @@
 #!/bin/bash
 echo
 #not iterated over
-q=1 #pipeline Depth
-START=4
-ENDx=4
+q=0 #pipeline Depth
+START=1
+ENDx=7
 for x in $(eval echo "{$START..$ENDx}")
 do
     touch single.in

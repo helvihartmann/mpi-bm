@@ -2,14 +2,14 @@
 
 Parameters::Parameters(int argc, char **argv){
     int opt;
-    numberofwarmups = 300;
+    numberofwarmups = 1000;
     multicore = 1;
     pipelinedepth = 8;
     pipeline = 0;
     numberofSenders = 1;
     statisticaliteration = 1;
     factor = (6000000000);
-    factor_fix = ((1<<20));
+    factor_fix = (20*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
     
@@ -175,11 +175,11 @@ Parameters::Parameters(int argc, char **argv){
     std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
 }
 
-void Parameters::sendrecvvector(int size, int rank){
+void Parameters::sendrecvvector(unsigned int size,unsigned int rank){
     numberofReceivers = size - numberofSenders;
     switch (multicore) {
             case 1: {
-                for (int rank_index = 0; rank_index < size; rank_index++){
+                for (unsigned int rank_index = 0; rank_index < size; rank_index++){
                     if (rank_index < numberofSenders){
                         sender_vec.push_back(rank_index);
                         if (rank == rank_index){
@@ -201,7 +201,7 @@ void Parameters::sendrecvvector(int size, int rank){
                 numberofSenders = (size/2) - 1;
                 numberofReceivers = numberofSenders;
                 if(rank%2 == 0 ){
-                    for (int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
+                    for (unsigned int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
                         if (rank_index != (rank + 1)){
                             receiver_vec.push_back(rank_index);
                         }
@@ -211,7 +211,7 @@ void Parameters::sendrecvvector(int size, int rank){
                 }
 
                 else {
-                    for (int rank_index = 0; rank_index < (size - 1); rank_index = (rank_index + 2)){
+                    for (unsigned int rank_index = 0; rank_index < (size - 1); rank_index = (rank_index + 2)){
                         if (rank_index != (rank - 1)){
                             sender_vec.push_back(rank_index);
                         }
@@ -219,12 +219,12 @@ void Parameters::sendrecvvector(int size, int rank){
                     std::cout << "I am receiver " << rank << std::endl;
                     commflag = 1;
                 }
-                for (int i=0; i<size; i++) {
+                for (unsigned int i=0; i<size; i++) {
                     if (rank == i){
-                        for (int rank_index = 0; rank_index < sender_vec.size(); rank_index++){
+                        for (unsigned int rank_index = 0; rank_index < sender_vec.size(); rank_index++){
                             std::cout << "my (" << rank << ") sender list is: " << sender_vec.at(rank_index) << std::endl;
                         }
-                        for (int rank_index = 0; rank_index < receiver_vec.size(); rank_index++){
+                        for (unsigned int rank_index = 0; rank_index < receiver_vec.size(); rank_index++){
                             std::cout << "my (" << rank << ") receiver list is: " << receiver_vec.at(rank_index) << std::endl;
                         }
                         
@@ -237,7 +237,7 @@ void Parameters::sendrecvvector(int size, int rank){
 }
 
 
-size_t Parameters::getinnerRuntimeIterations(int z, int size) {
+size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
     if (packageSizes.at(z) <= 8000)  {
