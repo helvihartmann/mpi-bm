@@ -2,8 +2,8 @@
 echo
 #not iterated over
 q=0 #pipeline Depth
-START=1
-ENDx=7
+START=3
+ENDx=3
 for x in $(eval echo "{$START..$ENDx}")
 do
     touch single.in
@@ -11,13 +11,13 @@ do
     echo "" >> single.in
     echo "#SBATCH --nodes="$x >> single.in
     echo "#SBATCH --job-name="$x"gegen"$x >> single.in
-    echo "#SBATCH --output="$x"gegen"$x"_x"$x"_q"$q"_n"$n".out" >> single.in
+    echo "#SBATCH --output="$x"gegen"$x"_s"$x"_q"$q"_n"$n".out" >> single.in
     echo "#SBATCH --ntasks-per-node=2" >> single.in
     echo "#SBATCH --nodelist=node0" >> single.in
     echo "#SBATCH --distribution=cyclic" >> single.in
     echo "" >> single.in
     echo "" >> single.in
-    echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 2 -b 17179869184 -m 2 -q" $q >> single.in
+    echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o 1 -i 6000 -b 17179869184 -m 2 -w 300 -q" $q >> single.in
     echo "" >> single.in
     echo "exit 0" >> single.in
     sbatch single.in

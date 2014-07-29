@@ -57,82 +57,80 @@ int main (int argc, char *argv[]){
     double starttime, endtime;
     
 
-    for (unsigned int m = 0; m <= statisticaliteration; m++){
+    for (unsigned int m = 1; m <= statisticaliteration; m++){
         //-------------------------------------Warmup--------------------------------------------------
-        if (m == 0){
-            for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
-                buffer.setloopvariables(packagecount, params.getnumberofwarmups());
-                if (commflag == 0){
-                    buffer.sendbuffer();
-                }
-                else{
-                    buffer.receivebuffer();
-                }
+        for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
+            buffer.setloopvariables(packagecount, params.getnumberofwarmups());
+            if (commflag == 0){
+                buffer.sendbuffer();
+            }
+            else{
+                buffer.receivebuffer();
             }
         }
-         //Iterate over packagesize ------------------------------------------------------------------------------------
-        else{
-            for (int z = 0; z < numberofpackages; z++){
-                // get loop variables----------------------------------------------------------------------------------
-                size_t packagesize = params.getPackageSizes().at(z);
-                size_t packacount = packagesize/sizeof(int);
-                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
-                if (pipelinedepth > innerRuntimeIterations){
-                    pipelinedepth = innerRuntimeIterations-2;
-                }
-                //innerRuntimeIterations = 15;
-                
-                buffer.setloopvariables(packacount, innerRuntimeIterations);
-                
-                // send-----------------------------------------------------------
-                if (commflag == 0){
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    starttime = MPI_Wtime();
-                    buffer.sendbuffer();
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    endtime = MPI_Wtime();
-                    numberofRemotranks = numberofReceivers;
-                }
-                // receive-------------------------------------------------------
-                else{
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    starttime = MPI_Wtime();
-                    buffer.receivebuffer();
-                    MPI_Barrier(MPI_COMM_WORLD);
-                    endtime = MPI_Wtime();
-                    numberofRemotranks = numberofSenders;
-                }
-                
-                //Write time-----------------------------------------------------------------
-                
-                
-                results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
-                switch (histcheck) {
-                    case 1:
-                        if (packagesize >= 8192 && packagesize <= 16384){
-                            buffer.printsingletime();
-                        }
-                        break;
-                        
-                    default:
-                        break;
-                }
-            }//z
+     //Iterate over packagesize ------------------------------------------------------------------------------------
+
+        for (int z = 0; z < numberofpackages; z++){
+            // get loop variables----------------------------------------------------------------------------------
+            size_t packagesize = params.getPackageSizes().at(z);
+            size_t packacount = packagesize/sizeof(int);
+            size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
+            if (pipelinedepth > innerRuntimeIterations){
+                pipelinedepth = innerRuntimeIterations-2;
+            }
+            //innerRuntimeIterations = 15;
             
-            MPI_Barrier(MPI_COMM_WORLD);
-            for (int i=0; i<size; i++) {
-                if (rank == i){
-                    if (rank == 0){
-                        cout << m << ". iteration-------------------" << endl;
-                        
-                    }
-                    results.printstatisticaliteration();
-                    sleep(2);
-                }
+            buffer.setloopvariables(packacount, innerRuntimeIterations);
+            
+            // send-----------------------------------------------------------
+            if (commflag == 0){
                 MPI_Barrier(MPI_COMM_WORLD);
+                starttime = MPI_Wtime();
+                buffer.sendbuffer();
+                MPI_Barrier(MPI_COMM_WORLD);
+                endtime = MPI_Wtime();
+                numberofRemotranks = numberofReceivers;
+            }
+            // receive-------------------------------------------------------
+            else{
+                MPI_Barrier(MPI_COMM_WORLD);
+                starttime = MPI_Wtime();
+                buffer.receivebuffer();
+                MPI_Barrier(MPI_COMM_WORLD);
+                endtime = MPI_Wtime();
+                numberofRemotranks = numberofSenders;
             }
             
+            //Write time-----------------------------------------------------------------
+            
+            
+            results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
+            switch (histcheck) {
+                case 1:
+                    if (packagesize >= 8192 && packagesize <= 16384){
+                        buffer.printsingletime();
+                    }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }//z
+        
+        MPI_Barrier(MPI_COMM_WORLD);
+        for (int i=0; i<size; i++) {
+            if (rank == i){
+                if (rank == 0){
+                    cout << m << ". iteration-------------------" << endl;
+                    
+                }
+                results.printstatisticaliteration();
+                sleep(2);
+            }
+            MPI_Barrier(MPI_COMM_WORLD);
         }
+        
+    
     }//m
     
     //-----------------------------------Output----------------------------------------------------------------------------------------

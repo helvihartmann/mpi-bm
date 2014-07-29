@@ -19,12 +19,12 @@ do
         echo "" >> single.in
         echo "#SBATCH --nodes="$n >> single.in
         echo "#SBATCH --job-name="$x"_"$q"_"$n >> single.in
-        echo "#SBATCH --output=55nodes_x"$x"_q"$q"_n"$n".out" >> single.in
+        echo "#SBATCH --output=55nodes_s"$x"_q"$q"_n"$n".out" >> single.in
         echo "#SBATCH --ntasks-per-node=1" >> single.in
         echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i 180000 -w 1000 -o 2 -q" $q "-x" $x >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i 180000 -w 1000 -o 2 -q" $q "-s" $x >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in
