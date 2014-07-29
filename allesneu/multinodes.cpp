@@ -61,6 +61,7 @@ int main (int argc, char *argv[]){
         //-------------------------------------Warmup--------------------------------------------------
         for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
             buffer.setloopvariables(packagecount, params.getnumberofwarmups());
+            
             if (commflag == 0){
                 buffer.sendbuffer();
             }
@@ -75,10 +76,10 @@ int main (int argc, char *argv[]){
             size_t packagesize = params.getPackageSizes().at(z);
             size_t packacount = packagesize/sizeof(int);
             size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
+            
             if (pipelinedepth > innerRuntimeIterations){
                 pipelinedepth = innerRuntimeIterations-2;
             }
-            //innerRuntimeIterations = 15;
             
             buffer.setloopvariables(packacount, innerRuntimeIterations);
             

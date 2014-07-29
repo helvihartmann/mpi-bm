@@ -9,7 +9,7 @@ Parameters::Parameters(int argc, char **argv){
     numberofSenders = 1;
     statisticaliteration = 1;
     factor = (6000000000);
-    factor_fix = (20*(1<<20));
+    factor_fix = (1*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
     
