@@ -57,7 +57,7 @@ int main (int argc, char *argv[]){
     double starttime, endtime;
     
 
-    for (unsigned int m = 1; m <= statisticaliteration; m++){
+    for (unsigned int m = 0; m < statisticaliteration; m++){
         //-------------------------------------Warmup--------------------------------------------------
         for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
             buffer.setloopvariables(packagecount, params.getnumberofwarmups());
@@ -104,7 +104,7 @@ int main (int argc, char *argv[]){
             //Write time-----------------------------------------------------------------
             
             
-            results.setvectors((m-1), z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
+            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
             switch (histcheck) {
                 case 1:
                     if (packagesize >= 8192 && packagesize <= 16384){

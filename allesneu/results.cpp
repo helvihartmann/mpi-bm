@@ -34,7 +34,7 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
 
 
 void Results::printstatisticaliteration(){
-    std::cout << "# printing " << idx_outeriter+1 << " statistical iteration" << std::endl;
+    std::cout << "# printing " << idx_outeriter << ". statistical iteration" << std::endl;
     for(int idx_numberofpackages = 0; idx_numberofpackages < numberofpackages; idx_numberofpackages++){
         int index = idx_outeriter*numberofpackages+idx_numberofpackages;
         std::cout<<totaldatasent_vector.at(idx_numberofpackages)<<" "<<innerRuntimeIterations_vector.at(idx_numberofpackages)<<" "<<package_vector.at(idx_numberofpackages)<<" " << time.at(index) <<" - "<< (totaldatasent_vector.at(idx_numberofpackages)/time.at(index))/1000000 << " - " << rank <<  " -  ";
