@@ -4,6 +4,7 @@
 #include "results.h"
 #include "buffer.h"
 #include "warmup.h"
+#include "output.h"
 #include <unistd.h>
 #include "tsc.h"
 #include "timestamp.h"
@@ -12,18 +13,15 @@ using namespace std;
 
 int main (int argc, char *argv[]){
     
+    // Header
     Timestamp timestamp;
     timestamp.printtimestamp();
-    // Header
-    
     
     //initiate MPI----------------------------------------------------------------
     int rank, size, length;
     char name[MPI_MAX_PROCESSOR_NAME];
     
     MPI_Init(&argc, &argv);
-
-    //MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
@@ -56,23 +54,23 @@ int main (int argc, char *argv[]){
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
+    Output output(rank, size);
     
+    // do Measurement--------------------------------------------------------------------------
     for (unsigned int m = 0; m < statisticaliteration; m++){
-        //-------------------------------------Warmup--------------------------------------------------
         MPI_Barrier(MPI_COMM_WORLD);
         Warmup warmup(&buffer, commflag, params.getnumberofwarmups(), rank);
-        //Iterate over packagesize ------------------------------------------------------------------------------------
-
+        
+        //Iterate over packagesize----------------------------------------------------------------------------
         for (int z = 0; z < numberofpackages; z++){
-            // get loop variables----------------------------------------------------------------------------------
+            
+            // get loop variables-----------------------------------------------------------------------------
             size_t packagesize = params.getPackageSizes().at(z);
             size_t packacount = packagesize/sizeof(int);
             size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
-            
             if (pipelinedepth > innerRuntimeIterations){
                 pipelinedepth = innerRuntimeIterations-2;
             }
-            
             buffer.setloopvariables(packacount, innerRuntimeIterations);
             
             // send-----------------------------------------------------------
@@ -95,9 +93,8 @@ int main (int argc, char *argv[]){
             }
             
             //Write time-----------------------------------------------------------------
-            
-            
             results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
+            
             switch (histcheck) {
                 case 1:
                     if (packagesize >= 8192 && packagesize <= 16384){
@@ -110,50 +107,12 @@ int main (int argc, char *argv[]){
             }
         }//z
         
-        MPI_Barrier(MPI_COMM_WORLD);
-        for (int i=0; i<size; i++) {
-            if (rank == i){
-                if (rank == 0){
-                    cout << m << ". iteration-------------------" << endl;
-                    
-                }
-                results.printstatisticaliteration();
-                sleep(2);
-            }
-            MPI_Barrier(MPI_COMM_WORLD);
-        }
-        
-    
+        output.outputiteration(&results, m);
     }//m
     
-    //-----------------------------------Output----------------------------------------------------------------------------------------
-    //-----------------------------------Output----------------------------------------------------------------------------------------
-    for (int i=0; i<size; i++) {
-        if (rank == i){
-            if(rank == 0){
-                
-                cout << "# processes " << size << endl;
-            }
-            
-            if (commflag == 0){
-                cout << "#----------------------- SENDER ---------------------------" << endl;
-                cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
-                results.calculate();
-                cout << "\n\n" << endl;
-                
-                            }
-            
-            else {
-                cout << "#--- RECEIVER ----------------------------" << endl;
-                cout << " number of receivers = " << numberofReceivers << endl;
-                results.calculate();
-                cout << "\n\n" << endl;
-            }
-            sleep(5);
-        }
-        MPI_Barrier(MPI_COMM_WORLD);
-        
-    }
+    //-----------------------------------Output-------------------------------------------------------------
+    output.outputfinal(&results, commflag, numberofReceivers);
+
 
     MPI_Finalize();
     timestamp.printtimestamp();
