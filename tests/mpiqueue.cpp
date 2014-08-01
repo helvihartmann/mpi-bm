@@ -5,7 +5,7 @@
 #include "tsc.h"
 
 using namespace std;
-/* gcc mpithreadc.cpp -o mpithreadc -Wall -std=c++11 -lstdc++ -I/opt/openmpi/1.6.5/include -pthread -L/opt/openmpi/1.6.5/lib -lmpi_cxx -lmpi -ldl -lm -lnuma -Wl,--export-dynamic -lrt -lnsl -lutil -lm -ldl (mpic++ -showme)*/
+/* gcc mpiqueue.cpp -o mpiqueue -Wall -std=c++11 -lstdc++ -I/opt/openmpi/1.6.5/include -pthread -L/opt/openmpi/1.6.5/lib -lmpi_cxx -lmpi -ldl -lm -lnuma -Wl,--export-dynamic -lrt -lnsl -lutil -lm -ldl (mpic++ -showme)*/
 
 //The function we want to make the thread run.
 
@@ -73,35 +73,39 @@ int main(int argc, char *argv[]){
         int flag = 0;
         std::vector<size_t>sendcount (numberofReceivers,0);
         size_t sendcountsum = 0;
-        unsigned int index_receiver = -1;
+        unsigned int index_remoterank = -1;
 
         
         MPI_Barrier(MPI_COMM_WORLD);
         //filling pipes
         for(size_t j = 0; j < pipelinedepth; j++){
             for(unsigned int remoterank = 1; remoterank <= numberofReceivers; remoterank++){
-                index_receiver = remoterank - 1;
-                index = packagecount*((j*numberofReceivers)+index_receiver)%(buffersize/sizeof(int)); //remoterank-1 = index_receiver
-                MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
-                vec[index_receiver].push(comm_obj);
+                index_remoterank = remoterank - 1;
+                index = packagecount*((j*numberofReceivers)+index_remoterank)%(buffersize/sizeof(int)); //remoterank-1 = index_receiver
+                //MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+                MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+
+                vec[index_remoterank].push(comm_obj);
             }
         }
         // queue management ----------------------------
         
         while (sendcountsum != innerRuntimeIterations) {
             for(unsigned int remoterank = 1; remoterank <= numberofReceivers; remoterank++){
-                unsigned int index_receiver = remoterank - 1;
+                unsigned int index_remoterank = remoterank - 1;
             //dont account for receiver if has send already all packages, count how much he will send
-                MPI_Test(&vec[index_receiver].front(), &flag, MPI_STATUS_IGNORE);
+                MPI_Test(&vec[index_remoterank].front(), &flag, MPI_STATUS_IGNORE);
                 //cout << rank << " checking " << remoterank << " flag is " << flag << endl;
                 if (flag == 1){
-                    vec[index_receiver].pop();
-                    index = packagecount*((sendcount.at(index_receiver)*numberofReceivers)+index_receiver)%(buffersize/sizeof(int));
-                    MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
-                    sendcount.at(index_receiver)++;
+                    vec[index_remoterank].pop();
+                    index = packagecount*((sendcount.at(index_remoterank)*numberofReceivers)+index_remoterank)%(buffersize/sizeof(int));
+                    //MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+                    MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+
+                    sendcount.at(index_remoterank)++;
                     sendcountsum++;
                     //cout << rank << " " << sendcount.at(index_receiver) << " to " << remoterank << " " << sendcountsum << endl;
-                    vec[index_receiver].push(comm_obj);
+                    vec[index_remoterank].push(comm_obj);
                 }
             }
         }
@@ -120,9 +124,10 @@ int main(int argc, char *argv[]){
         MPI_Barrier(MPI_COMM_WORLD);
         // fill queue-----------------------------------
         for(size_t j = 0; j < pipelinedepth; j++){
-                index = (packagecount*j)%(buffersize/sizeof(int));
-                MPI_Irecv((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
-                queue_request.push(comm_obj);
+            index = (packagecount*j)%(buffersize/sizeof(int));
+            //MPI_Irecv((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
+            MPI_Issend((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
+            queue_request.push(comm_obj);
         }
         // queue management-----------------------------
         while (recvcount != innerRuntimeIterations) {
@@ -131,7 +136,9 @@ int main(int argc, char *argv[]){
             if (flag == 1){
                 queue_request.pop();
                 index = (packagecount*recvcount)%(buffersize/sizeof(int));
-                MPI_Irecv((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
+                //MPI_Irecv((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
+                MPI_Issend((buffer + index), packagecount, MPI_INT, 0, 1, MPI_COMM_WORLD, &comm_obj);
+
                 recvcount++;
                 //cout << rank << " " << recvcount << endl;
                 queue_request.push(comm_obj);
