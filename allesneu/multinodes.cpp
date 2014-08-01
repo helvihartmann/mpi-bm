@@ -3,6 +3,7 @@
 #include "parameters.h"
 #include "results.h"
 #include "buffer.h"
+#include "warmup.h"
 #include <unistd.h>
 #include "tsc.h"
 #include "timestamp.h"
@@ -29,47 +30,38 @@ int main (int argc, char *argv[]){
     
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
     
-    //get parameters from corresponding class--------------------------------------
+    //Parameter class--------------------------------------
     Parameters params(argc, argv);
     
-    unsigned int pipelinedepth = params.getpipelinedepth();
-    
-    int pipeline = params.getpipeline();
-    unsigned int statisticaliteration = params.getStatisticalIterations();
-    int numberofpackages = params.getNumberOfPackageSizes();
-    int histcheck = params.gethistcheck();
-    
-    //set flag for ranks if they are sender or receiver----------------------------
+    //set flag for ranks if they are sender or receiver
     MPI_Barrier(MPI_COMM_WORLD);
     params.sendrecvvector(size, rank);
     MPI_Barrier(MPI_COMM_WORLD);
     sleep(5);
+    
+    //get and initialize parameters
+    unsigned int pipelinedepth = params.getpipelinedepth();
+    int pipeline = params.getpipeline();
+    unsigned int statisticaliteration = params.getStatisticalIterations();
+    int numberofpackages = params.getNumberOfPackageSizes();
+    int histcheck = params.gethistcheck();
     unsigned int numberofSenders = params.getnumberofSenders();
     unsigned int numberofReceivers = params.getnumberofReceivers();
     vector<int>sender_vec = params.getsendervec();
     vector<int>receiver_vec = params.getrecvvec();
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
+    int numberofRemotranks;
+    double starttime, endtime;
     
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
-    int numberofRemotranks;
-    double starttime, endtime;
     
-
     for (unsigned int m = 0; m < statisticaliteration; m++){
         //-------------------------------------Warmup--------------------------------------------------
-        for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
-            buffer.setloopvariables(packagecount, params.getnumberofwarmups());
-            
-            if (commflag == 0){
-                buffer.sendbuffer();
-            }
-            else{
-                buffer.receivebuffer();
-            }
-        }
-     //Iterate over packagesize ------------------------------------------------------------------------------------
+        MPI_Barrier(MPI_COMM_WORLD);
+        Warmup warmup(&buffer, commflag, params.getnumberofwarmups(), rank);
+        //Iterate over packagesize ------------------------------------------------------------------------------------
 
         for (int z = 0; z < numberofpackages; z++){
             // get loop variables----------------------------------------------------------------------------------
