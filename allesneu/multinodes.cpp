@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "tsc.h"
 #include "timestamp.h"
-
+#include <numa.h>
 using namespace std;
 
 int main (int argc, char *argv[]){
@@ -27,6 +27,12 @@ int main (int argc, char *argv[]){
     MPI_Get_processor_name(name, &length);
     
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
+    
+    //Pinning Processes--------------------------------------
+    struct bitmask* nodemask = numa_allocate_cpumask();
+    numa_bitmask_setbit(nodemask, 0);
+    cout << "pinning to numa_node 0" << endl;
+    numa_bind(nodemask);
     
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
