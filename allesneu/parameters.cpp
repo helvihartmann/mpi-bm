@@ -5,7 +5,6 @@ Parameters::Parameters(int argc, char **argv){
     numberofwarmups = 1000;
     multicore = 1;
     pipelinedepth = 8;
-    pipeline = 0;
     numberofSenders = 1;
     statisticaliteration = 1;
     factor = (6000000000);
@@ -29,14 +28,13 @@ Parameters::Parameters(int argc, char **argv){
         { "buffer_size",            required_argument,	     NULL,       'b' },
         { "multicore",              required_argument,        NULL,       'm' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
-        { "pipeline",               required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_senders",                required_argument,	     NULL,       's' },
         { "timedistribution",                required_argument,	     NULL,       't' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:s:t:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:s:t:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -50,7 +48,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
-            std::cout << " --pipeline                    -q       nature of pipeline, 0 = shared or 1 = one pipe for each receiver                       \n (DEFAULT = " << pipeline << ")\n"          << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
@@ -127,10 +124,6 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 'q':
-            pipeline = atoi(optarg);
-        
-            break;
         case 'w':
             numberofwarmups = atof(optarg);
             if (!(numberofwarmups >= 0)) {
@@ -172,7 +165,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: " << pipeline << ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: -  , number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
 }
 
 void Parameters::sendrecvvector(unsigned int size,unsigned int rank){

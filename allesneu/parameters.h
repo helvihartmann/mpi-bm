@@ -11,7 +11,6 @@ private:
     int numberofwarmups;
     int multicore;
     unsigned int pipelinedepth;
-    int pipeline;
     unsigned int numberofSenders;
     unsigned int numberofReceivers;
     unsigned int statisticaliteration;
@@ -43,9 +42,7 @@ public:
     int gethistcheck() { return histcheck; }
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
-    
-    int getpipeline() { return pipeline; }
-    
+        
     unsigned int getnumberofSenders() { return numberofSenders; }
     
     unsigned int getnumberofReceivers() { return numberofReceivers; }

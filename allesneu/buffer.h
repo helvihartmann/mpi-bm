@@ -17,7 +17,6 @@ private:
     int rank;
     
     unsigned int pipelinedepth;
-    int pipeline;
     size_t buffersize;
     std::vector<int>sender_vec;
     std::vector<int>receiver_vec;
@@ -46,7 +45,7 @@ private:
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, int pipeline, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, unsigned int numberofSenders, unsigned int numberofReceivers);
+    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, unsigned int numberofSenders, unsigned int numberofReceivers);
    
     void checkbuffer(int value, int remoterank);
     

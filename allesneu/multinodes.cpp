@@ -45,7 +45,6 @@ int main (int argc, char *argv[]){
     
     //get and initialize parameters
     unsigned int pipelinedepth = params.getpipelinedepth();
-    int pipeline = params.getpipeline();
     unsigned int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
@@ -59,7 +58,7 @@ int main (int argc, char *argv[]){
     
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, pipeline, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
+    Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
     Output output(rank, size);
     
     // do Measurement--------------------------------------------------------------------------
