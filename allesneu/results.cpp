@@ -12,7 +12,7 @@ Results::Results(int rank_, int statisticaliteration_, int numberofpackages_) :
 {
 }
 
-void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int numberofRemoteranks_, double time_, std::vector<unsigned long long>cycles_issend_,std::vector<size_t>waittestcounter_, int pipelinedepth){
+void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int numberofRemoteranks_, double time_, std::vector<size_t>waittestcounter_, int pipelinedepth){
     idx_outeriter = idx_outeriter_;
     numberofRemoteranks = numberofRemoteranks_;
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
@@ -20,8 +20,6 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
     totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*numberofRemoteranks;
     
     for (int i = 0; i < numberofRemoteranks; i++){
-        avg_cyclescomm.push_back(cycles_issend_.at(i)/innerRuntimeIterations);
-        //std::cout << innerRuntimeIterations << ", " << pipelinedepth << std::endl;
         avg_waittestcounter.push_back(waittestcounter_.at(i)/(innerRuntimeIterations-pipelinedepth));
     }
     
@@ -39,14 +37,11 @@ void Results::printstatisticaliteration(){
         int index = idx_outeriter*numberofpackages+idx_numberofpackages;
         std::cout<<totaldatasent_vector.at(idx_numberofpackages)<<" "<<innerRuntimeIterations_vector.at(idx_numberofpackages)<<" "<<package_vector.at(idx_numberofpackages)<<" " << time.at(index) <<" - "<< (totaldatasent_vector.at(idx_numberofpackages)/time.at(index))/1000000 << " - " << rank <<  " -  ";
         
-        for (int i = 0; i < numberofRemoteranks; i++){
-            //std::cout << "\n idx_numberofpackages*numberofRemoteranks+i (" << idx_numberofpackages*numberofRemoteranks+i << ") = " << idx_numberofpackages << " * " << numberofRemoteranks << " + " << i << std::endl;
-            std::cout << avg_cyclescomm.at(idx_numberofpackages*numberofRemoteranks+i) << " ";
-        }
-        std::cout << " - ";
+
         for (int i = 0; i < numberofRemoteranks; i++){
             std::cout << avg_waittestcounter.at(idx_numberofpackages*numberofRemoteranks+i) << " ";
         }
+        
         std::cout << " " << std::endl;
     }
     

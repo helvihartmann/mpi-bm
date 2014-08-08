@@ -3,12 +3,16 @@
 
 class Warmup{
 public:
-    Warmup(Buffer *buffer,int commflag,size_t numberofwarmups, int rank);
+    Warmup(Buffer *buffer,int commflag,size_t numberofwarmups, int rank, unsigned int numberofSenders, unsigned int numberofReceivers);
 };
 
-Warmup::Warmup(Buffer *buffer, int commflag, size_t numberofwarmups, int rank){
+Warmup::Warmup(Buffer *buffer, int commflag, size_t numberofwarmups, int rank, unsigned int numberofSenders, unsigned int numberofReceivers){
     if (rank == 0){
         std::cout << "#warmup " << std::endl;
+    }
+    
+    if (numberofSenders == numberofReceivers){
+        numberofwarmups = numberofwarmups/numberofReceivers;
     }
     
     for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){

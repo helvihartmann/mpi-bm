@@ -41,7 +41,6 @@ private:
     
     TimeStampCounter timestamp;
     
-    std::vector<unsigned long long>cycles_comm;
     std::vector<size_t>testwaitcounter;
     
     size_t errorcounter = 0;
@@ -60,9 +59,7 @@ public:
     void receivebuffer();
     
     void printsingletime();
-    
-    std::vector<unsigned long long> getcyclescomm() { return cycles_comm; }
-    
+        
     std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
     
     size_t geterrorcounter() { return errorcounter; }

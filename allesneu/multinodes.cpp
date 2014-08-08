@@ -33,7 +33,7 @@ int main (int argc, char *argv[]){
     numa_bitmask_setbit(nodemask, 0);
     cout << "pinning to numa_node 0" << endl;
     numa_bind(nodemask);
-    
+    //numa_set_membind(nodemask);
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
     
@@ -65,7 +65,7 @@ int main (int argc, char *argv[]){
     // do Measurement--------------------------------------------------------------------------
     for (unsigned int m = 0; m < statisticaliteration; m++){
         MPI_Barrier(MPI_COMM_WORLD);
-        Warmup warmup(&buffer, commflag, params.getnumberofwarmups(), rank);
+        Warmup warmup(&buffer, commflag, params.getnumberofwarmups(), rank, numberofSenders, numberofReceivers);
         
         //Iterate over packagesize----------------------------------------------------------------------------
         for (int z = 0; z < numberofpackages; z++){
@@ -99,7 +99,7 @@ int main (int argc, char *argv[]){
             }
             
             //Write time-----------------------------------------------------------------
-            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.getcyclescomm(),buffer.gettestwaitcounter(),pipelinedepth);
+            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.gettestwaitcounter(),pipelinedepth);
             
             switch (histcheck) {
                 case 1:
