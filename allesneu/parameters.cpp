@@ -1,5 +1,6 @@
 #include "parameters.h"
-
+/*08.08.2014 this class is responsible for reading all option parsed in the function call or othererwise setting the default values
+ */
 Parameters::Parameters(int argc, char **argv){
     int opt;
     numberofwarmups = 1000;
@@ -233,6 +234,11 @@ void Parameters::sendrecvvector(unsigned int size,unsigned int rank){
 size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
+    if (fac > 100000000000){//when I want to make long time tests more than 100GB datavolume per package size also increase the small packages
+        factor_fix = 50*factor_fix;
+    }
+    
+    // inner iter for small packagesize constant because double the packagesize = double as fast
     if (packageSizes.at(z) <= 8000)  {
         innerRuntimeIterations = factor_fix;
     }
@@ -240,6 +246,7 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
         innerRuntimeIterations = factor/packageSizes.at(z);
     }
     
+    // inner iter for big package sizes which are all around 6GB/s
     if (numberofSenders < numberofReceivers){
         innerRuntimeIterations = innerRuntimeIterations * ((double)numberofSenders/(double)numberofReceivers);
     }

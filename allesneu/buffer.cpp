@@ -28,8 +28,6 @@ void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIteration
     packagecount = packagecount_;
 }
 
-
-
 void Buffer::sendbuffer(){
     std::queue<MPI_Request> queue_request;
     MPI_Request send_obj;
@@ -94,6 +92,7 @@ void Buffer::checkbuffer(int value, int remoterank){
     }
 }
 
+//similar to above but with additional messurements for histogramms -----------------------------------------
 void Buffer::sendbuffer_hist(){
     std::queue<MPI_Request> queue_request;
     MPI_Request send_obj;

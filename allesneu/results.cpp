@@ -23,7 +23,6 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
         avg_waittestcounter.push_back(waittestcounter_.at(i)/(innerRuntimeIterations-pipelinedepth));
     }
     
-    
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
     
@@ -41,10 +40,8 @@ void Results::printstatisticaliteration(){
         for (int i = 0; i < numberofRemoteranks; i++){
             std::cout << avg_waittestcounter.at(idx_numberofpackages*numberofRemoteranks+i) << " ";
         }
-        
         std::cout << " " << std::endl;
     }
-    
     std::cout  << "\n\n" << std::endl;
 }
 
@@ -63,10 +60,5 @@ void Results::calculate(){
         double send_std=(send_stdtime/send_mean)*rate;
         
         std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << std::endl;
-        
-        
-        /*if (send_std >=50){
-            std::cout << " WARNING!  standarddeviation greater than 50MB/s....measurements are not similiar enough" << std::endl;
-        }*/
     }
 }

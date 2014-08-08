@@ -78,7 +78,7 @@ int main (int argc, char *argv[]){
             }
             buffer.setloopvariables(packacount, innerRuntimeIterations);
             
-            switch (histcheck) {
+            switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
                 case 1:
                     // send-----------------------------------------------------------
                     if (commflag == 0){
