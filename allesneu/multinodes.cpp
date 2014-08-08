@@ -79,38 +79,56 @@ int main (int argc, char *argv[]){
             }
             buffer.setloopvariables(packacount, innerRuntimeIterations);
             
-            // send-----------------------------------------------------------
-            if (commflag == 0){
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                buffer.sendbuffer();
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                numberofRemotranks = numberofReceivers;
-            }
-            // receive-------------------------------------------------------
-            else{
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                buffer.receivebuffer();
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                numberofRemotranks = numberofSenders;
-            }
-            
-            //Write time-----------------------------------------------------------------
-            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.gettestwaitcounter(),pipelinedepth);
-            
             switch (histcheck) {
                 case 1:
+                    // send-----------------------------------------------------------
+                    if (commflag == 0){
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        starttime = MPI_Wtime();
+                        buffer.sendbuffer_hist();
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        endtime = MPI_Wtime();
+                        numberofRemotranks = numberofReceivers;
+                    }
+                    // receive-------------------------------------------------------
+                    else{
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        starttime = MPI_Wtime();
+                        buffer.receivebuffer_hist();
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        endtime = MPI_Wtime();
+                        numberofRemotranks = numberofSenders;
+                    }
                     if (packagesize >= 8192 && packagesize <= 16384){
                         buffer.printsingletime();
                     }
                     break;
                     
                 default:
+                    // send-----------------------------------------------------------
+                    if (commflag == 0){
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        starttime = MPI_Wtime();
+                        buffer.sendbuffer();
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        endtime = MPI_Wtime();
+                        numberofRemotranks = numberofReceivers;
+                    }
+                    // receive-------------------------------------------------------
+                    else{
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        starttime = MPI_Wtime();
+                        buffer.receivebuffer();
+                        MPI_Barrier(MPI_COMM_WORLD);
+                        endtime = MPI_Wtime();
+                        numberofRemotranks = numberofSenders;
+                    }
                     break;
             }
+            
+            //Write time-----------------------------------------------------------------
+            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.gettestwaitcounter(),pipelinedepth);
+
         }//z
         
         output.outputiteration(&results, m);

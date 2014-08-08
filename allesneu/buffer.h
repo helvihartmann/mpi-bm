@@ -30,14 +30,11 @@ private:
     size_t innerRuntimeIterations;
     size_t packagecount;
     
-    std::vector<unsigned long long>sendstart;
-    std::vector<unsigned long long>sendstop;
+    std::vector<unsigned long long>commstart;
+    std::vector<unsigned long long>commstop;
     std::vector<unsigned long long>waitstart;
     std::vector<unsigned long long>waitstop;
-    std::vector<unsigned long long>recvstart;
-    std::vector<unsigned long long>recvstop;
-    std::vector<unsigned long long>waitrstart;
-    std::vector<unsigned long long>waitrstop;
+
     
     TimeStampCounter timestamp;
     
@@ -57,6 +54,10 @@ public:
     void sendbuffer();
     
     void receivebuffer();
+    
+    void sendbuffer_hist();
+    
+    void receivebuffer_hist();
     
     void printsingletime();
         
