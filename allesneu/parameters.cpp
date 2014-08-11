@@ -169,25 +169,26 @@ Parameters::Parameters(int argc, char **argv){
     std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: -  , number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
 }
 
-void Parameters::sendrecvvector(unsigned int size,unsigned int rank){
+std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int rank){
     numberofReceivers = size - numberofSenders;
     switch (multicore) {
             case 1: {
-                for (unsigned int rank_index = 0; rank_index < size; rank_index++){
-                    if (rank_index < numberofSenders){
-                        sender_vec.push_back(rank_index);
-                        if (rank == rank_index){
-                            std::cout << "I am sender " << rank_index << std::endl;
-                            commflag = 0;
-                        }
+                if(rank < numberofSenders){
+                    for(unsigned int rank_index = numberofSenders; rank_index < size; rank_index++){
+                        remoterank_vec.push_back(rank_index);
+
                     }
-                    else{
-                        receiver_vec.push_back(rank_index);
-                        if (rank == rank_index){
-                            std::cout << "I am receiver " << rank_index << std::endl;
-                            commflag = 1;
-                        }
+                    std::cout << "I am sender " << rank << std::endl;
+                    numberofremoteranks = numberofReceivers;
+                    commflag = 0;
+                }
+                else{
+                    for(unsigned int rank_index=0; rank_index < numberofSenders; rank_index++){
+                        remoterank_vec.push_back(rank_index);
                     }
+                    std::cout << "I am receiver " << rank << std::endl;
+                    numberofremoteranks = numberofSenders;
+                    commflag = 1;
                 }
             }
             break;
@@ -197,29 +198,31 @@ void Parameters::sendrecvvector(unsigned int size,unsigned int rank){
                 if(rank%2 == 0 ){
                     for (unsigned int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
                         if (rank_index != (rank + 1)){
-                            receiver_vec.push_back(rank_index);
+                            remoterank_vec.push_back(rank_index);
                         }
                     }
                     std::cout << "I am sender " << rank << std::endl;
+                    numberofremoteranks = numberofReceivers;
                     commflag = 0;
                 }
 
                 else {
                     for (unsigned int rank_index = 0; rank_index < (size - 1); rank_index = (rank_index + 2)){
                         if (rank_index != (rank - 1)){
-                            sender_vec.push_back(rank_index);
+                            remoterank_vec.push_back(rank_index);
                         }
                     }
                     std::cout << "I am receiver " << rank << std::endl;
+                    numberofremoteranks = numberofSenders;
                     commflag = 1;
                 }
                 for (unsigned int i=0; i<size; i++) {
                     if (rank == i){
-                        for (unsigned int rank_index = 0; rank_index < sender_vec.size(); rank_index++){
-                            std::cout << "my (" << rank << ") sender list is: " << sender_vec.at(rank_index) << std::endl;
+                        for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
+                            std::cout << "my (" << rank << ") sender list is: " << remoterank_vec.at(rank_index) << std::endl;
                         }
-                        for (unsigned int rank_index = 0; rank_index < receiver_vec.size(); rank_index++){
-                            std::cout << "my (" << rank << ") receiver list is: " << receiver_vec.at(rank_index) << std::endl;
+                        for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
+                            std::cout << "my (" << rank << ") receiver list is: " << remoterank_vec.at(rank_index) << std::endl;
                         }
                         
                     }
@@ -228,13 +231,14 @@ void Parameters::sendrecvvector(unsigned int size,unsigned int rank){
             }
             break;
     }
+    return remoterank_vec;
 }
 
 
 size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
-    if (fac > 100000000000){//when I want to make long time tests more than 100GB datavolume per package size also increase the small packages
+    if (factor > 100000000000){//when I want to make long time tests more than 100GB datavolume per package size also increase the small packages
         factor_fix = 50*factor_fix;
     }
     
@@ -262,4 +266,12 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
     }
     
     return innerRuntimeIterations;
+}
+
+size_t Parameters::getnumberofwarmups() {
+    if (numberofSenders == numberofReceivers){
+        numberofwarmups = numberofwarmups/numberofReceivers;
+    }
+    
+    return numberofwarmups;
 }

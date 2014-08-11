@@ -9,7 +9,7 @@ public:
     
     Output(int rank_, int size_);
     void outputiteration(Results *results, unsigned int m);
-    void outputfinal(Results *results, int commflag, unsigned int numberofReceivers);
+    void outputfinal(Results *results, int commflag);
 };
 
 Output::Output(int rank_, int size_) :
@@ -35,7 +35,7 @@ void Output::outputiteration(Results *results, unsigned int m){
     }
 }
 
-void Output::outputfinal(Results *results, int commflag, unsigned int numberofReceivers){
+void Output::outputfinal(Results *results, int commflag){
     for (int i=0; i<size; i++) {
         if (rank == i){
             if(rank == 0){
@@ -53,7 +53,6 @@ void Output::outputfinal(Results *results, int commflag, unsigned int numberofRe
             
             else {
                 cout << "#--- RECEIVER ----------------------------" << endl;
-                cout << " number of receivers = " << numberofReceivers << endl;
                 results->calculate();
                 cout << "\n\n" << endl;
             }

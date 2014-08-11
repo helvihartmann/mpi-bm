@@ -18,11 +18,8 @@ private:
     
     unsigned int pipelinedepth;
     size_t buffersize;
-    std::vector<int>sender_vec;
-    std::vector<int>receiver_vec;
-    
-    unsigned int numberofSenders; // now every process has his own
-    unsigned int numberofReceivers;
+    std::vector<int>remoterank_vec;
+    unsigned int numberofremoteranks; // now every process has his own
     
     int *buffer;
     
@@ -45,18 +42,15 @@ private:
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>sender_vec, std::vector<int>receiver_vec, unsigned int numberofSenders, unsigned int numberofReceivers);
+    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks);
    
     void checkbuffer(int value, int remoterank);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
-    void sendbuffer();
     
-    void receivebuffer();
+    void comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
-    void sendbuffer_hist();
-    
-    void receivebuffer_hist();
+    void comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
     void printsingletime();
         

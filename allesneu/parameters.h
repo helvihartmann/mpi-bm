@@ -13,6 +13,7 @@ private:
     unsigned int pipelinedepth;
     unsigned int numberofSenders;
     unsigned int numberofReceivers;
+    unsigned int numberofremoteranks;
     unsigned int statisticaliteration;
     size_t factor;
     size_t factor_fix;
@@ -23,8 +24,7 @@ private:
     
     std::vector<size_t> packageSizes;
     
-    std::vector<int>sender_vec;
-    std::vector<int>receiver_vec;
+    std::vector<int>remoterank_vec;
     
     int commflag;
 public:
@@ -42,22 +42,16 @@ public:
     int gethistcheck() { return histcheck; }
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
-        
-    unsigned int getnumberofSenders() { return numberofSenders; }
     
-    unsigned int getnumberofReceivers() { return numberofReceivers; }
+    size_t getnumberofwarmups();
     
-    int getnumberofwarmups() { return numberofwarmups; }
-    
-    std::vector<int> getsendervec() { return sender_vec; }
-    
-    std::vector<int> getrecvvec() { return receiver_vec; }
+    unsigned int getnumberofremoteranks() {return numberofremoteranks; }
     
     int getcommflag() { return commflag; }
     
     size_t getinnerRuntimeIterations(int z);
     
-    void sendrecvvector(unsigned int size,unsigned int rank);
+    std::vector<int> getsetremoterankvec(unsigned int size,unsigned int rank);
     
 };
 

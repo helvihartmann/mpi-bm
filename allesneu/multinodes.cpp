@@ -3,7 +3,7 @@
 #include "parameters.h"
 #include "results.h"
 #include "buffer.h"
-#include "warmup.h"
+#include "measurement.h"
 #include "output.h"
 #include <unistd.h>
 #include "tsc.h"
@@ -34,12 +34,13 @@ int main (int argc, char *argv[]){
     cout << "pinning to numa_node 0" << endl;
     numa_bind(nodemask);
     //numa_set_membind(nodemask);
+    
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
     
     //set flag for ranks if they are sender or receiver
     MPI_Barrier(MPI_COMM_WORLD);
-    params.sendrecvvector(size, rank);
+    vector<int>remoterank_vec =  params.getsetremoterankvec(size, rank);
     MPI_Barrier(MPI_COMM_WORLD);
     sleep(5);
     
@@ -48,23 +49,31 @@ int main (int argc, char *argv[]){
     unsigned int statisticaliteration = params.getStatisticalIterations();
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
-    unsigned int numberofSenders = params.getnumberofSenders();
-    unsigned int numberofReceivers = params.getnumberofReceivers();
-    vector<int>sender_vec = params.getsendervec();
-    vector<int>receiver_vec = params.getrecvvec();
+    unsigned int numberofremoteranks = params.getnumberofremoteranks();
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
-    int numberofRemotranks;
-    double starttime, endtime;
     
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
-    Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), sender_vec, receiver_vec, numberofSenders, numberofReceivers);
+    Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
     Output output(rank, size);
+    
+    Measurement measurement(&buffer);
+    
+    int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
+    int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
+
+    if (commflag == 0){
+        measurement.setfunctionpointer(mpisend);
+    }
+    else{
+        measurement.setfunctionpointer(mpirecv);
+    }
     
     // do Measurement--------------------------------------------------------------------------
     for (unsigned int m = 0; m < statisticaliteration; m++){
+        
         MPI_Barrier(MPI_COMM_WORLD);
-        Warmup warmup(&buffer, commflag, params.getnumberofwarmups(), rank, numberofSenders, numberofReceivers);
+        measurement.warmup(params.getnumberofwarmups(), rank);
         
         //Iterate over packagesize----------------------------------------------------------------------------
         for (int z = 0; z < numberofpackages; z++){
@@ -76,57 +85,22 @@ int main (int argc, char *argv[]){
             if (pipelinedepth > innerRuntimeIterations){
                 pipelinedepth = innerRuntimeIterations-2;
             }
-            buffer.setloopvariables(packacount, innerRuntimeIterations);
-            
+                        
             switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
                 case 1:
-                    // send-----------------------------------------------------------
-                    if (commflag == 0){
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        starttime = MPI_Wtime();
-                        buffer.sendbuffer_hist();
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        endtime = MPI_Wtime();
-                        numberofRemotranks = numberofReceivers;
-                    }
-                    // receive-------------------------------------------------------
-                    else{
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        starttime = MPI_Wtime();
-                        buffer.receivebuffer_hist();
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        endtime = MPI_Wtime();
-                        numberofRemotranks = numberofSenders;
-                    }
+                    measurement.measure_hist(packacount,innerRuntimeIterations);
                     if (packagesize >= 8192 && packagesize <= 16384){
                         buffer.printsingletime();
                     }
                     break;
                     
                 default:
-                    // send-----------------------------------------------------------
-                    if (commflag == 0){
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        starttime = MPI_Wtime();
-                        buffer.sendbuffer();
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        endtime = MPI_Wtime();
-                        numberofRemotranks = numberofReceivers;
-                    }
-                    // receive-------------------------------------------------------
-                    else{
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        starttime = MPI_Wtime();
-                        buffer.receivebuffer();
-                        MPI_Barrier(MPI_COMM_WORLD);
-                        endtime = MPI_Wtime();
-                        numberofRemotranks = numberofSenders;
-                    }
+                    measurement.measure(packacount,innerRuntimeIterations);
                     break;
             }
             
             //Write time-----------------------------------------------------------------
-            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofRemotranks,(endtime-starttime),buffer.gettestwaitcounter(),pipelinedepth);
+            results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement.getendtime()-measurement.getstarttime()),buffer.gettestwaitcounter(),pipelinedepth);
 
         }//z
         
@@ -134,7 +108,7 @@ int main (int argc, char *argv[]){
     }//m
     
     //-----------------------------------Output-------------------------------------------------------------
-    output.outputfinal(&results, commflag, numberofReceivers);
+    output.outputfinal(&results, commflag);
 
 
     MPI_Finalize();
