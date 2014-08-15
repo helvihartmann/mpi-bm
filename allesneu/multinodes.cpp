@@ -29,10 +29,10 @@ int main (int argc, char *argv[]){
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
     
     //Pinning Processes--------------------------------------
-    struct bitmask* nodemask = numa_allocate_cpumask();
+    /*struct bitmask* nodemask = numa_allocate_cpumask();
     numa_bitmask_setbit(nodemask, 0);
     cout << "pinning to numa_node 0" << endl;
-    numa_bind(nodemask);
+    numa_bind(nodemask);*/
     //numa_set_membind(nodemask);
     
     //Parameter class--------------------------------------
@@ -52,6 +52,9 @@ int main (int argc, char *argv[]){
     unsigned int numberofremoteranks = params.getnumberofremoteranks();
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
     
+    int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
+    int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
+    
     // iniate classes
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
@@ -59,9 +62,6 @@ int main (int argc, char *argv[]){
     
     Measurement measurement(&buffer);
     
-    int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
-    int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
-
     if (commflag == 0){
         measurement.setfunctionpointer(mpisend);
     }

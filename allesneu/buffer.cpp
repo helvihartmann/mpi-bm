@@ -43,9 +43,6 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
         // fill queue---------------------------------
         for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
             remoterank = remoterank_vec.at(index_remoterank);
-            
-            //std::cout << rank << " remoteprocesses: " << numberofremoteranks << "(" << remoterank << ")" << std::endl;
-
             index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
             queue_request.push(send_obj);

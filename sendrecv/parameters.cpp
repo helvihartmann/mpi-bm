@@ -151,7 +151,7 @@ void Parameters::readOptions(int argc, char **argv, int rank){
             break;
         case 'w':
             numberofwarmups = atof(optarg);
-            if (!(numberofwarmups > 0)) {
+            if (!(numberofwarmups >= 0)) {
                 printf("ERROR -w: please enter vaild number for number of warmups (i.e. how many times a package is sent/received in advance) \n");
                 exit(1);
             }
