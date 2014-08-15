@@ -33,6 +33,7 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
     size_t index = 0;
     testwaitcounter.assign(numberofremoteranks,0);
     
+    int remoterankflag, index_remoterank;
     for(size_t j = 0; j < innerRuntimeIterations; j++){
         // wait for objects---------------------------
         while (queue_request.size() >= pipelinedepth*numberofremoteranks){
@@ -41,11 +42,20 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
             queue_request.pop();
         }
         // fill queue---------------------------------
-        for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+        /*for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
             remoterank = remoterank_vec.at(index_remoterank);
             index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
             queue_request.push(comm_obj);
+        }*/
+        remoterankflag = 0;
+        while(remoterankflag < numberofremoteranks){
+            index_remoterank = (rank + remoterankflag)%numberofremoteranks;
+            remoterank = remoterank_vec.at(index_remoterank);
+            index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+            queue_request.push(comm_obj);
+            remoterankflag++;
         }
     }
     // empty queue---------------------------------
