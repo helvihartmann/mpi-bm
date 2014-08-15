@@ -29,11 +29,11 @@ int main (int argc, char *argv[]){
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
     
     //Pinning Processes--------------------------------------
-    /*struct bitmask* nodemask = numa_allocate_cpumask();
+    struct bitmask* nodemask = numa_allocate_cpumask();
     numa_bitmask_setbit(nodemask, 0);
     cout << "pinning to numa_node 0" << endl;
-    numa_bind(nodemask);*/
-    //numa_set_membind(nodemask);
+    numa_bind(nodemask);
+    numa_set_membind(nodemask);
     
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
@@ -59,7 +59,6 @@ int main (int argc, char *argv[]){
     Results results(rank, statisticaliteration, numberofpackages);
     Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
     Output output(rank, size);
-    
     Measurement measurement(&buffer);
     
     if (commflag == 0){
