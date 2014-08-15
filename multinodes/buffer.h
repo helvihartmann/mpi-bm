@@ -1,40 +1,62 @@
 #ifndef BUFFER_H
 #define BUFFER_H
-
-#include <mpi.h>
 #include <iostream>
 #include <queue>
-/* ~/mpich-install/mpich-3.0.4/myfiles/alltoall/example202.c
- 14.11.2013
-class Mpi contains all MPi related functions
-designed to send a lot of data between processes even more than 1GB
- This version iterates over the packege size to assure for every run the same conditions on the fles
- and prints everything into 503.out*/
+#include <mpi.h>
+#include "tsc.h"
+#include <fstream>
+#include <sstream>
+#include <unistd.h>
+
+using namespace std;
+/**/
 
 class Buffer{
 private:
-    
-
-    size_t numberofcalls;
+    int size;
     int rank;
+    
+    unsigned int pipelinedepth;
     size_t buffersize;
+    std::vector<int>remoterank_vec;
+    unsigned int numberofremoteranks; // now every process has his own
+    
     int *buffer;
     
-    size_t packageCount;
     size_t innerRuntimeIterations;
-    int remoteRank;
+    size_t packagecount;
+    
+    std::vector<unsigned long long>commstart;
+    std::vector<unsigned long long>commstop;
+    std::vector<unsigned long long>waitstart;
+    std::vector<unsigned long long>waitstop;
+
+    
+    TimeStampCounter timestamp;
+    
+    std::vector<size_t>testwaitcounter;
+    
+    size_t errorcounter = 0;
+    
+    
     
 public:
     
-    Buffer(size_t, int, size_t);
-    ~Buffer();
-
-    void setloopvariables(size_t, size_t);
+    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks);
+   
+    void checkbuffer(int value, int remoterank);
     
-    void sendBuffer(unsigned int, int);
+    void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     
-    void recvBuffer(unsigned int);
-
+    void comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    
+    void comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    
+    void printsingletime();
+        
+    std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
+    
+    size_t geterrorcounter() { return errorcounter; }
 };
 
 #endif /*BUFFER_H*/

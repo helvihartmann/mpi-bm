@@ -1,65 +1,58 @@
-#ifndef PARAMETERS
-#define PARAMETERS
-
-#include <cstddef>
-#include <cstdlib>
+#ifndef PARAMETERS_H
+#define PARAMETERS_H
+#include <iostream>
 #include <vector>
+#include <unistd.h>
 #include <getopt.h>
-/* pfad
- 14.11.2013
-*/
+/**/
 
-    //get starting packege size; read in data to send from console (default =128B)
 class Parameters{
 private:
-    int sendmode, recvmode; //"MPI_Send" by default
+    int numberofwarmups;
+    int multicore;
+    unsigned int pipelinedepth;
+    unsigned int numberofSenders;
+    unsigned int numberofReceivers;
+    unsigned int numberofremoteranks;
+    unsigned int statisticaliteration;
     size_t factor;
+    size_t factor_fix;
     size_t buffersize;
+    int histcheck;
+    size_t startpackagesize;
+    size_t endpackagesize;
     
-    size_t startPackageSize;
-    size_t endPackageSize;
-    int packageSizeFactor;
-
-    int statisticaliterations;
     std::vector<size_t> packageSizes;
     
-    size_t numberofcalls;
-    size_t numberofwarmups;
-
-    int numberofRootProcesses;
-
+    std::vector<int>remoterank_vec;
+    
+    int commflag;
 public:
     
-    void setPackagesizeTmp(size_t);
-    
-    void readOptions(int, char**, int);
-    
-    size_t getStartPackageSize() { return startPackageSize; }
-    
-    size_t getEndPackageSize() { return endPackageSize; }
-    
-    double getPackageSizeFactor() { return packageSizeFactor; }
+    Parameters(int argc, char **argv);
     
     const std::vector<size_t>& getPackageSizes() { return packageSizes; }
     
     size_t getNumberOfPackageSizes() { return packageSizes.size(); }
     
-    int getStatisticalIterations() { return statisticaliterations; }
-    
-    int getsendmode() { return sendmode; }
-    
-    int getrecvmode() { return recvmode; }
+    unsigned int getStatisticalIterations() { return statisticaliteration; }
     
     size_t getBuffersize() { return buffersize; }
     
-    size_t getnumberofcalls() { return numberofcalls; }
+    int gethistcheck() { return histcheck; }
     
-    size_t getnumberofwarmups() { return numberofwarmups; }
+    unsigned int getpipelinedepth() { return pipelinedepth; }
     
-    int getnumberofRootProcesses() { return numberofRootProcesses; }
-
-/* calculate the number of sending the package to have process occur in seconds regime
- sending 128 5millions time took a reasonable time, thats where the empiricalfactor comes from*/
-    size_t getinnerRuntimeIterations(size_t packageSize);
+    size_t getnumberofwarmups();
+    
+    unsigned int getnumberofremoteranks() {return numberofremoteranks; }
+    
+    int getcommflag() { return commflag; }
+    
+    size_t getinnerRuntimeIterations(int z);
+    
+    std::vector<int> getsetremoterankvec(unsigned int size,unsigned int rank);
+    
 };
-#endif
+
+#endif /*PARAMETERS_H*/

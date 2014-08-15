@@ -1,94 +1,113 @@
 #include "buffer.h"
 
-
-/*  */
-
-    
-Buffer::Buffer(size_t numberofcalls_, int rank_, size_t buffersize_) :
-    numberofcalls(numberofcalls_),
+Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_) :
+    size(size_),
     rank(rank_),
-    buffersize(buffersize_)
+    pipelinedepth(pipelinedepth_),
+    buffersize(buffersize_),
+    remoterank_vec(remoterank_vec_),
+    numberofremoteranks(numberofremoteranks_)
 {
-    std::cout << "# allocating buffer..." << std::endl;
+    std::cout << "# allocating buffer..." << rank << std::endl;
     
-    buffer = new int [buffersize / sizeof(int)];
-
+    buffer = new int[(buffersize / sizeof(int))];
+    
     std::cout << "# " << buffersize << " B allocated, initializing...\n" << std::endl;
-
-    for (size_t i=0; i<buffersize / sizeof(int); i++){
-        buffer[i]=rank;
+    
+    for (size_t i=0; i < (buffersize / sizeof(int)); i++){
+        buffer[i]=0;
     }
-
+    
     std::cout << "# buffer initialized.\n" << std::endl;
 }
 
-Buffer::~Buffer(){
-    delete [] buffer;
-}
-
-void Buffer::setloopvariables(size_t packageCount_, size_t innerRuntimeIterations_){
-    packageCount = packageCount_;
+void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIterations_){
     innerRuntimeIterations = innerRuntimeIterations_;
+    packagecount = packagecount_;
 }
 
-
-void Buffer::sendBuffer(unsigned int numberofRootProcesses, int size){
+void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     std::queue<MPI_Request> queue_request;
-    std::queue<MPI_Status> queue_status;
     MPI_Request send_obj;
-    MPI_Status status;
-    std::cout << "function buffer: inner runtime iterations: " << innerRuntimeIterations << ", package size: " << packageCount << ", pipeline depth: " << numberofcalls << std::endl;
-    for(size_t j=0; j<innerRuntimeIterations; j++){
-        while (queue_request.size() >= numberofcalls){
-            MPI_Wait (&queue_request.front(), &queue_status.front());
-            queue_status.pop();
+    int remoterank;
+    size_t index = 0;
+    testwaitcounter.assign(numberofremoteranks,0);
+    
+    for(size_t j = 0; j < innerRuntimeIterations; j++){
+        // wait for objects---------------------------
+        while (queue_request.size() >= pipelinedepth*numberofremoteranks){
+            MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
+            testwaitcounter.front()+= timestamp.cycles();
             queue_request.pop();
-            //raus++;
         }
-        for (int remoteRank = numberofRootProcesses; remoteRank < size; remoteRank++) {
-            MPI_Issend((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &send_obj);
-            queue_status.push(status);
-            queue_request.push (send_obj);
-            //rein++;
+        // fill queue---------------------------------
+        for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+            remoterank = remoterank_vec.at(index_remoterank);
+            index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+            queue_request.push(send_obj);
         }
     }
-    //std::cout << "rein " << rein << std::endl;
-    while (!queue_request.empty()){
-        MPI_Wait(&queue_request.front(), &queue_status.front());
+    // empty queue---------------------------------
+    while(!queue_request.empty()){
+        MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
         queue_request.pop();
-        queue_status.pop();
-        //raus++;
-        
     }
-    //std::cout << "raus " << raus << std::endl;
 }
 
-void Buffer::recvBuffer(unsigned int numberofRootProcesses){
-    MPI_Status status;
-    MPI_Request recv_obj;
-    //size_t received = 0;
+//similar to above but with additional messurements for histogramms -----------------------------------------
+void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     std::queue<MPI_Request> queue_request;
-    std::queue<MPI_Status> queue_status;
-    for(size_t j=0; j<innerRuntimeIterations; j++){
-        while (queue_request.size() >= numberofcalls){
-            MPI_Wait (&queue_request.front(), &queue_status.front());
-            queue_status.pop();
+    MPI_Request send_obj;
+    int remoterank;
+    size_t index = 0;
+    testwaitcounter.assign(numberofremoteranks,0);
+    
+    commstart.resize(innerRuntimeIterations);
+    commstop.resize(innerRuntimeIterations);
+    
+    waitstart.resize(innerRuntimeIterations);
+    waitstop.resize(innerRuntimeIterations);
+    
+    for(size_t j = 0; j < innerRuntimeIterations; j++){
+        // wait for objects---------------------------
+        while (queue_request.size() >= pipelinedepth*numberofremoteranks){
+            waitstart.at(j) = timestamp.start();
+            MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
+            waitstop.at(j) = timestamp.stop();
+            testwaitcounter.front()+= timestamp.cycles();
             queue_request.pop();
         }
-        for (int remoteRank = 0; remoteRank < numberofRootProcesses; remoteRank++) {
-            MPI_Irecv((buffer + ((packageCount*j)%buffersize)), packageCount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &recv_obj);
-            queue_status.push(status);
-            queue_request.push (recv_obj);
-            //MPI_Wait(&recv_obj,&status);
-            //received++;
+        // fill queue---------------------------------
+        for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+            remoterank = remoterank_vec.at(index_remoterank);
+            index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
+            commstart.at(j) = timestamp.start();
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+            commstop.at(j) = timestamp.stop();
+            queue_request.push(send_obj);
         }
     }
-    while (!queue_request.empty()){
-        MPI_Wait(&queue_request.front(), &queue_status.front());
+    // empty queue---------------------------------
+    while(!queue_request.empty()){
+        MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
         queue_request.pop();
-        queue_status.pop();
-        //raus++;
-        
     }
-    //std::cout << "received " << received << std::endl;
+}
+
+
+void Buffer::printsingletime(){
+    size_t i = 0;
+    ostringstream oss;
+    oss << (packagecount*sizeof(int)) << "_x" << numberofremoteranks << "_p" << pipelinedepth << "_n" << size << "_" << rank << ".hist";
+    ofstream myfile;
+    myfile.open(oss.str());
+
+    myfile << "# P(s)IS P(e)Is TIS P(s)Ws P(e)Ws TWs P(s)RS P(e)Rs TIS" << "\n";
+    for(size_t j = 0; j < innerRuntimeIterations; j++){
+        myfile << commstart.at(j) << " " << commstop.at(j) << " " << ((commstop.at(j)-commstart.at(j))/2000) << " " << waitstart.at(j) << " " << waitstop.at(j) << " " << ((waitstop.at(j)-waitstart.at(j))/2000) <<  " " << i << "\n";
+        i++;
+    }
+    
+    myfile.close();
 }
