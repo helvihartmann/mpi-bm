@@ -1,11 +1,11 @@
 #!/bin/bash
 echo
 #not iterated over
-START=5
+START=2
 ENDx=7
 for x in $(eval echo "{$START..$ENDx}")
 do
-    for w in 300 400 500 600 700 800 900 1000
+    for w in 400
     do
         touch single.in
         echo "#!/bin/bash " > single.in
