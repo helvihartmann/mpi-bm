@@ -52,6 +52,8 @@ public:
     
     void comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
+    void emptyqueue(std::queue<MPI_Request> queue_request);
+    
     void printsingletime();
         
     std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }

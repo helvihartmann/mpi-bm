@@ -33,7 +33,7 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
     size_t index = 0;
     testwaitcounter.assign(numberofremoteranks,0);
     
-    int remoterankflag, index_remoterank;
+    unsigned int remoterankflag, index_remoterank;
     for(size_t j = 0; j < innerRuntimeIterations; j++){
         // wait for objects---------------------------
         while (queue_request.size() >= pipelinedepth*numberofremoteranks){
@@ -58,12 +58,62 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
             remoterankflag++;
         }
     }
-    // empty queue---------------------------------
-    while(!queue_request.empty()){
-        MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
-        queue_request.pop();
-    }
+    emptyqueue(queue_request);
 }
+
+/*void Buffer::comm_queue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
+    // iniate parameters--------------------------
+    // vector holding all queues
+    std::vector<queue<MPI_Request>> vec(numberofSenders);
+    // flags
+    int flag = 0;
+    size_t index;
+    std::vector<size_t>recvcount (numberofSenders,0);
+    size_t recvcountsum = 0;
+    // fill queue-----------------------------------
+    for(size_t j = 0; j < pipelinedepth; j++){
+        for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
+            remoterank = sender_vec.at(index_sender);
+            index = packagecount*((j*numberofSenders)+index_sender)%(buffersize/sizeof(int));
+            MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+            vec[index_sender].push(recv_obj);
+        }
+    }
+    // queue management-----------------------------
+    while (recvcountsum != (numberofSenders * innerRuntimeIterations)) {
+        for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
+            while (recvcount.at(index_sender) != innerRuntimeIterations){ //loop over one receiver, while request objects say that sending is finished keeps sending new messages
+                MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
+                testwaitcounter.at(index_sender)++; //counts how often Wait was called for every receiver
+                if (flag == 1){
+                    vec[index_sender].pop();
+                    //timestamp.start();
+                    index = packagecount*((recvcount.at(index_sender)*numberofSenders)+index_sender)%(buffersize/sizeof(int));
+                    remoterank = sender_vec.at(index_sender);
+                    MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                    
+                    recvcount.at(index_sender)++;
+                    recvcountsum++;
+                    //timestamp.stop();
+                    vec[index_sender].push(recv_obj);
+                    //cycles_comm.at(index_sender)+= timestamp.cycles();
+                }
+                else {
+                    break;//breaks out of while loop
+                }
+            }
+        }
+    }
+    //std::thread t1(Buffer::checkbuffer, buffer[index], remoterank);
+    
+    // empty queue-------------------------------------
+    for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
+        while(!vec[index_sender].empty()){
+            MPI_Wait(&vec[index_sender].front(), MPI_STATUS_IGNORE);
+            vec[index_sender].pop();
+        }
+    }
+}*/
 
 //similar to above but with additional messurements for histogramms -----------------------------------------
 void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
@@ -98,11 +148,16 @@ void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Co
             queue_request.push(send_obj);
         }
     }
-    // empty queue---------------------------------
+    emptyqueue(queue_request);
+    
+}
+
+void Buffer::emptyqueue(std::queue<MPI_Request> queue_request){
     while(!queue_request.empty()){
         MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
         queue_request.pop();
     }
+    
 }
 
 
