@@ -60,16 +60,18 @@ int main (int argc, char *argv[]){
     Output output(rank, size);
     Measurement measurement(&buffer);
     
-    if (commflag == 0){
+    if (commflag == 0){ //sender
         measurement.setfunctionpointer(mpisend);
     }
-    else{
+    else{//receiver
         measurement.setfunctionpointer(mpirecv);
     }
     
     // do Measurement--------------------------------------------------------------------------
+    // repeat measurement couples of times
     for (unsigned int m = 0; m < statisticaliteration; m++){
         
+        //Warmup
         MPI_Barrier(MPI_COMM_WORLD);
         measurement.warmup(params.getnumberofwarmups(), rank);
         
@@ -83,24 +85,27 @@ int main (int argc, char *argv[]){
             if (pipelinedepth > innerRuntimeIterations){
                 pipelinedepth = innerRuntimeIterations-2;
             }
+
             switch (queue){
                 case 0:{
                     switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
                         case 1:
-                            measurement.measure_hist(packacount,innerRuntimeIterations);
+                            //measurement.measure_hist(packacount,innerRuntimeIterations);
+                            measurement.measure(packacount,innerRuntimeIterations,hist);
+
                             if (packagesize >= 8192 && packagesize <= 16384){
                                 buffer.printsingletime();
                             }
                             break;
                             
                         default:
-                            measurement.measure(packacount,innerRuntimeIterations);
+                            measurement.measure(packacount,innerRuntimeIterations,basic);
                             break;
                     }
                 }
                     break;
                 case 1:{
-                    measurement.measure_severalqueues(packacount,innerRuntimeIterations);
+                    measurement.measure(packacount,innerRuntimeIterations,sev_queue);
                 }
                     break;
             }

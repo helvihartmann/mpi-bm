@@ -1,6 +1,8 @@
 #include <iostream>
 #include "buffer.h"
 
+enum method_t {basic, hist, sev_queue};
+
 class Measurement{
 private:
     int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*);
@@ -15,11 +17,7 @@ public:
     
     void warmup(size_t numberofwarmups, int rank);
     
-    void measure(size_t packagecount, size_t innerRuntimeIterations);
-    
-    void measure_hist(size_t packagecount, size_t innerRuntimeIterations);
-    
-    void measure_severalqueues(size_t packagecount, size_t innerRuntimeIterations);
+    void measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method);
     
     double getstarttime() { return starttime; }
     

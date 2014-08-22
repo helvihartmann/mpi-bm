@@ -15,13 +15,16 @@ void Measurement::warmup(size_t numberofwarmups, int rank){
         std::cout << "#warmup " << std::endl;
     }
     
+    //iterate over packagesize from 1int (4Byte) to 16ki ints (64kiB)
     for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
         buffer->setloopvariables(packagecount, numberofwarmups);
         
+        // data transfer and time measurement
         double starttimewarmup = MPI_Wtime();
         buffer->comm(mpicall);
         double endtimewarmup = MPI_Wtime();
         
+        //print bandwidth for warmup
         if (rank == 0){
             std::cout << numberofwarmups*packagecount*sizeof(int) << " " << numberofwarmups << " " << packagecount*sizeof(int) << " " << endtimewarmup - starttimewarmup << " - " << (numberofwarmups*packagecount*sizeof(int))/((endtimewarmup - starttimewarmup)*1000000) << " - " << rank << std::endl;
         }
@@ -30,32 +33,26 @@ void Measurement::warmup(size_t numberofwarmups, int rank){
     std::cout << " " << std::endl;
 }
 
-void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations){
+void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method){
     buffer->setloopvariables(packagecount,innerRuntimeIterations);
     MPI_Barrier(MPI_COMM_WORLD);
     starttime = MPI_Wtime();
-    buffer->comm(mpicall);
+    switch (method) {
+        case basic:
+             buffer->comm(mpicall);
+            break;
+        case hist:
+            buffer->comm_hist(mpicall);
+            break;
+        case sev_queue:
+            buffer->comm_severalqueue(mpicall);
+            break;
+        default:
+            buffer->comm(mpicall);
+            break;
+    }
+   
     MPI_Barrier(MPI_COMM_WORLD);
     endtime = MPI_Wtime();
 
-}
-
-void Measurement::measure_hist(size_t packagecount, size_t innerRuntimeIterations){
-    buffer->setloopvariables(packagecount,innerRuntimeIterations);
-    MPI_Barrier(MPI_COMM_WORLD);
-    starttime = MPI_Wtime();
-    buffer->comm_hist(mpicall);
-    MPI_Barrier(MPI_COMM_WORLD);
-    endtime = MPI_Wtime();
-    
-}
-
-void Measurement::measure_severalqueues(size_t packagecount, size_t innerRuntimeIterations){
-    buffer->setloopvariables(packagecount,innerRuntimeIterations);
-    MPI_Barrier(MPI_COMM_WORLD);
-    starttime = MPI_Wtime();
-    buffer->comm_severalqueue(mpicall);
-    MPI_Barrier(MPI_COMM_WORLD);
-    endtime = MPI_Wtime();
-    
 }

@@ -259,7 +259,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
 size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
     
-    if (factor > 100000000000){//when I want to make long time tests more than 100GB datavolume per package size also increase the small packages
+    if (factor > 100000000000){
         factor_fix = 50*factor_fix;
     }
     
