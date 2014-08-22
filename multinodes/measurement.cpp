@@ -49,3 +49,13 @@ void Measurement::measure_hist(size_t packagecount, size_t innerRuntimeIteration
     endtime = MPI_Wtime();
     
 }
+
+void Measurement::measure_severalqueues(size_t packagecount, size_t innerRuntimeIterations){
+    buffer->setloopvariables(packagecount,innerRuntimeIterations);
+    MPI_Barrier(MPI_COMM_WORLD);
+    starttime = MPI_Wtime();
+    buffer->comm_severalqueue(mpicall);
+    MPI_Barrier(MPI_COMM_WORLD);
+    endtime = MPI_Wtime();
+    
+}

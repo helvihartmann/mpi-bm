@@ -19,6 +19,8 @@ public:
     
     void measure_hist(size_t packagecount, size_t innerRuntimeIterations);
     
+    void measure_severalqueues(size_t packagecount, size_t innerRuntimeIterations);
+    
     double getstarttime() { return starttime; }
     
     double getendtime() { return endtime; }

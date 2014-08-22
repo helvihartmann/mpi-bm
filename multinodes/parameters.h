@@ -10,6 +10,7 @@ class Parameters{
 private:
     int numberofwarmups;
     int multicore;
+    int pinningmode;
     unsigned int pipelinedepth;
     unsigned int numberofSenders;
     unsigned int numberofReceivers;
@@ -27,6 +28,7 @@ private:
     std::vector<int>remoterank_vec;
     
     int commflag;
+    int queue;
 public:
     
     Parameters(int argc, char **argv);
@@ -52,6 +54,12 @@ public:
     size_t getinnerRuntimeIterations(int z);
     
     std::vector<int> getsetremoterankvec(unsigned int size,unsigned int rank);
+    
+    int getqueue() { return queue; }
+    
+    int getmulticore() { return multicore; }
+    
+    int getpinningmode() { return pinningmode; }
     
 };
 

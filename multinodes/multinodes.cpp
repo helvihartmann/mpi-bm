@@ -8,7 +8,8 @@
 #include <unistd.h>
 #include "tsc.h"
 #include "timestamp.h"
-#include <numa.h>
+
+#include "pinning.h"
 using namespace std;
 
 int main (int argc, char *argv[]){
@@ -28,19 +29,17 @@ int main (int argc, char *argv[]){
     
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
     
-    //Pinning Processes--------------------------------------
-    struct bitmask* nodemask = numa_allocate_cpumask();
-    numa_bitmask_setbit(nodemask, 0);
-    cout << "pinning to numa_node 0" << endl;
-    numa_bind(nodemask);
-    numa_set_membind(nodemask);
-    
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
     
-    //set flag for ranks if they are sender or receiver
+    //set flag for ranks if they are sender or receiver and pin them
     MPI_Barrier(MPI_COMM_WORLD);
     vector<int>remoterank_vec =  params.getsetremoterankvec(size, rank);
+    int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
+    Pinning pin;
+    if (params.getmulticore() == 2){
+        pin.usepinningpattern(commflag, params.getpinningmode());
+    }
     MPI_Barrier(MPI_COMM_WORLD);
     sleep(5);
     
@@ -50,7 +49,7 @@ int main (int argc, char *argv[]){
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
     unsigned int numberofremoteranks = params.getnumberofremoteranks();
-    int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
+    int queue = params.getqueue();
     
     int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
     int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
@@ -84,19 +83,28 @@ int main (int argc, char *argv[]){
             if (pipelinedepth > innerRuntimeIterations){
                 pipelinedepth = innerRuntimeIterations-2;
             }
-                        
-            switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
-                case 1:
-                    measurement.measure_hist(packacount,innerRuntimeIterations);
-                    if (packagesize >= 8192 && packagesize <= 16384){
-                        buffer.printsingletime();
+            switch (queue){
+                case 0:{
+                    switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
+                        case 1:
+                            measurement.measure_hist(packacount,innerRuntimeIterations);
+                            if (packagesize >= 8192 && packagesize <= 16384){
+                                buffer.printsingletime();
+                            }
+                            break;
+                            
+                        default:
+                            measurement.measure(packacount,innerRuntimeIterations);
+                            break;
                     }
+                }
                     break;
-                    
-                default:
-                    measurement.measure(packacount,innerRuntimeIterations);
+                case 1:{
+                    measurement.measure_severalqueues(packacount,innerRuntimeIterations);
+                }
                     break;
             }
+            
             
             //Write time-----------------------------------------------------------------
             results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement.getendtime()-measurement.getstarttime()),buffer.gettestwaitcounter(),pipelinedepth);

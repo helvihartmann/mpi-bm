@@ -31,6 +31,11 @@ private:
     std::vector<unsigned long long>waitstart;
     std::vector<unsigned long long>waitstop;
 
+    int remoterank = -1;
+    MPI_Request comm_obj;
+    
+    size_t index = 0;
+
     
     TimeStampCounter timestamp;
     
@@ -51,6 +56,8 @@ public:
     void comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
     void comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    
+    void comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
     void emptyqueue(std::queue<MPI_Request> queue_request);
     

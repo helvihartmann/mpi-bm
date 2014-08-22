@@ -12,6 +12,8 @@ Parameters::Parameters(int argc, char **argv){
     factor_fix = (1*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
+    queue = 0;
+    pinningmode = 1;
     
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 20;
@@ -29,13 +31,15 @@ Parameters::Parameters(int argc, char **argv){
         { "buffer_size",            required_argument,	     NULL,       'b' },
         { "multicore",              required_argument,        NULL,       'm' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
+        { "queue",                  required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_senders",                required_argument,	     NULL,       's' },
         { "timedistribution",                required_argument,	     NULL,       't' },
+        { "pinningmode",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:s:t:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:s:t:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -49,9 +53,11 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
+            std::cout << " --number_senders             -q       one queue for all remoteranks (0) or independent queues (1) \n (DEFAULT = "              << queue << ") \n" << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
+            std::cout << " --pinningmode             -x       relevant for multicore ==1, 1 both processes on cpu0; 2 both processes on cpu1; 3 p0 on cpu0 & p1 on cpu1; 4 p0 on cpu1 & p1 on cpu0 \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             
             exit(1);
         case 'i':
@@ -125,6 +131,14 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
+        case 'q':
+            queue = atoi(optarg);
+            
+            if (!(queue >= 0 && queue <= 1)) {
+                printf("ERROR -q: queue can only be 0 for one queue for all remoteranks or 1 for one queue per remoterank \n");
+                exit(1);
+            }
+            break;
         case 'w':
             numberofwarmups = atof(optarg);
             if (!(numberofwarmups >= 0)) {
@@ -143,6 +157,13 @@ Parameters::Parameters(int argc, char **argv){
             histcheck = atoi(optarg);
             if (!(histcheck >= 0 && histcheck <=1)) {
                 printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
+                exit(1);
+            }
+            break;
+        case 'x':
+            pinningmode = atoi(optarg);
+            if (!(pinningmode >= 1 && pinningmode <=4)) {
+                printf("ERROR -t: only 1 (all processes on cpu0), 2 (all processes on cpu1), 3(sender on cpu0 & receiver on cpu1), 4(receiver on cpu0 and sender on cpu1) are possible \n");
                 exit(1);
             }
             break;
@@ -166,7 +187,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe: -  , number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe" << queue <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << std::endl;
 }
 
 std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int rank){

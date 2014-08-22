@@ -28,9 +28,6 @@ void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIteration
 
 void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     std::queue<MPI_Request> queue_request;
-    MPI_Request comm_obj;
-    int remoterank;
-    size_t index = 0;
     testwaitcounter.assign(numberofremoteranks,0);
     
     unsigned int remoterankflag, index_remoterank;
@@ -61,42 +58,38 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
     emptyqueue(queue_request);
 }
 
-/*void Buffer::comm_queue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
+void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     // iniate parameters--------------------------
     // vector holding all queues
-    std::vector<queue<MPI_Request>> vec(numberofSenders);
+    std::vector<queue<MPI_Request>> vec(numberofremoteranks);
     // flags
     int flag = 0;
-    size_t index;
-    std::vector<size_t>recvcount (numberofSenders,0);
-    size_t recvcountsum = 0;
+    std::vector<size_t>count (numberofremoteranks,0);
+    size_t countsum = 0;
     // fill queue-----------------------------------
     for(size_t j = 0; j < pipelinedepth; j++){
-        for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
-            remoterank = sender_vec.at(index_sender);
-            index = packagecount*((j*numberofSenders)+index_sender)%(buffersize/sizeof(int));
-            MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
-            vec[index_sender].push(recv_obj);
+        for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+            remoterank = remoterank_vec.at(index_remoterank);
+            index = packagecount*((j*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+            vec[index_remoterank].push(comm_obj);
         }
     }
     // queue management-----------------------------
-    while (recvcountsum != (numberofSenders * innerRuntimeIterations)) {
-        for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
-            while (recvcount.at(index_sender) != innerRuntimeIterations){ //loop over one receiver, while request objects say that sending is finished keeps sending new messages
-                MPI_Test(&vec[index_sender].front(), &flag, MPI_STATUS_IGNORE);
-                testwaitcounter.at(index_sender)++; //counts how often Wait was called for every receiver
+    while (countsum != (numberofremoteranks * innerRuntimeIterations)) {
+        for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+            while (count.at(index_remoterank) != innerRuntimeIterations){ //loop over one receiver, while request objects say that sending is finished keeps sending new messages
+                MPI_Test(&vec[index_remoterank].front(), &flag, MPI_STATUS_IGNORE);
+                testwaitcounter.at(index_remoterank)++; //counts how often Wait was called for every receiver
                 if (flag == 1){
-                    vec[index_sender].pop();
-                    //timestamp.start();
-                    index = packagecount*((recvcount.at(index_sender)*numberofSenders)+index_sender)%(buffersize/sizeof(int));
-                    remoterank = sender_vec.at(index_sender);
-                    MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &recv_obj);
+                    vec[index_remoterank].pop();
+                    index = packagecount*((count.at(index_remoterank)*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
+                    remoterank = remoterank_vec.at(index_remoterank);
+                   (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
                     
-                    recvcount.at(index_sender)++;
-                    recvcountsum++;
-                    //timestamp.stop();
-                    vec[index_sender].push(recv_obj);
-                    //cycles_comm.at(index_sender)+= timestamp.cycles();
+                    count.at(index_remoterank)++;
+                    countsum++;
+                    vec[index_remoterank].push(comm_obj);
                 }
                 else {
                     break;//breaks out of while loop
@@ -104,23 +97,15 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
             }
         }
     }
-    //std::thread t1(Buffer::checkbuffer, buffer[index], remoterank);
     
-    // empty queue-------------------------------------
-    for(unsigned int index_sender = 0; index_sender < numberofSenders; index_sender++){
-        while(!vec[index_sender].empty()){
-            MPI_Wait(&vec[index_sender].front(), MPI_STATUS_IGNORE);
-            vec[index_sender].pop();
-        }
+    for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
+        emptyqueue(vec[index_remoterank]);
     }
-}*/
+}
 
 //similar to above but with additional messurements for histogramms -----------------------------------------
 void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     std::queue<MPI_Request> queue_request;
-    MPI_Request send_obj;
-    int remoterank;
-    size_t index = 0;
     testwaitcounter.assign(numberofremoteranks,0);
     
     commstart.resize(innerRuntimeIterations);
@@ -143,9 +128,9 @@ void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Co
             remoterank = remoterank_vec.at(index_remoterank);
             index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             commstart.at(j) = timestamp.start();
-            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &send_obj);
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
             commstop.at(j) = timestamp.stop();
-            queue_request.push(send_obj);
+            queue_request.push(comm_obj);
         }
     }
     emptyqueue(queue_request);
