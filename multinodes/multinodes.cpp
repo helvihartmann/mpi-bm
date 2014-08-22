@@ -49,7 +49,9 @@ int main (int argc, char *argv[]){
     int numberofpackages = params.getNumberOfPackageSizes();
     int histcheck = params.gethistcheck();
     unsigned int numberofremoteranks = params.getnumberofremoteranks();
-    int queue = params.getqueue();
+    enum queue_t {single, several};
+    queue_t queue = static_cast<queue_t>(params.getqueue());
+
     
     int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
     int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
@@ -87,7 +89,7 @@ int main (int argc, char *argv[]){
             }
 
             switch (queue){
-                case 0:{
+                case single:{
                     switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
                         case 1:
                             //measurement.measure_hist(packacount,innerRuntimeIterations);
@@ -104,7 +106,7 @@ int main (int argc, char *argv[]){
                     }
                 }
                     break;
-                case 1:{
+                case several:{
                     measurement.measure(packacount,innerRuntimeIterations,sev_queue);
                 }
                     break;
