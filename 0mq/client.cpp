@@ -13,7 +13,7 @@
 
 using namespace std;
 using namespace std::chrono;
-//gcc helloworld_client.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o helloworld_client -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
+//gcc client.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o client -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
 
 int main ()
 {
@@ -34,7 +34,7 @@ int main ()
         }
         String message(messagesize);
         string str = *message.createstring();
-        std::cout << "Sending " << inneriter << " times " << messagesize << "B" << std::endl;
+        //std::cout << "Sending " << inneriter << " times " << messagesize << "B" << std::endl;
         
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         for (int request_nbr = 0; request_nbr != inneriter; request_nbr++) {
@@ -46,7 +46,7 @@ int main ()
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
         //std::string rpl = std::string(static_cast<char*>(reply.data()), reply.size());
-        cout << "Received " << inneriter << " times " << reply.size() << "B of Information in " << time_span.count() << " s " << endl;
+        cout << inneriter*messagesize << " " << inneriter << " " << reply.size() << " " << time_span.count() << " - " << ((inneriter*messagesize)/time_span.count())/1000000 << " - " << endl;
     }
     
     return 0;

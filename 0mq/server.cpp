@@ -12,7 +12,7 @@
 
 using namespace std;
 
-/*gcc helloworld_server.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o helloworld_server -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
+/*gcc server.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o server -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
  last options forces executable to search libraries in the specified directory
  */
 
