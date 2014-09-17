@@ -7,7 +7,10 @@
 #include <string>
 #include <iostream>
 #include <unistd.h>
+#include "string.h"
+#include "tsc.h"
 
+using namespace std;
 
 /*gcc helloworld_server.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o helloworld_server -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
  last options forces executable to search libraries in the specified directory
@@ -24,14 +27,14 @@ int main () {
         
         //  Wait for next request from client
         socket.recv (&request);
-        std::cout << "Received Hello" << std::endl;
-        
-        //  Do some 'work'
-        sleep(1);
+        //std::string rpl = std::string(static_cast<char*>(request.data()), request.size());
+        //std::cout << "Received " << request.size() << "B" << std::endl;
         
         //  Send reply back to client
-        zmq::message_t reply (5);
-        memcpy ((void *) reply.data (), "World", 5);
+        String message(request.size());
+        string str = *message.createstring();
+        zmq::message_t reply (request.size());
+        memcpy ((void *) reply.data (), str.c_str(), request.size());
         socket.send (reply);
     }
     return 0;
