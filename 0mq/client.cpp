@@ -15,14 +15,19 @@ using namespace std;
 using namespace std::chrono;
 //gcc client.cpp -L/opt/fairsoft/jul14p3_build/lib -lzmq -I/opt/fairsoft/jul14p3_build/include -std=c++11 -o client -Wl,-rpath=/opt/fairsoft/jul14p3_build/lib/
 
-int main ()
+int main (int argc, char **argv)
 {
+    if (argc != 2) {
+        std::cerr << "usage: client <target>" << std::endl;
+        return 1;
+    }
+    
     //  Prepare our context and socket
     zmq::context_t context (1);
     zmq::socket_t socket (context, ZMQ_REQ);
     
-    std::cout << "Connecting to hello world server…" << std::endl;
-    socket.connect ("tcp://localhost:5555");
+    std::cout << "Connecting to server at " << argv[1] << std::endl;
+    socket.connect (argv[1]);
     
     size_t inneriter = 100000;
     zmq::message_t reply;

@@ -8,7 +8,6 @@
 #include <iostream>
 #include <unistd.h>
 #include "string.h"
-#include "tsc.h"
 
 using namespace std;
 
