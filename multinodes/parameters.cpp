@@ -211,7 +211,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                 if(rank < numberofSenders){
                     
                     setflag(0,numberofReceivers);
-                    sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
+                    sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope, no implementation of barrelshift
                 }
                 else{
                     setflag(1,numberofSenders);
