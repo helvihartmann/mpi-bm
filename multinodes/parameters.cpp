@@ -190,7 +190,9 @@ Parameters::Parameters(int argc, char **argv){
     std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe" << queue <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << std::endl;
 }
 
-std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int rank){
+std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){
+    size = size_;
+    rank = rank_;
     numberofReceivers = size - numberofSenders;
     switch (multicore) {
             case 1: {
@@ -199,17 +201,15 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
                         remoterank_vec.push_back(rank_index);
 
                     }
-                    std::cout << "I am sender " << rank << std::endl;
-                    numberofremoteranks = numberofReceivers;
-                    commflag = 0;
+                    
+                    setflag(0,numberofReceivers);
                 }
                 else{
                     for(unsigned int rank_index=0; rank_index < numberofSenders; rank_index++){
                         remoterank_vec.push_back(rank_index);
                     }
-                    std::cout << "I am receiver " << rank << std::endl;
-                    numberofremoteranks = numberofSenders;
-                    commflag = 1;
+                    
+                    setflag(1,numberofSenders);
                 }
             }
             break;
@@ -219,23 +219,20 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
                 //for senders
                 if(rank%2 == 0 ){
                     
-                    sortlist(1, size, rank+1);
-                    //send to all odd ranked processes except the one on the same node (sender rank +1)
+                    setflag(0,numberofReceivers);
                     
-                    numberofremoteranks = numberofReceivers;
-                    std::cout << "I am sender " << rank << std::endl;
-                    
-                    commflag = 0;
+                    //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or ever process to a different port (barrelshifting)
+                    //sortlist(1, size, rank+1);
+                    barrelshifting(1);
                 }
                 //for receivers
                 else {
                     
-                    sortlist(0, (size - 1), (rank - 1));
-                    //receive from all even ranked process except the one on the same node (receiver rank - 1)
+                    setflag(1,numberofSenders);
                     
-                    std::cout << "I am receiver " << rank << std::endl;
-                    numberofremoteranks = numberofSenders;
-                    commflag = 1;
+                    //receive from all even ranked process except the one on the same node (receiver rank - 1)
+                    //sortlist(0, (size - 1), (rank - 1));
+                    barrelshifting(-1);
                 }
                 for (unsigned int i=0; i<size; i++) {
                     if (rank == i){
@@ -252,11 +249,30 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
     return remoterank_vec;
 }
 
+void Parameters::setflag(int commflag_, unsigned int numberofremoteranks_){
+    numberofremoteranks = numberofremoteranks_;
+    commflag = commflag_;
+    if (commflag == 0){
+        std::cout << "I am sender " << rank << std::endl;
+    }
+    else{
+        std::cout << "I am receiver " << rank << std::endl;
+    }
+}
+
 void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int except){
-    for (unsigned int rank_index = start; rank_index < end; rank_index = (rank_index + 2)){
-        if (rank_index != (except)){
-            remoterank_vec.push_back(rank_index);
+    for (unsigned int remoterank_idx = start; remoterank_idx < end; remoterank_idx = (remoterank_idx + 2)){
+        if (remoterank_idx != (except)){
+            remoterank_vec.push_back(remoterank_idx);
         }
+    }
+}
+
+void Parameters::barrelshifting(int sign){
+
+    for(unsigned int remoterank_idx = 0; remoterank_idx < numberofremoteranks; remoterank_idx++){
+        unsigned int remoterank = (rank + (size/2) + (remoterank_idx * numberofremoteranks * sign))%size;
+        remoterank_vec.push_back(remoterank);
     }
 }
 

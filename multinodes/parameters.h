@@ -18,6 +18,8 @@ private:
     unsigned int numberofReceivers;
     unsigned int numberofremoteranks;
     unsigned int statisticaliteration;
+    unsigned int size;
+    unsigned int rank;
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
@@ -64,6 +66,10 @@ public:
     int getpinningmode() { return pinningmode; }
     
     void sortlist(unsigned int start, unsigned int end, unsigned int except);
+    
+    void barrelshifting(int sign);
+    
+    void setflag(int commflag_, unsigned int numberofremoteranks_);
     
 };
 
