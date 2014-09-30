@@ -63,6 +63,8 @@ public:
     
     int getpinningmode() { return pinningmode; }
     
+    void sortlist(unsigned int start, unsigned int end, unsigned int except);
+    
 };
 
 #endif /*PARAMETERS_H*/

@@ -216,23 +216,23 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
             case 2: {
                 numberofSenders = (size/2) - 1;
                 numberofReceivers = numberofSenders;
+                //for senders
                 if(rank%2 == 0 ){
-                    for (unsigned int rank_index = 1; rank_index < size; rank_index = (rank_index + 2)){
-                        if (rank_index != (rank + 1)){
-                            remoterank_vec.push_back(rank_index);
-                        }
-                    }
-                    std::cout << "I am sender " << rank << std::endl;
+                    
+                    sortlist(1, size, rank+1);
+                    //send to all odd ranked processes except the one on the same node (sender rank +1)
+                    
                     numberofremoteranks = numberofReceivers;
+                    std::cout << "I am sender " << rank << std::endl;
+                    
                     commflag = 0;
                 }
-
+                //for receivers
                 else {
-                    for (unsigned int rank_index = 0; rank_index < (size - 1); rank_index = (rank_index + 2)){
-                        if (rank_index != (rank - 1)){
-                            remoterank_vec.push_back(rank_index);
-                        }
-                    }
+                    
+                    sortlist(0, (size - 1), (rank - 1));
+                    //receive from all even ranked process except the one on the same node (receiver rank - 1)
+                    
                     std::cout << "I am receiver " << rank << std::endl;
                     numberofremoteranks = numberofSenders;
                     commflag = 1;
@@ -240,10 +240,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
                 for (unsigned int i=0; i<size; i++) {
                     if (rank == i){
                         for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
-                            std::cout << "my (" << rank << ") sender list is: " << remoterank_vec.at(rank_index) << std::endl;
-                        }
-                        for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
-                            std::cout << "my (" << rank << ") receiver list is: " << remoterank_vec.at(rank_index) << std::endl;
+                            std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
                         }
                         
                     }
@@ -254,6 +251,15 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size,unsigned int 
     }
     return remoterank_vec;
 }
+
+void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int except){
+    for (unsigned int rank_index = start; rank_index < end; rank_index = (rank_index + 2)){
+        if (rank_index != (except)){
+            remoterank_vec.push_back(rank_index);
+        }
+    }
+}
+
 
 
 size_t Parameters::getinnerRuntimeIterations(int z) {
