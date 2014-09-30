@@ -33,6 +33,8 @@ private:
     
     int commflag;
     int queue;
+    enum Flag {on, off};
+    Flag barrelshiftingflag;
 public:
     
     Parameters(int argc, char **argv);
@@ -65,7 +67,7 @@ public:
     
     int getpinningmode() { return pinningmode; }
     
-    void sortlist(unsigned int start, unsigned int end, unsigned int except);
+    void sortlist(unsigned int start, unsigned int end, unsigned int except, int increment);
     
     void barrelshifting(int sign);
     

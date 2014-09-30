@@ -15,6 +15,8 @@ Parameters::Parameters(int argc, char **argv){
     queue = 0;
     pinningmode = 1;
     
+    barrelshiftingflag = on;
+    
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 20;
     int packageSizeFactor = 2;
@@ -26,6 +28,7 @@ Parameters::Parameters(int argc, char **argv){
         { "iterations",         required_argument,	     NULL,       'i' },
         { "start_package_size",    required_argument,	     NULL,	     'a' },
         { "cutoff",             required_argument,	     NULL,       'e' },
+        { "barrelshift",    required_argument,	     NULL,	     'r' },
         { "package_size_factor",         required_argument,                 NULL,       'f' },
         { "outer_statistical_iteations",         optional_argument,	      NULL,       'o' },
         { "buffer_size",            required_argument,	     NULL,       'b' },
@@ -39,7 +42,7 @@ Parameters::Parameters(int argc, char **argv){
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:s:t:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:r:f:o:b:m:p:q:w:s:t:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -48,6 +51,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
             std::cout << " --start_package_size          -a       start package size\n (DEFAULT = "                                                         << startpackagesize << ")\n"       << std::endl;
             std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
+            std::cout << " --barrelshift                 -r       barrelshift \n (DEFAULT = "                     << barrelshiftingflag << ")\n"         << std::endl;
             std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
             std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
@@ -86,6 +90,14 @@ Parameters::Parameters(int argc, char **argv){
             }
             else {
                 printf("#INFO -e: max package size was set to 50GB \n");
+            }
+            break;
+        case 'r':
+            barrelshiftingflag = static_cast<Flag>(atoi(optarg));
+            if (atoi(optarg) >= 0 && atoi(optarg) <=1) {
+            }
+            else {
+                printf("#INFO -r: 0 for on and 1 for off only \n");
             }
             break;
         case 'f':
@@ -187,7 +199,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe" << queue <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe" << queue <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << ", barrelshift " << barrelshiftingflag << " (0 = on & 1 = off)" << std::endl;
 }
 
 std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){
@@ -197,42 +209,56 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
     switch (multicore) {
             case 1: {
                 if(rank < numberofSenders){
-                    for(unsigned int rank_index = numberofSenders; rank_index < size; rank_index++){
-                        remoterank_vec.push_back(rank_index);
-
-                    }
                     
                     setflag(0,numberofReceivers);
+                    sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
                 }
                 else{
-                    for(unsigned int rank_index=0; rank_index < numberofSenders; rank_index++){
-                        remoterank_vec.push_back(rank_index);
-                    }
-                    
                     setflag(1,numberofSenders);
+                    sortlist(0, numberofSenders, (size + 1), 1);
                 }
             }
             break;
             case 2: {
+                enum Flag {on, off};
+                Flag barrelshiftingflag = on;
+
                 numberofSenders = (size/2) - 1;
                 numberofReceivers = numberofSenders;
                 //for senders
                 if(rank%2 == 0 ){
                     
                     setflag(0,numberofReceivers);
-                    
                     //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or ever process to a different port (barrelshifting)
-                    //sortlist(1, size, rank+1);
-                    barrelshifting(1);
+                    switch (barrelshiftingflag) {
+                        case on:
+                            barrelshifting(1);
+                            break;
+                        case off:
+                            sortlist(1, size, (rank + 1) , 2);
+                            break;
+                        default:
+                            sortlist(1, size, (rank + 1) , 2);
+                            break;
+                    }
                 }
                 //for receivers
                 else {
                     
                     setflag(1,numberofSenders);
-                    
                     //receive from all even ranked process except the one on the same node (receiver rank - 1)
-                    //sortlist(0, (size - 1), (rank - 1));
-                    barrelshifting(-1);
+                    switch (barrelshiftingflag) {
+                        case on:
+                            barrelshifting(-1);
+                            break;
+                        case off:
+                            sortlist(0, (size - 1), (rank - 1), 2);
+                            break;
+                            
+                        default:
+                            sortlist(0, (size - 1), (rank - 1), 2);
+                            break;
+                    }
                 }
                 for (unsigned int i=0; i<size; i++) {
                     if (rank == i){
@@ -260,8 +286,8 @@ void Parameters::setflag(int commflag_, unsigned int numberofremoteranks_){
     }
 }
 
-void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int except){
-    for (unsigned int remoterank_idx = start; remoterank_idx < end; remoterank_idx = (remoterank_idx + 2)){
+void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int except, int increment){
+    for (unsigned int remoterank_idx = start; remoterank_idx < end; remoterank_idx = (remoterank_idx + increment)){
         if (remoterank_idx != (except)){
             remoterank_vec.push_back(remoterank_idx);
         }
