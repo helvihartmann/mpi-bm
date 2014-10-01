@@ -57,7 +57,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
-            std::cout << " --number_senders             -q       one queue for all remoteranks (0) or independent queues (1) \n (DEFAULT = "              << queue << ") \n" << std::endl;
+            std::cout << " --queue                       -q       one queue for all remoteranks (0) or independent queues (1) \n (DEFAULT = "              << queue << ") \n" << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
@@ -220,9 +220,6 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
             }
             break;
             case 2: {
-                enum Flag {on, off};
-                Flag barrelshiftingflag = on;
-
                 numberofSenders = (size/2) - 1;
                 numberofReceivers = numberofSenders;
                 //for senders
@@ -295,9 +292,9 @@ void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int exc
 }
 
 void Parameters::barrelshifting(int sign){
-
     for(unsigned int remoterank_idx = 0; remoterank_idx < numberofremoteranks; remoterank_idx++){
-        unsigned int remoterank = (rank + (size/2) + (remoterank_idx * numberofremoteranks * sign))%size;
+        unsigned int remoterank = (rank + (3 * sign) + (remoterank_idx * 2 * sign))%size;
+        //0 should always start with sending to 3 and then add 2 in the next round
         remoterank_vec.push_back(remoterank);
     }
 }

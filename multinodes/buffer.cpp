@@ -29,7 +29,6 @@ void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIteration
 void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
     std::queue<MPI_Request> queue_request;
     testwaitcounter.assign(numberofremoteranks,0);
-    
     for(size_t j = 0; j < innerRuntimeIterations; j++){
         // wait for objects---------------------------
         while (queue_request.size() >= pipelinedepth*numberofremoteranks){
@@ -44,6 +43,7 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
             (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
             queue_request.push(comm_obj);
         }
+        MPI_Barrier(MPI_COMM_WORLD);
     }
     emptyqueue(queue_request);
 }
