@@ -20,6 +20,8 @@ done
 #echo "testing ib connection for" ${Nodelist[$((j+1))]} ${Nodelist[0]}
 #./myib_write_bw.sh ${Nodelist[$((j+1))]} ${Nodelist[0]}
 
+rm slurmib_write_bw.sh
+
 for s in $(eval echo "{$START..$ENDx}")
 do
     echo "number of nodes " $s
