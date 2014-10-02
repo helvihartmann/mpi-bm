@@ -51,7 +51,7 @@ public:
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
     
-    size_t getnumberofwarmups();
+    size_t getnumberofwarmups() { return numberofwarmups; }
     
     unsigned int getnumberofremoteranks() {return numberofremoteranks; }
     
@@ -69,7 +69,7 @@ public:
     
     void sortlist(unsigned int start, unsigned int end, unsigned int except, int increment);
     
-    void barrelshifting(int sign);
+    void barrelshifting(int start, int sign);
     
     void setflag(int commflag_, unsigned int numberofremoteranks_);
     

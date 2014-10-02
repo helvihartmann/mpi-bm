@@ -229,7 +229,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                     //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or ever process to a different port (barrelshifting)
                     switch (barrelshiftingflag) {
                         case on:
-                            barrelshifting(1);
+                            barrelshifting(3,1);
                             break;
                         case off:
                             sortlist(1, size, (rank + 1) , 2);
@@ -246,7 +246,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                     //receive from all even ranked process except the one on the same node (receiver rank - 1)
                     switch (barrelshiftingflag) {
                         case on:
-                            barrelshifting(-1);
+                            barrelshifting((size - 3),-1);//1 receives first from second last process
                             break;
                         case off:
                             sortlist(0, (size - 1), (rank - 1), 2);
@@ -291,9 +291,9 @@ void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int exc
     }
 }
 
-void Parameters::barrelshifting(int sign){
+void Parameters::barrelshifting(int start, int sign){
     for(unsigned int remoterank_idx = 0; remoterank_idx < numberofremoteranks; remoterank_idx++){
-        unsigned int remoterank = (rank + (3 * sign) + (remoterank_idx * 2 * sign))%size;
+        unsigned int remoterank = (rank + start + (remoterank_idx * 2 * sign))%size;
         //0 should always start with sending to 3 and then add 2 in the next round
         remoterank_vec.push_back(remoterank);
     }
@@ -332,12 +332,4 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
     }
     
     return innerRuntimeIterations;
-}
-
-size_t Parameters::getnumberofwarmups() {
-    if (numberofSenders == numberofReceivers){
-        numberofwarmups = numberofwarmups/numberofReceivers;
-    }
-    
-    return numberofwarmups;
 }
