@@ -21,7 +21,7 @@ CMD=(ib_write_bw -a -n 1000)
 
 echo "#!/bin/bash " > slurmib_write_bw.sh
 echo " " >> slurmib_write_bw.sh
-echo 'if [ "$SLURM_NODEID" == 0 ]; then ' >> slurmib_write_bw.sh
+echo 'if [ "$SLURMD_NODENAME" == "'${NODES[0]}'" ]; then ' >> slurmib_write_bw.sh
 echo '  echo "$SLURMD_NODENAME: '${CMD[*]}'"' >> slurmib_write_bw.sh
 echo "  ${CMD[*]}" >> slurmib_write_bw.sh
 echo "else" >> slurmib_write_bw.sh
