@@ -1,0 +1,49 @@
+0: quad001: ib_write_bw -a -n 1000
+1: quad003: ib_write_bw -a -n 1000 connecting to...
+1: quad001
+0: ------------------------------------------------------------------
+0:                     RDMA_Write BW Test
+0: Number of qp's running 1
+0: Connection type : RC
+0: Each Qp will post up to 100 messages each time
+0: Inline data is used up to 1 bytes message
+0:   local address:  LID 0x460, QPN 0x2ac6, PSN 0xd3d485 RKey 0x02c900 VAddr 0x002aaaac2ae000
+0:   remote address: LID 0x380, QPN 0x2b8f, PSN 0xead994, RKey 0x008800 VAddr 0x002aaaac2ae000
+0: Mtu : 2048
+0: ------------------------------------------------------------------
+0:  #bytes #iterations    BW peak[MB/sec]    BW average[MB/sec]  
+1: ------------------------------------------------------------------
+1:                     RDMA_Write BW Test
+1: Number of qp's running 1
+1: Connection type : RC
+1: Each Qp will post up to 100 messages each time
+1: Inline data is used up to 1 bytes message
+1:   local address:  LID 0x380, QPN 0x2b8f, PSN 0xead994 RKey 0x008800 VAddr 0x002aaaac2ae000
+1:   remote address: LID 0x460, QPN 0x2ac6, PSN 0xd3d485, RKey 0x02c900 VAddr 0x002aaaac2ae000
+1: Mtu : 2048
+1: ------------------------------------------------------------------
+1:  #bytes #iterations    BW peak[MB/sec]    BW average[MB/sec]  
+1:       2        1000               6.82                  6.25
+1:       4        1000              14.28                 14.25
+1:       8        1000              28.61                 28.54
+1:      16        1000              57.12                 57.03
+1:      32        1000             114.65                114.47
+1:      64        1000             226.06                225.52
+1:     128        1000             456.13                455.23
+1:     256        1000             909.03                907.03
+1:     512        1000            1792.64               1787.67
+1:    1024        1000            2016.50               2015.26
+1:    2048        1000            2050.78               2049.30
+1:    4096        1000            2088.90               2088.75
+1:    8192        1000            2097.18               2097.01
+1:   16384        1000            2098.12               2098.09
+1:   32768        1000            2106.67               2106.63
+1:   65536        1000            2108.10               2108.07
+1:  131072        1000            2108.42               2108.28
+1:  262144        1000            2106.58               2106.58
+1:  524288        1000            2104.22               2104.22
+1: 1048576        1000            2100.64               2098.09
+1: 2097152        1000            2108.54               2108.54
+1: 4194304        1000            2108.29               2108.29
+1: 8388608        1000            2108.18               2106.74
+1: ------------------------------------------------------------------

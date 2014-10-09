@@ -10,13 +10,13 @@ void Measurement::setfunctionpointer(int (*mpicall_)(void*, int, MPI_Datatype, i
     mpicall = mpicall_;
 }
 
-void Measurement::warmup(size_t numberofwarmups, int rank){
+void Measurement::warmup(size_t numberofwarmups, size_t endpackagesize, int rank){
     if (rank == 0){
         std::cout << "#warmup " << std::endl;
     }
     
     //iterate over packagesize from 1int (4Byte) to 16ki ints (64kiB)
-    for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
+    for (size_t packagecount = 1; packagecount < endpackagesize; packagecount = packagecount*2){
         buffer->setloopvariables(packagecount, numberofwarmups);
         
         // data transfer and time measurement

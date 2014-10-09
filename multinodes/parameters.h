@@ -59,6 +59,8 @@ public:
     
     size_t getinnerRuntimeIterations(int z);
     
+    size_t getendpackagesize() { return endpackagesize; }
+    
     std::vector<int> getsetremoterankvec(unsigned int size,unsigned int rank);
     
     int getqueue() { return queue; }

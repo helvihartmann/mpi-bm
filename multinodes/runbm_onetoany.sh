@@ -2,9 +2,9 @@
 echo
 #not iterated over
 q=0 #nature of pipe
-START=2
-ENDx=7
-ENDn=8
+START=1
+ENDx=1
+ENDn=2
 for s in $(eval echo "{$START..$ENDx}")
 do
     if [ $ENDn -lt $ENDx ]; then
@@ -12,7 +12,7 @@ do
         ENDn=$((ENDx+1))
     fi
 
-    for n in $(eval echo "{$((x+1))..$ENDn}")
+    for n in $(eval echo "{$((s+1))..$ENDn}")
     do
         touch single.in
         echo "#!/bin/bash " > single.in
@@ -21,10 +21,9 @@ do
         echo "#SBATCH --job-name="$s"_"$q"_"$n >> single.in
         echo "#SBATCH --output=55nodes_s"$s"_q"$q"_n"$n".out" >> single.in
         echo "#SBATCH --ntasks-per-node=1" >> single.in
-        echo "#SBATCH --nodelist=node0" >> single.in
         echo "" >> single.in
         echo "" >> single.in
-        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i 180000 -w 1000 -o 2 -q" $q "-s" $s >> single.in
+        echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i 180000 -w 1000 -e 18 -o 2 -q" $q "-s" $s >> single.in
         echo "" >> single.in
         echo "exit 0" >> single.in
         sbatch single.in

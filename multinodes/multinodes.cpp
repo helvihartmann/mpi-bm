@@ -75,7 +75,7 @@ int main (int argc, char *argv[]){
         
         //Warmup
         MPI_Barrier(MPI_COMM_WORLD);
-        measurement.warmup(params.getnumberofwarmups(), rank);
+        measurement.warmup(params.getnumberofwarmups(), params.getendpackagesize(),rank);
         
         //Iterate over packagesize----------------------------------------------------------------------------
         for (int z = 0; z < numberofpackages; z++){
