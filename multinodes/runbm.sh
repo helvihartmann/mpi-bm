@@ -1,11 +1,9 @@
 #!/bin/bash
 
-
-i=2000
+i=2
 o=3
 m=2
-w=600
-nodes=2
+w=200
 s=1#unnecessary for m2
 
 #other options a, e, r, f, p, q, t,x put build/multinodes -h for more infromation
@@ -32,6 +30,7 @@ echo "" >> single.in
 #include options here if necessary
 echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -o "$o" -i "$i" -b 8589934592 -m "$m" -w" $w >> single.in
 echo "" >> single.in
+echo "testib.sh" >> single.in
 echo "exit 0" >> single.in
 
 
