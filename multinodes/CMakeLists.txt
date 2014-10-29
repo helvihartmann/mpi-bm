@@ -10,5 +10,5 @@ set(CMAKE_CXX_COMPILER mpic++)
 #Sends the -std=c99 flag to the gcc compiler
 add_definitions(-std=c++11 -Wall -Wextra -g -O1 -lstdc++ -lnuma)
 #This tells CMake to do executable
-add_executable(multinodes multinodes.cpp buffer.cpp parameters.cpp results.cpp measurement.cpp)
+add_executable(multinodes multinodes.cpp buffer.cpp parameters.cpp results.cpp measurement.cpp addfunctions.cpp)
 

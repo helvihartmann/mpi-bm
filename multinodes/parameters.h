@@ -57,6 +57,8 @@ public:
     
     int getcommflag() { return commflag; }
     
+    int getnumberofcommprocesses() { return (numberofReceivers + numberofSenders); }
+    
     size_t getinnerRuntimeIterations(int z);
     
     size_t getendpackagesize() { return endpackagesize; }

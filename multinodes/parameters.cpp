@@ -7,6 +7,7 @@ Parameters::Parameters(int argc, char **argv){
     multicore = 1;
     pipelinedepth = 8;
     numberofSenders = 1;
+    numberofReceivers = 1;
     statisticaliteration = 1;
     factor = (6000000000);
     factor_fix = (1*(1<<20));
@@ -28,7 +29,6 @@ Parameters::Parameters(int argc, char **argv){
         { "iterations",         required_argument,	     NULL,       'i' },
         { "start_package_size",    required_argument,	     NULL,	     'a' },
         { "cutoff",             required_argument,	     NULL,       'e' },
-        { "barrelshift",    required_argument,	     NULL,	     'r' },
         { "package_size_factor",         required_argument,                 NULL,       'f' },
         { "outer_statistical_iteations",         optional_argument,	      NULL,       'o' },
         { "buffer_size",            required_argument,	     NULL,       'b' },
@@ -36,13 +36,15 @@ Parameters::Parameters(int argc, char **argv){
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
         { "queue",                  required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
+        { "number_recv",                required_argument,	     NULL,       'r' },
         { "number_senders",                required_argument,	     NULL,       's' },
         { "timedistribution",                required_argument,	     NULL,       't' },
+        { "barrelshift",    required_argument,	     NULL,	     'y' },
         { "pinningmode",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:r:f:o:b:m:p:q:w:s:t:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:r:s:t:y:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -51,7 +53,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
             std::cout << " --start_package_size          -a       start package size\n (DEFAULT = "                                                         << startpackagesize << ")\n"       << std::endl;
             std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
-            std::cout << " --barrelshift                 -r       barrelshift \n (DEFAULT = "                     << barrelshiftingflag << ")\n"         << std::endl;
             std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
             std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
@@ -59,8 +60,10 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
             std::cout << " --queue                       -q       one queue for all remoteranks (0) or independent queues (1) \n (DEFAULT = "              << queue << ") \n" << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
+            std::cout << " --number_recv                 -r       number of processes that receive data from all others (min 1; max: 8) \n (DEFAULT = "              << numberofReceivers << ") \n" << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
+            std::cout << " --barrelshift                 -y       barrelshift \n (DEFAULT = "                     << barrelshiftingflag << ")\n"         << std::endl;
             std::cout << " --pinningmode             -x       relevant for multicore ==1, 1 both processes on cpu0; 2 both processes on cpu1; 3 p0 on cpu0 & p1 on cpu1; 4 p0 on cpu1 & p1 on cpu0 \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             
             exit(1);
@@ -90,14 +93,6 @@ Parameters::Parameters(int argc, char **argv){
             }
             else {
                 printf("#INFO -e: max package size was set to 50GB \n");
-            }
-            break;
-        case 'r':
-            barrelshiftingflag = static_cast<Flag>(atoi(optarg));
-            if (atoi(optarg) >= 0 && atoi(optarg) <=1) {
-            }
-            else {
-                printf("#INFO -r: 0 for on and 1 for off only \n");
             }
             break;
         case 'f':
@@ -158,9 +153,16 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
+        case 'r':
+            numberofReceivers = atof(optarg);
+            if (!(numberofReceivers > 0 && numberofReceivers <=100)) {
+                printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
+                exit(1);
+            }
+            break;
         case 's':
             numberofSenders = atof(optarg);
-            if (!(numberofSenders > 0 && numberofSenders <=8)) {
+            if (!(numberofSenders > 0 && numberofSenders <=100)) {
                 printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
                 exit(1);
             }
@@ -170,6 +172,14 @@ Parameters::Parameters(int argc, char **argv){
             if (!(histcheck >= 0 && histcheck <=1)) {
                 printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
                 exit(1);
+            }
+            break;
+        case 'y':
+            barrelshiftingflag = static_cast<Flag>(atoi(optarg));
+            if (atoi(optarg) >= 0 && atoi(optarg) <=1) {
+            }
+            else {
+                printf("#INFO -r: 0 for on and 1 for off only \n");
             }
             break;
         case 'x':
@@ -205,7 +215,7 @@ Parameters::Parameters(int argc, char **argv){
 std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){
     size = size_;
     rank = rank_;
-    numberofReceivers = size - numberofSenders;
+    //numberofReceivers = size - numberofSenders;
     switch (multicore) {
             case 1: {
                 if(rank < numberofSenders){
@@ -213,9 +223,12 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                     setflag(0,numberofReceivers);
                     sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope, no implementation of barrelshift
                 }
-                else{
+                else if( rank >= numberofSenders && rank < (numberofSenders + numberofReceivers)){
                     setflag(1,numberofSenders);
                     sortlist(0, numberofSenders, (size + 1), 1);
+                }
+                else{
+                    setflag(2,0);
                 }
             }
             break;

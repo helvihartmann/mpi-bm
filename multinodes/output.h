@@ -4,24 +4,27 @@
 class Output{
 private:
     int rank, size;
+    MPI_Comm communicators_comm;
     
 public:
     
-    Output(int rank_, int size_);
+    Output(int rank_, int size_,  MPI_Comm communicators_comm_);
     void outputiteration(Results *results, unsigned int m);
     void outputfinal(Results *results, int commflag);
+    
 };
 
-Output::Output(int rank_, int size_) :
+Output::Output(int rank_, int size_, MPI_Comm communicators_comm_) :
     rank(rank_),
-    size(size_)
+    size(size_),
+    communicators_comm(communicators_comm_)
 {
 
     
 }
 
 void Output::outputiteration(Results *results, unsigned int m){
-    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Barrier(communicators_comm);
     for (int i=0; i<size; i++) {
         if (rank == i){
             if (rank == 0){
@@ -31,7 +34,7 @@ void Output::outputiteration(Results *results, unsigned int m){
             results->printstatisticaliteration();
             sleep(2);
         }
-        MPI_Barrier(MPI_COMM_WORLD);
+        MPI_Barrier(communicators_comm);
     }
 }
 
@@ -58,7 +61,7 @@ void Output::outputfinal(Results *results, int commflag){
             }
             sleep(5);
         }
-        MPI_Barrier(MPI_COMM_WORLD);
+        MPI_Barrier(communicators_comm);
         
     }
 }
