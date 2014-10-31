@@ -17,7 +17,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
     readarray -t NODES < <(scontrol show hostname $SLURM_NODELIST)
 
     for ((size=4;size<=512*1024;size*=2)); do
-        iters=1000000
+        iters=10000
         if ((size>=4096)); then
             ((iters=2000000000/size))
         fi
@@ -46,10 +46,10 @@ if [[ "$SLURMD_NODENAME" ]]; then
         do
             my_var=${file%.out}
             echo "creating " "$my_var"".ib ..."
-
-            for ((recvid=s;recvid<n;recvid++));do
-                for ((sendid=0;sendid<s;sendid++));do
-                    grep "$recvid: node$sendid" $file >> "$my_var".ib
+            touch "$my_var".ib
+            for ((recvid=s;recvid<nmbrnodes;recvid++));do
+                for ((sendid=0;sendid<nmbrsender;sendid++));do
+                    grep "$recvid: ${NODES[$sendid]}" $file >> "$my_var".ib
                     echo " " >> "$my_var".ib
                     echo " " >> "$my_var".ib
                 done
