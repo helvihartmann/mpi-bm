@@ -10,12 +10,8 @@ exit 0
 fi
 
 if [ "$SLURMD_NODENAME" == "$1" ]; then
-    echo "testing nodes" $*
-    echo "$SLURMD_NODENAME: ${CMD[*]}"
-    ${CMD[*]}
+    ${CMD[*]} > /dev/null
 elif [ "$SLURMD_NODENAME" == "$2" ]; then
     sleep 1
-    echo "$SLURMD_NODENAME: ${CMD[*]} connecting to..."
-    echo "$1"
     ${CMD[*]} $1
 fi
