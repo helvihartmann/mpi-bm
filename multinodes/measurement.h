@@ -15,9 +15,9 @@ public:
     
     void setfunctionpointer(int (*mpicall_)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
-    void warmup(size_t numberofwarmups, int rank);
+    void warmup(size_t numberofwarmups, size_t endpackagesize, int rank);
     
-    void measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method);
+    void measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method, MPI_Comm communicators_comm);
     
     double getstarttime() { return starttime; }
     

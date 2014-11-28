@@ -20,6 +20,7 @@ private:
     size_t buffersize;
     std::vector<int>remoterank_vec;
     unsigned int numberofremoteranks; // now every process has his own
+    MPI_Comm communicators_comm;
     
     int *buffer;
     
@@ -45,9 +46,10 @@ private:
     
     
     
+    
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks);
+    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks, MPI_Comm communicators_comm_);
    
     void checkbuffer(int value, int remoterank);
     

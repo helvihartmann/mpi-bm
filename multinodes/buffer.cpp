@@ -1,12 +1,13 @@
 #include "buffer.h"
 
-Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_) :
+Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_, MPI_Comm communicators_comm_) :
     size(size_),
     rank(rank_),
     pipelinedepth(pipelinedepth_),
     buffersize(buffersize_),
     remoterank_vec(remoterank_vec_),
-    numberofremoteranks(numberofremoteranks_)
+    numberofremoteranks(numberofremoteranks_),
+    communicators_comm(communicators_comm_)
 {
     std::cout << "# allocating buffer..." << rank << std::endl;
     
@@ -61,7 +62,7 @@ void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int
         for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
             remoterank = remoterank_vec.at(index_remoterank);
             index = packagecount*((j*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
-            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
             vec[index_remoterank].push(comm_obj);
         }
     }
@@ -75,7 +76,7 @@ void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int
                     vec[index_remoterank].pop();
                     index = packagecount*((count.at(index_remoterank)*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
                     remoterank = remoterank_vec.at(index_remoterank);
-                   (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+                   (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
                     
                     count.at(index_remoterank)++;
                     countsum++;

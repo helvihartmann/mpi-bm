@@ -10,13 +10,13 @@ void Measurement::setfunctionpointer(int (*mpicall_)(void*, int, MPI_Datatype, i
     mpicall = mpicall_;
 }
 
-void Measurement::warmup(size_t numberofwarmups, int rank){
+void Measurement::warmup(size_t numberofwarmups, size_t endpackagesize, int rank){
     if (rank == 0){
         std::cout << "#warmup " << std::endl;
     }
     
     //iterate over packagesize from 1int (4Byte) to 16ki ints (64kiB)
-    for (size_t packagecount = 1; packagecount < 1<<24; packagecount = packagecount*2){
+    for (size_t packagecount = 1; packagecount < endpackagesize; packagecount = packagecount*2){
         buffer->setloopvariables(packagecount, numberofwarmups);
         
         // data transfer and time measurement
@@ -33,9 +33,9 @@ void Measurement::warmup(size_t numberofwarmups, int rank){
     std::cout << " " << std::endl;
 }
 
-void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method){
+void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method, MPI_Comm communicators_comm){
     buffer->setloopvariables(packagecount,innerRuntimeIterations);
-    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Barrier(communicators_comm);
     starttime = MPI_Wtime();
     switch (method) {
         case basic:
@@ -52,7 +52,7 @@ void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations, en
             break;
     }
    
-    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Barrier(communicators_comm);
     endtime = MPI_Wtime();
 
 }
