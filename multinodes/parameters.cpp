@@ -233,50 +233,56 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
             }
             break;
             case 2: {
-                numberofSenders = (size/2) - 1;
                 numberofReceivers = numberofSenders;
-                //for senders
-                if(rank%2 == 0 ){
-                    
-                    setflag(0,numberofReceivers);
-                    //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or ever process to a different port (barrelshifting)
-                    switch (barrelshiftingflag) {
-                        case on:
-                            barrelshifting(3,1);
-                            break;
-                        case off:
-                            sortlist(1, size, (rank + 1) , 2);
-                            break;
-                        default:
-                            sortlist(1, size, (rank + 1) , 2);
-                            break;
-                    }
-                }
-                //for receivers
-                else {
-                    
-                    setflag(1,numberofSenders);
-                    //receive from all even ranked process except the one on the same node (receiver rank - 1)
-                    switch (barrelshiftingflag) {
-                        case on:
-                            barrelshifting((size - 3),-1);//1 receives first from second last process
-                            break;
-                        case off:
-                            sortlist(0, (size - 1), (rank - 1), 2);
-                            break;
-                            
-                        default:
-                            sortlist(0, (size - 1), (rank - 1), 2);
-                            break;
-                    }
-                }
-                for (unsigned int i=0; i<size; i++) {
-                    if (rank == i){
-                        for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
-                            std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
-                        }
+                int numberofremoteranks_tmp = numberofSenders - 1;
+                std::cout << "size " << size << " sender " << numberofSenders << " receiver " << numberofReceivers << std::endl;
+                if (rank<(numberofSenders+numberofReceivers)){
+                    //for senders
+                    if(rank%2 == 0 ){
                         
+                        setflag(0,numberofremoteranks_tmp);
+                        //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or every process to a different port (barrelshifting)
+                        switch (barrelshiftingflag) {
+                            case on:
+                                barrelshifting(3,1);
+                                break;
+                            case off:
+                                sortlist(1, size, (rank + 1) , 2);
+                                break;
+                            default:
+                                sortlist(1, size, (rank + 1) , 2);
+                                break;
+                        }
                     }
+                    //for receivers
+                    else {
+                        
+                        setflag(1,numberofremoteranks_tmp);
+                        //receive from all even ranked process except the one on the same node (receiver rank - 1)
+                        switch (barrelshiftingflag) {
+                            case on:
+                                barrelshifting((size - 3),-1);//1 receives first from second last process
+                                break;
+                            case off:
+                                sortlist(0, (size - 1), (rank - 1), 2);
+                                break;
+                                
+                            default:
+                                sortlist(0, (size - 1), (rank - 1), 2);
+                                break;
+                        }
+                    }
+                    for (unsigned int i=0; i<size; i++) {
+                        if (rank == i){
+                            for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
+                                std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
+                            }
+                            
+                        }
+                    }
+                }
+                else{
+                    setflag(2,0);
                 }
                
             }
@@ -291,8 +297,11 @@ void Parameters::setflag(int commflag_, unsigned int numberofremoteranks_){
     if (commflag == 0){
         std::cout << "I am sender " << rank << std::endl;
     }
-    else{
+    else if (commflag ==1){
         std::cout << "I am receiver " << rank << std::endl;
+    }
+    else{
+        std::cout << " I am Observer " << rank << std::endl;
     }
 }
 

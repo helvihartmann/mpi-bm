@@ -1,11 +1,11 @@
 #!/bin/bash
 
 q=0 #nature of pipe
-START=10
-ENDs=30
+START=4
+END=4
+stepsize=10
 i=2
 o=2
-m=2
 w=200
 a=16
 e=18
@@ -14,29 +14,38 @@ b=4194304
 node="dual"
 
 #---------------------------------------------------------
-n=$((2*ENDs))
+
 touch single.in
 echo "#!/bin/bash " > single.in
 echo "" >> single.in
-echo "#SBATCH --nodes="$n >> single.in
+echo "#SBATCH --nodes="$END >> single.in
 echo "#SBATCH --constraint="$node >> single.in
-echo "#SBATCH --job-name="$i"_"$n >> single.in
-echo "#SBATCH --ntasks-per-node=1" >> single.in
+echo "#SBATCH --job-name="$i"_"$END >> single.in
 echo "" >> single.in
 echo "" >> single.in
 
 
 
-for s in $(seq "$START" 10 "$ENDs")
+for n in $(seq "$START" "$stepsize" "$END")
 do
-    r=$s
-    echo "multipleib_write_bw.sh $s $((2*s)) | tee 55nodes_s"$s"_n"$((2*s))".log" >> single.in
-    echo "mpirun --mca btl_openib_if_include mlx4_0 build/multinodes -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $s "-r" $r "-b" $b ">> 55nodes_i"$i"_s"$s"_n"$n"_"$node".out" >> single.in
+    sm1=$((n/2))
+    sm2=$n
+    pm1=$n
+    pm2=$((2*n))
+    numberprocesses=$((2*s))
+
+
+    echo "#multipleib_write_bw.sh $s $numberprocesses | tee 55nodes_s"$s"_n"$numberprocesses"_m1.log" >> single.in
+    echo "mpirun -n "$pm1" --mca btl_openib_if_include mlx4_0 build/multinodes -m 1 -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $sm1 "-r" $sm1 "-b" $b ">> 55nodes_m1_s"$s"_n"$END"_"$node".out" >> single.in
     echo "" >> single.in
-    echo "number of senders: " $s
-    echo "number of processes n: " $n
+
+    echo "#multipleib_write_bw.sh $numberprocesses $numberprocesses | tee 55nodes_s"$s"_n"$numberprocesses"_m2.log" >> single.in
+    echo "mpirun -n "$pm2" --mca btl_openib_if_include mlx4_0 build/multinodes -m 2 -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $sm2 "-b" $b ">> 55nodes_m2_s"$s"_n"$END"_"$node".out" >> single.in
+    echo "" >> single.in
+    echo "number of nodes: " $END
 done
-    echo "testib.sh "$ENDs" "$n" >> 55nodesindependent.log" >> single.in
+    echo "testib.sh "$sm1" "$END" >> 55nodesindependent_m1.log" >> single.in
+    echo "testib.sh "$END" "$END" >> 55nodesindependent_m2.log" >> single.in
     echo "exit 0" >> single.in
     cat single.in
     sbatch single.in

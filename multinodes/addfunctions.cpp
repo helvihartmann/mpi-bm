@@ -8,7 +8,7 @@
  */
 
 
-MPI_Comm setgroups(int numbercommprocesses){
+MPI_Comm setgroups(int numbercommprocesses,int rank){
     int ranks[numbercommprocesses];
     
     for (int i=0; i<numbercommprocesses; i++){
@@ -16,14 +16,16 @@ MPI_Comm setgroups(int numbercommprocesses){
     }
     MPI_Group worldgroup, communicatorsgroup;
     MPI_Comm communicators_comm;
+    //get a handle to the group which contains all process: worldgroup
     MPI_Comm_group(MPI_COMM_WORLD, &worldgroup);
+    //creates a group (communicatorsgroup) that consists of the n processes in worldgroup with ranks in vector ranks
     MPI_Group_incl(worldgroup, numbercommprocesses, ranks, &communicatorsgroup);
     MPI_Comm_create(MPI_COMM_WORLD,communicatorsgroup, &communicators_comm);
     
-    int rank, communicatorsgrouprank;
-    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-    
+    //get rank of processes in each Communicator
+    int communicatorsgrouprank;
     MPI_Group_rank(communicatorsgroup, &communicatorsgrouprank);
+    
     std::cout << "I am " << rank << " and my rank in the newgroup is " << communicatorsgrouprank << std::endl;
     
     return communicators_comm;

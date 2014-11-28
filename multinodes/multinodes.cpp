@@ -12,7 +12,7 @@ using namespace std;
 
 void pinning(int commflag, int pinningmode);
 void printtimestamp();
-MPI_Comm setgroups(int numbercommprocesses);
+MPI_Comm setgroups(int numbercommprocesses, int rank);
 
     
 int main (int argc, char *argv[]){
@@ -29,7 +29,7 @@ int main (int argc, char *argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
     
-    cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
+    
     
     //Parameter class--------------------------------------
     Parameters params(argc, argv);
@@ -39,9 +39,12 @@ int main (int argc, char *argv[]){
     vector<int>remoterank_vec =  params.getsetremoterankvec(size, rank);
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
     
-    MPI_Comm communicators_comm = setgroups(params.getnumberofcommprocesses());
+    cout << "# process " << rank << " on host " << name << " reports for duty with commflag " << commflag << endl;
+    MPI_Comm communicators_comm = setgroups(params.getnumberofcommprocesses(), rank);
     
-    if (commflag <= 1){
+    MPI_Barrier(MPI_COMM_WORLD);
+    
+    if (commflag <= 1){//invoked in communication 0=sender; 1=receiver; 2=nada
         pinning(commflag, params.getpinningmode());
         MPI_Barrier(communicators_comm);
         sleep(5);
