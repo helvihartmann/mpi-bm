@@ -60,7 +60,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
         done
 
         #resorts output and writes it into an <name>.ib file
-for file in 55nodes_s"$nmbrsender"_n"$((nmbrsender*2))".log #$name
+        for file in *.log #$name
         do
             my_var=${file%.log}
             echo "creating $my_var.ib ..."
@@ -78,6 +78,8 @@ for file in 55nodes_s"$nmbrsender"_n"$((nmbrsender*2))".log #$name
             done
 
         done
+        mkdir log
+        mv *.log log
     fi
 
 else
