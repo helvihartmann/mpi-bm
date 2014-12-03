@@ -12,7 +12,7 @@ using namespace std;
 
 void pinning(int commflag, int pinningmode);
 void printtimestamp();
-MPI_Comm setgroups(int numbercommprocesses, int rank);
+MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
 
     
 int main (int argc, char *argv[]){

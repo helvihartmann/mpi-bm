@@ -1,11 +1,11 @@
 #!/bin/bash
 
 
-size=2;
+
 if [[ "$SLURMD_NODENAME" ]]; then
     # started by slurm
 
-
+    size=$SLURM_NNODES
 
     if [[ "$2" == "srun" ]]; then
         if [[ "$SLURM_NODEID" == "$1" ]]; then
@@ -14,6 +14,10 @@ if [[ "$SLURMD_NODENAME" ]]; then
             free
             ps
             /usr/sbin/ibstatus
+            mpstat
+            echo "##################################################"
+            echo " "
+            echo " "
         fi
 
     else
@@ -23,6 +27,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
     fi
 else
     #started directly
+    size=2;
     sbatch -N$size $0
 fi
 

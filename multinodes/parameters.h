@@ -35,6 +35,8 @@ private:
     int queue;
     enum Flag {on, off};
     Flag barrelshiftingflag;
+    
+    unsigned int numberofcommprocesses;
 public:
     
     Parameters(int argc, char **argv);
@@ -57,7 +59,7 @@ public:
     
     int getcommflag() { return commflag; }
     
-    int getnumberofcommprocesses() { return (numberofReceivers + numberofSenders); }
+    unsigned int getnumberofcommprocesses() { return numberofcommprocesses; }
     
     size_t getinnerRuntimeIterations(int z);
     

@@ -8,10 +8,10 @@
  */
 
 
-MPI_Comm setgroups(int numbercommprocesses,int rank){
+MPI_Comm setgroups(unsigned int numbercommprocesses,int rank){
     int ranks[numbercommprocesses];
     
-    for (int i=0; i<numbercommprocesses; i++){
+    for (unsigned int i = 0; i < numbercommprocesses; i++){
         ranks[i]=i;
     }
     MPI_Group worldgroup, communicatorsgroup;

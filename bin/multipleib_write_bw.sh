@@ -88,11 +88,10 @@ if [[ "$SLURMD_NODENAME" ]]; then
                     else
                         recvid_tmp=recvid
                     fi
-#sendswitch=$(switchassignment.sh ${NODES[$sendid]})
-#recvswitch=$(switchassignment.sh ${NODES[$recvid_tmp]})
-                    echo "# --${NODES[$sendid]}${NODES[$recvid_tmp]}" >> "$my_var".ib
-
-#echo "# $sendswitch$recvswitch ---${NODES[$sendid]}${NODES[$recvid_tmp]}" >> "$my_var".ib
+                    sendswitch=$(switchassignment.sh ${NODES[$sendid]})
+                    recvswitch=$(switchassignment.sh ${NODES[$recvid_tmp]})
+#echo "# --${NODES[$sendid]}${NODES[$recvid_tmp]}" >> "$my_var".ib
+                    echo "# $sendswitch$recvswitch ---${NODES[$sendid]}${NODES[$recvid_tmp]}" >> "$my_var".ib
                     grep "${NODES[$sendid]}${NODES[$recvid_tmp]}" $file >> "$my_var".ib
                     echo " " >> "$my_var".ib
                     echo " " >> "$my_var".ib
