@@ -2,9 +2,9 @@
 
 q=0 #nature of pipe
 START=4
-END=4#make it always even
-stepsize=10
-i=2
+END=8 #make it always even
+stepsize=4
+i=2000
 o=2
 w=200
 a=16
@@ -33,7 +33,7 @@ do
     do
 
         s=$(((n/2)*m))
-        echo "multipleib_write_bw.sh $s $END | tee 55nodes_s"$s"_n"$END"_m1.log" >> single.in
+        echo "multipleib_write_bw.sh $s $n | tee 55nodes_s"$s"_n"$END"_m"$m".log" >> single.in
         echo "mpirun --npernode "$m" --mca btl_openib_if_include mlx4_0 build/multinodes -m 1 -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $s "-r" $s "-b" $b ">> 55nodes_m"$m"_s"$s"_n"$END"_"$node".out" >> single.in
         echo "" >> single.in
     done
@@ -43,6 +43,7 @@ done
     echo "testib.sh "$((END/2))" "$END" >> 55nodesindependent_m1.log" >> single.in
     echo "testib.sh "$END" "$END" >> 55nodesindependent_m2.log" >> single.in
     echo "nodecheck.sh >> nodecheck.log" >> single.in
+    echo "collectresult.sh" >> single.in
     echo "exit 0" >> single.in
     cat single.in
     sbatch single.in
