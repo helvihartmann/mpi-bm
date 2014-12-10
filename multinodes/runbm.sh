@@ -2,8 +2,8 @@
 
 q=0 #nature of pipe
 START=4
-END=8 #make it always even
-stepsize=4
+END=6 #make it always even
+stepsize=2
 i=2000
 o=2
 w=200
@@ -19,7 +19,7 @@ touch single.in
 echo "#!/bin/bash " > single.in
 echo "" >> single.in
 echo "#SBATCH --nodes="$END >> single.in
-echo "#SBATCH --constraint="$node >> single.in
+#echo "#SBATCH --constraint="$node >> single.in
 echo "#SBATCH --job-name="$i"_"$END >> single.in
 echo "" >> single.in
 echo "" >> single.in

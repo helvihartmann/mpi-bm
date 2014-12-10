@@ -5,7 +5,7 @@ cd out
 mkdir m1
 mkdir m2
 
-mv ../log/* .
+mv ../log/* ..
 mv ../55nodes*m1* m1
 mv ../55nodes*m2* m2
 mv ../slurm* .

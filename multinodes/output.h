@@ -42,23 +42,20 @@ void Output::outputfinal(Results *results, int commflag){
     for (int i=0; i<size; i++) {
         if (rank == i){
             if(rank == 0){
-                
                 cout << "# processes " << size << endl;
             }
             
             if (commflag == 0){
                 cout << "#----------------------- SENDER ---------------------------" << endl;
                 cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
-                results->calculate();
-                cout << "\n\n" << endl;
-                
             }
             
             else {
                 cout << "#--- RECEIVER ----------------------------" << endl;
-                results->calculate();
-                cout << "\n\n" << endl;
             }
+            
+            results->calculate();
+            cout << "\n\n" << endl;
             sleep(5);
         }
         MPI_Barrier(communicators_comm);

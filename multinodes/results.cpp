@@ -17,6 +17,7 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
     numberofRemoteranks = numberofRemoteranks_;
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
+    //std::cout << "idx_numberofpackages: " << idx_numberofpackages << ", packagesize_tmp: " << packagesize_tmp << ", innerRuntimeIterations: " << innerRuntimeIterations << ", numberofRemoteranks: " << numberofRemoteranks << std::endl;
     totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*numberofRemoteranks;
     
     for (int i = 0; i < numberofRemoteranks; i++){

@@ -131,7 +131,7 @@ Parameters::Parameters(int argc, char **argv){
             }
             break;
         case 'p':
-            pipelinedepth = atof(optarg);
+            pipelinedepth = atoi(optarg);
             
             if (!(pipelinedepth > 0)) {
                 printf("ERROR -p: please enter vaild number for number of calls (i.e. how many times a package is sent/received without waiting) \n");
@@ -350,8 +350,8 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
         innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
     }
     
-    if (innerRuntimeIterations <= 10){
-        innerRuntimeIterations = 10;
+    if (innerRuntimeIterations <= pipelinedepth){
+        innerRuntimeIterations = pipelinedepth + 1;
     }
     
     return innerRuntimeIterations;
