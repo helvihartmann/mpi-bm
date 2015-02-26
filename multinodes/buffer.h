@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <unistd.h>
+#include "measurement.h"
 
 using namespace std;
 /**/
@@ -49,17 +50,18 @@ private:
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks, MPI_Comm communicators_comm_);
+    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks);
    
     void checkbuffer(int value, int remoterank);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     
-    void comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
     
-    void comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    void comm(Measurement *measurement);
     
-    void comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    void comm_hist(Measurement *measurement);
+    
+    void comm_severalqueue(Measurement *measurement);
     
     void emptyqueue(std::queue<MPI_Request> queue_request);
     

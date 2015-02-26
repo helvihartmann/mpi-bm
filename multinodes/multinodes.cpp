@@ -1,5 +1,6 @@
 #include <iostream>
 #include <mpi.h>
+#include <memory>
 #include "parameters.h"
 #include "results.h"
 #include "buffer.h"
@@ -42,11 +43,17 @@ int main (int argc, char *argv[]){
     cout << "# process " << rank << " on host " << name << " reports for duty with commflag " << commflag << endl;
     MPI_Comm communicators_comm = setgroups(params.getnumberofcommprocesses(), rank);
     
+
     MPI_Barrier(MPI_COMM_WORLD);
+    
+    
     
     if (commflag <= 1){//invoked in communication 0=sender; 1=receiver; 2=nada
         pinning(commflag, params.getpinningmode());
+        
+
         MPI_Barrier(communicators_comm);
+        
         sleep(5);
         
         //get and initialize parameters
@@ -58,23 +65,18 @@ int main (int argc, char *argv[]){
         enum queue_t {single, several};
         queue_t queue = static_cast<queue_t>(params.getqueue());
 
-        
-        int (*mpisend)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Issend;
-        int (*mpirecv)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*) = MPI_Irecv;
-        
         // iniate classes
         Results results(rank, statisticaliteration, numberofpackages);
-        Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
+        Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
         Output output(rank, size, communicators_comm);
-        Measurement measurement(&buffer);
         
+        unique_ptr <Measurement> measurement = nullptr; //initilazided automatically as nullptr only here for ausführlichkeit
         if (commflag == 0){ //sender
-            measurement.setfunctionpointer(mpisend);
+            measurement.reset(new Measurementsend(communicators_comm));
         }
         else{//receiver
-            measurement.setfunctionpointer(mpirecv);
+            measurement.reset(new Measurementrecv(communicators_comm));
         }
-    
     
         // do Measurement--------------------------------------------------------------------------
         // repeat measurement couples of times
@@ -82,7 +84,7 @@ int main (int argc, char *argv[]){
             
             //Warmup
             MPI_Barrier(communicators_comm);
-            measurement.warmup(params.getnumberofwarmups(), params.getendpackagesize(),rank);
+            measurement->warmup(&buffer, params.getnumberofwarmups(), params.getendpackagesize(),rank);
             
             //Iterate over packagesize----------------------------------------------------------------------------
             for (int z = 0; z < numberofpackages; z++){
@@ -100,7 +102,7 @@ int main (int argc, char *argv[]){
                         switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
                             case 1:
                                 //measurement.measure_hist(packacount,innerRuntimeIterations);
-                                measurement.measure(packacount,innerRuntimeIterations,hist, communicators_comm);
+                                measurement->measure(&buffer, packacount,innerRuntimeIterations,hist);
 
                                 if (packagesize >= 8192 && packagesize <= 16384){
                                     buffer.printsingletime();
@@ -108,20 +110,20 @@ int main (int argc, char *argv[]){
                                 break;
                                 
                             default:
-                                measurement.measure(packacount,innerRuntimeIterations,basic,communicators_comm);
+                                measurement->measure(&buffer, packacount,innerRuntimeIterations,basic);
                                 break;
                         }
                     }
                         break;
                     case several:{
-                        measurement.measure(packacount,innerRuntimeIterations,sev_queue,communicators_comm);
+                        measurement->measure(&buffer, packacount,innerRuntimeIterations,sev_queue);
                     }
                         break;
                 }
                 
                 
                 //Write time-----------------------------------------------------------------
-                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement.getendtime()-measurement.getstarttime()),buffer.gettestwaitcounter(),pipelinedepth);
+                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()),buffer.gettestwaitcounter(),pipelinedepth);
 
             }//z
             

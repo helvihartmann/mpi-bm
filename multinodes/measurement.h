@@ -1,25 +1,53 @@
+# ifndef MEASUREMENT_H
+#define MEASUREMENT_H
 #include <iostream>
-#include "buffer.h"
+#include <mpi.h>
+//#include "buffer.h"
 
 enum method_t {basic, hist, sev_queue};
-
+class Buffer;
 class Measurement{
 private:
-    int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*);
-    
     double starttime, endtime;
-    Buffer *buffer;
+    
+    
+protected:
+    MPI_Comm communicators_comm;
+    MPI_Request comm_obj;
+    size_t packagecount;
     
 public:
-    Measurement(Buffer *buffer_);
+    Measurement(MPI_Comm communicators_comm_);
+        
+    void warmup(Buffer *buffer, size_t numberofwarmups, size_t endpackagesize, int rank);
     
-    void setfunctionpointer(int (*mpicall_)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*));
+    void measure(Buffer *buffer, size_t packagecount_, size_t innerRuntimeIterations, enum method_t method);
     
-    void warmup(size_t numberofwarmups, size_t endpackagesize, int rank);
-    
-    void measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method, MPI_Comm communicators_comm);
-    
+    virtual MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank)=0;
     double getstarttime() { return starttime; }
     
     double getendtime() { return endtime; }
 };
+
+class Measurementsend : public Measurement {
+    
+public:
+    using Measurement::Measurement;
+    
+    MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank) override {
+        MPI_Issend((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
+        return comm_obj;
+    }
+};
+
+class Measurementrecv : public Measurement {
+    
+public:
+    using Measurement::Measurement;
+    
+    MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank) override {
+        MPI_Irecv((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
+        return comm_obj;
+    }
+};
+#endif
