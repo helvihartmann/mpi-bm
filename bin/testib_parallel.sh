@@ -40,7 +40,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
     # started by slurm-------------------------------------------------------
     readarray -t NODES < <(scontrol show hostname $SLURM_NODELIST)
 
-    #Second Part----------------------------------------------------------------------------------------------------
+    #Second Part: performs bandwidth test-----------------------------------------------------------------
     if [[ "$4" == "srun" ]]; then
         size=$3
         iters=200000 #1000000
@@ -75,17 +75,18 @@ if [[ "$SLURMD_NODENAME" ]]; then
             echo "failure m must be 1 or 2 not $m"
         fi
 
-    #First part--------------------------------------------------------------------------------------------------------------
+    #First part: starts test of certain package size----------------------------------------------------------------------------
     else
         echo ${NODES[*]}
         length=${#NODES[@]}
         nmbrproc_all=$((m*length))
-        # there are alsp passive processes on nodes which are not used for benchmark tests. so one or two processes have to be started on every node but only the processes on tested nodes are called active
+        # there are alsp passive processes on nodes which are not used for benchmark tests.
+        #so one or two processes have to be started on every node but only the processes on tested nodes are called active
         for ((size=4;size<=512*1024;size*=2)); do
             srun -l -n $nmbrproc_all multipleib_write_bw.sh $nmbrsender $nmbrnodes $size srun
         done
 
-        #resorts output and writes it into an <name>.ib file-------------------------------------------------------
+        #Third part: resorts output and writes it into an <name>.ib file-------------------------------------------------------
         for file in *.log #$name
         do
             my_var=${file%.log}

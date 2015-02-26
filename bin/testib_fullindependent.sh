@@ -20,7 +20,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
                 #nextnode=$(expr $((nodeid+1)) % $SLURM_NNODES)
                 echo "nodeid: $nodeid, nextnode: $nextnode, number nodes: $SLURM_NNODES"
                 echo "#testing nodes" ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
-                srun -w ${NODELIST[$nodeid]},${NODELIST[$nextnode]} -l specificnodes_ib_write.sh ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
+                srun -w ${NODELIST[$nodeid]},${NODELIST[$nextnode]} -l ib_write_specificnodes.sh ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
                 echo " "
                 echo " "
                 echo " "
@@ -37,7 +37,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
                     #nextnode=$(expr $((nodeid+1)) % $SLURM_NNODES)
                     echo "nodeid: $nodeid, nextnode: $nextnode, number nodes: $SLURM_NNODES"
                     echo "#testing nodes" ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
-                    srun -w ${NODELIST[$nodeid]},${NODELIST[$nextnode]} -l specificnodes_ib_write.sh ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
+                    srun -w ${NODELIST[$nodeid]},${NODELIST[$nextnode]} -l ib_write_specificnodes.sh ${NODELIST[$nodeid]} ${NODELIST[$nextnode]}
                     echo " "
                     echo " "
                     echo " "

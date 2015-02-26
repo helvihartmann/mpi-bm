@@ -11,18 +11,39 @@ if [[ "$SLURMD_NODENAME" ]]; then
     if [[ "$2" == "srun" ]]; then
         if [[ "$SLURM_NODEID" == "$1" ]]; then
             hostname
+
+            echo "${NODES[$SLURM_NODEID]} mlx4 1 PortXmitPkts"
+            cat /sys/class/infiniband/mlx4_0/ports/1/counters/port_xmit_packets | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
+            echo " "
+
+            echo "${NODES[$SLURM_NODEID]} mlx4 2 PortXmitPkts"
+            cat /sys/class/infiniband/mlx4_0/ports/2/counters/port_xmit_packets | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
+            echo " "
+
+            echo "${NODES[$SLURM_NODEID]} mlx5 1 PortXmitPkts"
+            cat /sys/class/infiniband/mlx5_0/ports/1/counters/port_xmit_packets | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
+            echo " "
+
+            echo "${NODES[$SLURM_NODEID]} mlx5 2 PortXmitPkts"
+            cat /sys/class/infiniband/mlx5_0/ports/2/counters/port_xmit_packets | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
+            echo " "
+
             echo "cat /proc/loadavg"
             cat /proc/loadavg | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
             echo " "
+
             echo "free"
             free | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
             echo " "
+
             echo "ps auxww"
             ps auxww | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
             echo " "
+
             echo "ibstat"
             ibstat | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
             echo " "
+
             echo "mpstat"
             mpstat | awk '{print ": " $0}'| awk -v var1="${NODES[$SLURM_NODEID]}" '{print var1 $0}'
             echo "##################################################"
