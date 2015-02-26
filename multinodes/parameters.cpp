@@ -19,7 +19,7 @@ Parameters::Parameters(int argc, char **argv){
     barrelshiftingflag = off;
     
     startpackagesize = 1 << 2;
-    endpackagesize = 1 << 20;
+    endpackagesize = 1 << 24;
     int packageSizeFactor = 2;
     
     //-------------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                         //receive from all even ranked process except the one on the same node (receiver rank - 1)
                         switch (barrelshiftingflag) {
                             case on:
-                                barrelshifting((size - 3),-1);//1 receives first from second last process
+                                barrelshifting((numberofcommprocesses - 3),-1);//1 receives first from second last process
                                 break;
                             case off:
                                 sortlist(0, (numberofcommprocesses - 1), (rank - 1), 2);
@@ -316,7 +316,7 @@ void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int exc
 
 void Parameters::barrelshifting(int start, int sign){
     for(unsigned int remoterank_idx = 0; remoterank_idx < numberofremoteranks; remoterank_idx++){
-        unsigned int remoterank = (rank + start + (remoterank_idx * 2 * sign))%size;
+        unsigned int remoterank = (rank + start + (remoterank_idx * 2 * sign))%numberofcommprocesses;
         //0 should always start with sending to 3 and then add 2 in the next round
         remoterank_vec.push_back(remoterank);
     }

@@ -1,13 +1,12 @@
 #include "buffer.h"
 
-Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_, MPI_Comm communicators_comm_) :
+Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_) :
     size(size_),
     rank(rank_),
     pipelinedepth(pipelinedepth_),
     buffersize(buffersize_),
     remoterank_vec(remoterank_vec_),
-    numberofremoteranks(numberofremoteranks_),
-    communicators_comm(communicators_comm_)
+    numberofremoteranks(numberofremoteranks_)
 {
     std::cout << "# allocating buffer..." << rank << std::endl;
     
@@ -27,7 +26,7 @@ void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIteration
     packagecount = packagecount_;
 }
 
-void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
+void Buffer::comm(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
     testwaitcounter.assign(numberofremoteranks,0);
     for(size_t j = 0; j < innerRuntimeIterations; j++){
@@ -41,15 +40,18 @@ void Buffer::comm(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, M
         for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
             remoterank = remoterank_vec.at(index_remoterank);
             index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
-            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+            MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             queue_request.push(comm_obj);
+            
         }
-        //MPI_Barrier(MPI_COMM_WORLD);
+        //MPI_Barrier(communicators_comm);
+        
     }
     emptyqueue(queue_request);
 }
 
-void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
+
+void Buffer::comm_severalqueue(Measurement *measurement){
     // iniate parameters--------------------------
     // vector holding all queues
     std::vector<queue<MPI_Request>> vec(numberofremoteranks);
@@ -62,7 +64,7 @@ void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int
         for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
             remoterank = remoterank_vec.at(index_remoterank);
             index = packagecount*((j*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
-            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
+            MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             vec[index_remoterank].push(comm_obj);
         }
     }
@@ -76,7 +78,7 @@ void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int
                     vec[index_remoterank].pop();
                     index = packagecount*((count.at(index_remoterank)*numberofremoteranks)+index_remoterank)%(buffersize/sizeof(int));
                     remoterank = remoterank_vec.at(index_remoterank);
-                   (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, communicators_comm, &comm_obj);
+                    MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
                     
                     count.at(index_remoterank)++;
                     countsum++;
@@ -95,7 +97,7 @@ void Buffer::comm_severalqueue(int (*mpicall)(void*, int, MPI_Datatype, int, int
 }
 
 //similar to above but with additional messurements for histogramms -----------------------------------------
-void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
+void Buffer::comm_hist(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
     testwaitcounter.assign(numberofremoteranks,0);
     
@@ -119,7 +121,8 @@ void Buffer::comm_hist(int (*mpicall)(void*, int, MPI_Datatype, int, int, MPI_Co
             remoterank = remoterank_vec.at(index_remoterank);
             index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             commstart.at(j) = timestamp.start();
-            (*mpicall)((buffer + index), packagecount, MPI_INT, remoterank, 1, MPI_COMM_WORLD, &comm_obj);
+
+            MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             commstop.at(j) = timestamp.stop();
             queue_request.push(comm_obj);
         }

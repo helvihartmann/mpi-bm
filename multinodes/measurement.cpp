@@ -1,27 +1,25 @@
 #include "measurement.h"
+#include "buffer.h"
 
-Measurement::Measurement(Buffer *buffer_) :
-    buffer(buffer_)
+Measurement::Measurement(MPI_Comm communicators_comm_) :
+    communicators_comm(communicators_comm_)
 {
     
 }
 
-void Measurement::setfunctionpointer(int (*mpicall_)(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Request*)){
-    mpicall = mpicall_;
-}
 
-void Measurement::warmup(size_t numberofwarmups, size_t endpackagesize, int rank){
+void Measurement::warmup(Buffer *buffer, size_t numberofwarmups, size_t endpackagesize, int rank){
     if (rank == 0){
         std::cout << "#warmup " << std::endl;
     }
     
     //iterate over packagesize from 1int (4Byte) to 16ki ints (64kiB)
-    for (size_t packagecount = 1; packagecount < endpackagesize; packagecount = packagecount*2){
+    for (packagecount = 1; packagecount < endpackagesize; packagecount = packagecount*2){
         buffer->setloopvariables(packagecount, numberofwarmups);
         
         // data transfer and time measurement
         double starttimewarmup = MPI_Wtime();
-        buffer->comm(mpicall);
+        buffer->comm(this);
         double endtimewarmup = MPI_Wtime();
         
         //print bandwidth for warmup
@@ -33,22 +31,23 @@ void Measurement::warmup(size_t numberofwarmups, size_t endpackagesize, int rank
     std::cout << " " << std::endl;
 }
 
-void Measurement::measure(size_t packagecount, size_t innerRuntimeIterations, enum method_t method, MPI_Comm communicators_comm){
+void Measurement::measure(Buffer *buffer, size_t packagecount_, size_t innerRuntimeIterations, enum method_t method){
+    packagecount = packagecount_;
     buffer->setloopvariables(packagecount,innerRuntimeIterations);
     MPI_Barrier(communicators_comm);
     starttime = MPI_Wtime();
     switch (method) {
         case basic:
-             buffer->comm(mpicall);
+             buffer->comm(this);
             break;
         case hist:
-            buffer->comm_hist(mpicall);
+            buffer->comm_hist(this);
             break;
         case sev_queue:
-            buffer->comm_severalqueue(mpicall);
+            buffer->comm_severalqueue(this);
             break;
         default:
-            buffer->comm(mpicall);
+            buffer->comm(this);
             break;
     }
    
