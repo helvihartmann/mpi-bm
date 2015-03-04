@@ -43,7 +43,7 @@ int main (int argc, char *argv[]){
     cout << "# process " << rank << " on host " << name << " reports for duty with commflag " << commflag << endl;
     MPI_Comm communicators_comm = setgroups(params.getnumberofcommprocesses(), rank);
     
-
+    
     MPI_Barrier(MPI_COMM_WORLD);
     
     

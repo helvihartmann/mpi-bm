@@ -7,6 +7,7 @@ project(multinodes)
 #include_directories(${UTIL_SOURCE_DIR}/include)
 
 set(CMAKE_CXX_COMPILER mpic++)
+set(CMAKE_CXX_FLAGS -lnuma)
 #Sends the -std=c99 flag to the gcc compiler
 add_definitions(-std=c++11 -Wall -Wextra -g -O1 -lstdc++ -lnuma)
 #This tells CMake to do executable
