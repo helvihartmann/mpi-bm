@@ -62,7 +62,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
             done
         done
 
-        my_var="$1vs$1.ib"
+        my_var="$1vs$1.hist"
         echo "creating $my_var. ... $m"
         echo ${NODES[*]} > "$my_var"
         if [ "$SLURM_PROCID" -eq "0" ]; then
