@@ -66,14 +66,15 @@ if [[ "$SLURMD_NODENAME" ]]; then
         echo "creating $my_var. ... $m"
         echo ${NODES[*]} > "$my_var"
         if [ "$SLURM_PROCID" -eq "0" ]; then
-            for ((size=4;size<=512*1024;size*=2));do #512*1024
+            for size in 524288;do #512*1024
                 for ((recvid=0;recvid<nmbrproc_all;recvid++));do
                     for ((sendid=0;sendid<nmbrproc_all;sendid++));do
-                        receiver=${NODES_DOUBLE[$recvid]}
-                        sender=${NODES_DOUBLE[$sendid]}
-#echo "$recvid $sendid $receiver $sender" >> "$my_var"
-                        grep "$receiver$sender \+$size" $name >> "$my_var"
+                        receiver=${NODES[$recvid]}
+                        sender=${NODES[$sendid]}
+#echo "$receiver$sender $size" >> "$my_var"
+grep "$receiver$sender \+$size" $name | awk -v var1="sendid " '{print var1 $0}' | awk '{print " " $0}' | awk -v var2="$recvid" '{print var2 $0}' >> "$my_var"
                     done
+                    echo " " >> "$my_var"
                 done
                 echo " " >> "$my_var"
                 echo " " >> "$my_var"
