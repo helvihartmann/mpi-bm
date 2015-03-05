@@ -70,17 +70,19 @@ int main (int argc, char *argv[]){
         Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
         Output output(rank, size, communicators_comm);
         
-        unique_ptr <Measurement> measurement = nullptr; //initilazided automatically as nullptr only here for ausführlichkeit
-        if (commflag == 0){ //sender
-            measurement.reset(new Measurementsend(communicators_comm));
-        }
-        else{//receiver
-            measurement.reset(new Measurementrecv(communicators_comm));
-        }
+        
     
         // do Measurement--------------------------------------------------------------------------
         // repeat measurement couples of times
         for (unsigned int m = 0; m < statisticaliteration; m++){
+            
+            unique_ptr <Measurement> measurement = nullptr; //initilazided automatically as nullptr only here for ausführlichkeit
+            if (commflag == 0){ //sender
+                measurement.reset(new Measurementsend(communicators_comm));
+            }
+            else{//receiver
+                measurement.reset(new Measurementrecv(communicators_comm));
+            }
             
             //Warmup
             MPI_Barrier(communicators_comm);
