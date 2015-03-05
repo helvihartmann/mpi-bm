@@ -7,3 +7,4 @@ build/
 *.hist
 *.log
 *.ib
+nodelist.txt

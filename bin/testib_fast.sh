@@ -72,7 +72,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
                         receiver=${NODES[$recvid]}
                         sender=${NODES[$sendid]}
 #echo "$receiver$sender $size" >> "$my_var"
-grep "$receiver$sender \+$size" $name | awk -v var1="sendid " '{print var1 $0}' | awk '{print " " $0}' | awk -v var2="$recvid" '{print var2 $0}' >> "$my_var"
+grep "$receiver$sender \+$size" $name | awk -v var1="$sendid " '{print var1 $0}' | awk '{print " " $0}' | awk -v var2="$recvid" '{print var2 $0}' >> "$my_var"
                     done
                     echo " " >> "$my_var"
                 done
