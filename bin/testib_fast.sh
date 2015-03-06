@@ -53,7 +53,7 @@ if [[ "$SLURMD_NODENAME" ]]; then
         #so one or two processes have to be started on every node but only the processes on tested nodes are called active
         for ((size=4;size<=512*1024;size*=2)); do #512*1024
             i=0
-            for ((nextnode=1;nextnode<(2*nmbrproc_all-2);nextnode=nextnode+2)); do
+            for ((nextnode=0;nextnode<(2*nmbrproc_all);nextnode=nextnode+2)); do
                 echo $i
                 srun --ntasks-per-node 2 -n $((2*nmbrproc_all)) testib_fast.sh $nmbrproc_all $size srun $nextnode
                 i=$((i+1))

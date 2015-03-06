@@ -147,9 +147,9 @@ void Buffer::printsingletime(){
     ofstream myfile;
     myfile.open(oss.str());
 
-    myfile << "# P(s)IS P(e)Is TIS P(s)Ws P(e)Ws TWs P(s)RS P(e)Rs TIS" << "\n";
+    myfile << "# P(s)IS P(e)Is T[ms] P(s)Ws P(e)Ws TWs P(s)RS P(e)Rs T[ms]" << "\n";
     for(size_t j = 0; j < innerRuntimeIterations; j++){
-        myfile << commstart.at(j) << " " << commstop.at(j) << " " << ((commstop.at(j)-commstart.at(j))/2000) << " " << waitstart.at(j) << " " << waitstop.at(j) << " " << ((waitstop.at(j)-waitstart.at(j))/2000) <<  " " << i << "\n";
+        myfile << commstart.at(j) << " " << commstop.at(j) << " " << ((commstop.at(j)-commstart.at(j))/2) << " " << waitstart.at(j) << " " << waitstop.at(j) << " " << ((waitstop.at(j)-waitstart.at(j))/2) <<  " " << i << "\n";
         i++;
     }
     

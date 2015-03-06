@@ -1,0 +1,1276 @@
+#
+# Topology file: generated on Fri Mar  6 14:32:18 2015
+#
+# Initiated from node 10c37b0d32ab4500 port 10c37b0d32ab4501
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xf4521403005cc310
+switchguid=0xf4521403005cc310(f4521403005cc310)
+Switch	36 "S-f4521403005cc310"		# "MF0;switch-e1b17c:SX6036/U1" enhanced port 0 lid 27 lmc 0
+[1]	"H-10c37b73094cf600"[1](10c37b73094cf601) 		# "lqcdn003.lqcd.gsi.de" lid 29 4xFDR
+[3]	"H-10c37b91538c5800"[1](10c37b91538c5801) 		# "lqcdn001.lqcd.gsi.de" lid 68 4xFDR
+[4]	"H-10c37bc079651400"[1](10c37bc079651401) 		# "lqcdn044.lqcd.gsi.de" lid 38 4xFDR
+[6]	"H-10c37b58bbaedf00"[1](10c37b58bbaedf01) 		# "lqcdn042.lqcd.gsi.de" lid 37 4xFDR
+[7]	"H-10c37bc56a591600"[1](10c37bc56a591601) 		# "lqcdn041.lqcd.gsi.de" lid 31 4xFDR
+[8]	"H-10c37bc9c7c3da00"[1](10c37bc9c7c3da01) 		# "lqcdn040.lqcd.gsi.de" lid 36 4xFDR
+[9]	"H-10c37bcf3e2f2c00"[1](10c37bcf3e2f2c01) 		# "lqcdn039.lqcd.gsi.de" lid 1 4xFDR
+[10]	"H-10c37bbf331a6600"[1](10c37bbf331a6601) 		# "lqcdn029.lqcd.gsi.de" lid 161 4xFDR
+[11]	"H-10c37bdbe9534f00"[1](10c37bdbe9534f01) 		# "lqcdn038.lqcd.gsi.de" lid 33 4xFDR
+[12]	"H-10c37b8bf1320400"[1](10c37b8bf1320401) 		# "lqcdn037.lqcd.gsi.de" lid 39 4xFDR
+[13]	"H-10c37b25f378cc00"[1](10c37b25f378cc01) 		# "lqcdn036.lqcd.gsi.de" lid 35 4xFDR
+[14]	"H-10c37b9d06689c00"[1](10c37b9d06689c01) 		# "lqcdn035.lqcd.gsi.de" lid 40 4xFDR
+[15]	"H-10c37bbc57d3db00"[1](10c37bbc57d3db01) 		# "lqcdn034.lqcd.gsi.de" lid 41 4xFDR
+[16]	"H-10c37b66b8303e00"[1](10c37b66b8303e01) 		# "lqcdn033.lqcd.gsi.de" lid 44 4xFDR
+[17]	"H-10c37b2182327600"[1](10c37b2182327601) 		# "lqcdn032.lqcd.gsi.de" lid 42 4xFDR
+[18]	"H-10c37b506a9f2800"[1](10c37b506a9f2801) 		# "lqcdn031.lqcd.gsi.de" lid 45 4xFDR
+[19]	"H-10c37b839fda5300"[1](10c37b839fda5301) 		# "lqcdn051.lqcd.gsi.de" lid 117 4xFDR
+[20]	"H-10c37bcc12b3ae00"[1](10c37bcc12b3ae01) 		# "lqcdn010.lqcd.gsi.de" lid 78 4xFDR
+[21]	"H-10c37bbcc3a33b00"[1](10c37bbcc3a33b01) 		# "lqcdn011.lqcd.gsi.de" lid 65 4xFDR
+[22]	"H-10c37be7f98eac00"[1](10c37be7f98eac01) 		# "lqcdn050.lqcd.gsi.de" lid 120 4xFDR
+[23]	"H-10c37b4f96443b00"[1](10c37b4f96443b01) 		# "lqcdn005.lqcd.gsi.de" lid 118 4xFDR
+[25]	"S-f4521403005cc590"[32]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[26]	"S-f4521403005cc590"[29]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[27]	"S-f4521403005cc590"[30]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[28]	"S-f4521403005cc590"[31]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xf4521403005cc610
+switchguid=0xf4521403005cc610(f4521403005cc610)
+Switch	36 "S-f4521403005cc610"		# "MF0;switch-e1b324:SX6036/U1" enhanced port 0 lid 2 lmc 0
+[5]	"S-f4521403005cc590"[24]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[6]	"S-f4521403005cc590"[21]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[7]	"S-f4521403005cc590"[23]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[8]	"S-f4521403005cc590"[22]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[13]	"H-10c37be6fc1e0000"[1](10c37be6fc1e0001) 		# "lqcdn-r05n01.lqcd.gsi.de" lid 93 4xFDR
+[14]	"H-10c37be6fb2a0000"[1](10c37be6fb2a0001) 		# "lqcdn-r05n02.lqcd.gsi.de" lid 94 4xFDR
+[15]	"H-10c37be6fb380000"[1](10c37be6fb380001) 		# "lqcdn-r05n03.lqcd.gsi.de" lid 97 4xFDR
+[16]	"H-10c37be6fb4a0000"[1](10c37be6fb4a0001) 		# "lqcdn-r05n04.lqcd.gsi.de" lid 95 4xFDR
+[17]	"H-10c37be6fbbe0000"[1](10c37be6fbbe0001) 		# "lqcdn-r05n05.lqcd.gsi.de" lid 143 4xFDR
+[18]	"H-10c37be6fac00000"[1](10c37be6fac00001) 		# "lqcdn-r05n06.lqcd.gsi.de" lid 144 4xFDR
+[20]	"H-10c37be6fbcc0000"[1](10c37be6fbcc0001) 		# "lqcdn-r05n08.lqcd.gsi.de" lid 146 4xFDR
+[21]	"H-10c37ba062cb3500"[1](10c37ba062cb3501) 		# "lqcdn012.lqcd.gsi.de" lid 48 4xFDR
+[22]	"H-10c37be6fc140000"[1](10c37be6fc140001) 		# "lqcdn-r05n09.lqcd.gsi.de" lid 149 4xFDR
+[23]	"H-10c37be6fc320000"[1](10c37be6fc320001) 		# "lqcdn-r05n10.lqcd.gsi.de" lid 96 4xFDR
+[24]	"H-10c37be6fc180000"[1](10c37be6fc180001) 		# "lqcdn-r05n11.lqcd.gsi.de" lid 99 4xFDR
+[25]	"H-10c37b20647b0000"[1](10c37b20647b0001) 		# "lqcdn-r05n12.lqcd.gsi.de" lid 98 4xFDR
+[26]	"H-10c37be6fb620000"[1](10c37be6fb620001) 		# "lqcdn-r05n13.lqcd.gsi.de" lid 101 4xFDR
+[27]	"H-10c37be6fb460000"[1](10c37be6fb460001) 		# "lqcdn-r05n14.lqcd.gsi.de" lid 103 4xFDR
+[28]	"H-10c37be6fab20000"[1](10c37be6fab20001) 		# "lqcdn-r05n15.lqcd.gsi.de" lid 102 4xFDR
+[29]	"H-10c37be6fbec0000"[1](10c37be6fbec0001) 		# "lqcdn-r05n16.lqcd.gsi.de" lid 100 4xFDR
+[30]	"H-10c37be6fb6a0000"[1](10c37be6fb6a0001) 		# "lqcdn-r05n17.lqcd.gsi.de" lid 104 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xe41d2d030007e6a0
+switchguid=0xe41d2d030007e6a0(e41d2d030007e6a0)
+Switch	36 "S-e41d2d030007e6a0"		# "SwitchX -  Mellanox Technologies" base port 0 lid 6 lmc 0
+[1]	"H-10c37be6fc3c0000"[1](10c37be6fc3c0001) 		# "lqcdn-r07n12.lqcd.gsi.de" lid 70 4xFDR
+[2]	"H-10c37b2e9c6d0000"[1](10c37b2e9c6d0001) 		# "lqcdn-r07n13.lqcd.gsi.de" lid 80 4xFDR
+[3]	"H-10c37be6fbb80000"[1](10c37be6fbb80001) 		# "lqcdn-r07n14.lqcd.gsi.de" lid 72 4xFDR
+[4]	"H-10c37be6fbc20000"[1](10c37be6fbc20001) 		# "lqcdn-r07n15.lqcd.gsi.de" lid 77 4xFDR
+[6]	"H-10c37be6fc2c0000"[1](10c37be6fc2c0001) 		# "lqcdn-r07n17.lqcd.gsi.de" lid 76 4xFDR
+[8]	"H-10c37be6fbf80000"[1](10c37be6fbf80001) 		# "lqcdn-r06n02.lqcd.gsi.de" lid 84 4xFDR
+[9]	"H-10c37be6fb2e0000"[1](10c37be6fb2e0001) 		# "lqcdn-r06n03.lqcd.gsi.de" lid 82 4xFDR
+[10]	"H-10c37be6faac0000"[1](10c37be6faac0001) 		# "lqcdn-r06n04.lqcd.gsi.de" lid 83 4xFDR
+[11]	"H-10c37be6fc300000"[1](10c37be6fc300001) 		# "lqcdn-r06n05.lqcd.gsi.de" lid 138 4xFDR
+[12]	"H-10c37b2e9c350000"[1](10c37b2e9c350001) 		# "lqcdn-r06n06.lqcd.gsi.de" lid 139 4xFDR
+[13]	"H-10c37be6fc4c0000"[1](10c37be6fc4c0001) 		# "lqcdn-r06n07.lqcd.gsi.de" lid 140 4xFDR
+[14]	"H-10c37be6fae00000"[1](10c37be6fae00001) 		# "lqcdn-r06n08.lqcd.gsi.de" lid 153 4xFDR
+[15]	"H-10c37be6fb4c0000"[1](10c37be6fb4c0001) 		# "lqcdn-r06n18.lqcd.gsi.de" lid 142 4xFDR
+[16]	"H-10c37be6fb7e0000"[1](10c37be6fb7e0001) 		# "lqcdn-r06n09.lqcd.gsi.de" lid 141 4xFDR
+[17]	"H-10c37be6fbe80000"[1](10c37be6fbe80001) 		# "lqcdn-r06n10.lqcd.gsi.de" lid 85 4xFDR
+[18]	"H-10c37be6fad00000"[1](10c37be6fad00001) 		# "lqcdn-r06n11.lqcd.gsi.de" lid 87 4xFDR
+[19]	"H-10c37be6fb9c0000"[1](10c37be6fb9c0001) 		# "lqcdn-r06n12.lqcd.gsi.de" lid 86 4xFDR
+[20]	"H-10c37b2e9c650000"[1](10c37b2e9c650001) 		# "lqcdn-r06n13.lqcd.gsi.de" lid 88 4xFDR
+[21]	"H-10c37b2e9c2b0000"[1](10c37b2e9c2b0001) 		# "lqcdn-r06n14.lqcd.gsi.de" lid 89 4xFDR
+[22]	"H-10c37be6fb140000"[1](10c37be6fb140001) 		# "lqcdn-r06n15.lqcd.gsi.de" lid 92 4xFDR
+[23]	"H-10c37be6fad20000"[1](10c37be6fad20001) 		# "lqcdn-r06n16.lqcd.gsi.de" lid 91 4xFDR
+[24]	"H-7824af07473d0000"[1](7824af07473d0001) 		# "lqcdn-r06n17.lqcd.gsi.de" lid 90 4xFDR
+[29]	"S-f4521403005cc590"[20]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[30]	"S-f4521403005cc590"[19]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[31]	"S-f4521403005cc590"[18]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[32]	"S-f4521403005cc590"[17]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xe41d2d030007e5a0
+switchguid=0xe41d2d030007e5a0(e41d2d030007e5a0)
+Switch	36 "S-e41d2d030007e5a0"		# "SwitchX -  Mellanox Technologies" base port 0 lid 7 lmc 0
+[1]	"H-10c37be6fae60000"[1](10c37be6fae60001) 		# "lqcdn-r08n05.lqcd.gsi.de" lid 50 4xFDR
+[2]	"H-10c37be6fc500000"[1](10c37be6fc500001) 		# "MT25408 ConnectX Mellanox Technologies" lid 58 4xSDR
+[4]	"H-10c37b20645b0000"[1](10c37b20645b0001) 		# "lqcdn-r08n08.lqcd.gsi.de" lid 132 4xFDR
+[5]	"H-10c37be6fa920000"[1](10c37be6fa920001) 		# "lqcdn-r08n09.lqcd.gsi.de" lid 133 4xFDR
+[6]	"H-10c37be6fad60000"[1](10c37be6fad60001) 		# "lqcdn-r08n10.lqcd.gsi.de" lid 134 4xFDR
+[7]	"H-10c37b2064e70000"[1](10c37b2064e70001) 		# "lqcdn-r08n11.lqcd.gsi.de" lid 136 4xFDR
+[8]	"H-10c37be6fc2e0000"[1](10c37be6fc2e0001) 		# "lqcdn-r08n12.lqcd.gsi.de" lid 135 4xFDR
+[9]	"H-10c37be6fae40000"[1](10c37be6fae40001) 		# "lqcdn-r08n13.lqcd.gsi.de" lid 52 4xFDR
+[10]	"H-10c37be6fbb60000"[1](10c37be6fbb60001) 		# "lqcdn-r08n14.lqcd.gsi.de" lid 137 4xFDR
+[11]	"H-10c37be6fb8c0000"[1](10c37be6fb8c0001) 		# "lqcdn-r08n15.lqcd.gsi.de" lid 54 4xFDR
+[13]	"H-10c37b2e9c5f0000"[1](10c37b2e9c5f0001) 		# "lqcdn-r08n17.lqcd.gsi.de" lid 56 4xFDR
+[14]	"H-7824af0747170000"[1](7824af0747170001) 		# "lqcdn-r07n01.lqcd.gsi.de" lid 61 4xFDR
+[15]	"H-10c37be6fa980000"[1](10c37be6fa980001) 		# "lqcdn-r07n02.lqcd.gsi.de" lid 63 4xFDR
+[16]	"H-10c37b2e9c5b0000"[1](10c37b2e9c5b0001) 		# "lqcdn-r07n03.lqcd.gsi.de" lid 62 4xFDR
+[18]	"H-10c37be6fb520000"[1](10c37be6fb520001) 		# "lqcdn-r07n05.lqcd.gsi.de" lid 64 4xFDR
+[19]	"H-10c37be6fb160000"[1](10c37be6fb160001) 		# "lqcdn-r07n06.lqcd.gsi.de" lid 67 4xFDR
+[20]	"H-10c37be6fc200000"[1](10c37be6fc200001) 		# "lqcdn-r07n07.lqcd.gsi.de" lid 66 4xFDR
+[21]	"H-10c37b2e9c4f0000"[1](10c37b2e9c4f0001) 		# "lqcdn-r07n08.lqcd.gsi.de" lid 81 4xFDR
+[22]	"H-10c37be6fbf60000"[1](10c37be6fbf60001) 		# "lqcdn-r07n10.lqcd.gsi.de" lid 74 4xFDR
+[23]	"H-10c37b2e9c3d0000"[1](10c37b2e9c3d0001) 		# "lqcdn-r07n09.lqcd.gsi.de" lid 71 4xFDR
+[24]	"H-10c37be6fab40000"[1](10c37be6fab40001) 		# "MT25408 ConnectX Mellanox Technologies" lid 60 4xSDR
+[33]	"S-f4521403005cc590"[15]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[34]	"S-f4521403005cc590"[14]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[35]	"S-f4521403005cc590"[13]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[36]	"S-f4521403005cc590"[16]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xf4521403005cc510
+switchguid=0xf4521403005cc510(f4521403005cc510)
+Switch	36 "S-f4521403005cc510"		# "MF0;switch-e68364:SX6036/U1" enhanced port 0 lid 589 lmc 0
+[1]	"H-10c37be6fbc60000"[1](10c37be6fbc60001) 		# "lqcdn-r09n18.lqcd.gsi.de" lid 8 4xFDR
+[2]	"H-10c37be6fbd40000"[1](10c37be6fbd40001) 		# "lqcdn-r09n01.lqcd.gsi.de" lid 11 4xFDR
+[3]	"H-10c37be6fb680000"[1](10c37be6fb680001) 		# "lqcdn-r09n02.lqcd.gsi.de" lid 26 4xFDR
+[4]	"H-10c37be6fada0000"[1](10c37be6fada0001) 		# "lqcdn-r09n03.lqcd.gsi.de" lid 14 4xFDR
+[5]	"H-10c37be6fbc00000"[1](10c37be6fbc00001) 		# "lqcdn-r09n04.lqcd.gsi.de" lid 13 4xFDR
+[6]	"H-10c37be6fbe40000"[1](10c37be6fbe40001) 		# "lqcdn-r09n05.lqcd.gsi.de" lid 9 4xFDR
+[7]	"H-10c37be6fa9a0000"[1](10c37be6fa9a0001) 		# "lqcdn-r09n06.lqcd.gsi.de" lid 126 4xFDR
+[8]	"H-10c37be6faa00000"[1](10c37be6faa00001) 		# "lqcdn-r09n07.lqcd.gsi.de" lid 128 4xFDR
+[9]	"H-10c37be6fc240000"[1](10c37be6fc240001) 		# "lqcdn-r09n08.lqcd.gsi.de" lid 127 4xFDR
+[10]	"H-10c37be6fac60000"[1](10c37be6fac60001) 		# "lqcdn-r09n09.lqcd.gsi.de" lid 129 4xFDR
+[11]	"H-10c37be6fbf00000"[1](10c37be6fbf00001) 		# "lqcdn-r09n10.lqcd.gsi.de" lid 131 4xFDR
+[12]	"H-10c37be6fc440000"[1](10c37be6fc440001) 		# "lqcdn-r09n11.lqcd.gsi.de" lid 130 4xFDR
+[14]	"H-10c37be6fb120000"[1](10c37be6fb120001) 		# "lqcdn-r09n13.lqcd.gsi.de" lid 10 4xFDR
+[16]	"H-10c37be6fc5c0000"[1](10c37be6fc5c0001) 		# "lqcdn-r09n15.lqcd.gsi.de" lid 34 4xFDR
+[17]	"H-10c37be6fc4e0000"[1](10c37be6fc4e0001) 		# "lqcdn-r09n16.lqcd.gsi.de" lid 30 4xFDR
+[18]	"H-10c37be6fc3e0000"[1](10c37be6fc3e0001) 		# "lqcdn-r09n17.lqcd.gsi.de" lid 32 4xFDR
+[19]	"H-10c37be6fbee0000"[1](10c37be6fbee0001) 		# "lqcdn-r08n18.lqcd.gsi.de" lid 53 4xFDR
+[20]	"H-10c37be6fae80000"[1](10c37be6fae80001) 		# "lqcdn-r08n01.lqcd.gsi.de" lid 57 4xFDR
+[21]	"H-10c37be6faba0000"[1](10c37be6faba0001) 		# "lqcdn-r08n02.lqcd.gsi.de" lid 49 4xFDR
+[22]	"H-10c37be6faa40000"[1](10c37be6faa40001) 		# "lqcdn-r08n03.lqcd.gsi.de" lid 51 4xFDR
+[23]	"H-10c37be6fb180000"[1](10c37be6fb180001) 		# "MT25408 ConnectX Mellanox Technologies" lid 59 4xSDR
+[25]	"S-f4521403005cc590"[10]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[26]	"S-f4521403005cc590"[11]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[27]	"S-f4521403005cc590"[12]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[28]	"S-f4521403005cc590"[9]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xe41d2d030007e520
+switchguid=0xe41d2d030007e520(e41d2d030007e520)
+Switch	36 "S-e41d2d030007e520"		# "SwitchX -  Mellanox Technologies" base port 0 lid 4 lmc 0
+[1]	"S-f4521403005cc590"[2]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xQDR
+[2]	"S-f4521403005cc590"[1]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[3]	"S-f4521403005cc590"[4]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[4]	"S-f4521403005cc590"[3]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[13]	"H-10c37b10490e9200"[1](10c37b10490e9201) 		# "lqcdn049.lqcd.gsi.de" lid 106 4xFDR
+[14]	"H-10c37b26b4819000"[1](10c37b26b4819001) 		# "lqcdn048.lqcd.gsi.de" lid 109 4xFDR
+[15]	"H-10c37bc4a51e9500"[1](10c37bc4a51e9501) 		# "lqcdn047.lqcd.gsi.de" lid 107 4xFDR
+[16]	"H-10c37be47df14b00"[1](10c37be47df14b01) 		# "lqcdn046.lqcd.gsi.de" lid 110 4xFDR
+[17]	"H-10c37b66d17c8100"[1](10c37b66d17c8101) 		# "lqcdn045.lqcd.gsi.de" lid 147 4xFDR
+[18]	"H-10c37b8b22e2c200"[1](10c37b8b22e2c201) 		# "lqcdn009.lqcd.gsi.de" lid 145 4xFDR
+[19]	"H-10c37bb5ce34de00"[1](10c37bb5ce34de01) 		# "lqcdn008.lqcd.gsi.de" lid 150 4xFDR
+[20]	"H-10c37bbf52a42c00"[1](10c37bbf52a42c01) 		# "lqcdn007.lqcd.gsi.de" lid 151 4xFDR
+[21]	"H-10c37b2e9c510000"[1](10c37b2e9c510001) 		# "lqcdn-r06n01.lqcd.gsi.de" lid 152 4xFDR
+[22]	"H-10c37beb92724300"[1](10c37beb92724301) 		# "lqcdn017.lqcd.gsi.de" lid 148 4xFDR
+[23]	"H-10c37b6c3e439b00"[1](10c37b6c3e439b01) 		# "lqcdn059.lqcd.gsi.de" lid 111 4xFDR
+[24]	"H-10c37b7c8b4c4600"[1](10c37b7c8b4c4601) 		# "lqcdn058.lqcd.gsi.de" lid 105 4xFDR
+[25]	"H-10c37b9c759b2a00"[1](10c37b9c759b2a01) 		# "lqcdn057.lqcd.gsi.de" lid 112 4xFDR
+[26]	"H-10c37b4011a79200"[1](10c37b4011a79201) 		# "lqcdn056.lqcd.gsi.de" lid 108 4xFDR
+[27]	"H-10c37b16bcc49c00"[1](10c37b16bcc49c01) 		# "lqcdn055.lqcd.gsi.de" lid 113 4xFDR
+[28]	"H-10c37b2e7ad2d200"[1](10c37b2e7ad2d201) 		# "lqcdn054.lqcd.gsi.de" lid 114 4xFDR
+[29]	"H-10c37be12a3de200"[1](10c37be12a3de201) 		# "lqcdn053.lqcd.gsi.de" lid 115 4xFDR
+[30]	"H-10c37b76ab88a800"[1](10c37b76ab88a801) 		# "lqcdn052.lqcd.gsi.de" lid 116 4xFDR
+[31]	"H-10c37bab10717500"[1](10c37bab10717501) 		# "lqcdn018.lqcd.gsi.de" lid 55 4xFDR
+[32]	"H-10c37b8a50ae1700"[1](10c37b8a50ae1701) 		# "lqcdn060.lqcd.gsi.de" lid 73 4xFDR
+[33]	"H-10c37bdb5f911700"[1](10c37bdb5f911701) 		# "lqcdn016.lqcd.gsi.de" lid 124 4xFDR
+[34]	"H-10c37bdddf399100"[1](10c37bdddf399101) 		# "lqcdn015.lqcd.gsi.de" lid 79 4xFDR
+[35]	"H-10c37bbf13d1ba00"[1](10c37bbf13d1ba01) 		# "lqcdn014.lqcd.gsi.de" lid 69 4xFDR
+[36]	"H-10c37b3badd26100"[1](10c37b3badd26101) 		# "lqcdn013.lqcd.gsi.de" lid 47 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xf4521403005cc590
+switchguid=0xf4521403005cc590(f4521403005cc590)
+Switch	36 "S-f4521403005cc590"		# "MF0;switch-e1b2ec:SX6036/U1" enhanced port 0 lid 5 lmc 0
+[1]	"S-e41d2d030007e520"[2]		# "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+[2]	"S-e41d2d030007e520"[1]		# "SwitchX -  Mellanox Technologies" lid 4 4xQDR
+[3]	"S-e41d2d030007e520"[4]		# "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+[4]	"S-e41d2d030007e520"[3]		# "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+[9]	"S-f4521403005cc510"[28]		# "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+[10]	"S-f4521403005cc510"[25]		# "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+[11]	"S-f4521403005cc510"[26]		# "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+[12]	"S-f4521403005cc510"[27]		# "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+[13]	"S-e41d2d030007e5a0"[35]		# "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+[14]	"S-e41d2d030007e5a0"[34]		# "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+[15]	"S-e41d2d030007e5a0"[33]		# "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+[16]	"S-e41d2d030007e5a0"[36]		# "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+[17]	"S-e41d2d030007e6a0"[32]		# "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+[18]	"S-e41d2d030007e6a0"[31]		# "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+[19]	"S-e41d2d030007e6a0"[30]		# "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+[20]	"S-e41d2d030007e6a0"[29]		# "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+[21]	"S-f4521403005cc610"[6]		# "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+[22]	"S-f4521403005cc610"[8]		# "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+[23]	"S-f4521403005cc610"[7]		# "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+[24]	"S-f4521403005cc610"[5]		# "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+[25]	"S-e41d2d030007e620"[28]		# "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+[26]	"S-e41d2d030007e620"[25]		# "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+[27]	"S-e41d2d030007e620"[27]		# "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+[28]	"S-e41d2d030007e620"[26]		# "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+[29]	"S-f4521403005cc310"[26]		# "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+[30]	"S-f4521403005cc310"[27]		# "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+[31]	"S-f4521403005cc310"[28]		# "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+[32]	"S-f4521403005cc310"[25]		# "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0xc738
+sysimgguid=0xe41d2d030007e620
+switchguid=0xe41d2d030007e620(e41d2d030007e620)
+Switch	36 "S-e41d2d030007e620"		# "SwitchX -  Mellanox Technologies" base port 0 lid 3 lmc 0
+[1]	"H-10c37b8041395600"[1](10c37b8041395601) 		# "lqcdn030.lqcd.gsi.de" lid 46 4xFDR
+[2]	"H-10c37b976925da00"[1](10c37b976925da01) 		# "lqcdn004.lqcd.gsi.de" lid 28 4xFDR
+[6]	"H-10c37b0dbb3e9300"[1](10c37b0dbb3e9301) 		# "" lid 0 4xSDR
+[7]	"H-10c37b3e3f511400"[1](10c37b3e3f511401) 		# "MT25408 ConnectX Mellanox Technologies" lid 157 4xSDR
+[8]	"H-10c37be6fc120000"[1](10c37be6fc120001) 		# "lqcdn-r07n18.lqcd.gsi.de" lid 158 4xFDR
+[9]	"H-10c37be6fb320000"[1](10c37be6fb320001) 		# "MT25408 ConnectX Mellanox Technologies" lid 121 4xSDR
+[10]	"H-10c37bb91ab56600"[1](10c37bb91ab56601) 		# "MT25408 ConnectX Mellanox Technologies" lid 123 4xSDR
+[11]	"H-10c37b20648d0000"[1](10c37b20648d0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 122 4xSDR
+[13]	"H-10c37b0d32ab4500"[1](10c37b0d32ab4501) 		# "lqcd-login" lid 12 4xFDR
+[14]	"H-10c37b723fcb5100"[1](10c37b723fcb5101) 		# "lqcdn028.lqcd.gsi.de" lid 21 4xFDR
+[15]	"H-10c37bcb1c62cb00"[1](10c37bcb1c62cb01) 		# "lqcdn020.lqcd.gsi.de" lid 23 4xFDR
+[16]	"H-10c37bebd9cae100"[1](10c37bebd9cae101) 		# "lqcdn027.lqcd.gsi.de" lid 24 4xFDR
+[17]	"H-10c37bde56114200"[1](10c37bde56114201) 		# "lqcdn026.lqcd.gsi.de" lid 22 4xFDR
+[18]	"H-10c37b8e5c6df200"[1](10c37b8e5c6df201) 		# "lqcdn025.lqcd.gsi.de" lid 25 4xFDR
+[19]	"H-10c37b37e4c5c900"[1](10c37b37e4c5c901) 		# "lqcdn024.lqcd.gsi.de" lid 15 4xFDR
+[20]	"H-10c37b5c7b690500"[1](10c37b5c7b690501) 		# "lqcdn023.lqcd.gsi.de" lid 17 4xFDR
+[21]	"H-10c37b3dfa08bb00"[1](10c37b3dfa08bb01) 		# "lqcdn022.lqcd.gsi.de" lid 18 4xFDR
+[22]	"H-10c37b4c9fb9db00"[1](10c37b4c9fb9db01) 		# "lqcdn021.lqcd.gsi.de" lid 16 4xFDR
+[23]	"H-10c37bee36053300"[1](10c37bee36053301) 		# "lqcdn006.lqcd.gsi.de" lid 20 4xFDR
+[24]	"H-10c37b5f802ca900"[1](10c37b5f802ca901) 		# "lqcdn019.lqcd.gsi.de" lid 19 4xFDR
+[25]	"S-f4521403005cc590"[26]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[26]	"S-f4521403005cc590"[28]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[27]	"S-f4521403005cc590"[27]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[28]	"S-f4521403005cc590"[25]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b4f96443b03
+caguid=0x10c37b4f96443b00
+Ca	1 "H-10c37b4f96443b00"		# "lqcdn005.lqcd.gsi.de"
+[1](10c37b4f96443b01) 	"S-f4521403005cc310"[23]		# lid 118 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be7f98eac03
+caguid=0x10c37be7f98eac00
+Ca	1 "H-10c37be7f98eac00"		# "lqcdn050.lqcd.gsi.de"
+[1](10c37be7f98eac01) 	"S-f4521403005cc310"[22]		# lid 120 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bbcc3a33b03
+caguid=0x10c37bbcc3a33b00
+Ca	1 "H-10c37bbcc3a33b00"		# "lqcdn011.lqcd.gsi.de"
+[1](10c37bbcc3a33b01) 	"S-f4521403005cc310"[21]		# lid 65 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bcc12b3ae03
+caguid=0x10c37bcc12b3ae00
+Ca	1 "H-10c37bcc12b3ae00"		# "lqcdn010.lqcd.gsi.de"
+[1](10c37bcc12b3ae01) 	"S-f4521403005cc310"[20]		# lid 78 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b839fda5303
+caguid=0x10c37b839fda5300
+Ca	1 "H-10c37b839fda5300"		# "lqcdn051.lqcd.gsi.de"
+[1](10c37b839fda5301) 	"S-f4521403005cc310"[19]		# lid 117 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b506a9f2803
+caguid=0x10c37b506a9f2800
+Ca	1 "H-10c37b506a9f2800"		# "lqcdn031.lqcd.gsi.de"
+[1](10c37b506a9f2801) 	"S-f4521403005cc310"[18]		# lid 45 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2182327603
+caguid=0x10c37b2182327600
+Ca	1 "H-10c37b2182327600"		# "lqcdn032.lqcd.gsi.de"
+[1](10c37b2182327601) 	"S-f4521403005cc310"[17]		# lid 42 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b66b8303e03
+caguid=0x10c37b66b8303e00
+Ca	1 "H-10c37b66b8303e00"		# "lqcdn033.lqcd.gsi.de"
+[1](10c37b66b8303e01) 	"S-f4521403005cc310"[16]		# lid 44 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bbc57d3db03
+caguid=0x10c37bbc57d3db00
+Ca	1 "H-10c37bbc57d3db00"		# "lqcdn034.lqcd.gsi.de"
+[1](10c37bbc57d3db01) 	"S-f4521403005cc310"[15]		# lid 41 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b9d06689c03
+caguid=0x10c37b9d06689c00
+Ca	1 "H-10c37b9d06689c00"		# "lqcdn035.lqcd.gsi.de"
+[1](10c37b9d06689c01) 	"S-f4521403005cc310"[14]		# lid 40 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b8bf1320403
+caguid=0x10c37b8bf1320400
+Ca	1 "H-10c37b8bf1320400"		# "lqcdn037.lqcd.gsi.de"
+[1](10c37b8bf1320401) 	"S-f4521403005cc310"[12]		# lid 39 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b25f378cc03
+caguid=0x10c37b25f378cc00
+Ca	1 "H-10c37b25f378cc00"		# "lqcdn036.lqcd.gsi.de"
+[1](10c37b25f378cc01) 	"S-f4521403005cc310"[13]		# lid 35 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bdbe9534f03
+caguid=0x10c37bdbe9534f00
+Ca	1 "H-10c37bdbe9534f00"		# "lqcdn038.lqcd.gsi.de"
+[1](10c37bdbe9534f01) 	"S-f4521403005cc310"[11]		# lid 33 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bbf331a6603
+caguid=0x10c37bbf331a6600
+Ca	1 "H-10c37bbf331a6600"		# "lqcdn029.lqcd.gsi.de"
+[1](10c37bbf331a6601) 	"S-f4521403005cc310"[10]		# lid 161 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bcf3e2f2c03
+caguid=0x10c37bcf3e2f2c00
+Ca	1 "H-10c37bcf3e2f2c00"		# "lqcdn039.lqcd.gsi.de"
+[1](10c37bcf3e2f2c01) 	"S-f4521403005cc310"[9]		# lid 1 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bc9c7c3da03
+caguid=0x10c37bc9c7c3da00
+Ca	1 "H-10c37bc9c7c3da00"		# "lqcdn040.lqcd.gsi.de"
+[1](10c37bc9c7c3da01) 	"S-f4521403005cc310"[8]		# lid 36 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bc56a591603
+caguid=0x10c37bc56a591600
+Ca	1 "H-10c37bc56a591600"		# "lqcdn041.lqcd.gsi.de"
+[1](10c37bc56a591601) 	"S-f4521403005cc310"[7]		# lid 31 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b58bbaedf03
+caguid=0x10c37b58bbaedf00
+Ca	1 "H-10c37b58bbaedf00"		# "lqcdn042.lqcd.gsi.de"
+[1](10c37b58bbaedf01) 	"S-f4521403005cc310"[6]		# lid 37 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bc079651403
+caguid=0x10c37bc079651400
+Ca	1 "H-10c37bc079651400"		# "lqcdn044.lqcd.gsi.de"
+[1](10c37bc079651401) 	"S-f4521403005cc310"[4]		# lid 38 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b91538c5803
+caguid=0x10c37b91538c5800
+Ca	1 "H-10c37b91538c5800"		# "lqcdn001.lqcd.gsi.de"
+[1](10c37b91538c5801) 	"S-f4521403005cc310"[3]		# lid 68 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b73094cf603
+caguid=0x10c37b73094cf600
+Ca	1 "H-10c37b73094cf600"		# "lqcdn003.lqcd.gsi.de"
+[1](10c37b73094cf601) 	"S-f4521403005cc310"[1]		# lid 29 lmc 0 "MF0;switch-e1b17c:SX6036/U1" lid 27 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb6a0003
+caguid=0x10c37be6fb6a0000
+Ca	1 "H-10c37be6fb6a0000"		# "lqcdn-r05n17.lqcd.gsi.de"
+[1](10c37be6fb6a0001) 	"S-f4521403005cc610"[30]		# lid 104 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbec0003
+caguid=0x10c37be6fbec0000
+Ca	1 "H-10c37be6fbec0000"		# "lqcdn-r05n16.lqcd.gsi.de"
+[1](10c37be6fbec0001) 	"S-f4521403005cc610"[29]		# lid 100 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fab20003
+caguid=0x10c37be6fab20000
+Ca	1 "H-10c37be6fab20000"		# "lqcdn-r05n15.lqcd.gsi.de"
+[1](10c37be6fab20001) 	"S-f4521403005cc610"[28]		# lid 102 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb460003
+caguid=0x10c37be6fb460000
+Ca	1 "H-10c37be6fb460000"		# "lqcdn-r05n14.lqcd.gsi.de"
+[1](10c37be6fb460001) 	"S-f4521403005cc610"[27]		# lid 103 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb620003
+caguid=0x10c37be6fb620000
+Ca	1 "H-10c37be6fb620000"		# "lqcdn-r05n13.lqcd.gsi.de"
+[1](10c37be6fb620001) 	"S-f4521403005cc610"[26]		# lid 101 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b20647b0003
+caguid=0x10c37b20647b0000
+Ca	1 "H-10c37b20647b0000"		# "lqcdn-r05n12.lqcd.gsi.de"
+[1](10c37b20647b0001) 	"S-f4521403005cc610"[25]		# lid 98 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc180003
+caguid=0x10c37be6fc180000
+Ca	1 "H-10c37be6fc180000"		# "lqcdn-r05n11.lqcd.gsi.de"
+[1](10c37be6fc180001) 	"S-f4521403005cc610"[24]		# lid 99 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc320003
+caguid=0x10c37be6fc320000
+Ca	1 "H-10c37be6fc320000"		# "lqcdn-r05n10.lqcd.gsi.de"
+[1](10c37be6fc320001) 	"S-f4521403005cc610"[23]		# lid 96 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc140003
+caguid=0x10c37be6fc140000
+Ca	1 "H-10c37be6fc140000"		# "lqcdn-r05n09.lqcd.gsi.de"
+[1](10c37be6fc140001) 	"S-f4521403005cc610"[22]		# lid 149 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37ba062cb3503
+caguid=0x10c37ba062cb3500
+Ca	1 "H-10c37ba062cb3500"		# "lqcdn012.lqcd.gsi.de"
+[1](10c37ba062cb3501) 	"S-f4521403005cc610"[21]		# lid 48 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbcc0003
+caguid=0x10c37be6fbcc0000
+Ca	1 "H-10c37be6fbcc0000"		# "lqcdn-r05n08.lqcd.gsi.de"
+[1](10c37be6fbcc0001) 	"S-f4521403005cc610"[20]		# lid 146 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbbe0003
+caguid=0x10c37be6fbbe0000
+Ca	1 "H-10c37be6fbbe0000"		# "lqcdn-r05n05.lqcd.gsi.de"
+[1](10c37be6fbbe0001) 	"S-f4521403005cc610"[17]		# lid 143 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fac00003
+caguid=0x10c37be6fac00000
+Ca	1 "H-10c37be6fac00000"		# "lqcdn-r05n06.lqcd.gsi.de"
+[1](10c37be6fac00001) 	"S-f4521403005cc610"[18]		# lid 144 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb4a0003
+caguid=0x10c37be6fb4a0000
+Ca	1 "H-10c37be6fb4a0000"		# "lqcdn-r05n04.lqcd.gsi.de"
+[1](10c37be6fb4a0001) 	"S-f4521403005cc610"[16]		# lid 95 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb380003
+caguid=0x10c37be6fb380000
+Ca	1 "H-10c37be6fb380000"		# "lqcdn-r05n03.lqcd.gsi.de"
+[1](10c37be6fb380001) 	"S-f4521403005cc610"[15]		# lid 97 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc1e0003
+caguid=0x10c37be6fc1e0000
+Ca	1 "H-10c37be6fc1e0000"		# "lqcdn-r05n01.lqcd.gsi.de"
+[1](10c37be6fc1e0001) 	"S-f4521403005cc610"[13]		# lid 93 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb2a0003
+caguid=0x10c37be6fb2a0000
+Ca	1 "H-10c37be6fb2a0000"		# "lqcdn-r05n02.lqcd.gsi.de"
+[1](10c37be6fb2a0001) 	"S-f4521403005cc610"[14]		# lid 94 lmc 0 "MF0;switch-e1b324:SX6036/U1" lid 2 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x7824af07473d0003
+caguid=0x7824af07473d0000
+Ca	1 "H-7824af07473d0000"		# "lqcdn-r06n17.lqcd.gsi.de"
+[1](7824af07473d0001) 	"S-e41d2d030007e6a0"[24]		# lid 90 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fad20003
+caguid=0x10c37be6fad20000
+Ca	1 "H-10c37be6fad20000"		# "lqcdn-r06n16.lqcd.gsi.de"
+[1](10c37be6fad20001) 	"S-e41d2d030007e6a0"[23]		# lid 91 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb140003
+caguid=0x10c37be6fb140000
+Ca	1 "H-10c37be6fb140000"		# "lqcdn-r06n15.lqcd.gsi.de"
+[1](10c37be6fb140001) 	"S-e41d2d030007e6a0"[22]		# lid 92 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c2b0003
+caguid=0x10c37b2e9c2b0000
+Ca	1 "H-10c37b2e9c2b0000"		# "lqcdn-r06n14.lqcd.gsi.de"
+[1](10c37b2e9c2b0001) 	"S-e41d2d030007e6a0"[21]		# lid 89 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c650003
+caguid=0x10c37b2e9c650000
+Ca	1 "H-10c37b2e9c650000"		# "lqcdn-r06n13.lqcd.gsi.de"
+[1](10c37b2e9c650001) 	"S-e41d2d030007e6a0"[20]		# lid 88 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb9c0003
+caguid=0x10c37be6fb9c0000
+Ca	1 "H-10c37be6fb9c0000"		# "lqcdn-r06n12.lqcd.gsi.de"
+[1](10c37be6fb9c0001) 	"S-e41d2d030007e6a0"[19]		# lid 86 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fad00003
+caguid=0x10c37be6fad00000
+Ca	1 "H-10c37be6fad00000"		# "lqcdn-r06n11.lqcd.gsi.de"
+[1](10c37be6fad00001) 	"S-e41d2d030007e6a0"[18]		# lid 87 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbe80003
+caguid=0x10c37be6fbe80000
+Ca	1 "H-10c37be6fbe80000"		# "lqcdn-r06n10.lqcd.gsi.de"
+[1](10c37be6fbe80001) 	"S-e41d2d030007e6a0"[17]		# lid 85 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb7e0003
+caguid=0x10c37be6fb7e0000
+Ca	1 "H-10c37be6fb7e0000"		# "lqcdn-r06n09.lqcd.gsi.de"
+[1](10c37be6fb7e0001) 	"S-e41d2d030007e6a0"[16]		# lid 141 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb4c0003
+caguid=0x10c37be6fb4c0000
+Ca	1 "H-10c37be6fb4c0000"		# "lqcdn-r06n18.lqcd.gsi.de"
+[1](10c37be6fb4c0001) 	"S-e41d2d030007e6a0"[15]		# lid 142 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc4c0003
+caguid=0x10c37be6fc4c0000
+Ca	1 "H-10c37be6fc4c0000"		# "lqcdn-r06n07.lqcd.gsi.de"
+[1](10c37be6fc4c0001) 	"S-e41d2d030007e6a0"[13]		# lid 140 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fae00003
+caguid=0x10c37be6fae00000
+Ca	1 "H-10c37be6fae00000"		# "lqcdn-r06n08.lqcd.gsi.de"
+[1](10c37be6fae00001) 	"S-e41d2d030007e6a0"[14]		# lid 153 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c350003
+caguid=0x10c37b2e9c350000
+Ca	1 "H-10c37b2e9c350000"		# "lqcdn-r06n06.lqcd.gsi.de"
+[1](10c37b2e9c350001) 	"S-e41d2d030007e6a0"[12]		# lid 139 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc300003
+caguid=0x10c37be6fc300000
+Ca	1 "H-10c37be6fc300000"		# "lqcdn-r06n05.lqcd.gsi.de"
+[1](10c37be6fc300001) 	"S-e41d2d030007e6a0"[11]		# lid 138 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6faac0003
+caguid=0x10c37be6faac0000
+Ca	1 "H-10c37be6faac0000"		# "lqcdn-r06n04.lqcd.gsi.de"
+[1](10c37be6faac0001) 	"S-e41d2d030007e6a0"[10]		# lid 83 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb2e0003
+caguid=0x10c37be6fb2e0000
+Ca	1 "H-10c37be6fb2e0000"		# "lqcdn-r06n03.lqcd.gsi.de"
+[1](10c37be6fb2e0001) 	"S-e41d2d030007e6a0"[9]		# lid 82 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc2c0003
+caguid=0x10c37be6fc2c0000
+Ca	1 "H-10c37be6fc2c0000"		# "lqcdn-r07n17.lqcd.gsi.de"
+[1](10c37be6fc2c0001) 	"S-e41d2d030007e6a0"[6]		# lid 76 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbf80003
+caguid=0x10c37be6fbf80000
+Ca	1 "H-10c37be6fbf80000"		# "lqcdn-r06n02.lqcd.gsi.de"
+[1](10c37be6fbf80001) 	"S-e41d2d030007e6a0"[8]		# lid 84 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbb80003
+caguid=0x10c37be6fbb80000
+Ca	1 "H-10c37be6fbb80000"		# "lqcdn-r07n14.lqcd.gsi.de"
+[1](10c37be6fbb80001) 	"S-e41d2d030007e6a0"[3]		# lid 72 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbc20003
+caguid=0x10c37be6fbc20000
+Ca	1 "H-10c37be6fbc20000"		# "lqcdn-r07n15.lqcd.gsi.de"
+[1](10c37be6fbc20001) 	"S-e41d2d030007e6a0"[4]		# lid 77 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc3c0003
+caguid=0x10c37be6fc3c0000
+Ca	1 "H-10c37be6fc3c0000"		# "lqcdn-r07n12.lqcd.gsi.de"
+[1](10c37be6fc3c0001) 	"S-e41d2d030007e6a0"[1]		# lid 70 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c6d0003
+caguid=0x10c37b2e9c6d0000
+Ca	1 "H-10c37b2e9c6d0000"		# "lqcdn-r07n13.lqcd.gsi.de"
+[1](10c37b2e9c6d0001) 	"S-e41d2d030007e6a0"[2]		# lid 80 lmc 0 "SwitchX -  Mellanox Technologies" lid 6 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb180003
+caguid=0x10c37be6fb180000
+Ca	1 "H-10c37be6fb180000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37be6fb180001) 	"S-f4521403005cc510"[23]		# lid 59 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6faa40003
+caguid=0x10c37be6faa40000
+Ca	1 "H-10c37be6faa40000"		# "lqcdn-r08n03.lqcd.gsi.de"
+[1](10c37be6faa40001) 	"S-f4521403005cc510"[22]		# lid 51 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6faba0003
+caguid=0x10c37be6faba0000
+Ca	1 "H-10c37be6faba0000"		# "lqcdn-r08n02.lqcd.gsi.de"
+[1](10c37be6faba0001) 	"S-f4521403005cc510"[21]		# lid 49 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbee0003
+caguid=0x10c37be6fbee0000
+Ca	1 "H-10c37be6fbee0000"		# "lqcdn-r08n18.lqcd.gsi.de"
+[1](10c37be6fbee0001) 	"S-f4521403005cc510"[19]		# lid 53 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fae80003
+caguid=0x10c37be6fae80000
+Ca	1 "H-10c37be6fae80000"		# "lqcdn-r08n01.lqcd.gsi.de"
+[1](10c37be6fae80001) 	"S-f4521403005cc510"[20]		# lid 57 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc3e0003
+caguid=0x10c37be6fc3e0000
+Ca	1 "H-10c37be6fc3e0000"		# "lqcdn-r09n17.lqcd.gsi.de"
+[1](10c37be6fc3e0001) 	"S-f4521403005cc510"[18]		# lid 32 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc4e0003
+caguid=0x10c37be6fc4e0000
+Ca	1 "H-10c37be6fc4e0000"		# "lqcdn-r09n16.lqcd.gsi.de"
+[1](10c37be6fc4e0001) 	"S-f4521403005cc510"[17]		# lid 30 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc5c0003
+caguid=0x10c37be6fc5c0000
+Ca	1 "H-10c37be6fc5c0000"		# "lqcdn-r09n15.lqcd.gsi.de"
+[1](10c37be6fc5c0001) 	"S-f4521403005cc510"[16]		# lid 34 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb120003
+caguid=0x10c37be6fb120000
+Ca	1 "H-10c37be6fb120000"		# "lqcdn-r09n13.lqcd.gsi.de"
+[1](10c37be6fb120001) 	"S-f4521403005cc510"[14]		# lid 10 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc440003
+caguid=0x10c37be6fc440000
+Ca	1 "H-10c37be6fc440000"		# "lqcdn-r09n11.lqcd.gsi.de"
+[1](10c37be6fc440001) 	"S-f4521403005cc510"[12]		# lid 130 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbf00003
+caguid=0x10c37be6fbf00000
+Ca	1 "H-10c37be6fbf00000"		# "lqcdn-r09n10.lqcd.gsi.de"
+[1](10c37be6fbf00001) 	"S-f4521403005cc510"[11]		# lid 131 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fac60003
+caguid=0x10c37be6fac60000
+Ca	1 "H-10c37be6fac60000"		# "lqcdn-r09n09.lqcd.gsi.de"
+[1](10c37be6fac60001) 	"S-f4521403005cc510"[10]		# lid 129 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc240003
+caguid=0x10c37be6fc240000
+Ca	1 "H-10c37be6fc240000"		# "lqcdn-r09n08.lqcd.gsi.de"
+[1](10c37be6fc240001) 	"S-f4521403005cc510"[9]		# lid 127 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6faa00003
+caguid=0x10c37be6faa00000
+Ca	1 "H-10c37be6faa00000"		# "lqcdn-r09n07.lqcd.gsi.de"
+[1](10c37be6faa00001) 	"S-f4521403005cc510"[8]		# lid 128 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fa9a0003
+caguid=0x10c37be6fa9a0000
+Ca	1 "H-10c37be6fa9a0000"		# "lqcdn-r09n06.lqcd.gsi.de"
+[1](10c37be6fa9a0001) 	"S-f4521403005cc510"[7]		# lid 126 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbe40003
+caguid=0x10c37be6fbe40000
+Ca	1 "H-10c37be6fbe40000"		# "lqcdn-r09n05.lqcd.gsi.de"
+[1](10c37be6fbe40001) 	"S-f4521403005cc510"[6]		# lid 9 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbc00003
+caguid=0x10c37be6fbc00000
+Ca	1 "H-10c37be6fbc00000"		# "lqcdn-r09n04.lqcd.gsi.de"
+[1](10c37be6fbc00001) 	"S-f4521403005cc510"[5]		# lid 13 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fada0003
+caguid=0x10c37be6fada0000
+Ca	1 "H-10c37be6fada0000"		# "lqcdn-r09n03.lqcd.gsi.de"
+[1](10c37be6fada0001) 	"S-f4521403005cc510"[4]		# lid 14 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb680003
+caguid=0x10c37be6fb680000
+Ca	1 "H-10c37be6fb680000"		# "lqcdn-r09n02.lqcd.gsi.de"
+[1](10c37be6fb680001) 	"S-f4521403005cc510"[3]		# lid 26 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbd40003
+caguid=0x10c37be6fbd40000
+Ca	1 "H-10c37be6fbd40000"		# "lqcdn-r09n01.lqcd.gsi.de"
+[1](10c37be6fbd40001) 	"S-f4521403005cc510"[2]		# lid 11 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbc60003
+caguid=0x10c37be6fbc60000
+Ca	1 "H-10c37be6fbc60000"		# "lqcdn-r09n18.lqcd.gsi.de"
+[1](10c37be6fbc60001) 	"S-f4521403005cc510"[1]		# lid 8 lmc 0 "MF0;switch-e68364:SX6036/U1" lid 589 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c3d0003
+caguid=0x10c37b2e9c3d0000
+Ca	1 "H-10c37b2e9c3d0000"		# "lqcdn-r07n09.lqcd.gsi.de"
+[1](10c37b2e9c3d0001) 	"S-e41d2d030007e5a0"[23]		# lid 71 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fab40003
+caguid=0x10c37be6fab40000
+Ca	1 "H-10c37be6fab40000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37be6fab40001) 	"S-e41d2d030007e5a0"[24]		# lid 60 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbf60003
+caguid=0x10c37be6fbf60000
+Ca	1 "H-10c37be6fbf60000"		# "lqcdn-r07n10.lqcd.gsi.de"
+[1](10c37be6fbf60001) 	"S-e41d2d030007e5a0"[22]		# lid 74 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c4f0003
+caguid=0x10c37b2e9c4f0000
+Ca	1 "H-10c37b2e9c4f0000"		# "lqcdn-r07n08.lqcd.gsi.de"
+[1](10c37b2e9c4f0001) 	"S-e41d2d030007e5a0"[21]		# lid 81 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc200003
+caguid=0x10c37be6fc200000
+Ca	1 "H-10c37be6fc200000"		# "lqcdn-r07n07.lqcd.gsi.de"
+[1](10c37be6fc200001) 	"S-e41d2d030007e5a0"[20]		# lid 66 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb160003
+caguid=0x10c37be6fb160000
+Ca	1 "H-10c37be6fb160000"		# "lqcdn-r07n06.lqcd.gsi.de"
+[1](10c37be6fb160001) 	"S-e41d2d030007e5a0"[19]		# lid 67 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb520003
+caguid=0x10c37be6fb520000
+Ca	1 "H-10c37be6fb520000"		# "lqcdn-r07n05.lqcd.gsi.de"
+[1](10c37be6fb520001) 	"S-e41d2d030007e5a0"[18]		# lid 64 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c5b0003
+caguid=0x10c37b2e9c5b0000
+Ca	1 "H-10c37b2e9c5b0000"		# "lqcdn-r07n03.lqcd.gsi.de"
+[1](10c37b2e9c5b0001) 	"S-e41d2d030007e5a0"[16]		# lid 62 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fa980003
+caguid=0x10c37be6fa980000
+Ca	1 "H-10c37be6fa980000"		# "lqcdn-r07n02.lqcd.gsi.de"
+[1](10c37be6fa980001) 	"S-e41d2d030007e5a0"[15]		# lid 63 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x7824af0747170003
+caguid=0x7824af0747170000
+Ca	1 "H-7824af0747170000"		# "lqcdn-r07n01.lqcd.gsi.de"
+[1](7824af0747170001) 	"S-e41d2d030007e5a0"[14]		# lid 61 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c5f0003
+caguid=0x10c37b2e9c5f0000
+Ca	1 "H-10c37b2e9c5f0000"		# "lqcdn-r08n17.lqcd.gsi.de"
+[1](10c37b2e9c5f0001) 	"S-e41d2d030007e5a0"[13]		# lid 56 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb8c0003
+caguid=0x10c37be6fb8c0000
+Ca	1 "H-10c37be6fb8c0000"		# "lqcdn-r08n15.lqcd.gsi.de"
+[1](10c37be6fb8c0001) 	"S-e41d2d030007e5a0"[11]		# lid 54 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fbb60003
+caguid=0x10c37be6fbb60000
+Ca	1 "H-10c37be6fbb60000"		# "lqcdn-r08n14.lqcd.gsi.de"
+[1](10c37be6fbb60001) 	"S-e41d2d030007e5a0"[10]		# lid 137 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fae40003
+caguid=0x10c37be6fae40000
+Ca	1 "H-10c37be6fae40000"		# "lqcdn-r08n13.lqcd.gsi.de"
+[1](10c37be6fae40001) 	"S-e41d2d030007e5a0"[9]		# lid 52 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc2e0003
+caguid=0x10c37be6fc2e0000
+Ca	1 "H-10c37be6fc2e0000"		# "lqcdn-r08n12.lqcd.gsi.de"
+[1](10c37be6fc2e0001) 	"S-e41d2d030007e5a0"[8]		# lid 135 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2064e70003
+caguid=0x10c37b2064e70000
+Ca	1 "H-10c37b2064e70000"		# "lqcdn-r08n11.lqcd.gsi.de"
+[1](10c37b2064e70001) 	"S-e41d2d030007e5a0"[7]		# lid 136 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fad60003
+caguid=0x10c37be6fad60000
+Ca	1 "H-10c37be6fad60000"		# "lqcdn-r08n10.lqcd.gsi.de"
+[1](10c37be6fad60001) 	"S-e41d2d030007e5a0"[6]		# lid 134 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b20645b0003
+caguid=0x10c37b20645b0000
+Ca	1 "H-10c37b20645b0000"		# "lqcdn-r08n08.lqcd.gsi.de"
+[1](10c37b20645b0001) 	"S-e41d2d030007e5a0"[4]		# lid 132 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fa920003
+caguid=0x10c37be6fa920000
+Ca	1 "H-10c37be6fa920000"		# "lqcdn-r08n09.lqcd.gsi.de"
+[1](10c37be6fa920001) 	"S-e41d2d030007e5a0"[5]		# lid 133 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fae60003
+caguid=0x10c37be6fae60000
+Ca	1 "H-10c37be6fae60000"		# "lqcdn-r08n05.lqcd.gsi.de"
+[1](10c37be6fae60001) 	"S-e41d2d030007e5a0"[1]		# lid 50 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc500003
+caguid=0x10c37be6fc500000
+Ca	1 "H-10c37be6fc500000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37be6fc500001) 	"S-e41d2d030007e5a0"[2]		# lid 58 lmc 0 "SwitchX -  Mellanox Technologies" lid 7 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b3badd26103
+caguid=0x10c37b3badd26100
+Ca	1 "H-10c37b3badd26100"		# "lqcdn013.lqcd.gsi.de"
+[1](10c37b3badd26101) 	"S-e41d2d030007e520"[36]		# lid 47 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bbf13d1ba03
+caguid=0x10c37bbf13d1ba00
+Ca	1 "H-10c37bbf13d1ba00"		# "lqcdn014.lqcd.gsi.de"
+[1](10c37bbf13d1ba01) 	"S-e41d2d030007e520"[35]		# lid 69 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bdddf399103
+caguid=0x10c37bdddf399100
+Ca	1 "H-10c37bdddf399100"		# "lqcdn015.lqcd.gsi.de"
+[1](10c37bdddf399101) 	"S-e41d2d030007e520"[34]		# lid 79 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bdb5f911703
+caguid=0x10c37bdb5f911700
+Ca	1 "H-10c37bdb5f911700"		# "lqcdn016.lqcd.gsi.de"
+[1](10c37bdb5f911701) 	"S-e41d2d030007e520"[33]		# lid 124 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b8a50ae1703
+caguid=0x10c37b8a50ae1700
+Ca	1 "H-10c37b8a50ae1700"		# "lqcdn060.lqcd.gsi.de"
+[1](10c37b8a50ae1701) 	"S-e41d2d030007e520"[32]		# lid 73 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bab10717503
+caguid=0x10c37bab10717500
+Ca	1 "H-10c37bab10717500"		# "lqcdn018.lqcd.gsi.de"
+[1](10c37bab10717501) 	"S-e41d2d030007e520"[31]		# lid 55 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b76ab88a803
+caguid=0x10c37b76ab88a800
+Ca	1 "H-10c37b76ab88a800"		# "lqcdn052.lqcd.gsi.de"
+[1](10c37b76ab88a801) 	"S-e41d2d030007e520"[30]		# lid 116 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be12a3de203
+caguid=0x10c37be12a3de200
+Ca	1 "H-10c37be12a3de200"		# "lqcdn053.lqcd.gsi.de"
+[1](10c37be12a3de201) 	"S-e41d2d030007e520"[29]		# lid 115 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e7ad2d203
+caguid=0x10c37b2e7ad2d200
+Ca	1 "H-10c37b2e7ad2d200"		# "lqcdn054.lqcd.gsi.de"
+[1](10c37b2e7ad2d201) 	"S-e41d2d030007e520"[28]		# lid 114 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b16bcc49c03
+caguid=0x10c37b16bcc49c00
+Ca	1 "H-10c37b16bcc49c00"		# "lqcdn055.lqcd.gsi.de"
+[1](10c37b16bcc49c01) 	"S-e41d2d030007e520"[27]		# lid 113 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b4011a79203
+caguid=0x10c37b4011a79200
+Ca	1 "H-10c37b4011a79200"		# "lqcdn056.lqcd.gsi.de"
+[1](10c37b4011a79201) 	"S-e41d2d030007e520"[26]		# lid 108 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b9c759b2a03
+caguid=0x10c37b9c759b2a00
+Ca	1 "H-10c37b9c759b2a00"		# "lqcdn057.lqcd.gsi.de"
+[1](10c37b9c759b2a01) 	"S-e41d2d030007e520"[25]		# lid 112 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b7c8b4c4603
+caguid=0x10c37b7c8b4c4600
+Ca	1 "H-10c37b7c8b4c4600"		# "lqcdn058.lqcd.gsi.de"
+[1](10c37b7c8b4c4601) 	"S-e41d2d030007e520"[24]		# lid 105 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b6c3e439b03
+caguid=0x10c37b6c3e439b00
+Ca	1 "H-10c37b6c3e439b00"		# "lqcdn059.lqcd.gsi.de"
+[1](10c37b6c3e439b01) 	"S-e41d2d030007e520"[23]		# lid 111 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37beb92724303
+caguid=0x10c37beb92724300
+Ca	1 "H-10c37beb92724300"		# "lqcdn017.lqcd.gsi.de"
+[1](10c37beb92724301) 	"S-e41d2d030007e520"[22]		# lid 148 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b2e9c510003
+caguid=0x10c37b2e9c510000
+Ca	1 "H-10c37b2e9c510000"		# "lqcdn-r06n01.lqcd.gsi.de"
+[1](10c37b2e9c510001) 	"S-e41d2d030007e520"[21]		# lid 152 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bbf52a42c03
+caguid=0x10c37bbf52a42c00
+Ca	1 "H-10c37bbf52a42c00"		# "lqcdn007.lqcd.gsi.de"
+[1](10c37bbf52a42c01) 	"S-e41d2d030007e520"[20]		# lid 151 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bb5ce34de03
+caguid=0x10c37bb5ce34de00
+Ca	1 "H-10c37bb5ce34de00"		# "lqcdn008.lqcd.gsi.de"
+[1](10c37bb5ce34de01) 	"S-e41d2d030007e520"[19]		# lid 150 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b8b22e2c203
+caguid=0x10c37b8b22e2c200
+Ca	1 "H-10c37b8b22e2c200"		# "lqcdn009.lqcd.gsi.de"
+[1](10c37b8b22e2c201) 	"S-e41d2d030007e520"[18]		# lid 145 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b66d17c8103
+caguid=0x10c37b66d17c8100
+Ca	1 "H-10c37b66d17c8100"		# "lqcdn045.lqcd.gsi.de"
+[1](10c37b66d17c8101) 	"S-e41d2d030007e520"[17]		# lid 147 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be47df14b03
+caguid=0x10c37be47df14b00
+Ca	1 "H-10c37be47df14b00"		# "lqcdn046.lqcd.gsi.de"
+[1](10c37be47df14b01) 	"S-e41d2d030007e520"[16]		# lid 110 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bc4a51e9503
+caguid=0x10c37bc4a51e9500
+Ca	1 "H-10c37bc4a51e9500"		# "lqcdn047.lqcd.gsi.de"
+[1](10c37bc4a51e9501) 	"S-e41d2d030007e520"[15]		# lid 107 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b26b4819003
+caguid=0x10c37b26b4819000
+Ca	1 "H-10c37b26b4819000"		# "lqcdn048.lqcd.gsi.de"
+[1](10c37b26b4819001) 	"S-e41d2d030007e520"[14]		# lid 109 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b10490e9203
+caguid=0x10c37b10490e9200
+Ca	1 "H-10c37b10490e9200"		# "lqcdn049.lqcd.gsi.de"
+[1](10c37b10490e9201) 	"S-e41d2d030007e520"[13]		# lid 106 lmc 0 "SwitchX -  Mellanox Technologies" lid 4 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b5f802ca903
+caguid=0x10c37b5f802ca900
+Ca	1 "H-10c37b5f802ca900"		# "lqcdn019.lqcd.gsi.de"
+[1](10c37b5f802ca901) 	"S-e41d2d030007e620"[24]		# lid 19 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bee36053303
+caguid=0x10c37bee36053300
+Ca	1 "H-10c37bee36053300"		# "lqcdn006.lqcd.gsi.de"
+[1](10c37bee36053301) 	"S-e41d2d030007e620"[23]		# lid 20 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b4c9fb9db03
+caguid=0x10c37b4c9fb9db00
+Ca	1 "H-10c37b4c9fb9db00"		# "lqcdn021.lqcd.gsi.de"
+[1](10c37b4c9fb9db01) 	"S-e41d2d030007e620"[22]		# lid 16 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b3dfa08bb03
+caguid=0x10c37b3dfa08bb00
+Ca	1 "H-10c37b3dfa08bb00"		# "lqcdn022.lqcd.gsi.de"
+[1](10c37b3dfa08bb01) 	"S-e41d2d030007e620"[21]		# lid 18 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b5c7b690503
+caguid=0x10c37b5c7b690500
+Ca	1 "H-10c37b5c7b690500"		# "lqcdn023.lqcd.gsi.de"
+[1](10c37b5c7b690501) 	"S-e41d2d030007e620"[20]		# lid 17 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b37e4c5c903
+caguid=0x10c37b37e4c5c900
+Ca	1 "H-10c37b37e4c5c900"		# "lqcdn024.lqcd.gsi.de"
+[1](10c37b37e4c5c901) 	"S-e41d2d030007e620"[19]		# lid 15 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b8e5c6df203
+caguid=0x10c37b8e5c6df200
+Ca	1 "H-10c37b8e5c6df200"		# "lqcdn025.lqcd.gsi.de"
+[1](10c37b8e5c6df201) 	"S-e41d2d030007e620"[18]		# lid 25 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bde56114203
+caguid=0x10c37bde56114200
+Ca	1 "H-10c37bde56114200"		# "lqcdn026.lqcd.gsi.de"
+[1](10c37bde56114201) 	"S-e41d2d030007e620"[17]		# lid 22 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bebd9cae103
+caguid=0x10c37bebd9cae100
+Ca	1 "H-10c37bebd9cae100"		# "lqcdn027.lqcd.gsi.de"
+[1](10c37bebd9cae101) 	"S-e41d2d030007e620"[16]		# lid 24 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bcb1c62cb03
+caguid=0x10c37bcb1c62cb00
+Ca	1 "H-10c37bcb1c62cb00"		# "lqcdn020.lqcd.gsi.de"
+[1](10c37bcb1c62cb01) 	"S-e41d2d030007e620"[15]		# lid 23 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b723fcb5103
+caguid=0x10c37b723fcb5100
+Ca	1 "H-10c37b723fcb5100"		# "lqcdn028.lqcd.gsi.de"
+[1](10c37b723fcb5101) 	"S-e41d2d030007e620"[14]		# lid 21 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b20648d0003
+caguid=0x10c37b20648d0000
+Ca	1 "H-10c37b20648d0000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37b20648d0001) 	"S-e41d2d030007e620"[11]		# lid 122 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37bb91ab56603
+caguid=0x10c37bb91ab56600
+Ca	1 "H-10c37bb91ab56600"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37bb91ab56601) 	"S-e41d2d030007e620"[10]		# lid 123 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fb320003
+caguid=0x10c37be6fb320000
+Ca	1 "H-10c37be6fb320000"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37be6fb320001) 	"S-e41d2d030007e620"[9]		# lid 121 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37be6fc120003
+caguid=0x10c37be6fc120000
+Ca	1 "H-10c37be6fc120000"		# "lqcdn-r07n18.lqcd.gsi.de"
+[1](10c37be6fc120001) 	"S-e41d2d030007e620"[8]		# lid 158 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b3e3f511403
+caguid=0x10c37b3e3f511400
+Ca	1 "H-10c37b3e3f511400"		# "MT25408 ConnectX Mellanox Technologies"
+[1](10c37b3e3f511401) 	"S-e41d2d030007e620"[7]		# lid 157 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xSDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b0dbb3e9303
+caguid=0x10c37b0dbb3e9300
+Ca	1 "H-10c37b0dbb3e9300"		# ""
+[1](10c37b0dbb3e9301) 	"S-e41d2d030007e620"[6]		# lid 0 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 ?????
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b976925da03
+caguid=0x10c37b976925da00
+Ca	1 "H-10c37b976925da00"		# "lqcdn004.lqcd.gsi.de"
+[1](10c37b976925da01) 	"S-e41d2d030007e620"[2]		# lid 28 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b8041395603
+caguid=0x10c37b8041395600
+Ca	1 "H-10c37b8041395600"		# "lqcdn030.lqcd.gsi.de"
+[1](10c37b8041395601) 	"S-e41d2d030007e620"[1]		# lid 46 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
+
+vendid=0x2c9
+devid=0x1003
+sysimgguid=0x10c37b0d32ab4503
+caguid=0x10c37b0d32ab4500
+Ca	1 "H-10c37b0d32ab4500"		# "lqcd-login"
+[1](10c37b0d32ab4501) 	"S-e41d2d030007e620"[13]		# lid 12 lmc 0 "SwitchX -  Mellanox Technologies" lid 3 4xFDR
