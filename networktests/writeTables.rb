@@ -12,7 +12,7 @@ sw_guid = 0
 sw_guidmap = []
 lidlist = []
 nodelist = {}
-usednodes = ['r04n06', 'r04n07', 'r04n08', 'r04n09', 'r05n01', 'r05n02', 'r05n03', 'r05n04', 'r06n01', 'r06n02', 'r06n03', 'r06n04', 'r07n01', 'r07n02', 'r07n03', 'r07n04', 'r08n01', 'r08n02', 'r08n03', 'r08n04', 'r09n01', 'r09n12']
+switchlist = {}
 rt.each do |rl|
    if md = rl.match(/^Unicast lids.*of switch.*guid\s(\S{18}).*$/) then
      sw_guid = md[1]
@@ -25,7 +25,6 @@ rt.each do |rl|
     #node = md[4].gsub(" mlx4","_0").gsub(" mlx5","_1")
     node = md[4].gsub(".lqcd.gsi.de",'').gsub("lcsc-",'')
     
-    #if usednodes.include? node then
     lid = md[1]
     port = md[2].to_i
     guid = md[3]
@@ -40,23 +39,23 @@ rt.each do |rl|
     lidlist.push(lid)
     sw_guidmap << sw_guid
 
-
-    #end
+  end
+                     
+  if (md = rl.match(/^0x(\S{4})\s(\S+)\s.*Switch portguid\ (\S{18}).*\'(.+)\'\)$/))
+    lid = md[1]
+    switch = md[4]
+    guid = md[3]
+    switchlist[lid] = switch
   end
 end
-        
-                       
 sw_guidmap = sw_guidmap.uniq
-nodelist = nodelist.sort_by {|key, value| value}
-nodelist_sorted = Hash[nodelist]
 lidlist = lidlist.uniq
-
-
    
 #------------------------Get Information about Connections-------------------
 pm = `cat ibnet.log`.split("\n")
 ib_phy = {}
-switchtranslatingtable = {}
+leafswitchtranslatingtable = {}
+coreswitchtranslatingtable = {}
 pm.each do |lnk|
     # pp lnk
    if (md = lnk.match(/^SW\s*(\S{1,3})\s*(\S{1,3})\s+(\S{18}).+\-\s*SW\s+(\d{1,3})\s+(\d{1,3})\s+(\S{18}).*$/))
@@ -66,7 +65,9 @@ pm.each do |lnk|
         (md = lnk.match(/^SW\s*(\S{1,3})\s*(\S{1,3})\s+(\S{18}).+\-\s*SW\s+(\d{1,3})\s+(\d{1,3})\s+(\S{18}).*$/)) or
         (md = lnk.match(/^SW\s*(\S{1,3})\s*(\S{1,3})\s+(\S{18}).+\-\s*CA\s+(\d{1,3})\s+(\d{1,3})\s+(\S{18}).*$/))
         #pp md
-        slid = md[1]
+        slid = md[1].to_i
+        slid2 = "00"
+        slid2 += slid.to_s(16)
         sport = md[2].to_i
         sguid = md[3]
         dlid = md[4].to_i
@@ -79,28 +80,39 @@ pm.each do |lnk|
         ib_phy[sguid][sport] = {} if ib_phy[sguid][sport].nil?
         ib_phy[sguid][sport] = {:dguid => dguid, :dport => dport}
           
+        
         if sw_guidmap.include? sguid then
-            node = nodelist_sorted[dlid2]
-            next if node.nil?
+            if nodelist[dlid2].nil? or nodelist[slid2].nil?
+                switch = switchlist[dlid2]
+                coreswitchtranslatingtable[sguid] = "#{switch}"
+            end
+            next if nodelist[dlid2].nil?
+            node = nodelist[dlid2]
             node = node.gsub("r",'').gsub("n01",'')
-            switchtranslatingtable[sguid] = "#{node}"
+            leafswitchtranslatingtable[sguid] = "#{node}"
         end
     end
 end
-                     
+coreswitchtranslatingtable = coreswitchtranslatingtable.delete_if{ |k, v| v == "" }
+i = 0
+coreswitchtranslatingtable.each do |guid, name|
+    coreswitchtranslatingtable[guid] = ["coreswitch#{i}"]
+    i += 1
+end
+pp switchlist
 # about leafswitche ports------------------------------
 
-switchtranslatingtable = switchtranslatingtable.sort_by{|sguid, nodename| nodename}
-switchtranslatingtable = Hash[switchtranslatingtable]
+leafswitchtranslatingtable = leafswitchtranslatingtable.sort_by{|sguid, nodename| nodename}
+leafswitchtranslatingtable = Hash[leafswitchtranslatingtable]
 coreswitchportstable = []
 ports = []
 leafswitchtocoreswitchportstable_hash = {}
 coreswitchportstable_hash = {}
 destinationswitch_prev = "09"
-switchtranslatingtable.each do |switchguid, switch|
+leafswitchtranslatingtable.each do |switchguid, switch|
     for swport in 1..36
     next if ib_phy[switchguid][swport].nil?
-    switchname = switchtranslatingtable[switchguid]
+    switchname = leafswitchtranslatingtable[switchguid]
     port = ib_phy[switchguid][swport][:dport]
 
     if sw_guidmap.include? ib_phy[switchguid][swport][:dguid]
@@ -117,11 +129,11 @@ end
  for swport in 1..36
      switchguid = "0xf4521403005cc590"
      next if ib_phy[switchguid][swport].nil?
-     switchname = switchtranslatingtable[switchguid]
+     switchname = leafswitchtranslatingtable[switchguid]
      port = ib_phy[switchguid][swport][:dport]
 
      destinationswitchguid = ib_phy[switchguid][swport][:dguid]
-     destinationswitch = switchtranslatingtable[destinationswitchguid]
+     destinationswitch = leafswitchtranslatingtable[destinationswitchguid]
      
      if destinationswitch_prev != destinationswitch
         ports = []
@@ -143,7 +155,7 @@ nodes.each do |node| # nodes << [node, guid, lid]
     nodeguid = node[1] #sender node guid I got from dump_fts
     connectedswitchguid = ib_phy[nodeguid][1][:dguid] #get guid of switch snode is connected to
     #translateswitch guid into readable name
-    connectedswitch = switchtranslatingtable[connectedswitchguid]
+    connectedswitch = leafswitchtranslatingtable[connectedswitchguid]
     inp = ib_phy[nodeguid][1][:dport] #inport of snode
 
    nodeswitchconnection[node[0]] = {} #node[nodename, nodeguid, nodelid]
@@ -158,7 +170,7 @@ end
 # these nodes are reshuffled------------------------------
 switchtonodes = {}
 i = 0
-switchtranslatingtable.each do |switchguid, switch|
+leafswitchtranslatingtable.each do |switchguid, switch|
     nodes.each do |node|
         nodename = node[0]
         nodeguid = node[1]
@@ -187,9 +199,9 @@ switches_lid.each do |switchguid, value|
                        #puts header
                        #puts subheader1
                        #puts subheader2
-   switchname = switchtranslatingtable[switchguid]
+   switchname = leafswitchtranslatingtable[switchguid]
    lidlist.each do |lid|
-        node = nodelist_sorted[lid]
+        node = nodelist[lid]
         next if nodeswitchconnection[node][lid].nil?
         if (nodeswitchconnection[node][lid][switchname] != nil) then
                        #port = switches_lid[switchguid][lid]
@@ -216,11 +228,17 @@ puts ' '
 #puts 'nodes'
 #pp nodes
 #puts ' '
+#puts 'nodelist'
+#pp nodelist_sorted
+#puts ' '
 #puts 'nodeswithconenction'
 #pp nodeswitchconnection
 #puts ' '
-puts 'switchtranslatingtable'
-pp switchtranslatingtable
+puts 'coreswitchtranslatingtable'
+pp coreswitchtranslatingtable
+puts ' '
+puts 'leafswitchtranslatingtable'
+pp leafswitchtranslatingtable
 puts ' '
 #puts 'switchtonodes'
 #pp switchtonodes
