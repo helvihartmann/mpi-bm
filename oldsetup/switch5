@@ -1,0 +1,32 @@
+Switch	36 "S-e41d2d030007e520"		# "SwitchX -  Mellanox Technologies" base port 0 lid 4 lmc 0
+[1]	"S-f4521403005cc590"[2]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xQDR
+[2]	"S-f4521403005cc590"[1]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[3]	"S-f4521403005cc590"[4]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[4]	"S-f4521403005cc590"[3]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[32]	"H-10c37b8a50ae1700"[1](10c37b8a50ae1701) 		# "lqcdn060.lqcd.gsi.de" lid 73 4xFDR
+[23]	"H-10c37b6c3e439b00"[1](10c37b6c3e439b01) 		# "lqcdn059.lqcd.gsi.de" lid 111 4xFDR
+[24]	"H-10c37b7c8b4c4600"[1](10c37b7c8b4c4601) 		# "lqcdn058.lqcd.gsi.de" lid 105 4xFDR
+[25]	"H-10c37b9c759b2a00"[1](10c37b9c759b2a01) 		# "lqcdn057.lqcd.gsi.de" lid 112 4xFDR
+[26]	"H-10c37b4011a79200"[1](10c37b4011a79201) 		# "lqcdn056.lqcd.gsi.de" lid 108 4xFDR
+[27]	"H-10c37b16bcc49c00"[1](10c37b16bcc49c01) 		# "lqcdn055.lqcd.gsi.de" lid 113 4xFDR
+[28]	"H-10c37b2e7ad2d200"[1](10c37b2e7ad2d201) 		# "lqcdn054.lqcd.gsi.de" lid 114 4xFDR
+[29]	"H-10c37be12a3de200"[1](10c37be12a3de201) 		# "lqcdn053.lqcd.gsi.de" lid 115 4xFDR
+[30]	"H-10c37b76ab88a800"[1](10c37b76ab88a801) 		# "lqcdn052.lqcd.gsi.de" lid 116 4xFDR
+
+[13]	"H-10c37b10490e9200"[1](10c37b10490e9201) 		# "lqcdn049.lqcd.gsi.de" lid 106 4xFDR
+[14]	"H-10c37b26b4819000"[1](10c37b26b4819001) 		# "lqcdn048.lqcd.gsi.de" lid 109 4xFDR
+[15]	"H-10c37bc4a51e9500"[1](10c37bc4a51e9501) 		# "lqcdn047.lqcd.gsi.de" lid 107 4xFDR
+[16]	"H-10c37be47df14b00"[1](10c37be47df14b01) 		# "lqcdn046.lqcd.gsi.de" lid 110 4xFDR
+[17]	"H-10c37b66d17c8100"[1](10c37b66d17c8101) 		# "lqcdn045.lqcd.gsi.de" lid 147 4xFDR
+
+[31]	"H-10c37bab10717500"[1](10c37bab10717501) 		# "lqcdn018.lqcd.gsi.de" lid 55 4xFDR
+[22]	"H-10c37beb92724300"[1](10c37beb92724301) 		# "lqcdn017.lqcd.gsi.de" lid 148 4xFDR
+[33]	"H-10c37bdb5f911700"[1](10c37bdb5f911701) 		# "lqcdn016.lqcd.gsi.de" lid 124 4xFDR
+[34]	"H-10c37bdddf399100"[1](10c37bdddf399101) 		# "lqcdn015.lqcd.gsi.de" lid 79 4xFDR
+[35]	"H-10c37bbf13d1ba00"[1](10c37bbf13d1ba01) 		# "lqcdn014.lqcd.gsi.de" lid 69 4xFDR
+[36]	"H-10c37b3badd26100"[1](10c37b3badd26101) 		# "lqcdn013.lqcd.gsi.de" lid 47 4xFDR
+
+[18]	"H-10c37b8b22e2c200"[1](10c37b8b22e2c201) 		# "lqcdn009.lqcd.gsi.de" lid 145 4xFDR
+[19]	"H-10c37bb5ce34de00"[1](10c37bb5ce34de01) 		# "lqcdn008.lqcd.gsi.de" lid 150 4xFDR
+[20]	"H-10c37bbf52a42c00"[1](10c37bbf52a42c01) 		# "lqcdn007.lqcd.gsi.de" lid 151 4xFDR
+[21]	"H-10c37b2e9c510000"[1](10c37b2e9c510001) 		# "lqcdn-r06n01.lqcd.gsi.de" lid 152 4xFDR

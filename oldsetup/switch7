@@ -1,0 +1,24 @@
+Switch	36 "S-e41d2d030007e620"		# "SwitchX -  Mellanox Technologies" base port 0 lid 3 lmc 0
+[6]	"H-10c37b0dbb3e9300"[1](10c37b0dbb3e9301) 		# "" lid 0 4xSDR
+[7]	"H-10c37b3e3f511400"[1](10c37b3e3f511401) 		# "MT25408 ConnectX Mellanox Technologies" lid 157 4xSDR
+[9]	"H-10c37be6fb320000"[1](10c37be6fb320001) 		# "MT25408 ConnectX Mellanox Technologies" lid 121 4xSDR
+[10]	"H-10c37bb91ab56600"[1](10c37bb91ab56601) 		# "MT25408 ConnectX Mellanox Technologies" lid 123 4xSDR
+[11]	"H-10c37b20648d0000"[1](10c37b20648d0001) 		# "MT25408 ConnectX Mellanox Technologies" lid 122 4xSDR
+[13]	"H-10c37b0d32ab4500"[1](10c37b0d32ab4501) 		# "lqcd-login" lid 12 4xFDR
+[1]	"H-10c37b8041395600"[1](10c37b8041395601) 		# "lqcdn030.lqcd.gsi.de" lid 46 4xFDR
+
+[14]	"H-10c37b723fcb5100"[1](10c37b723fcb5101) 		# "lqcdn028.lqcd.gsi.de" lid 21 4xFDR
+[16]	"H-10c37bebd9cae100"[1](10c37bebd9cae101) 		# "lqcdn027.lqcd.gsi.de" lid 24 4xFDR
+[17]	"H-10c37bde56114200"[1](10c37bde56114201) 		# "lqcdn026.lqcd.gsi.de" lid 22 4xFDR
+[18]	"H-10c37b8e5c6df200"[1](10c37b8e5c6df201) 		# "lqcdn025.lqcd.gsi.de" lid 25 4xFDR
+[19]	"H-10c37b37e4c5c900"[1](10c37b37e4c5c901) 		# "lqcdn024.lqcd.gsi.de" lid 15 4xFDR
+[20]	"H-10c37b5c7b690500"[1](10c37b5c7b690501) 		# "lqcdn023.lqcd.gsi.de" lid 17 4xFDR
+[21]	"H-10c37b3dfa08bb00"[1](10c37b3dfa08bb01) 		# "lqcdn022.lqcd.gsi.de" lid 18 4xFDR
+[22]	"H-10c37b4c9fb9db00"[1](10c37b4c9fb9db01) 		# "lqcdn021.lqcd.gsi.de" lid 16 4xFDR
+[15]	"H-10c37bcb1c62cb00"[1](10c37bcb1c62cb01) 		# "lqcdn020.lqcd.gsi.de" lid 23 4xFDR
+[24]	"H-10c37b5f802ca900"[1](10c37b5f802ca901) 		# "lqcdn019.lqcd.gsi.de" lid 19 4xFDR
+
+[23]	"H-10c37bee36053300"[1](10c37bee36053301) 		# "lqcdn006.lqcd.gsi.de" lid 20 4xFDR
+[2]	"H-10c37b976925da00"[1](10c37b976925da01) 		# "lqcdn004.lqcd.gsi.de" lid 28 4xFDR
+
+[8]	"H-10c37be6fc120000"[1](10c37be6fc120001) 		# "lqcdn-r07n18.lqcd.gsi.de" lid 158 4xFDR

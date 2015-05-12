@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# start with sbatch -o 60vs60.log --nodefile=nodelist.txt opttestib_fast.sh 60 works only for 60 nodes spread eually on 5 switches (12 each)
 name="$1vs$1.log"
 if [ $# -lt 1 ]; then
     echo "expects one parameters not" $#
@@ -16,28 +16,36 @@ if [[ "$SLURMD_NODENAME" ]]; then
     # started by slurm-------------------------------------------------------
     readarray -t NODES < <(scontrol show hostname $SLURM_NODELIST)
     NODES_DOUBLE_tmp=( "${NODES[@]}" "${NODES[@]}")
-    readarray -t NODES_DOUBLE < <(for a in "${NODES_DOUBLE_tmp[@]}"; do echo "$a"; done | sort)
+    readarray -t NODENAMES_DOUBLE < <(for a in "${NODES_DOUBLE_tmp[@]}"; do echo "$a"; done | sort)
+
+    NODEIDS_DOUBLE_tmp=(`seq 0 1 59` `seq 0 1 59`)
+    readarray -t NODEIDS_DOUBLE < <(for a in "${NODEIDS_DOUBLE_tmp[@]}"; do echo "$a"; done | sort)
+#echo "${NODEIDS_DOUBLE[*]}"
 
     #Second Part: performs bandwidth test-----------------------------------------------------------------
     if [[ "$3" == "srun" ]]; then
         size=$2
-        nextnode_tmp=$4
-        nextnode=$((nextnode_tmp+2))
+        phase=$4
         iters=200000 #1000000
         if ((size>=4096)); then
             ((iters=1000000000/size))
         fi
 
         CMD=(ib_write_bw -s "$size" -n 1000)
-#CMD=(ib_send_lat)
+        #CMD=(ib_send_lat)
 
 
         if [ $((SLURM_PROCID%2)) -eq 0 ]; then
-           ${CMD[*]} > /dev/null
+        #echo " "
+        ${CMD[*]} > /dev/null
         else
-            node=${NODES_DOUBLE["$SLURM_PROCID"]}
-            sendernode=${NODES_DOUBLE[$((SLURM_PROCID-nextnode))]}
             sleep 1
+            node=${NODENAMES_DOUBLE["$SLURM_PROCID"]}
+            nodeid=${NODEIDS_DOUBLE["$SLURM_PROCID"]}
+            sendernodeid=$(((((nodeid % 5)+(phase % 5)) % 5)*12+((nodeid/5)+(phase/5)) % 12))
+            sendernode=${NODES["$sendernodeid"]}
+            #echo "$node $nodeid from $sendernodeid $sendernode"
+
             ${CMD[*]} $sendernode | grep -A 1 "bytes" | tail -1 | awk -v var1="$node " '{print var1 $0}' | awk -v var2="$sendernode" '{print var2 $0}'
         fi
 
@@ -52,16 +60,16 @@ if [[ "$SLURMD_NODENAME" ]]; then
         # there are alsp passive processes on nodes which are not used for benchmark tests.
         #so one or two processes have to be started on every node but only the processes on tested nodes are called active
         for ((size=524288;size<=512*1024;size*=2)); do #512*1024
-            i=0
-            for ((nextnode=0;nextnode<(2*nmbrproc_all);nextnode=nextnode+2)); do
-                echo "phase $i"
-                srun --ntasks-per-node 2 -n $((2*nmbrproc_all)) testib_fast.sh $nmbrproc_all $size srun $nextnode
+            for ((phase=0;phase<nmbrproc_all;phase++)); do
+                echo "phase $phase"
+                srun --ntasks-per-node 2 -n $((2*nmbrproc_all)) opttestib_fast.sh $nmbrproc_all $size srun $phase
                 i=$((i+1))
                 echo " "
                 echo " "
             done
         done
 
+        # sorting the loq file to a hist file
         my_var="$1vs$1.hist"
         echo "creating $my_var. ... $m"
         echo ${NODES[*]} > "$my_var"
@@ -71,8 +79,8 @@ if [[ "$SLURMD_NODENAME" ]]; then
                     for ((sendid=0;sendid<nmbrproc_all;sendid++));do
                         receiver=${NODES[$recvid]}
                         sender=${NODES[$sendid]}
-#echo "$receiver$sender $size" >> "$my_var"
-grep "$receiver$sender \+$size" $name | awk -v var1="$sendid " '{print var1 $0}' | awk '{print " " $0}' | awk -v var2="$recvid" '{print var2 $0}' >> "$my_var"
+                        #echo "$receiver$sender $size" >> "$my_var"
+                        grep "$receiver$sender \+$size" $name | awk -v var1="$sendid " '{print var1 $0}' | awk '{print " " $0}' | awk -v var2="$recvid" '{print var2 $0}' >> "$my_var"
                     done
                     #echo " " >> "$my_var"
                 done

@@ -2,8 +2,8 @@
 
 q=0 #nature of pipe
 START=4
-END=14 #make it always even
-stepsize=2
+END=60 #make it always even
+stepsize=4
 i=4000
 o=2
 w=200

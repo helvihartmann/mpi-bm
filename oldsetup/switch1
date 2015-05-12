@@ -1,0 +1,26 @@
+Switch	36 "S-f4521403005cc310"		# "MF0;switch-e1b17c:SX6036/U1" enhanced port 0 lid 27 lmc 0
+[19]	"H-10c37b839fda5300"[1](10c37b839fda5301) 		# "lqcdn051.lqcd.gsi.de" lid 117 4xFDR
+[22]	"H-10c37be7f98eac00"[1](10c37be7f98eac01) 		# "lqcdn050.lqcd.gsi.de" lid 120 4xFDR
+[4]	"H-10c37bc079651400"[1](10c37bc079651401) 		# "lqcdn044.lqcd.gsi.de" lid 38 4xFDR
+[6]	"H-10c37b58bbaedf00"[1](10c37b58bbaedf01) 		# "lqcdn042.lqcd.gsi.de" lid 37 4xFDR
+[7]	"H-10c37bc56a591600"[1](10c37bc56a591601) 		# "lqcdn041.lqcd.gsi.de" lid 31 4xFDR
+[8]	"H-10c37bc9c7c3da00"[1](10c37bc9c7c3da01) 		# "lqcdn040.lqcd.gsi.de" lid 36 4xFDR
+[9]	"H-10c37bcf3e2f2c00"[1](10c37bcf3e2f2c01) 		# "lqcdn039.lqcd.gsi.de" lid 1 4xFDR
+[11]	"H-10c37bdbe9534f00"[1](10c37bdbe9534f01) 		# "lqcdn038.lqcd.gsi.de" lid 33 4xFDR
+[12]	"H-10c37b8bf1320400"[1](10c37b8bf1320401) 		# "lqcdn037.lqcd.gsi.de" lid 39 4xFDR
+[13]	"H-10c37b25f378cc00"[1](10c37b25f378cc01) 		# "lqcdn036.lqcd.gsi.de" lid 35 4xFDR
+[14]	"H-10c37b9d06689c00"[1](10c37b9d06689c01) 		# "lqcdn035.lqcd.gsi.de" lid 40 4xFDR
+[15]	"H-10c37bbc57d3db00"[1](10c37bbc57d3db01) 		# "lqcdn034.lqcd.gsi.de" lid 41 4xFDR
+[16]	"H-10c37b66b8303e00"[1](10c37b66b8303e01) 		# "lqcdn033.lqcd.gsi.de" lid 44 4xFDR
+[17]	"H-10c37b2182327600"[1](10c37b2182327601) 		# "lqcdn032.lqcd.gsi.de" lid 42 4xFDR
+[18]	"H-10c37b506a9f2800"[1](10c37b506a9f2801) 		# "lqcdn031.lqcd.gsi.de" lid 45 4xFDR
+[10]	"H-10c37bbf331a6600"[1](10c37bbf331a6601) 		# "lqcdn029.lqcd.gsi.de" lid 161 4xFDR
+[21]	"H-10c37bbcc3a33b00"[1](10c37bbcc3a33b01) 		# "lqcdn011.lqcd.gsi.de" lid 65 4xFDR
+[20]	"H-10c37bcc12b3ae00"[1](10c37bcc12b3ae01) 		# "lqcdn010.lqcd.gsi.de" lid 78 4xFDR
+[23]	"H-10c37b4f96443b00"[1](10c37b4f96443b01) 		# "lqcdn005.lqcd.gsi.de" lid 118 4xFDR
+[1]	"H-10c37b73094cf600"[1](10c37b73094cf601) 		# "lqcdn003.lqcd.gsi.de" lid 29 4xFDR
+[3]	"H-10c37b91538c5800"[1](10c37b91538c5801) 		# "lqcdn001.lqcd.gsi.de" lid 68 4xFDR
+[25]	"S-f4521403005cc590"[32]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[26]	"S-f4521403005cc590"[29]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[27]	"S-f4521403005cc590"[30]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR
+[28]	"S-f4521403005cc590"[31]		# "MF0;switch-e1b2ec:SX6036/U1" lid 5 4xFDR

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CMD=(ib_write_bw -a -n 1000)
-#CMD=(ib_write_bw -a -d mlx5_0 -n 1000)
+CMD=(ib_write_bw -s 524288 -n 1000)
+#CMD=(ib_write_bw -a -n 1000)
 #CMD=(ibv_srq_pingpong)
 
-if [ $# -ne 2 ]
+if [ $# -lt 2 ]
 then
-    echo "expects two parameters not" $#
+    echo "expects at least two parameters not" $#
 exit 0
     fi
 
@@ -16,7 +16,8 @@ if [[ "$SLURMD_NODENAME" ]]; then
         ${CMD[*]} > /dev/null
     elif [ "$SLURMD_NODENAME" == "$2" ]; then
         sleep 1
-        ${CMD[*]} $1
+        #${CMD[*]} $1
+        ${CMD[*]} $1 | grep -A 1 "bytes" | tail -1 | awk -v var4="$2 " '{print var4 $0}' | awk -v var3="$1" '{print var3 $0}' | awk -v var2="$4 " '{print var2 $0}' | awk '{print " " $0}' | awk -v var1="$3" '{print var1 $0}'
     fi
 else
     # started directly
