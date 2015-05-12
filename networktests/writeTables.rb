@@ -19,9 +19,9 @@ rt.each do |rl|
      switches[sw_guid], switches_lid[sw_guid] = {}, {}
    end
   
-   if (md = rl.match(/^0x(\S{4})\s(\S+)\s.*Channel Adapter portguid\ (\S{18}).*\'(.+)\'\)$/)) 
-
-    #or(md = rl.match(/^0x(\S{4})\s(\S+)\s.*Switch portguid\ (\S{18}).*\'(.+)\'\)$/)) this collects switch to switch forwarding tables, not sure if I need it
+   if (md = rl.match(/^0x(\S{4})\s(\S+)\s.*Channel Adapter portguid\ (\S{18}).*\'(.+)\'\)$/)) or
+        (md = rl.match(/^0x(\S{4})\s(\S+)\s.*Switch portguid\ (\S{18}).*\'(.+)\'\)$/))
+                     #this collects switch to switch forwarding tables, not sure if I need it
     #node = md[4].gsub(" mlx4","_0").gsub(" mlx5","_1")
     node = md[4].gsub(".lqcd.gsi.de",'').gsub("lcsc-",'')
     
@@ -96,55 +96,60 @@ end
 coreswitchtranslatingtable = coreswitchtranslatingtable.delete_if{ |k, v| v == "" }
 i = 0
 coreswitchtranslatingtable.each do |guid, name|
-    coreswitchtranslatingtable[guid] = ["coreswitch#{i}"]
+    coreswitchtranslatingtable[guid] = "coreswitch#{i}"
     i += 1
 end
-pp switchlist
+switchtranslatingtable = leafswitchtranslatingtable.merge(coreswitchtranslatingtable)
+
 # about leafswitche ports------------------------------
 
 leafswitchtranslatingtable = leafswitchtranslatingtable.sort_by{|sguid, nodename| nodename}
 leafswitchtranslatingtable = Hash[leafswitchtranslatingtable]
 coreswitchportstable = []
-ports = []
+portsleaf = []
+portscore = []
 leafswitchtocoreswitchportstable_hash = {}
 coreswitchportstable_hash = {}
 destinationswitch_prev = "09"
 leafswitchtranslatingtable.each do |switchguid, switch|
     for swport in 1..36
     next if ib_phy[switchguid][swport].nil?
-    switchname = leafswitchtranslatingtable[switchguid]
-    port = ib_phy[switchguid][swport][:dport]
-
-    if sw_guidmap.include? ib_phy[switchguid][swport][:dguid]
-                       ports << port
-       end
+        switchname = leafswitchtranslatingtable[switchguid]
+        port = ib_phy[switchguid][swport][:dport]
+        next if port.nil?
+        if sw_guidmap.include? ib_phy[switchguid][swport][:dguid]
+            portsleaf << swport
+            portscore << port
+        end
     end
-    
     leafswitchtocoreswitchportstable_hash[switchguid] = {}
-    leafswitchtocoreswitchportstable_hash[switchguid][switchname] = ports
-    ports = []
+    leafswitchtocoreswitchportstable_hash[switchguid][switchname] = portsleaf
+                    
+    coreswitchportstable_hash[switchguid] = {}
+    coreswitchportstable_hash[switchguid][switchname] = portscore
+    portscore = []
+    portsleaf = []
 end
                      
 # about core switch ports------------------------------
- for swport in 1..36
-     switchguid = "0xf4521403005cc590"
-     next if ib_phy[switchguid][swport].nil?
-     switchname = leafswitchtranslatingtable[switchguid]
-     port = ib_phy[switchguid][swport][:dport]
+                    #for swport in 1..36
+                    #switchguid = "0xf4521403005cc590"
+                    #next if ib_phy[switchguid][swport].nil?
+                    #switchname = leafswitchtranslatingtable[switchguid]
+                    #port = ib_phy[switchguid][swport][:dport]
 
-     destinationswitchguid = ib_phy[switchguid][swport][:dguid]
-     destinationswitch = leafswitchtranslatingtable[destinationswitchguid]
+                    #destinationswitchguid = ib_phy[switchguid][swport][:dguid]
+                    #destinationswitch = leafswitchtranslatingtable[destinationswitchguid]
      
-     if destinationswitch_prev != destinationswitch
-        ports = []
-     end
-     coreswitchportstable_hash[destinationswitchguid] = destinationswitch
-     coreswitchportstable_hash[destinationswitchguid] = {}
-     coreswitchportstable_hash[destinationswitchguid][destinationswitch] = ports
-     destinationswitch_prev = destinationswitch
-     ports << port
-     #coreswitchportstable << [switchguid, switchname, port, destinationswitch]
- end
+                    #if destinationswitch_prev != destinationswitch
+                    #ports = []
+                    #end
+                    #coreswitchportstable_hash[destinationswitchguid] = destinationswitch
+                    #coreswitchportstable_hash[destinationswitchguid] = {}
+                    #coreswitchportstable_hash[destinationswitchguid][destinationswitch] = ports
+                    #destinationswitch_prev = destinationswitch
+                    #ports << port
+                    #end
 
 #------------------------REORDER--------------------
 # these nodes stay put------------------------------
@@ -169,7 +174,8 @@ end
                      
 # these nodes are reshuffled------------------------------
 switchtonodes = {}
-i = 0
+l = 0
+c = 0
 leafswitchtranslatingtable.each do |switchguid, switch|
     nodes.each do |node|
         nodename = node[0]
@@ -177,14 +183,23 @@ leafswitchtranslatingtable.each do |switchguid, switch|
         nodelid = node[2]
         next if nodeswitchconnection[nodename][nodelid].nil?# why are some not in list?????
         if nodeswitchconnection[nodename][nodelid][switch].nil?#then no connection from node to switch exists
-            switchtonodes["#{nodename} #{switch}"] = {}
             next if leafswitchtocoreswitchportstable_hash[switchguid][switch].nil?
-            next if "#{nodename} #{switch}" == "lqcd-login 02"
-             i = i%4
-             port = leafswitchtocoreswitchportstable_hash[switchguid][switch]
-             port_tmp = port[i]
-             switchtonodes["#{nodename} #{switch}"] = port_tmp
-             i = i + 1
+            next if "#{nodename}" == "lqcd-login"
+            switchtonodes["#{nodename} #{switch}"] = {}
+            l = l%4
+            port = leafswitchtocoreswitchportstable_hash[switchguid][switch]
+            port_tmp = port[l]
+            l += 1
+            switchtonodes["#{nodename} #{switch}"] = port_tmp
+        else
+            coreswitchtranslatingtable.each do |guid, name|
+                    switchtonodes["#{nodename} #{name}"] = {}
+                    c = c%4
+                    port = coreswitchportstable_hash[switchguid][switch]
+                    port_tmp = port[c]
+                    c += 1
+                    switchtonodes["#{nodename} #{name}"] = port_tmp
+            end
         end
     end
 end
@@ -196,11 +211,11 @@ switches_lid.each do |switchguid, value|
     header += " #{switchguid}"
     subheader1 = "  Lid  Out   Destination"
     subheader2 = "       Port     Info "
-                       #puts header
-                       #puts subheader1
-                       #puts subheader2
-   switchname = leafswitchtranslatingtable[switchguid]
-   lidlist.each do |lid|
+    puts header
+    puts subheader1
+    puts subheader2
+    switchname = leafswitchtranslatingtable[switchguid]
+    lidlist.each do |lid|
         node = nodelist[lid]
         next if nodeswitchconnection[node][lid].nil?
         if (nodeswitchconnection[node][lid][switchname] != nil) then
@@ -212,19 +227,30 @@ switches_lid.each do |switchguid, value|
                 forwardlist = "0x#{lid} 0#{port}"
             end
         else
-            forwardlist = "0x#{lid} ?"
+            port = switchtonodes["#{node} #{switchname}"]
+            next if port.nil?
+            if port < 10 then
+                forwardlist = "0x#{lid} 00#{port}"
+            else
+                forwardlist = "0x#{lid} 0#{port}"
+            end
+
+                    #forwardlist = "0x#{lid} ?"
         end
         
         forwardlist += " : (Channel Adapter portguid "
         forwardlist += "guid: "
         forwardlist += "#{node})"
-                       #puts forwardlist
+        puts forwardlist
    end
 end
 
-puts 'sw_guidmap'
-pp sw_guidmap
-puts ' '
+#puts 'sw_guidmap'
+#pp sw_guidmap
+#puts ' '
+#puts 'ib_phy'
+#pp ib_phy
+#puts ' '
 #puts 'nodes'
 #pp nodes
 #puts ' '
@@ -234,20 +260,23 @@ puts ' '
 #puts 'nodeswithconenction'
 #pp nodeswitchconnection
 #puts ' '
-puts 'coreswitchtranslatingtable'
-pp coreswitchtranslatingtable
-puts ' '
-puts 'leafswitchtranslatingtable'
-pp leafswitchtranslatingtable
-puts ' '
+#puts 'switchtranslatingtable'
+#pp switchtranslatingtable
+#puts ' '
+#puts 'coreswitchtranslatingtable'
+#pp coreswitchtranslatingtable
+#puts ' '
+#puts 'leafswitchtranslatingtable'
+#pp leafswitchtranslatingtable
+#puts ' '
 #puts 'switchtonodes'
 #pp switchtonodes
 #puts ' '
-#puts 'leafswitchtocoreswitch'
-#pp leafswitchtocoreswitchportstable_hash
-#puts ' '
-#puts 'coreswitchports'
-#pp coreswitchportstable_hash
-#puts ' '
+                    #puts 'leafswitchtocoreswitch'
+                    #pp leafswitchtocoreswitchportstable_hash
+                    #puts ' '
+                    #puts 'coreswitchports'
+                    #pp coreswitchportstable_hash
+                    #puts ' '
 #puts 'nodeswithconnection'
 #pp nodeswitchconnection
