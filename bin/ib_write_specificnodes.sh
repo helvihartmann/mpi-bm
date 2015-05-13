@@ -12,6 +12,7 @@ exit 0
 
 if [[ "$SLURMD_NODENAME" ]]; then
 # started by slurm
+
     if [ "$SLURMD_NODENAME" == "$1" ]; then
         ${CMD[*]} > /dev/null
     elif [ "$SLURMD_NODENAME" == "$2" ]; then

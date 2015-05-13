@@ -9,7 +9,7 @@ switches_lid = {}
 nodes = []
 sw_guid = 0
 sw_guidmap = []
-usednodes = ['r04n06', 'r04n07', 'r04n08', 'r04n09', 'r05n01', 'r05n02', 'r05n03', 'r05n04', 'r06n01', 'r06n02', 'r06n03', 'r06n04', 'r07n01', 'r07n02', 'r07n03', 'r07n04', 'r08n01', 'r08n02', 'r08n03', 'r08n04', 'r09n01', 'r09n12']
+usednodes = ['r05n01', 'r05n02', 'r05n03', 'r05n04', 'r06n01', 'r06n02', 'r06n03', 'r06n04', 'r07n01', 'r07n02', 'r07n03', 'r07n04', 'r08n01', 'r08n02', 'r08n03', 'r08n04']
 rt.each do |rl|
   if md = rl.match(/^Unicast lids.*of switch.*guid\s(\S{18}).*$/) then
     sw_guid = md[1]

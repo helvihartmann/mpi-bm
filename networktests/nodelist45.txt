@@ -1,8 +1,0 @@
-lcsc-r04n06 
-lcsc-r04n07
-lcsc-r04n08
-lcsc-r04n09  
-lcsc-r05n01
-lcsc-r05n02
-lcsc-r05n03
-lcsc-r05n04

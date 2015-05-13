@@ -2,7 +2,66 @@
 
 require 'pp'
 
-#------------------------GATHER INFO--------------------
+def getdirectnodeswitchconnections(nodes, ib_phy, switchtranslatingtable)
+    nodeswitchconnection = {}
+    nodes.each do |node| # nodes << [node, guid, lid]
+        
+        nodeguid = node[1] #sender node guid I got from dump_fts
+        connectedswitchguid = ib_phy[nodeguid][1][:dguid] #get guid of switch snode is connected to
+        #translateswitch guid into readable name
+        connectedswitch = switchtranslatingtable[connectedswitchguid]
+        inp = ib_phy[nodeguid][1][:dport] #inport of snode
+        
+        nodeswitchconnection[node[0]] = {} #node[nodename, nodeguid, nodelid]
+        nodeswitchconnection[node[0]][node[2]] = {}
+        nodeswitchconnection[node[0]][node[2]] = {:switchguid => connectedswitchguid, :switch => connectedswitch, :port => inp}
+    end
+    return nodeswitchconnection
+end
+
+
+def getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable)
+    switchtonodes = {}
+
+    leafswitchtranslatingtable.each do |switchguid, switch|
+        l = 0
+        c = 0
+        connectedswitch = 0
+        nodes.each do |node|
+            nodename = node[0]
+            #rack = nodename.gsub()
+            nodeguid = node[1]
+            nodelid = node[2]
+            next if nodeswitchconnection[nodename][nodelid].nil?# why are some not in list?????
+            if nodeswitchconnection[nodename][nodelid][switch].nil?#then no connection from node to switch exists
+                if nodeswitchconnection[nodename][nodelid][:switchguid] != connectedswitch
+                        l = 0
+                end
+                connectedswitch = nodeswitchconnection[nodename][nodelid][:switchguid]
+                next if leafswitchtocoreswitchportstable[switchguid][switch].nil?
+                #next if "#{nodename}" == "lqcd-login"
+                switchtonodes["#{nodename} #{switch}"] = {}
+                port = leafswitchtocoreswitchportstable[switchguid][switch]
+                port_tmp = port[l]
+                l = (l +1)%4
+                switchtonodes["#{nodename} #{switch}"] = port_tmp
+            else
+                coreswitchtranslatingtable.each do |guid, name|
+                    switchtonodes["#{nodename} #{name}"] = {}
+                    port = coreswitchportstable[switchguid][switch]
+                    port_tmp = port[c]
+                    c = (c + 1)%4
+                    switchtonodes["#{nodename} #{name}"] = port_tmp
+                end
+            end
+        end
+    end
+    return switchtonodes
+end
+
+#!!!!!!!!!!!!!!!!!!!!------------------------GATHER INFO--------------------!!!!!!!!!!!!!!!!!!
+
+
 rt = `cat ibdmp.log`.split("\n")
 
 nodes = []
@@ -39,13 +98,16 @@ rt.each do |rl|
   end
 end
 #switchlist
-#nodes
 #nodelist
+nodes = nodes.sort.uniq
 sw_guidmap = sw_guidmap.uniq
-   
-#------------------------Get Information about Connections-------------------
+nodelist = nodelist.sort_by{|lid, name| name}
+nodelist = Hash[nodelist]
+#------------------------Get Information----------------------
+#about Connections-------------------
 pm = `cat ibnet.log`.split("\n")
 ib_phy = {}
+switchtranslatingtable = {}
 leafswitchtranslatingtable = {}
 coreswitchtranslatingtable = {}
 pm.each do |lnk|
@@ -69,35 +131,38 @@ pm.each do |lnk|
           
         
         if sw_guidmap.include? sguid then
+            node = nodelist[dlid2]
             if nodelist[dlid2].nil? or nodelist[slid2].nil?
+            else
                 switch = switchlist[dlid2]
                 coreswitchtranslatingtable[sguid] = "#{switch}"
             end
             next if nodelist[dlid2].nil?
-            node = nodelist[dlid2]
+            
             node = node.gsub("r",'').gsub("n01",'')
-            leafswitchtranslatingtable[sguid] = "#{node}"
+            switchtranslatingtable[sguid] = "#{node}"
         end
     end
 end
+
 coreswitchtranslatingtable = coreswitchtranslatingtable.delete_if{ |k, v| v == "" }
 i = 0
 coreswitchtranslatingtable.each do |guid, name|
     coreswitchtranslatingtable[guid] = "coreswitch#{i}"
     i += 1
+    leafswitchtranslatingtable = switchtranslatingtable.delete_if{ |k, v| k == guid }
 end
-switchtranslatingtable = leafswitchtranslatingtable.merge(coreswitchtranslatingtable)
-
-# about switch ports------------------------------
-
 leafswitchtranslatingtable = leafswitchtranslatingtable.sort_by{|sguid, nodename| nodename}
 leafswitchtranslatingtable = Hash[leafswitchtranslatingtable]
+switchtranslatingtable = leafswitchtranslatingtable.merge(coreswitchtranslatingtable)
+# about switch ports------------------------------
+
+                    
 coreswitchportstable = []
 portsleaf = []
 portscore = []
 leafswitchtocoreswitchportstable = {}
 coreswitchportstable = {}
-destinationswitch_prev = "09"
 leafswitchtranslatingtable.each do |switchguid, switch|
     for swport in 1..36
     next if ib_phy[switchguid][swport].nil?
@@ -119,87 +184,56 @@ leafswitchtranslatingtable.each do |switchguid, switch|
 end
 
 #------------------------REORDER--------------------
-# these nodes stay put------------------------------
-nodes = nodes.sort.uniq
-nodeswitchconnection = {}
-nodes.each do |node| # nodes << [node, guid, lid]
+# these nodes stay put
+nodeswitchconnection = getdirectnodeswitchconnections(nodes, ib_phy, switchtranslatingtable)
 
-    nodeguid = node[1] #sender node guid I got from dump_fts
-    connectedswitchguid = ib_phy[nodeguid][1][:dguid] #get guid of switch snode is connected to
-    #translateswitch guid into readable name
-    connectedswitch = leafswitchtranslatingtable[connectedswitchguid]
-    inp = ib_phy[nodeguid][1][:dport] #inport of snode
-
-   nodeswitchconnection[node[0]] = {} #node[nodename, nodeguid, nodelid]
-   nodeswitchconnection[node[0]][node[2]] = {}
-   nodeswitchconnection[node[0]][node[2]][connectedswitch] = {}
-   nodeswitchconnection[node[0]][node[2]][connectedswitch] = inp
-end
-                    
-                     
-# these nodes are reshuffled------------------------------
-switchtonodes = {}
-l = 0
-c = 0
-leafswitchtranslatingtable.each do |switchguid, switch|
-    nodes.each do |node|
-        nodename = node[0]
-        nodeguid = node[1]
-        nodelid = node[2]
-        next if nodeswitchconnection[nodename][nodelid].nil?# why are some not in list?????
-        if nodeswitchconnection[nodename][nodelid][switch].nil?#then no connection from node to switch exists
-            next if leafswitchtocoreswitchportstable[switchguid][switch].nil?
-            next if "#{nodename}" == "lqcd-login"
-            switchtonodes["#{nodename} #{switch}"] = {}
-            l = l%4
-            port = leafswitchtocoreswitchportstable[switchguid][switch]
-            port_tmp = port[l]
-            l += 1
-            switchtonodes["#{nodename} #{switch}"] = port_tmp
-        else
-            coreswitchtranslatingtable.each do |guid, name|
-                    switchtonodes["#{nodename} #{name}"] = {}
-                    c = c%4
-                    port = coreswitchportstable[switchguid][switch]
-                    port_tmp = port[c]
-                    c += 1
-                    switchtonodes["#{nodename} #{name}"] = port_tmp
-            end
-        end
-    end
-end
-
+# these nodes are reshuffled
+switchtonodes = getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable)
 
 #------------------------PRINT--------------------
 switchtranslatingtable.each do |switchguid, value|
+    switchname = leafswitchtranslatingtable[switchguid]
     header = "Unicast lids [0x0-0xaa] of switch guid"
-    header += " #{switchguid}"
+    header += " #{switchguid} (#{switchname})"
     subheader1 = "  Lid  Out   Destination"
     subheader2 = "       Port     Info "
     puts header
     puts subheader1
     puts subheader2
-    switchname = leafswitchtranslatingtable[switchguid]
+    i = 0
     nodelist.each do |lid, node|
         next if nodeswitchconnection[node][lid].nil?
-        if (nodeswitchconnection[node][lid][switchname] != nil) then
-            #port = switches_lid[switchguid][lid]
-            port = nodeswitchconnection[node][lid][switchname]
-            if port < 10 then
-                forwardlist = "0x#{lid} 00#{port}"
-            else
-                forwardlist = "0x#{lid} 0#{port}"
-            end
+                    
+        if coreswitchtranslatingtable[switchguid] != nil
+            destswitchguid = nodeswitchconnection[node][lid][:switchguid]
+            destswitchname = switchtranslatingtable[destswitchguid]
+            next if destswitchname.nil?
+                    #pp destswitchguid
+            port = coreswitchportstable[destswitchguid][destswitchname]
+            port_tmp = port[i]
+            forwardlist = "0x#{lid} #{port_tmp}"
+            i = (i + 1)%4
         else
-            port = switchtonodes["#{node} #{switchname}"]
-            next if port.nil?
-            if port < 10 then
-                forwardlist = "0x#{lid} 00#{port}"
+            if (nodeswitchconnection[node][lid][:switchguid] == switchguid) then
+                #port = switches_lid[switchguid][lid]
+                    port = nodeswitchconnection[node][lid][:port]
+                if port < 10 then
+                    forwardlist = "0x#{lid} 00#{port}"
+                else
+                    forwardlist = "0x#{lid} 0#{port}"
+                end
             else
-                forwardlist = "0x#{lid} 0#{port}"
+
+                port = switchtonodes["#{node} #{switchname}"]
+                next if port.nil?
+                if port < 10 then
+                    forwardlist = "0x#{lid} 00#{port}"
+                else
+                    forwardlist = "0x#{lid} 0#{port}"
+                end
+                        
             end
         end
-        
         forwardlist += " : (Channel Adapter portguid "
         forwardlist += "guid: "
         forwardlist += "#{node})"
@@ -213,22 +247,22 @@ end
                     #puts ''
                     #nodes
                     #puts ''
-                    #nodelist
+                    #pp nodelist
                     #puts ''
                     #sw_guidmap
                     #puts ''
                     #ib_phy
                     #puts ''
-                    #leafswitchtranslatingtable
+                    #pp leafswitchtranslatingtable
                     #puts ''
-                    #coreswitchtranslatingtable
+                    #pp coreswitchtranslatingtable
                     #puts ''
                     #switchtranslatingtable
                     #puts ''
                     #leafswitchtocoreswitchportstable
                     #puts ''
-                    #coreswitchportstable
+                    #pp coreswitchportstable
                     #puts ''
-                    #nodeswitchconnection[node[0]]
+                    #pp nodeswitchconnection
                     #puts ''
-                    #switchtonodes
+                    #pp switchtonodes
