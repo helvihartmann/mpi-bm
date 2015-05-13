@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+#13.05.2015 evolved from commStat from Gvozden Neskovic. reads in two files ibdmp.log (derived from dump_fts) and ibnet.log (derived from ibnetdiscover -lp) to modify existing routing forwarding tables such that they are optimal used for all to all linear shift communication pattern.
+#Create output and write it into file load this file into subnetmanager opensm via: sudo /usr/sbin/opensm -f stdout -R file -U myTable.txt
+#designed for a fattree network with 4 connections from each leaf to core switch
+
 require 'pp'
 
 def getdirectnodeswitchconnections(nodes, ib_phy, switchtranslatingtable)
@@ -211,27 +215,18 @@ switchtranslatingtable.each do |switchguid, value|
                     #pp destswitchguid
             port = coreswitchportstable[destswitchguid][destswitchname]
             port_tmp = port[i]
-            forwardlist = "0x#{lid} #{port_tmp}"
+            forwardlist = "0x#{lid} %03d" %port_tmp
             i = (i + 1)%4
         else
             if (nodeswitchconnection[node][lid][:switchguid] == switchguid) then
                 #port = switches_lid[switchguid][lid]
-                    port = nodeswitchconnection[node][lid][:port]
-                if port < 10 then
-                    forwardlist = "0x#{lid} 00#{port}"
-                else
-                    forwardlist = "0x#{lid} 0#{port}"
-                end
+                port = nodeswitchconnection[node][lid][:port]
+                forwardlist = "0x#{lid} %03d" %port
             else
 
                 port = switchtonodes["#{node} #{switchname}"]
                 next if port.nil?
-                if port < 10 then
-                    forwardlist = "0x#{lid} 00#{port}"
-                else
-                    forwardlist = "0x#{lid} 0#{port}"
-                end
-                        
+                forwardlist = "0x#{lid} %03d" %port
             end
         end
         forwardlist += " : (Channel Adapter portguid "
