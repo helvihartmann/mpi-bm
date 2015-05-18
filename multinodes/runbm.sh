@@ -2,7 +2,7 @@
 
 q=0 #nature of pipe
 START=4
-END=60 #make it always even
+END=28 #make it always even
 stepsize=4
 i=4000
 o=2
@@ -21,7 +21,7 @@ echo "" >> single.in
 echo "#SBATCH --nodes="$END >> single.in
 #echo "#SBATCH --constraint="$node >> single.in
 echo "#SBATCH --job-name="$i"_"$END >> single.in
-echo "#SBATCH --nodefile=nodelist.txt" >> single.in
+echo "#SBATCH --nodefile=nodelist28.txt" >> single.in
 echo "" >> single.in
 echo "" >> single.in
 
