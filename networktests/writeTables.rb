@@ -24,7 +24,7 @@ def getdirectnodeswitchconnections(nodes, ib_phy, switchtranslatingtable)
 end
 
 
-def getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable)
+def getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable, nmbr_links)
     switchtonodes = {}
 
     leafswitchtranslatingtable.each do |switchguid, switch|
@@ -47,14 +47,14 @@ def getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, 
                 switchtonodes["#{nodename} #{switch}"] = {}
                 port = leafswitchtocoreswitchportstable[switchguid][switch]
                 port_tmp = port[l]
-                l = (l +1)%4
+                l = (l +1)%nmbr_links
                 switchtonodes["#{nodename} #{switch}"] = port_tmp
             else
                 coreswitchtranslatingtable.each do |guid, name|
                     switchtonodes["#{nodename} #{name}"] = {}
                     port = coreswitchportstable[switchguid][switch]
                     port_tmp = port[c]
-                    c = (c + 1)%4
+                    c = (c + 1)%nmbr_links
                     switchtonodes["#{nodename} #{name}"] = port_tmp
                 end
             end
@@ -65,7 +65,7 @@ end
 
 #!!!!!!!!!!!!!!!!!!!!------------------------GATHER INFO--------------------!!!!!!!!!!!!!!!!!!
 
-
+nmbr_links = 1;
 rt = `cat ibdmp.log`.split("\n")
 
 nodes = []
@@ -192,7 +192,7 @@ end
 nodeswitchconnection = getdirectnodeswitchconnections(nodes, ib_phy, switchtranslatingtable)
 
 # these nodes are reshuffled
-switchtonodes = getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable)
+switchtonodes = getportsfromswitchtonodes(leafswitchtranslatingtable, nodeswitchconnection, leafswitchtocoreswitchportstable, coreswitchtranslatingtable, nodes, coreswitchportstable, nmbr_links)
 
 #------------------------PRINT--------------------
 switchtranslatingtable.each do |switchguid, value|
@@ -216,7 +216,7 @@ switchtranslatingtable.each do |switchguid, value|
             port = coreswitchportstable[destswitchguid][destswitchname]
             port_tmp = port[i]
             forwardlist = "0x#{lid} %03d" %port_tmp
-            i = (i + 1)%4
+            i = (i + 1)%nmbr_links
         else
             if (nodeswitchconnection[node][lid][:switchguid] == switchguid) then
                 #port = switches_lid[switchguid][lid]
