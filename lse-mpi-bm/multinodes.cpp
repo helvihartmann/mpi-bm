@@ -62,9 +62,7 @@ int main (int argc, char *argv[]){
         int numberofpackages = params.getNumberOfPackageSizes();
         int histcheck = params.gethistcheck();
         unsigned int numberofremoteranks = params.getnumberofremoteranks();
-        enum queue_t {single, several};
-        queue_t queue = static_cast<queue_t>(params.getqueue());
-
+       
         // iniate classes
         Results results(rank, statisticaliteration, numberofpackages);
         Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
@@ -99,29 +97,22 @@ int main (int argc, char *argv[]){
                     pipelinedepth = innerRuntimeIterations-2;
                 }
 
-                switch (queue){
-                    case single:{
-                        switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
-                            case 1:
-                                //measurement.measure_hist(packacount,innerRuntimeIterations);
-                                measurement->measure(&buffer, packacount,innerRuntimeIterations,hist);
 
-                                if (packagesize >= 8192 && packagesize <= 16384){
-                                    buffer.printsingletime();
-                                }
-                                break;
-                                
-                            default:
-                                measurement->measure(&buffer, packacount,innerRuntimeIterations,basic);
-                                break;
+                switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
+                    case 1:
+                        //measurement.measure_hist(packacount,innerRuntimeIterations);
+                        measurement->measure(&buffer, packacount,innerRuntimeIterations,hist);
+
+                        if (packagesize >= 8192 && packagesize <= 16384){
+                            buffer.printsingletime();
                         }
-                    }
                         break;
-                    case several:{
-                        measurement->measure(&buffer, packacount,innerRuntimeIterations,sev_queue);
-                    }
+                        
+                    default:
+                        measurement->measure(&buffer, packacount,innerRuntimeIterations,basic);
                         break;
                 }
+
                 
                 
                 //Write time-----------------------------------------------------------------

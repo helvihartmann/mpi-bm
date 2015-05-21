@@ -43,9 +43,6 @@ void Measurement::measure(Buffer *buffer, size_t packagecount_, size_t innerRunt
         case hist:
             buffer->comm_hist(this);
             break;
-        case sev_queue:
-            buffer->comm_severalqueue(this);
-            break;
         default:
             buffer->comm(this);
             break;

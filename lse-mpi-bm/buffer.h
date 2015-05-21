@@ -60,9 +60,7 @@ public:
     void comm(Measurement *measurement);
     
     void comm_hist(Measurement *measurement);
-    
-    void comm_severalqueue(Measurement *measurement);
-    
+        
     void emptyqueue(std::queue<MPI_Request> queue_request);
     
     void printsingletime();

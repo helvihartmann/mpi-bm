@@ -13,7 +13,6 @@ Parameters::Parameters(int argc, char **argv){
     factor_fix = (1*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
-    queue = 0;
     pinningmode = 1;
     
     barrelshiftingflag = off;
@@ -34,7 +33,6 @@ Parameters::Parameters(int argc, char **argv){
         { "buffer_size",            required_argument,	     NULL,       'b' },
         { "multicore",              required_argument,        NULL,       'm' },
         { "pipeline_depths",         required_argument,	     NULL,       'p' },
-        { "queue",                  required_argument,	     NULL,       'q' },
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_recv",                required_argument,	     NULL,       'r' },
         { "number_senders",                required_argument,	     NULL,       's' },
@@ -44,7 +42,7 @@ Parameters::Parameters(int argc, char **argv){
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:q:w:r:s:t:y:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:t:y:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -58,7 +56,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
             std::cout << " --pipeline_depths             -p       pipeline depth (i.e. how many times a package is sent/received without waiting)\n (DEFAULT = " << pipelinedepth << ")\n"          << std::endl;
-            std::cout << " --queue                       -q       one queue for all remoteranks (0) or independent queues (1) \n (DEFAULT = "              << queue << ") \n" << std::endl;
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_recv                 -r       number of processes that receive data from all others (min 1; max: 8) \n (DEFAULT = "              << numberofReceivers << ") \n" << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
@@ -138,14 +135,6 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 'q':
-            queue = atoi(optarg);
-            
-            if (!(queue >= 0 && queue <= 1)) {
-                printf("ERROR -q: queue can only be 0 for one queue for all remoteranks or 1 for one queue per remoterank \n");
-                exit(1);
-            }
-            break;
         case 'w':
             numberofwarmups = atof(optarg);
             if (!(numberofwarmups >= 0)) {
@@ -209,7 +198,7 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe" << queue <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << ", barrelshift " << barrelshiftingflag << " (0 = on & 1 = off)" << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe single" <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << ", barrelshift " << barrelshiftingflag << " (0 = on & 1 = off)" << std::endl;
 }
 
 std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){

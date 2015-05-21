@@ -4,7 +4,7 @@
 #include <mpi.h>
 //#include "buffer.h"
 
-enum method_t {basic, hist, sev_queue};
+enum method_t {basic, hist};
 class Buffer;
 class Measurement{
 private:
