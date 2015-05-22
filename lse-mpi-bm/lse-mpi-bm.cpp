@@ -65,7 +65,7 @@ int main (int argc, char *argv[]){
        
         // iniate classes
         Results results(rank, statisticaliteration, numberofpackages);
-        Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks);
+        Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
         Output output(rank, size, communicators_comm);
         
         

@@ -340,7 +340,8 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
     }
     
     if (innerRuntimeIterations <= pipelinedepth){
-        innerRuntimeIterations = pipelinedepth + 1;
+        innerRuntimeIterations = (pipelinedepth*numberofremoteranks) + 1;
+        //innerRuntimeIterations = pipelinedepth + 1;
     }
     
     return innerRuntimeIterations;
