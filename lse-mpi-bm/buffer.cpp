@@ -28,24 +28,25 @@ void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIteration
 
 void Buffer::comm(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
-    testwaitcounter.assign(numberofremoteranks,0);
+    //testwaitcounter.assign(numberofremoteranks,0);
+
     for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
         // wait for objects---- pipelinesize scales with number of number of remoteranks
         while (queue_request.size() >= pipelinedepth*numberofremoteranks){
             MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
-            testwaitcounter.front()+= timestamp.cycles();
+            //testwaitcounter.front()+= timestamp.cycles();
             queue_request.pop();
         }
-        // fill queue---------------------------------
+        remoterank = remoterank_vec.at(index_remoterank);
         for(size_t j = 0; j < innerRuntimeIterations; j++){
-            remoterank = remoterank_vec.at(index_remoterank);
-            index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
+
+            // fill queue---------------------------------
+            index = (packagecount*((index_remoterank*innerRuntimeIterations)+j))%(buffersize/sizeof(int));
+            //index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             queue_request.push(comm_obj);
-            
         }
         //MPI_Barrier(communicators_comm);
-        
     }
     emptyqueue(queue_request);
 }
@@ -54,7 +55,7 @@ void Buffer::comm(Measurement *measurement){
 //similar to above but with additional messurements for histogramms -----------------------------------------
 void Buffer::comm_hist(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
-    testwaitcounter.assign(numberofremoteranks,0);
+    //testwaitcounter.assign(numberofremoteranks,0);
     
     commstart.resize(innerRuntimeIterations);
     commstop.resize(innerRuntimeIterations);
@@ -68,7 +69,7 @@ void Buffer::comm_hist(Measurement *measurement){
             waitstart.at(j) = timestamp.start();
             MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
             waitstop.at(j) = timestamp.stop();
-            testwaitcounter.front()+= timestamp.cycles();
+            //testwaitcounter.front()+= timestamp.cycles();
             queue_request.pop();
         }
         // fill queue---------------------------------

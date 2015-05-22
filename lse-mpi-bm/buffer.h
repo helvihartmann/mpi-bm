@@ -41,7 +41,7 @@ private:
     
     TimeStampCounter timestamp;
     
-    std::vector<size_t>testwaitcounter;
+    //std::vector<size_t>testwaitcounter;
     
     size_t errorcounter = 0;
     
@@ -65,7 +65,7 @@ public:
     
     void printsingletime();
         
-    std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
+    //std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
     
     size_t geterrorcounter() { return errorcounter; }
 };

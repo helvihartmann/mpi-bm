@@ -19,12 +19,12 @@ private:
     int numberofRemoteranks;
     std::vector<double> time;
     std::vector<double> summe;
-    std::vector<size_t>avg_waittestcounter;
+    //std::vector<size_t>avg_waittestcounter;
 public:
     
     Results(int rank, int statisticaliteration, int numberofpackages);
     
-    void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor,double time, std::vector<size_t>numberoftests_, int pipelinedepth);
+    void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor,double time);
     
     void printstatisticaliteration();
     

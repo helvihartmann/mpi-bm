@@ -17,6 +17,7 @@ void Measurement::warmup(Buffer *buffer, size_t numberofwarmups, size_t endpacka
     for (packagecount = 1; packagecount < endpackagesize; packagecount = packagecount*2){
         buffer->setloopvariables(packagecount, numberofwarmups);
         
+        
         // data transfer and time measurement
         double starttimewarmup = MPI_Wtime();
         buffer->comm(this);

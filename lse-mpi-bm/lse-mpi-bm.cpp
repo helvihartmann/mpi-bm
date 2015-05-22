@@ -81,7 +81,7 @@ int main (int argc, char *argv[]){
             else{//receiver
                 measurement.reset(new Measurementrecv(communicators_comm));
             }
-            
+
             //Warmup
             MPI_Barrier(communicators_comm);
             measurement->warmup(&buffer, params.getnumberofwarmups(), params.getendpackagesize(),rank);
@@ -116,7 +116,7 @@ int main (int argc, char *argv[]){
                 
                 
                 //Write time-----------------------------------------------------------------
-                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()),buffer.gettestwaitcounter(),pipelinedepth);
+                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()));
 
             }//z
             
