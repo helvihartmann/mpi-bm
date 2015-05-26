@@ -65,7 +65,7 @@ end
 
 #!!!!!!!!!!!!!!!!!!!!------------------------GATHER INFO--------------------!!!!!!!!!!!!!!!!!!
 
-nmbr_links = 1;
+nmbr_links = 4;
 rt = `cat ibdmp.log`.split("\n")
 
 nodes = []

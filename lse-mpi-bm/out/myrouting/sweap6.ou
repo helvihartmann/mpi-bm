@@ -1,0 +1,3801 @@
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#22.5.2015 - 15:49:16
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+#start packagesize 262144, inner iterations 100000000000, end packagesize 67108864, statistical iterations 2, buffersize 17179869184, pipeline depth 8, natur of pipe single, number of warm ups 200, number of senders 24, multicore 2, pinningmode 1, barrelshift 0 (0 = on & 1 = off)
+I am receiver 31
+my (31) remoterank list is: 28
+my (31) remoterank list is: 26
+my (31) remoterank list is: 24
+my (31) remoterank list is: 22
+my (31) remoterank list is: 20
+my (31) remoterank list is: 18
+my (31) remoterank list is: 16
+my (31) remoterank list is: 14
+my (31) remoterank list is: 12
+my (31) remoterank list is: 10
+my (31) remoterank list is: 8
+my (31) remoterank list is: 6
+my (31) remoterank list is: 4
+my (31) remoterank list is: 2
+my (31) remoterank list is: 0
+my (31) remoterank list is: 46
+my (31) remoterank list is: 44
+my (31) remoterank list is: 42
+my (31) remoterank list is: 40
+my (31) remoterank list is: 38
+my (31) remoterank list is: 36
+my (31) remoterank list is: 34
+my (31) remoterank list is: 32
+# process 31 on host lcsc-r06n04 reports for duty with commflag 1
+I am receiver 15
+my (15) remoterank list is: 12
+my (15) remoterank list is: 10
+my (15) remoterank list is: 8
+my (15) remoterank list is: 6
+my (15) remoterank list is: 4
+my (15) remoterank list is: 2
+my (15) remoterank list is: 0
+my (15) remoterank list is: 46
+my (15) remoterank list is: 44
+my (15) remoterank list is: 42
+my (15) remoterank list is: 40
+my (15) remoterank list is: 38
+my (15) remoterank list is: 36
+my (15) remoterank list is: 34
+I am receiver 47
+my (47) remoterank list is: 44
+my (47) remoterank list is: 42
+my (47) remoterank list is: 40
+my (47) remoterank list is: 38
+my (47) remoterank list is: 36
+my (47) remoterank list is: 34
+my (47) remoterank list is: 32
+my (47) remoterank list is: 30
+my (47) remoterank list is: 28
+my (47) remoterank list is: 26
+my (47) remoterank list is: 24
+my (47) remoterank list is: 22
+my (47) remoterank list is: 20
+my (47) remoterank list is: 18
+my (47) remoterank list is: 16
+my (47) remoterank list is: 14
+my (47) remoterank list is: 12
+my (47) remoterank list is: 10
+my (47) remoterank list is: 8
+my (47) remoterank list is: 6
+my (47) remoterank list is: 4
+my (47) remoterank list is: 2
+my (47) remoterank list is: 0
+my (15) remoterank list is: 32
+my (15) remoterank list is: 30
+my (15) remoterank list is: 28
+my (15) remoterank list is: 26
+my (15) remoterank list is: 24
+my (15) remoterank list is: 22
+my (15) remoterank list is: 20
+my (15) remoterank list is: 18
+my (15) remoterank list is: 16
+# process 15 on host lcsc-r03n08 reports for duty with commflag 1
+# process 47 on host lcsc-r08n04 reports for duty with commflag 1
+I am receiver 39
+my (39) remoterank list is: 36
+my (39) remoterank list is: 34
+my (39) remoterank list is: 32
+my (39) remoterank list is: 30
+my (39) remoterank list is: 28
+my (39) remoterank list is: 26
+my (39) remoterank list is: 24
+my (39) remoterank list is: 22
+my (39) remoterank list is: 20
+my (39) remoterank list is: 18
+my (39) remoterank list is: 16
+my (39) remoterank list is: 14
+my (39) remoterank list is: 12
+my (39) remoterank list is: 10
+my (39) remoterank list is: 8
+my (39) remoterank list is: 6
+my (39) remoterank list is: 4
+my (39) remoterank list is: 2
+my (39) remoterank list is: 0
+my (39) remoterank list is: 46
+my (39) remoterank list is: 44
+my (39) remoterank list is: 42
+my (39) remoterank list is: 40
+# process 39 on host lcsc-r07n04 reports for duty with commflag 1
+I am receiver 21
+my (21) remoterank list is: 18
+my (21) remoterank list is: 16
+my (21) remoterank list is: 14
+my (21) remoterank list is: 12
+my (21) remoterank list is: 10
+my (21) remoterank list is: 8
+my (21) remoterank list is: 6
+my (21) remoterank list is: 4
+my (21) remoterank list is: 2
+my (21) remoterank list is: 0
+my (21) remoterank list is: 46
+my (21) remoterank list is: 44
+my (21) remoterank list is: 42
+my (21) remoterank list is: 40
+my (21) remoterank list is: 38
+my (21) remoterank list is: 36
+I am receiver 13
+my (13) remoterank list is: 10
+my (13) remoterank list is: 8
+my (13) remoterank list is: 6
+my (13) remoterank list is: 4
+my (13) remoterank list is: 2
+my (13) remoterank list is: 0
+my (13) remoterank list is: 46
+my (13) remoterank list is: 44
+my (13) remoterank list is: 42
+my (13) remoterank list is: 40
+my (13) remoterank list is: 38
+my (13) remoterank list is: 36
+my (13) remoterank list is: 34
+my (13) remoterank list is: 32
+my (13) remoterank list is: 30
+my (13) remoterank list is: 28
+my (21) remoterank list is: 34
+my (21) remoterank list is: 32
+my (21) remoterank list is: 30
+my (21) remoterank list is: 28
+my (21) remoterank list is: 26
+my (21) remoterank list is: 24
+my (21) remoterank list is: 22
+# process 21 on host lcsc-r04n03 reports for duty with commflag 1
+my (13) remoterank list is: 26
+my (13) remoterank list is: 24
+my (13) remoterank list is: 22
+my (13) remoterank list is: 20
+my (13) remoterank list is: 18
+my (13) remoterank list is: 16
+my (13) remoterank list is: 14
+# process 13 on host lcsc-r03n07 reports for duty with commflag 1
+I am receiver 33
+my (33) remoterank list is: 30
+my (33) remoterank list is: 28
+my (33) remoterank list is: 26
+my (33) remoterank list is: 24
+my (33) remoterank list is: 22
+my (33) remoterank list is: 20
+my (33) remoterank list is: 18
+my (33) remoterank list is: 16
+my (33) remoterank list is: 14
+my (33) remoterank list is: 12
+my (33) remoterank list is: 10
+my (33) remoterank list is: 8
+my (33) remoterank list is: 6
+my (33) remoterank list is: 4
+my (33) remoterank list is: 2
+my (33) remoterank list is: 0
+my (33) remoterank list is: 46
+my (33) remoterank list is: 44
+my (33) remoterank list is: 42
+my (33) remoterank list is: 40
+my (33) remoterank list is: 38
+my (33) remoterank list is: 36
+my (33) remoterank list is: 34
+# process 33 on host lcsc-r07n01 reports for duty with commflag 1
+I am receiver 25
+my (25) remoterank list is: 22
+my (25) remoterank list is: 20
+my (25) remoterank list is: 18
+my (25) remoterank list is: 16
+my (25) remoterank list is: 14
+my (25) remoterank list is: 12
+my (25) remoterank list is: 10
+my (25) remoterank list is: 8
+my (25) remoterank list is: 6
+my (25) remoterank list is: 4
+my (25) remoterank list is: 2
+my (25) remoterank list is: 0
+my (25) remoterank list is: 46
+my (25) remoterank list is: 44
+my (25) remoterank list is: 42
+my (25) remoterank list is: 40
+my (25) remoterank list is: 38
+my (25) remoterank list is: 36
+my (25) remoterank list is: 34
+my (25) remoterank list is: 32
+my (25) remoterank list is: 30
+my (25) remoterank list is: 28
+my (25) remoterank list is: 26
+# process 25 on host lcsc-r06n01 reports for duty with commflag 1
+I am receiver 1
+my (1) remoterank list is: 46
+my (1) remoterank list is: 44
+my (1) remoterank list is: 42
+my (1) remoterank list is: 40
+my (1) remoterank list is: 38
+my (1) remoterank list is: 36
+my (1) remoterank list is: 34
+my (1) remoterank list is: 32
+my (1) remoterank list is: 30
+my (1) remoterank list is: 28
+my (1) remoterank list is: 26
+my (1) remoterank list is: 24
+my (1) remoterank list is: 22
+my (1) remoterank list is: 20
+my (1) remoterank list is: 18
+my (1) remoterank list is: 16
+my (1) remoterank list is: 14
+my (1) remoterank list is: 12
+my (1) remoterank list is: 10
+my (1) remoterank list is: 8
+my (1) remoterank list is: 6
+my (1) remoterank list is: 4
+my (1) remoterank list is: 2
+# process 1 on host lcsc-r02n01 reports for duty with commflag 1
+I am sender 14
+my (14) remoterank list is: 17
+my (14) remoterank list is: 19
+my (14) remoterank list is: 21
+my (14) remoterank list is: 23
+my (14) remoterank list is: 25
+my (14) remoterank list is: 27
+my (14) remoterank list is: 29
+my (14) remoterank list is: 31
+my (14) remoterank list is: 33
+my (14) remoterank list is: 35
+my (14) remoterank list is: 37
+my (14) remoterank list is: 39
+my (14) remoterank list is: 41
+my (14) remoterank list is: 43
+my (14) remoterank list is: 45
+my (14) remoterank list is: 47
+my (14) remoterank list is: 1
+my (14) remoterank list is: 3
+my (14) remoterank list is: 5
+my (14) remoterank list is: 7
+my (14) remoterank list is: 9
+my (14) remoterank list is: 11
+my (14) remoterank list is: 13
+# process 14 on host lcsc-r03n08 reports for duty with commflag 0
+I am receiver 17
+my (17) remoterank list is: 14
+my (17) remoterank list is: 12
+my (17) remoterank list is: 10
+my (17) remoterank list is: 8
+my (17) remoterank list is: 6
+my (17) remoterank list is: 4
+my (17) remoterank list is: 2
+my (17) remoterank list is: 0
+my (17) remoterank list is: 46
+my (17) remoterank list is: 44
+my (17) remoterank list is: 42
+my (17) remoterank list is: 40
+my (17) remoterank list is: 38
+my (17) remoterank list is: 36
+my (17) remoterank list is: 34
+my (17) remoterank list is: 32
+my (17) remoterank list is: 30
+my (17) remoterank list is: 28
+my (17) remoterank list is: 26
+my (17) remoterank list is: 24
+my (17) remoterank list is: 22
+my (17) remoterank list is: 20
+my (17) remoterank list is: 18
+# process 17 on host lcsc-r04n01 reports for duty with commflag 1
+I am sender 26
+my (26) remoterank list is: 29
+my (26) remoterank list is: 31
+my (26) remoterank list is: 33
+my (26) remoterank list is: 35
+my (26) remoterank list is: 37
+my (26) remoterank list is: 39
+my (26) remoterank list is: 41
+my (26) remoterank list is: 43
+my (26) remoterank list is: 45
+my (26) remoterank list is: 47
+my (26) remoterank list is: 1
+my (26) remoterank list is: 3
+my (26) remoterank list is: 5
+my (26) remoterank list is: 7
+my (26) remoterank list is: 9
+my (26) remoterank list is: 11
+my (26) remoterank list is: 13
+my (26) remoterank list is: 15
+my (26) remoterank list is: 17
+my (26) remoterank list is: 19
+my (26) remoterank list is: 21
+my (26) remoterank list is: 23
+my (26) remoterank list is: 25
+# process 26 on host lcsc-r06n02 reports for duty with commflag 0
+I am receiver 5
+my (5) remoterank list is: 2
+my (5) remoterank list is: 0
+my (5) remoterank list is: 46
+my (5) remoterank list is: 44
+my (5) remoterank list is: 42
+my (5) remoterank list is: 40
+my (5) remoterank list is: 38
+my (5) remoterank list is: 36
+my (5) remoterank list is: 34
+my (5) remoterank list is: 32
+my (5) remoterank list is: 30
+my (5) remoterank list is: 28
+I am sender 32
+my (32) remoterank list is: 35
+my (32) remoterank list is: 37
+my (32) remoterank list is: 39
+I am receiver 37
+my (37) remoterank list is: 34
+my (37) remoterank list is: 32
+my (37) remoterank list is: 30
+my (37) remoterank list is: 28
+my (37) remoterank list is: 26
+my (37) remoterank list is: 24
+my (37) remoterank list is: 22
+my (37) remoterank list is: 20
+my (37) remoterank list is: 18
+my (37) remoterank list is: 16
+my (37) remoterank list is: 14
+my (37) remoterank list is: 12
+my (32) remoterank list is: 41
+my (32) remoterank list is: 43
+my (32) remoterank list is: 45
+my (32) remoterank list is: 47
+my (32) remoterank list is: 1
+my (32) remoterank list is: 3
+my (32) remoterank list is: 5
+my (32) remoterank list is: 7
+my (32) remoterank list is: 9
+my (32) remoterank list is: 11
+my (32) remoterank list is: 13
+my (37) remoterank list is: 10
+my (37) remoterank list is: 8
+my (37) remoterank list is: 6
+my (37) remoterank list is: 4
+my (37) remoterank list is: 2
+my (37) remoterank list is: 0
+my (37) remoterank list is: 46
+my (37) remoterank list is: 44
+my (37) remoterank list is: 42
+my (37) remoterank list is: 40
+my (37) remoterank list is: 38
+# process 37 on host lcsc-r07n03 reports for duty with commflag 1
+my (5) remoterank list is: 26
+my (5) remoterank list is: 24
+my (5) remoterank list is: 22
+my (5) remoterank list is: 20
+my (5) remoterank list is: 18
+my (5) remoterank list is: 16
+my (5) remoterank list is: 14
+my (5) remoterank list is: 12
+my (5) remoterank list is: 10
+my (5) remoterank list is: 8
+my (5) remoterank list is: 6
+# process 5 on host lcsc-r02n03 reports for duty with commflag 1
+my (32) remoterank list is: 15
+my (32) remoterank list is: 17
+my (32) remoterank list is: 19
+my (32) remoterank list is: 21
+my (32) remoterank list is: 23
+my (32) remoterank list is: 25
+my (32) remoterank list is: 27
+my (32) remoterank list is: 29
+my (32) remoterank list is: 31
+# process 32 on host lcsc-r07n01 reports for duty with commflag 0
+I am sender 24
+my (24) remoterank list is: 27
+my (24) remoterank list is: 29
+my (24) remoterank list is: 31
+my (24) remoterank list is: 33
+my (24) remoterank list is: 35
+my (24) remoterank list is: 37
+my (24) remoterank list is: 39
+my (24) remoterank list is: 41
+my (24) remoterank list is: 43
+my (24) remoterank list is: 45
+my (24) remoterank list is: 47
+my (24) remoterank list is: 1
+my (24) remoterank list is: 3
+I am sender 0
+my (0) remoterank list is: 3
+my (0) remoterank list is: 5
+my (0) remoterank list is: 7
+my (0) remoterank list is: 9
+my (0) remoterank list is: 11
+my (0) remoterank list is: 13
+my (0) remoterank list is: 15
+my (0) remoterank list is: 17
+my (0) remoterank list is: 19
+my (0) remoterank list is: 21
+my (0) remoterank list is: 23
+my (0) remoterank list is: 25
+my (0) remoterank list is: 27
+my (0) remoterank list is: 29
+my (0) remoterank list is: 31
+my (0) remoterank list is: 33
+my (0) remoterank list is: 35
+my (0) remoterank list is: 37
+my (0) remoterank list is: 39
+my (0) remoterank list is: 41
+my (0) remoterank list is: 43
+my (0) remoterank list is: 45
+my (0) remoterank list is: 47
+# process 0 on host lcsc-r02n01 reports for duty with commflag 0
+I am sender 10
+my (10) remoterank list is: 13
+my (10) remoterank list is: 15
+my (10) remoterank list is: 17
+my (10) remoterank list is: 19
+my (10) remoterank list is: 21
+my (10) remoterank list is: 23
+my (10) remoterank list is: 25
+my (10) remoterank list is: 27
+my (10) remoterank list is: 29
+my (10) remoterank list is: 31
+my (10) remoterank list is: 33
+my (10) remoterank list is: 35
+my (10) remoterank list is: 37
+my (10) remoterank list is: 39
+I am sender 30
+my (30) remoterank list is: 33
+my (30) remoterank list is: 35
+my (30) remoterank list is: 37
+my (30) remoterank list is: 39
+my (30) remoterank list is: 41
+my (30) remoterank list is: 43
+my (30) remoterank list is: 45
+I am sender 18
+my (18) remoterank list is: 21
+my (18) remoterank list is: 23
+my (18) remoterank list is: 25
+my (18) remoterank list is: 27
+my (18) remoterank list is: 29
+my (18) remoterank list is: 31
+my (18) remoterank list is: 33
+my (18) remoterank list is: 35
+my (18) remoterank list is: 37
+my (18) remoterank list is: 39
+my (18) remoterank list is: 41
+my (18) remoterank list is: 43
+my (18) remoterank list is: 45
+my (18) remoterank list is: 47
+my (18) remoterank list is: 1
+my (18) remoterank list is: 3
+my (18) remoterank list is: 5
+my (18) remoterank list is: 7
+my (18) remoterank list is: 9
+my (18) remoterank list is: 11
+my (18) remoterank list is: 13
+my (18) remoterank list is: 15
+I am sender 42
+my (42) remoterank list is: 45
+my (42) remoterank list is: 47
+my (42) remoterank list is: 1
+my (42) remoterank list is: 3
+my (42) remoterank list is: 5
+my (42) remoterank list is: 7
+my (42) remoterank list is: 9
+my (42) remoterank list is: 11
+I am sender 16
+my (16) remoterank list is: 19
+my (16) remoterank list is: 21
+my (16) remoterank list is: 23
+my (16) remoterank list is: 25
+my (16) remoterank list is: 27
+my (16) remoterank list is: 29
+my (16) remoterank list is: 31
+my (16) remoterank list is: 33
+my (16) remoterank list is: 35
+my (16) remoterank list is: 37
+my (16) remoterank list is: 39
+my (16) remoterank list is: 41
+my (16) remoterank list is: 43
+my (16) remoterank list is: 45
+my (16) remoterank list is: 47
+my (16) remoterank list is: 1
+my (16) remoterank list is: 3
+my (16) remoterank list is: 5
+my (16) remoterank list is: 7
+my (16) remoterank list is: 9
+my (16) remoterank list is: 11
+my (16) remoterank list is: 13
+my (16) remoterank list is: 15
+my (24) remoterank list is: 5
+my (24) remoterank list is: 7
+my (24) remoterank list is: 9
+my (24) remoterank list is: 11
+my (24) remoterank list is: 13
+my (24) remoterank list is: 15
+my (24) remoterank list is: 17
+my (24) remoterank list is: 19
+my (24) remoterank list is: 21
+my (24) remoterank list is: 23
+I am receiver 45
+my (45) remoterank list is: 42
+my (45) remoterank list is: 40
+my (45) remoterank list is: 38
+my (45) remoterank list is: 36
+my (45) remoterank list is: 34
+my (45) remoterank list is: 32
+my (45) remoterank list is: 30
+my (45) remoterank list is: 28
+my (45) remoterank list is: 26
+my (45) remoterank list is: 24
+my (45) remoterank list is: 22
+I am sender 46
+my (46) remoterank list is: 1
+my (46) remoterank list is: 3
+my (46) remoterank list is: 5
+my (46) remoterank list is: 7
+my (46) remoterank list is: 9
+my (46) remoterank list is: 11
+I am receiver 29
+my (29) remoterank list is: 26
+my (29) remoterank list is: 24
+my (29) remoterank list is: 22
+my (29) remoterank list is: 20
+my (29) remoterank list is: 18
+my (29) remoterank list is: 16
+my (29) remoterank list is: 14
+my (29) remoterank list is: 12
+my (42) remoterank list is: 13
+my (42) remoterank list is: 15
+my (42) remoterank list is: 17
+my (42) remoterank list is: 19
+my (42) remoterank list is: 21
+my (42) remoterank list is: 23
+my (42) remoterank list is: 25
+my (42) remoterank list is: 27
+my (42) remoterank list is: 29
+my (42) remoterank list is: 31
+my (42) remoterank list is: 33
+my (42) remoterank list is: 35
+my (42) remoterank list is: 37
+my (42) remoterank list is: 39
+my (42) remoterank list is: 41
+# process 42 on host lcsc-r08n02 reports for duty with commflag 0
+# process 16 on host lcsc-r04n01 reports for duty with commflag 0
+# process 24 on host lcsc-r06n01 reports for duty with commflag 0
+my (45) remoterank list is: 20
+my (45) remoterank list is: 18
+my (45) remoterank list is: 16
+my (45) remoterank list is: 14
+my (45) remoterank list is: 12
+my (45) remoterank list is: 10
+my (45) remoterank list is: 8
+my (45) remoterank list is: 6
+my (45) remoterank list is: 4
+my (45) remoterank list is: 2
+my (45) remoterank list is: 0
+my (45) remoterank list is: 46
+# process 45 on host lcsc-r08n03 reports for duty with commflag 1
+my (46) remoterank list is: 13
+my (46) remoterank list is: 15
+my (46) remoterank list is: 17
+my (46) remoterank list is: 19
+my (46) remoterank list is: 21
+my (46) remoterank list is: 23
+my (46) remoterank list is: 25
+my (46) remoterank list is: 27
+my (46) remoterank list is: 29
+my (46) remoterank list is: 31
+my (46) remoterank list is: 33
+my (46) remoterank list is: 35
+my (46) remoterank list is: 37
+my (46) remoterank list is: 39
+my (46) remoterank list is: 41
+my (46) remoterank list is: 43
+my (46) remoterank list is: 45
+my (29) remoterank list is: 10
+my (29) remoterank list is: 8
+my (29) remoterank list is: 6
+my (29) remoterank list is: 4
+my (29) remoterank list is: 2
+my (29) remoterank list is: 0
+my (29) remoterank list is: 46
+my (29) remoterank list is: 44
+my (29) remoterank list is: 42
+my (29) remoterank list is: 40
+my (29) remoterank list is: 38
+my (29) remoterank list is: 36
+my (29) remoterank list is: 34
+my (29) remoterank list is: 32
+my (29) remoterank list is: 30
+# process 29 on host lcsc-r06n03 reports for duty with commflag 1
+my (10) remoterank list is: 41
+my (10) remoterank list is: 43
+my (10) remoterank list is: 45
+my (10) remoterank list is: 47
+my (10) remoterank list is: 1
+my (10) remoterank list is: 3
+my (10) remoterank list is: 5
+my (10) remoterank list is: 7
+my (10) remoterank list is: 9
+# process 10 on host lcsc-r03n02 reports for duty with commflag 0
+my (30) remoterank list is: 47
+my (30) remoterank list is: 1
+my (30) remoterank list is: 3
+my (30) remoterank list is: 5
+my (30) remoterank list is: 7
+my (30) remoterank list is: 9
+my (30) remoterank list is: 11
+my (30) remoterank list is: 13
+my (30) remoterank list is: 15
+my (30) remoterank list is: 17
+my (30) remoterank list is: 19
+my (30) remoterank list is: 21
+my (30) remoterank list is: 23
+my (30) remoterank list is: 25
+my (30) remoterank list is: 27
+my (30) remoterank list is: 29
+my (18) remoterank list is: 17
+# process 18 on host lcsc-r04n02 reports for duty with commflag 0
+I am receiver 23
+my (23) remoterank list is: 20
+my (23) remoterank list is: 18
+my (23) remoterank list is: 16
+my (23) remoterank list is: 14
+my (23) remoterank list is: 12
+my (23) remoterank list is: 10
+my (23) remoterank list is: 8
+my (23) remoterank list is: 6
+my (23) remoterank list is: 4
+my (23) remoterank list is: 2
+my (23) remoterank list is: 0
+my (23) remoterank list is: 46
+my (23) remoterank list is: 44
+# process 30 on host lcsc-r06n04 reports for duty with commflag 0
+# process 46 on host lcsc-r08n04 reports for duty with commflag 0
+my (23) remoterank list is: 42
+my (23) remoterank list is: 40
+my (23) remoterank list is: 38
+my (23) remoterank list is: 36
+my (23) remoterank list is: 34
+my (23) remoterank list is: 32
+my (23) remoterank list is: 30
+my (23) remoterank list is: 28
+my (23) remoterank list is: 26
+my (23) remoterank list is: 24
+# process 23 on host lcsc-r04n04 reports for duty with commflag 1
+I am receiver 7
+my (7) remoterank list is: 4
+my (7) remoterank list is: 2
+my (7) remoterank list is: 0
+my (7) remoterank list is: 46
+my (7) remoterank list is: 44
+my (7) remoterank list is: 42
+my (7) remoterank list is: 40
+my (7) remoterank list is: 38
+my (7) remoterank list is: 36
+my (7) remoterank list is: 34
+my (7) remoterank list is: 32
+my (7) remoterank list is: 30
+my (7) remoterank list is: 28
+my (7) remoterank list is: 26
+my (7) remoterank list is: 24
+my (7) remoterank list is: 22
+my (7) remoterank list is: 20
+my (7) remoterank list is: 18
+my (7) remoterank list is: 16
+my (7) remoterank list is: 14
+my (7) remoterank list is: 12
+my (7) remoterank list is: 10
+my (7) remoterank list is: 8
+# process 7 on host lcsc-r02n04 reports for duty with commflag 1
+I am receiver 9
+my (9) remoterank list is: 6
+my (9) remoterank list is: 4
+my (9) remoterank list is: 2
+my (9) remoterank list is: 0
+my (9) remoterank list is: 46
+my (9) remoterank list is: 44
+my (9) remoterank list is: 42
+my (9) remoterank list is: 40
+my (9) remoterank list is: 38
+my (9) remoterank list is: 36
+my (9) remoterank list is: 34
+my (9) remoterank list is: 32
+my (9) remoterank list is: 30
+my (9) remoterank list is: 28
+I am receiver 41
+my (41) remoterank list is: 38
+my (41) remoterank list is: 36
+my (41) remoterank list is: 34
+my (41) remoterank list is: 32
+my (41) remoterank list is: 30
+my (41) remoterank list is: 28
+my (41) remoterank list is: 26
+my (41) remoterank list is: 24
+my (41) remoterank list is: 22
+my (41) remoterank list is: 20
+my (41) remoterank list is: 18
+my (9) remoterank list is: 26
+my (9) remoterank list is: 24
+my (9) remoterank list is: 22
+my (9) remoterank list is: 20
+my (9) remoterank list is: 18
+my (9) remoterank list is: 16
+my (9) remoterank list is: 14
+my (9) remoterank list is: 12
+my (9) remoterank list is: 10
+# process 9 on host lcsc-r03n01 reports for duty with commflag 1
+my (41) remoterank list is: 16
+my (41) remoterank list is: 14
+my (41) remoterank list is: 12
+my (41) remoterank list is: 10
+my (41) remoterank list is: 8
+my (41) remoterank list is: 6
+my (41) remoterank list is: 4
+my (41) remoterank list is: 2
+my (41) remoterank list is: 0
+my (41) remoterank list is: 46
+my (41) remoterank list is: 44
+my (41) remoterank list is: 42
+# process 41 on host lcsc-r08n01 reports for duty with commflag 1
+I am sender 38
+my (38) remoterank list is: 41
+my (38) remoterank list is: 43
+my (38) remoterank list is: 45
+my (38) remoterank list is: 47
+my (38) remoterank list is: 1
+my (38) remoterank list is: 3
+my (38) remoterank list is: 5
+my (38) remoterank list is: 7
+my (38) remoterank list is: 9
+my (38) remoterank list is: 11
+my (38) remoterank list is: 13
+my (38) remoterank list is: 15
+my (38) remoterank list is: 17
+I am sender 22
+my (22) remoterank list is: 25
+my (22) remoterank list is: 27
+my (22) remoterank list is: 29
+my (22) remoterank list is: 31
+my (22) remoterank list is: 33
+my (22) remoterank list is: 35
+my (22) remoterank list is: 37
+my (22) remoterank list is: 39
+my (22) remoterank list is: 41
+my (22) remoterank list is: 43
+my (22) remoterank list is: 45
+my (22) remoterank list is: 47
+my (22) remoterank list is: 1
+my (22) remoterank list is: 3
+my (22) remoterank list is: 5
+my (22) remoterank list is: 7
+my (22) remoterank list is: 9
+my (22) remoterank list is: 11
+my (22) remoterank list is: 13
+my (22) remoterank list is: 15
+my (22) remoterank list is: 17
+my (22) remoterank list is: 19
+my (22) remoterank list is: 21
+# process 22 on host lcsc-r04n04 reports for duty with commflag 0
+my (38) remoterank list is: 19
+my (38) remoterank list is: 21
+my (38) remoterank list is: 23
+my (38) remoterank list is: 25
+my (38) remoterank list is: 27
+my (38) remoterank list is: 29
+my (38) remoterank list is: 31
+my (38) remoterank list is: 33
+my (38) remoterank list is: 35
+my (38) remoterank list is: 37
+# process 38 on host lcsc-r07n04 reports for duty with commflag 0
+I am sender 6
+my (6) remoterank list is: 9
+my (6) remoterank list is: 11
+my (6) remoterank list is: 13
+my (6) remoterank list is: 15
+my (6) remoterank list is: 17
+my (6) remoterank list is: 19
+my (6) remoterank list is: 21
+my (6) remoterank list is: 23
+my (6) remoterank list is: 25
+my (6) remoterank list is: 27
+my (6) remoterank list is: 29
+my (6) remoterank list is: 31
+my (6) remoterank list is: 33
+my (6) remoterank list is: 35
+my (6) remoterank list is: 37
+my (6) remoterank list is: 39
+my (6) remoterank list is: 41
+my (6) remoterank list is: 43
+my (6) remoterank list is: 45
+my (6) remoterank list is: 47
+my (6) remoterank list is: 1
+my (6) remoterank list is: 3
+my (6) remoterank list is: 5
+# process 6 on host lcsc-r02n04 reports for duty with commflag 0
+I am sender 40
+my (40) remoterank list is: 43
+my (40) remoterank list is: 45
+my (40) remoterank list is: 47
+my (40) remoterank list is: 1
+my (40) remoterank list is: 3
+my (40) remoterank list is: 5
+my (40) remoterank list is: 7
+I am sender 8
+my (8) remoterank list is: 11
+my (8) remoterank list is: 13
+my (8) remoterank list is: 15
+my (8) remoterank list is: 17
+my (8) remoterank list is: 19
+my (8) remoterank list is: 21
+my (8) remoterank list is: 23
+my (8) remoterank list is: 25
+my (8) remoterank list is: 27
+my (8) remoterank list is: 29
+my (8) remoterank list is: 31
+my (8) remoterank list is: 33
+my (8) remoterank list is: 35
+my (8) remoterank list is: 37
+my (8) remoterank list is: 39
+my (8) remoterank list is: 41
+my (8) remoterank list is: 43
+my (8) remoterank list is: 45
+my (8) remoterank list is: 47
+my (8) remoterank list is: 1
+my (8) remoterank list is: 3
+my (8) remoterank list is: 5
+my (8) remoterank list is: 7
+# process 8 on host lcsc-r03n01 reports for duty with commflag 0
+my (40) remoterank list is: 9
+my (40) remoterank list is: 11
+my (40) remoterank list is: 13
+my (40) remoterank list is: 15
+my (40) remoterank list is: 17
+my (40) remoterank list is: 19
+my (40) remoterank list is: 21
+my (40) remoterank list is: 23
+my (40) remoterank list is: 25
+my (40) remoterank list is: 27
+my (40) remoterank list is: 29
+my (40) remoterank list is: 31
+my (40) remoterank list is: 33
+my (40) remoterank list is: 35
+my (40) remoterank list is: 37
+my (40) remoterank list is: 39
+# process 40 on host lcsc-r08n01 reports for duty with commflag 0
+I am sender 2
+my (2) remoterank list is: 5
+my (2) remoterank list is: 7
+my (2) remoterank list is: 9
+my (2) remoterank list is: 11
+my (2) remoterank list is: 13
+my (2) remoterank list is: 15
+my (2) remoterank list is: 17
+my (2) remoterank list is: 19
+my (2) remoterank list is: 21
+my (2) remoterank list is: 23
+my (2) remoterank list is: 25
+my (2) remoterank list is: 27
+my (2) remoterank list is: 29
+my (2) remoterank list is: 31
+my (2) remoterank list is: 33
+my (2) remoterank list is: 35
+my (2) remoterank list is: 37
+my (2) remoterank list is: 39
+I am sender 34
+my (34) remoterank list is: 37
+my (34) remoterank list is: 39
+my (34) remoterank list is: 41
+my (34) remoterank list is: 43
+my (34) remoterank list is: 45
+my (34) remoterank list is: 47
+my (34) remoterank list is: 1
+my (34) remoterank list is: 3
+my (2) remoterank list is: 41
+my (2) remoterank list is: 43
+my (2) remoterank list is: 45
+my (2) remoterank list is: 47
+my (2) remoterank list is: 1
+# process 2 on host lcsc-r02n02 reports for duty with commflag 0
+my (34) remoterank list is: 5
+my (34) remoterank list is: 7
+my (34) remoterank list is: 9
+my (34) remoterank list is: 11
+my (34) remoterank list is: 13
+my (34) remoterank list is: 15
+my (34) remoterank list is: 17
+my (34) remoterank list is: 19
+my (34) remoterank list is: 21
+my (34) remoterank list is: 23
+my (34) remoterank list is: 25
+my (34) remoterank list is: 27
+my (34) remoterank list is: 29
+my (34) remoterank list is: 31
+my (34) remoterank list is: 33
+# process 34 on host lcsc-r07n02 reports for duty with commflag 0
+I am receiver 27
+my (27) remoterank list is: 24
+my (27) remoterank list is: 22
+my (27) remoterank list is: 20
+my (27) remoterank list is: 18
+my (27) remoterank list is: 16
+my (27) remoterank list is: 14
+my (27) remoterank list is: 12
+my (27) remoterank list is: 10
+my (27) remoterank list is: 8
+my (27) remoterank list is: 6
+my (27) remoterank list is: 4
+my (27) remoterank list is: 2
+my (27) remoterank list is: 0
+my (27) remoterank list is: 46
+my (27) remoterank list is: 44
+my (27) remoterank list is: 42
+my (27) remoterank list is: 40
+my (27) remoterank list is: 38
+my (27) remoterank list is: 36
+my (27) remoterank list is: 34
+my (27) remoterank list is: 32
+my (27) remoterank list is: 30
+my (27) remoterank list is: 28
+# process 27 on host lcsc-r06n02 reports for duty with commflag 1
+I am receiver 3
+my (3) remoterank list is: 0
+my (3) remoterank list is: 46
+my (3) remoterank list is: 44
+my (3) remoterank list is: 42
+my (3) remoterank list is: 40
+my (3) remoterank list is: 38
+my (3) remoterank list is: 36
+my (3) remoterank list is: 34
+my (3) remoterank list is: 32
+my (3) remoterank list is: 30
+my (3) remoterank list is: 28
+my (3) remoterank list is: 26
+my (3) remoterank list is: 24
+my (3) remoterank list is: 22
+my (3) remoterank list is: 20
+my (3) remoterank list is: 18
+my (3) remoterank list is: 16
+my (3) remoterank list is: 14
+my (3) remoterank list is: 12
+my (3) remoterank list is: 10
+my (3) remoterank list is: 8
+my (3) remoterank list is: 6
+my (3) remoterank list is: 4
+# process 3 on host lcsc-r02n02 reports for duty with commflag 1
+I am receiver 19
+my (19) remoterank list is: 16
+my (19) remoterank list is: 14
+my (19) remoterank list is: 12
+my (19) remoterank list is: 10
+my (19) remoterank list is: 8
+my (19) remoterank list is: 6
+my (19) remoterank list is: 4
+my (19) remoterank list is: 2
+my (19) remoterank list is: 0
+my (19) remoterank list is: 46
+my (19) remoterank list is: 44
+my (19) remoterank list is: 42
+I am receiver 35
+my (35) remoterank list is: 32
+my (35) remoterank list is: 30
+my (35) remoterank list is: 28
+my (35) remoterank list is: 26
+my (35) remoterank list is: 24
+my (35) remoterank list is: 22
+my (35) remoterank list is: 20
+my (35) remoterank list is: 18
+my (35) remoterank list is: 16
+my (35) remoterank list is: 14
+my (35) remoterank list is: 12
+my (35) remoterank list is: 10
+my (35) remoterank list is: 8
+my (35) remoterank list is: 6
+my (35) remoterank list is: 4
+my (35) remoterank list is: 2
+my (35) remoterank list is: 0
+my (35) remoterank list is: 46
+my (35) remoterank list is: 44
+my (35) remoterank list is: 42
+my (35) remoterank list is: 40
+my (35) remoterank list is: 38
+my (19) remoterank list is: 40
+my (19) remoterank list is: 38
+my (19) remoterank list is: 36
+my (19) remoterank list is: 34
+my (19) remoterank list is: 32
+my (19) remoterank list is: 30
+my (19) remoterank list is: 28
+my (19) remoterank list is: 26
+my (19) remoterank list is: 24
+my (19) remoterank list is: 22
+my (19) remoterank list is: 20
+# process 19 on host lcsc-r04n02 reports for duty with commflag 1
+I am receiver 43
+my (43) remoterank list is: 40
+my (43) remoterank list is: 38
+my (43) remoterank list is: 36
+my (43) remoterank list is: 34
+my (43) remoterank list is: 32
+my (43) remoterank list is: 30
+my (43) remoterank list is: 28
+my (43) remoterank list is: 26
+my (43) remoterank list is: 24
+my (43) remoterank list is: 22
+my (43) remoterank list is: 20
+my (43) remoterank list is: 18
+my (35) remoterank list is: 36
+# process 35 on host lcsc-r07n02 reports for duty with commflag 1
+I am receiver 11
+my (11) remoterank list is: 8
+my (11) remoterank list is: 6
+my (11) remoterank list is: 4
+my (11) remoterank list is: 2
+my (11) remoterank list is: 0
+my (11) remoterank list is: 46
+my (11) remoterank list is: 44
+my (11) remoterank list is: 42
+my (11) remoterank list is: 40
+my (11) remoterank list is: 38
+my (11) remoterank list is: 36
+my (11) remoterank list is: 34
+my (11) remoterank list is: 32
+my (11) remoterank list is: 30
+my (11) remoterank list is: 28
+my (11) remoterank list is: 26
+my (11) remoterank list is: 24
+my (11) remoterank list is: 22
+my (11) remoterank list is: 20
+my (11) remoterank list is: 18
+my (11) remoterank list is: 16
+my (11) remoterank list is: 14
+my (11) remoterank list is: 12
+# process 11 on host lcsc-r03n02 reports for duty with commflag 1
+my (43) remoterank list is: 16
+my (43) remoterank list is: 14
+my (43) remoterank list is: 12
+my (43) remoterank list is: 10
+my (43) remoterank list is: 8
+my (43) remoterank list is: 6
+my (43) remoterank list is: 4
+my (43) remoterank list is: 2
+my (43) remoterank list is: 0
+my (43) remoterank list is: 46
+my (43) remoterank list is: 44
+# process 43 on host lcsc-r08n02 reports for duty with commflag 1
+I am sender 12
+my (12) remoterank list is: 15
+my (12) remoterank list is: 17
+my (12) remoterank list is: 19
+my (12) remoterank list is: 21
+my (12) remoterank list is: 23
+my (12) remoterank list is: 25
+my (12) remoterank list is: 27
+my (12) remoterank list is: 29
+my (12) remoterank list is: 31
+my (12) remoterank list is: 33
+my (12) remoterank list is: 35
+my (12) remoterank list is: 37
+my (12) remoterank list is: 39
+my (12) remoterank list is: 41
+my (12) remoterank list is: 43
+my (12) remoterank list is: 45
+my (12) remoterank list is: 47
+my (12) remoterank list is: 1
+my (12) remoterank list is: 3
+my (12) remoterank list is: 5
+my (12) remoterank list is: 7
+my (12) remoterank list is: 9
+my (12) remoterank list is: 11
+# process 12 on host lcsc-r03n07 reports for duty with commflag 0
+I am sender 20
+my (20) remoterank list is: 23
+my (20) remoterank list is: 25
+my (20) remoterank list is: 27
+my (20) remoterank list is: 29
+my (20) remoterank list is: 31
+my (20) remoterank list is: 33
+my (20) remoterank list is: 35
+my (20) remoterank list is: 37
+my (20) remoterank list is: 39
+my (20) remoterank list is: 41
+my (20) remoterank list is: 43
+my (20) remoterank list is: 45
+my (20) remoterank list is: 47
+my (20) remoterank list is: 1
+my (20) remoterank list is: 3
+my (20) remoterank list is: 5
+my (20) remoterank list is: 7
+my (20) remoterank list is: 9
+my (20) remoterank list is: 11
+my (20) remoterank list is: 13
+my (20) remoterank list is: 15
+my (20) remoterank list is: 17
+my (20) remoterank list is: 19
+# process 20 on host lcsc-r04n03 reports for duty with commflag 0
+I am sender 44
+my (44) remoterank list is: 47
+my (44) remoterank list is: 1
+my (44) remoterank list is: 3
+my (44) remoterank list is: 5
+my (44) remoterank list is: 7
+my (44) remoterank list is: 9
+my (44) remoterank list is: 11
+my (44) remoterank list is: 13
+my (44) remoterank list is: 15
+I am sender 28
+my (28) remoterank list is: 31
+my (28) remoterank list is: 33
+my (28) remoterank list is: 35
+my (28) remoterank list is: 37
+my (28) remoterank list is: 39
+my (28) remoterank list is: 41
+my (28) remoterank list is: 43
+my (28) remoterank list is: 45
+my (28) remoterank list is: 47
+my (44) remoterank list is: 17
+my (44) remoterank list is: 19
+my (44) remoterank list is: 21
+my (44) remoterank list is: 23
+my (44) remoterank list is: 25
+my (44) remoterank list is: 27
+my (44) remoterank list is: 29
+my (44) remoterank list is: 31
+my (44) remoterank list is: 33
+my (44) remoterank list is: 35
+my (44) remoterank list is: 37
+my (44) remoterank list is: 39
+my (44) remoterank list is: 41
+my (44) remoterank list is: 43
+# process 44 on host lcsc-r08n03 reports for duty with commflag 0
+my (28) remoterank list is: 1
+my (28) remoterank list is: 3
+my (28) remoterank list is: 5
+my (28) remoterank list is: 7
+my (28) remoterank list is: 9
+my (28) remoterank list is: 11
+my (28) remoterank list is: 13
+my (28) remoterank list is: 15
+my (28) remoterank list is: 17
+my (28) remoterank list is: 19
+my (28) remoterank list is: 21
+my (28) remoterank list is: 23
+my (28) remoterank list is: 25
+my (28) remoterank list is: 27
+# process 28 on host lcsc-r06n03 reports for duty with commflag 0
+I am sender 4
+my (4) remoterank list is: 7
+my (4) remoterank list is: 9
+my (4) remoterank list is: 11
+my (4) remoterank list is: 13
+my (4) remoterank list is: 15
+my (4) remoterank list is: 17
+my (4) remoterank list is: 19
+my (4) remoterank list is: 21
+my (4) remoterank list is: 23
+my (4) remoterank list is: 25
+my (4) remoterank list is: 27
+my (4) remoterank list is: 29
+my (4) remoterank list is: 31
+my (4) remoterank list is: 33
+my (4) remoterank list is: 35
+my (4) remoterank list is: 37
+my (4) remoterank list is: 39
+my (4) remoterank list is: 41
+I am sender 36
+my (36) remoterank list is: 39
+my (36) remoterank list is: 41
+my (36) remoterank list is: 43
+my (36) remoterank list is: 45
+my (36) remoterank list is: 47
+my (36) remoterank list is: 1
+my (36) remoterank list is: 3
+my (36) remoterank list is: 5
+my (36) remoterank list is: 7
+my (36) remoterank list is: 9
+my (36) remoterank list is: 11
+my (36) remoterank list is: 13
+my (36) remoterank list is: 15
+my (4) remoterank list is: 43
+my (4) remoterank list is: 45
+my (4) remoterank list is: 47
+my (4) remoterank list is: 1
+my (4) remoterank list is: 3
+# process 4 on host lcsc-r02n03 reports for duty with commflag 0
+my (36) remoterank list is: 17
+my (36) remoterank list is: 19
+my (36) remoterank list is: 21
+my (36) remoterank list is: 23
+my (36) remoterank list is: 25
+my (36) remoterank list is: 27
+my (36) remoterank list is: 29
+my (36) remoterank list is: 31
+my (36) remoterank list is: 33
+my (36) remoterank list is: 35
+# process 36 on host lcsc-r07n03 reports for duty with commflag 0
+I am 0 and my rank in the newgroup is 0
+I am 1 and my rank in the newgroup is 1
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+I am 5 and my rank in the newgroup is 5
+pinning all processes to numa_node 0
+I am 19 and my rank in the newgroup is 19
+I am 43 and my rank in the newgroup is 43
+I am 17 and my rank in the newgroup is 17
+I am 7 and my rank in the newgroup is 7
+pinning all processes to numa_node 0
+I am 25 and my rank in the newgroup is 25
+I am 9 and my rank in the newgroup is 9
+I am 2 and my rank in the newgroup is 2
+I am 26 and my rank in the newgroup is 26
+pinning all processes to numa_node 0
+I am 45 and my rank in the newgroup is 45
+pinning all processes to numa_node 0
+I am 13 and my rank in the newgroup is 13
+pinning all processes to numa_node 0
+I am 34 and my rank in the newgroup is 34
+I am 41 and my rank in the newgroup is 41
+I am 47 and my rank in the newgroup is 47
+pinning all processes to numa_node 0
+I am 29 and my rank in the newgroup is 29
+I am 33 and my rank in the newgroup is 33
+I am 37 and my rank in the newgroup is 37
+I am 22 and my rank in the newgroup is 22
+I am 10 and my rank in the newgroup is 10
+I am 31 and my rank in the newgroup is 31
+I am 39 and my rank in the newgroup is 39
+pinning all processes to numa_node 0
+I am 15 and my rank in the newgroup is 15
+pinning all processes to numa_node 0
+I am 20 and my rank in the newgroup is 20
+I am 23 and my rank in the newgroup is 23
+pinning all processes to numa_node 0
+I am 11 and my rank in the newgroup is 11
+pinning all processes to numa_node 0
+I am 30 and my rank in the newgroup is 30
+I am 38 and my rank in the newgroup is 38
+pinning all processes to numa_node 0
+I am 14 and my rank in the newgroup is 14
+pinning all processes to numa_node 0
+I am 21 and my rank in the newgroup is 21
+pinning all processes to numa_node 0
+I am 4 and my rank in the newgroup is 4
+I am 18 and my rank in the newgroup is 18
+pinning all processes to numa_node 0
+I am 42 and my rank in the newgroup is 42
+pinning all processes to numa_node 0
+I am 16 and my rank in the newgroup is 16
+I am 6 and my rank in the newgroup is 6
+pinning all processes to numa_node 0
+I am 24 and my rank in the newgroup is 24
+pinning all processes to numa_node 0
+I am 8 and my rank in the newgroup is 8
+pinning all processes to numa_node 0
+I am 3 and my rank in the newgroup is 3
+pinning all processes to numa_node 0
+I am 27 and my rank in the newgroup is 27
+pinning all processes to numa_node 0
+I am 44 and my rank in the newgroup is 44
+pinning all processes to numa_node 0
+I am 12 and my rank in the newgroup is 12
+I am 35 and my rank in the newgroup is 35
+pinning all processes to numa_node 0
+I am 40 and my rank in the newgroup is 40
+I am 46 and my rank in the newgroup is 46
+pinning all processes to numa_node 0
+I am 28 and my rank in the newgroup is 28
+I am 32 and my rank in the newgroup is 32
+pinning all processes to numa_node 0
+I am 36 and my rank in the newgroup is 36
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+pinning all processes to numa_node 0
+# allocating buffer...1
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...0
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...25
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...18
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...42
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...7
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...24
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...8
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...26
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...13
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...34
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...47
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...37
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...11
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...30
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...15
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...35
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...40
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...46
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...29
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...36
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...10
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...31
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...14
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...19
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...43
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...6
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...9
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...27
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...12
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...41
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...28
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...23
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...22
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...39
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...38
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...33
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...32
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...16
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...45
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...17
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...44
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...5
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...4
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...21
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...20
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...3
+# 17179869184 B allocated, initializing...
+
+# allocating buffer...2
+# 17179869184 B allocated, initializing...
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+# buffer initialized.
+
+#warmup 
+# buffer initialized.
+
+# buffer initialized.
+
+800 200 4 0.431503 - 0.00185398 - 0
+1600 200 8 0.00725508 - 0.220535 - 0
+3200 200 16 0.00722098 - 0.443153 - 0
+6400 200 32 0.00550103 - 1.16342 - 0
+12800 200 64 0.00477099 - 2.68288 - 0
+25600 200 128 0.0083189 - 3.07733 - 0
+51200 200 256 0.00847292 - 6.04278 - 0
+102400 200 512 0.00900698 - 11.369 - 0
+204800 200 1024 0.00665903 - 30.7552 - 0
+409600 200 2048 0.140058 - 2.9245 - 0
+819200 200 4096 0.020184 - 40.5865 - 0
+1638400 200 8192 0.02337 - 70.1069 - 0
+3276800 200 16384 0.71964 - 4.55339 - 0
+6553600 200 32768 0.323528 - 20.2567 - 0
+13107200 200 65536 0.341295 - 38.4043 - 0
+26214400 200 131072 0.395545 - 66.2741 - 0
+52428800 200 262144 0.501105 - 104.626 - 0
+104857600 200 524288 0.740809 - 141.545 - 0
+209715200 200 1048576 1.28692 - 162.959 - 0
+419430400 200 2097152 2.30842 - 181.696 - 0
+838860800 200 4194304 4.37007 - 191.956 - 0
+1677721600 200 8388608 8.8769 - 188.999 - 0
+3355443200 200 16777216 18.201 - 184.355 - 0
+6710886400 200 33554432 36.6359 - 183.178 - 0
+13421772800 200 67108864 73.6425 - 182.256 - 0
+26843545600 200 134217728 146.469 - 183.271 - 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+0. iteration-------------------
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 0 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 0 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 0 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 0 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 0 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 0 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 0 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 0 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 0 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 1 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 1 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 1 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 1 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 1 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 1 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 1 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 1 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 1 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 2 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 2 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 2 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 2 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 2 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 2 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 2 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 2 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 2 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 3 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 3 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 3 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 3 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 3 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 3 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 3 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 3 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 3 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 4 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 4 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 4 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 4 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 4 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 4 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 4 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 4 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 4 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 5 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 5 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 5 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 5 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 5 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 5 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 5 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 5 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 5 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 6 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 6 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 6 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 6 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 6 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 6 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 6 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 6 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 6 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 7 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 7 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 7 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 7 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 7 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 7 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 7 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 7 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 7 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.74 - 8 -   
+95829884928 7947 524288 23.0206 - 4162.79 - 8 -   
+95817826304 3973 1048576 22.8684 - 4189.96 - 8 -   
+95793709056 1986 2097152 23.026 - 4160.24 - 8 -   
+95793709056 993 4194304 23.0234 - 4160.7 - 8 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 8 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 8 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 8 -   
+95697240064 62 67108864 21.5355 - 4443.7 - 8 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.74 - 9 -   
+95829884928 7947 524288 23.0206 - 4162.79 - 9 -   
+95817826304 3973 1048576 22.8684 - 4189.96 - 9 -   
+95793709056 1986 2097152 23.026 - 4160.24 - 9 -   
+95793709056 993 4194304 23.0234 - 4160.7 - 9 -   
+95697240064 496 8388608 22.4932 - 4254.51 - 9 -   
+95697240064 248 16777216 21.9878 - 4352.3 - 9 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 9 -   
+95697240064 62 67108864 21.5355 - 4443.7 - 9 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 10 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 10 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 10 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 10 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 10 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 10 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 10 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 10 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 10 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 11 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 11 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 11 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 11 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 11 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 11 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 11 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 11 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 11 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 12 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 12 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 12 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 12 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 12 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 12 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 12 -   
+95697240064 124 33554432 21.2492 - 4503.56 - 12 -   
+95697240064 62 67108864 21.5354 - 4443.72 - 12 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 13 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 13 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 13 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 13 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 13 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 13 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 13 -   
+95697240064 124 33554432 21.2492 - 4503.56 - 13 -   
+95697240064 62 67108864 21.5354 - 4443.72 - 13 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 14 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 14 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 14 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 14 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 14 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 14 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 14 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 14 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 14 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 15 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 15 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 15 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 15 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 15 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 15 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 15 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 15 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 15 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 16 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 16 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 16 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 16 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 16 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 16 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 16 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 16 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 16 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 17 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 17 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 17 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 17 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 17 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 17 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 17 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 17 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 17 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 18 -   
+95829884928 7947 524288 23.0206 - 4162.8 - 18 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 18 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 18 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 18 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 18 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 18 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 18 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 18 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 19 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 19 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 19 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 19 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 19 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 19 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 19 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 19 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 19 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 20 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 20 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 20 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 20 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 20 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 20 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 20 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 20 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 20 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 21 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 21 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 21 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 21 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 21 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 21 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 21 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 21 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 21 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 22 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 22 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 22 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 22 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 22 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 22 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 22 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 22 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 22 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 23 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 23 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 23 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 23 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 23 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 23 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 23 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 23 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 23 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 24 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 24 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 24 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 24 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 24 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 24 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 24 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 24 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 24 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 25 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 25 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 25 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 25 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 25 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 25 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 25 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 25 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 25 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 26 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 26 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 26 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 26 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 26 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 26 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 26 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 26 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 26 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 27 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 27 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 27 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 27 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 27 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 27 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 27 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 27 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 27 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 28 -   
+95829884928 7947 524288 23.0206 - 4162.8 - 28 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 28 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 28 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 28 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 28 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 28 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 28 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 28 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 29 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 29 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 29 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 29 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 29 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 29 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 29 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 29 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 29 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 30 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 30 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 30 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 30 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 30 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 30 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 30 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 30 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 30 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 31 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 31 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 31 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 31 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 31 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 31 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 31 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 31 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 31 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 32 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 32 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 32 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 32 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 32 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 32 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 32 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 32 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 32 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 33 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 33 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 33 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 33 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 33 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 33 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 33 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 33 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 33 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 34 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 34 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 34 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 34 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 34 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 34 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 34 -   
+95697240064 124 33554432 21.2492 - 4503.56 - 34 -   
+95697240064 62 67108864 21.5354 - 4443.72 - 34 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 35 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 35 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 35 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 35 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 35 -   
+95697240064 496 8388608 22.4931 - 4254.52 - 35 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 35 -   
+95697240064 124 33554432 21.2492 - 4503.56 - 35 -   
+95697240064 62 67108864 21.5354 - 4443.72 - 35 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 36 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 36 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 36 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 36 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 36 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 36 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 36 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 36 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 36 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 37 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 37 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 37 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 37 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 37 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 37 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 37 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 37 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 37 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 38 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 38 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 38 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 38 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 38 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 38 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 38 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 38 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 38 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1991 - 4130.75 - 39 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 39 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 39 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 39 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 39 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 39 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 39 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 39 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 39 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 40 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 40 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 40 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 40 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 40 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 40 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 40 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 40 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 40 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 41 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 41 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 41 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 41 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 41 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 41 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 41 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 41 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 41 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 42 -   
+95829884928 7947 524288 23.0206 - 4162.79 - 42 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 42 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 42 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 42 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 42 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 42 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 42 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 42 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 43 -   
+95829884928 7947 524288 23.0206 - 4162.8 - 43 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 43 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 43 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 43 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 43 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 43 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 43 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 43 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 44 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 44 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 44 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 44 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 44 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 44 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 44 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 44 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 44 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 45 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 45 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 45 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 45 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 45 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 45 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 45 -   
+95697240064 124 33554432 21.2493 - 4503.56 - 45 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 45 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 46 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 46 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 46 -   
+95793709056 1986 2097152 23.026 - 4160.25 - 46 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 46 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 46 -   
+95697240064 248 16777216 21.9877 - 4352.3 - 46 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 46 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 46 -   
+
+
+
+# printing 0. statistical iteration
+95829884928 15894 262144 23.1992 - 4130.75 - 47 -   
+95829884928 7947 524288 23.0205 - 4162.8 - 47 -   
+95817826304 3973 1048576 22.8684 - 4189.97 - 47 -   
+95793709056 1986 2097152 23.0259 - 4160.25 - 47 -   
+95793709056 993 4194304 23.0234 - 4160.71 - 47 -   
+95697240064 496 8388608 22.4931 - 4254.51 - 47 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 47 -   
+95697240064 124 33554432 21.2493 - 4503.55 - 47 -   
+95697240064 62 67108864 21.5354 - 4443.71 - 47 -   
+
+
+
+#warmup 
+800 200 4 0.00409412 - 0.195402 - 0
+1600 200 8 0.00406194 - 0.393901 - 0
+3200 200 16 0.00400519 - 0.798963 - 0
+6400 200 32 0.00412107 - 1.553 - 0
+12800 200 64 0.0041151 - 3.11049 - 0
+25600 200 128 0.00474405 - 5.39623 - 0
+51200 200 256 0.00638294 - 8.02138 - 0
+102400 200 512 0.00862694 - 11.8698 - 0
+204800 200 1024 0.0060668 - 33.7575 - 0
+409600 200 2048 0.0119939 - 34.1507 - 0
+819200 200 4096 0.0141399 - 57.9354 - 0
+1638400 200 8192 0.0196249 - 83.4856 - 0
+3276800 200 16384 0.0213301 - 153.623 - 0
+6553600 200 32768 0.0362189 - 180.944 - 0
+13107200 200 65536 0.0693679 - 188.952 - 0
+26214400 200 131072 0.137267 - 190.974 - 0
+52428800 200 262144 0.276178 - 189.837 - 0
+104857600 200 524288 0.554411 - 189.133 - 0
+209715200 200 1048576 1.10208 - 190.291 - 0
+419430400 200 2097152 2.22929 - 188.145 - 0
+838860800 200 4194304 4.42277 - 189.668 - 0
+1677721600 200 8388608 9.06715 - 185.033 - 0
+3355443200 200 16777216 18.0484 - 185.914 - 0
+6710886400 200 33554432 36.1812 - 185.48 - 0
+13421772800 200 67108864 72.2059 - 185.882 - 0
+26843545600 200 134217728 144.776 - 185.415 - 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1. iteration-------------------
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 0 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 0 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 0 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 0 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 0 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 0 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 0 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 0 -   
+95697240064 62 67108864 21.2095 - 4512 - 0 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 1 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 1 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 1 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 1 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 1 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 1 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 1 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 1 -   
+95697240064 62 67108864 21.2095 - 4512 - 1 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 2 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 2 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 2 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 2 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 2 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 2 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 2 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 2 -   
+95697240064 62 67108864 21.2095 - 4512 - 2 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 3 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 3 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 3 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 3 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 3 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 3 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 3 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 3 -   
+95697240064 62 67108864 21.2095 - 4512 - 3 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 4 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 4 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 4 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 4 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 4 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 4 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 4 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 4 -   
+95697240064 62 67108864 21.2095 - 4512 - 4 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 5 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 5 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 5 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 5 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 5 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 5 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 5 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 5 -   
+95697240064 62 67108864 21.2095 - 4512 - 5 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 6 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 6 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 6 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 6 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 6 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 6 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 6 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 6 -   
+95697240064 62 67108864 21.2095 - 4512 - 6 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 7 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 7 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 7 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 7 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 7 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 7 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 7 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 7 -   
+95697240064 62 67108864 21.2095 - 4512 - 7 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 8 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 8 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 8 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 8 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 8 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 8 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 8 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 8 -   
+95697240064 62 67108864 21.2095 - 4512 - 8 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 9 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 9 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 9 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 9 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 9 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 9 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 9 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 9 -   
+95697240064 62 67108864 21.2095 - 4512 - 9 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 10 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 10 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 10 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 10 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 10 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 10 -   
+95697240064 248 16777216 21.9877 - 4352.32 - 10 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 10 -   
+95697240064 62 67108864 21.2095 - 4512 - 10 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 11 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 11 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 11 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 11 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 11 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 11 -   
+95697240064 248 16777216 21.9877 - 4352.32 - 11 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 11 -   
+95697240064 62 67108864 21.2095 - 4512 - 11 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 12 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 12 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 12 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 12 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 12 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 12 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 12 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 12 -   
+95697240064 62 67108864 21.2095 - 4512 - 12 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 13 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 13 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 13 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 13 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 13 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 13 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 13 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 13 -   
+95697240064 62 67108864 21.2095 - 4512 - 13 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 14 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 14 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 14 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 14 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 14 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 14 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 14 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 14 -   
+95697240064 62 67108864 21.2095 - 4512 - 14 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 15 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 15 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 15 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 15 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 15 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 15 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 15 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 15 -   
+95697240064 62 67108864 21.2095 - 4512 - 15 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 16 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 16 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 16 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 16 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 16 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 16 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 16 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 16 -   
+95697240064 62 67108864 21.2095 - 4512 - 16 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 17 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 17 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 17 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 17 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 17 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 17 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 17 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 17 -   
+95697240064 62 67108864 21.2095 - 4512 - 17 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 18 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 18 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 18 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 18 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 18 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 18 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 18 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 18 -   
+95697240064 62 67108864 21.2095 - 4512 - 18 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 19 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 19 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 19 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 19 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 19 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 19 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 19 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 19 -   
+95697240064 62 67108864 21.2095 - 4512 - 19 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 20 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 20 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 20 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 20 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 20 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 20 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 20 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 20 -   
+95697240064 62 67108864 21.2095 - 4512 - 20 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 21 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 21 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 21 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 21 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 21 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 21 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 21 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 21 -   
+95697240064 62 67108864 21.2095 - 4512 - 21 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 22 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 22 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 22 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 22 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 22 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 22 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 22 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 22 -   
+95697240064 62 67108864 21.2095 - 4512 - 22 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 23 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 23 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 23 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 23 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 23 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 23 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 23 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 23 -   
+95697240064 62 67108864 21.2095 - 4512 - 23 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 24 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 24 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 24 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 24 -   
+95793709056 993 4194304 23.0235 - 4160.68 - 24 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 24 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 24 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 24 -   
+95697240064 62 67108864 21.2095 - 4512 - 24 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 25 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 25 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 25 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 25 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 25 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 25 -   
+95697240064 248 16777216 21.9877 - 4352.32 - 25 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 25 -   
+95697240064 62 67108864 21.2095 - 4512 - 25 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 26 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 26 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 26 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 26 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 26 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 26 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 26 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 26 -   
+95697240064 62 67108864 21.2095 - 4512 - 26 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 27 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 27 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 27 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 27 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 27 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 27 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 27 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 27 -   
+95697240064 62 67108864 21.2095 - 4512 - 27 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 28 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 28 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 28 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 28 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 28 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 28 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 28 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 28 -   
+95697240064 62 67108864 21.2095 - 4512 - 28 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 29 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 29 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 29 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 29 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 29 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 29 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 29 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 29 -   
+95697240064 62 67108864 21.2095 - 4512 - 29 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 30 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 30 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 30 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 30 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 30 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 30 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 30 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 30 -   
+95697240064 62 67108864 21.2095 - 4512 - 30 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 31 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 31 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 31 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 31 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 31 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 31 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 31 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 31 -   
+95697240064 62 67108864 21.2095 - 4512 - 31 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 32 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 32 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 32 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 32 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 32 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 32 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 32 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 32 -   
+95697240064 62 67108864 21.2095 - 4512 - 32 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 33 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 33 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 33 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 33 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 33 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 33 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 33 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 33 -   
+95697240064 62 67108864 21.2095 - 4512 - 33 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.15 - 4139.51 - 34 -   
+95829884928 7947 524288 23.0217 - 4162.6 - 34 -   
+95817826304 3973 1048576 22.8647 - 4190.65 - 34 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 34 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 34 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 34 -   
+95697240064 248 16777216 21.9877 - 4352.32 - 34 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 34 -   
+95697240064 62 67108864 21.2095 - 4512.01 - 34 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.15 - 4139.51 - 35 -   
+95829884928 7947 524288 23.0217 - 4162.6 - 35 -   
+95817826304 3973 1048576 22.8647 - 4190.65 - 35 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 35 -   
+95793709056 993 4194304 23.0235 - 4160.69 - 35 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 35 -   
+95697240064 248 16777216 21.9877 - 4352.32 - 35 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 35 -   
+95697240064 62 67108864 21.2095 - 4512.01 - 35 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 36 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 36 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 36 -   
+95793709056 1986 2097152 23.0256 - 4160.31 - 36 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 36 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 36 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 36 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 36 -   
+95697240064 62 67108864 21.2095 - 4512 - 36 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 37 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 37 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 37 -   
+95793709056 1986 2097152 23.0256 - 4160.3 - 37 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 37 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 37 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 37 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 37 -   
+95697240064 62 67108864 21.2095 - 4512 - 37 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 38 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 38 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 38 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 38 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 38 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 38 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 38 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 38 -   
+95697240064 62 67108864 21.2095 - 4512 - 38 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 39 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 39 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 39 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 39 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 39 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 39 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 39 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 39 -   
+95697240064 62 67108864 21.2095 - 4512 - 39 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 40 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 40 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 40 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 40 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 40 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 40 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 40 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 40 -   
+95697240064 62 67108864 21.2095 - 4512 - 40 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 41 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 41 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 41 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 41 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 41 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 41 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 41 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 41 -   
+95697240064 62 67108864 21.2095 - 4512 - 41 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 42 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 42 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 42 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 42 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 42 -   
+95697240064 496 8388608 22.4923 - 4254.66 - 42 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 42 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 42 -   
+95697240064 62 67108864 21.2095 - 4512 - 42 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 43 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 43 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 43 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 43 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 43 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 43 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 43 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 43 -   
+95697240064 62 67108864 21.2095 - 4512 - 43 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 44 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 44 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 44 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 44 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 44 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 44 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 44 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 44 -   
+95697240064 62 67108864 21.2095 - 4512 - 44 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.51 - 45 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 45 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 45 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 45 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 45 -   
+95697240064 496 8388608 22.4923 - 4254.67 - 45 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 45 -   
+95697240064 124 33554432 21.2443 - 4504.6 - 45 -   
+95697240064 62 67108864 21.2095 - 4512 - 45 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 46 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 46 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 46 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 46 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 46 -   
+95697240064 496 8388608 22.4923 - 4254.66 - 46 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 46 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 46 -   
+95697240064 62 67108864 21.2095 - 4512 - 46 -   
+
+
+
+# printing 1. statistical iteration
+95829884928 15894 262144 23.1501 - 4139.5 - 47 -   
+95829884928 7947 524288 23.0217 - 4162.59 - 47 -   
+95817826304 3973 1048576 22.8647 - 4190.64 - 47 -   
+95793709056 1986 2097152 23.0257 - 4160.3 - 47 -   
+95793709056 993 4194304 23.0236 - 4160.68 - 47 -   
+95697240064 496 8388608 22.4923 - 4254.66 - 47 -   
+95697240064 248 16777216 21.9877 - 4352.31 - 47 -   
+95697240064 124 33554432 21.2444 - 4504.6 - 47 -   
+95697240064 62 67108864 21.2095 - 4512 - 47 -   
+
+
+
+# processes 48
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 0 printing
+95829884928 15894 262144 23.1746 0.0245425 4135.12 4.37919 0
+95829884928 7947 524288 23.0211 0.000572562 4162.7 0.103531 0
+95817826304 3973 1048576 22.8665 0.00183344 4190.31 0.335979 0
+95793709056 1986 2097152 23.0258 0.000149488 4160.28 0.0270094 0
+95793709056 993 4194304 23.0235 7.90358e-05 4160.7 0.014283 0
+95697240064 496 8388608 22.4927 0.000409007 4254.59 0.0773655 0
+95697240064 248 16777216 21.9877 1.3113e-05 4352.31 0.00259563 0
+95697240064 124 33554432 21.2468 0.00245845 4504.08 0.521164 0
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.142 0
+
+
+
+#--- RECEIVER ----------------------------
+# process 1 printing
+95829884928 15894 262144 23.1746 0.0245448 4135.12 4.37962 1
+95829884928 7947 524288 23.0211 0.000571609 4162.7 0.103359 1
+95817826304 3973 1048576 22.8665 0.00183606 4190.31 0.336459 1
+95793709056 1986 2097152 23.0258 0.000152588 4160.28 0.0275694 1
+95793709056 993 4194304 23.0235 7.45058e-05 4160.7 0.0134644 1
+95697240064 496 8388608 22.4927 0.000411034 4254.59 0.0777488 1
+95697240064 248 16777216 21.9877 2.00272e-05 4352.31 0.00396424 1
+95697240064 124 33554432 21.2468 0.00246096 4504.08 0.521695 1
+95697240064 62 67108864 21.3725 0.162962 4477.6 34.1411 1
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 2 printing
+95829884928 15894 262144 23.1746 0.024545 4135.12 4.37964 2
+95829884928 7947 524288 23.0211 0.000573993 4162.69 0.10379 2
+95817826304 3973 1048576 22.8666 0.0018326 4190.31 0.335826 2
+95793709056 1986 2097152 23.0258 0.000148058 4160.28 0.0267509 2
+95793709056 993 4194304 23.0235 7.54595e-05 4160.7 0.0136367 2
+95697240064 496 8388608 22.4927 0.000404477 4254.59 0.0765086 2
+95697240064 248 16777216 21.9877 1.04904e-05 4352.31 0.00207651 2
+95697240064 124 33554432 21.2468 0.00246012 4504.08 0.521517 2
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.1418 2
+
+
+
+#--- RECEIVER ----------------------------
+# process 3 printing
+95829884928 15894 262144 23.1746 0.0245391 4135.13 4.3786 3
+95829884928 7947 524288 23.0211 0.000566006 4162.7 0.102346 3
+95817826304 3973 1048576 22.8666 0.00183547 4190.31 0.33635 3
+95793709056 1986 2097152 23.0258 0.000148535 4160.28 0.0268371 3
+95793709056 993 4194304 23.0235 7.85589e-05 4160.7 0.0141968 3
+95697240064 496 8388608 22.4927 0.000406861 4254.59 0.0769596 3
+95697240064 248 16777216 21.9877 1.09673e-05 4352.31 0.00217089 3
+95697240064 124 33554432 21.2468 0.00245857 4504.08 0.521189 3
+95697240064 62 67108864 21.3725 0.162967 4477.6 34.1421 3
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 4 printing
+95829884928 15894 262144 23.1746 0.024539 4135.13 4.37858 4
+95829884928 7947 524288 23.0211 0.000576973 4162.7 0.104329 4
+95817826304 3973 1048576 22.8665 0.00183189 4190.31 0.335695 4
+95793709056 1986 2097152 23.0258 0.000145912 4160.28 0.0263633 4
+95793709056 993 4194304 23.0235 8.60691e-05 4160.7 0.015554 4
+95697240064 496 8388608 22.4927 0.000404 4254.59 0.0764184 4
+95697240064 248 16777216 21.9877 1.00136e-05 4352.31 0.00198212 4
+95697240064 124 33554432 21.2468 0.00245345 4504.08 0.520102 4
+95697240064 62 67108864 21.3725 0.162962 4477.6 34.1411 4
+
+
+
+#--- RECEIVER ----------------------------
+# process 5 printing
+95829884928 15894 262144 23.1746 0.024538 4135.13 4.37841 5
+95829884928 7947 524288 23.0211 0.000578046 4162.7 0.104523 5
+95817826304 3973 1048576 22.8665 0.00183141 4190.31 0.335608 5
+95793709056 1986 2097152 23.0258 0.000145555 4160.28 0.0262987 5
+95793709056 993 4194304 23.0235 7.90358e-05 4160.7 0.014283 5
+95697240064 496 8388608 22.4927 0.000405073 4254.59 0.0766214 5
+95697240064 248 16777216 21.9877 1.69277e-05 4352.31 0.00335072 5
+95697240064 124 33554432 21.2468 0.0024569 4504.08 0.520835 5
+95697240064 62 67108864 21.3725 0.162961 4477.6 34.1407 5
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 6 printing
+95829884928 15894 262144 23.1746 0.0245353 4135.12 4.37792 6
+95829884928 7947 524288 23.0211 0.000569463 4162.7 0.102971 6
+95817826304 3973 1048576 22.8665 0.0018326 4190.31 0.335826 6
+95793709056 1986 2097152 23.0258 0.000152469 4160.28 0.0275479 6
+95793709056 993 4194304 23.0235 7.73668e-05 4160.7 0.0139814 6
+95697240064 496 8388608 22.4927 0.000407457 4254.59 0.0770723 6
+95697240064 248 16777216 21.9877 1.45435e-05 4352.31 0.00287879 6
+95697240064 124 33554432 21.2468 0.0024631 4504.08 0.522149 6
+95697240064 62 67108864 21.3725 0.162963 4477.6 34.1412 6
+
+
+
+#--- RECEIVER ----------------------------
+# process 7 printing
+95829884928 15894 262144 23.1746 0.0245335 4135.12 4.3776 7
+95829884928 7947 524288 23.0211 0.00057447 4162.7 0.103876 7
+95817826304 3973 1048576 22.8665 0.00183547 4190.31 0.33635 7
+95793709056 1986 2097152 23.0258 0.000146985 4160.28 0.0265571 7
+95793709056 993 4194304 23.0235 7.60555e-05 4160.7 0.0137444 7
+95697240064 496 8388608 22.4927 0.000409484 4254.59 0.0774557 7
+95697240064 248 16777216 21.9877 8.9407e-06 4352.31 0.00176975 7
+95697240064 124 33554432 21.2468 0.00246155 4504.08 0.52182 7
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.142 7
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 8 printing
+95829884928 15894 262144 23.1746 0.024544 4135.12 4.37946 8
+95829884928 7947 524288 23.0211 0.000566363 4162.69 0.10241 8
+95817826304 3973 1048576 22.8666 0.00184703 4190.3 0.338468 8
+95793709056 1986 2097152 23.0258 0.000160456 4160.27 0.0289909 8
+95793709056 993 4194304 23.0235 6.40154e-05 4160.69 0.0115685 8
+95697240064 496 8388608 22.4927 0.000420451 4254.59 0.07953 8
+95697240064 248 16777216 21.9877 2.8491e-05 4352.3 0.00563958 8
+95697240064 124 33554432 21.2468 0.00247705 4504.07 0.525105 8
+95697240064 62 67108864 21.3725 0.162988 4477.59 34.1465 8
+
+
+
+#--- RECEIVER ----------------------------
+# process 9 printing
+95829884928 15894 262144 23.1746 0.0245465 4135.12 4.3799 9
+95829884928 7947 524288 23.0211 0.000564933 4162.69 0.102151 9
+95817826304 3973 1048576 22.8666 0.00184584 4190.3 0.33825 9
+95793709056 1986 2097152 23.0258 0.000164509 4160.27 0.0297232 9
+95793709056 993 4194304 23.0235 5.99623e-05 4160.69 0.0108361 9
+95697240064 496 8388608 22.4927 0.000422001 4254.59 0.0798231 9
+95697240064 248 16777216 21.9877 3.55244e-05 4352.3 0.00703178 9
+95697240064 124 33554432 21.2468 0.0024786 4504.07 0.525433 9
+95697240064 62 67108864 21.3725 0.162987 4477.59 34.1463 9
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 10 printing
+95829884928 15894 262144 23.1746 0.0245441 4135.12 4.37949 10
+95829884928 7947 524288 23.0211 0.000576019 4162.69 0.104156 10
+95817826304 3973 1048576 22.8665 0.00183105 4190.31 0.335542 10
+95793709056 1986 2097152 23.0258 0.000147939 4160.28 0.0267294 10
+95793709056 993 4194304 23.0235 7.79629e-05 4160.7 0.0140891 10
+95697240064 496 8388608 22.4927 0.000406384 4254.59 0.0768693 10
+95697240064 248 16777216 21.9877 2.74181e-05 4352.31 0.00542723 10
+95697240064 124 33554432 21.2468 0.00247109 4504.08 0.523843 10
+95697240064 62 67108864 21.3725 0.162976 4477.6 34.144 10
+
+
+
+#--- RECEIVER ----------------------------
+# process 11 printing
+95829884928 15894 262144 23.1746 0.0245426 4135.12 4.37921 11
+95829884928 7947 524288 23.0211 0.00057292 4162.7 0.103596 11
+95817826304 3973 1048576 22.8665 0.00183189 4190.31 0.335695 11
+95793709056 1986 2097152 23.0258 0.000143886 4160.28 0.0259971 11
+95793709056 993 4194304 23.0235 7.99894e-05 4160.7 0.0144553 11
+95697240064 496 8388608 22.4927 0.000406981 4254.59 0.0769821 11
+95697240064 248 16777216 21.9877 2.34842e-05 4352.31 0.00464854 11
+95697240064 124 33554432 21.2468 0.00247097 4504.08 0.523818 11
+95697240064 62 67108864 21.3725 0.162979 4477.6 34.1446 11
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 12 printing
+95829884928 15894 262144 23.1746 0.0245349 4135.13 4.37785 12
+95829884928 7947 524288 23.0211 0.00057745 4162.7 0.104415 12
+95817826304 3973 1048576 22.8665 0.00183153 4190.31 0.335629 12
+95793709056 1986 2097152 23.0258 0.000142097 4160.28 0.0256741 12
+95793709056 993 4194304 23.0235 8.30889e-05 4160.7 0.0150155 12
+95697240064 496 8388608 22.4927 0.000397921 4254.59 0.0752684 12
+95697240064 248 16777216 21.9877 1.04904e-05 4352.31 0.00207651 12
+95697240064 124 33554432 21.2468 0.00245655 4504.08 0.52076 12
+95697240064 62 67108864 21.3725 0.162956 4477.6 34.1397 12
+
+
+
+#--- RECEIVER ----------------------------
+# process 13 printing
+95829884928 15894 262144 23.1746 0.024536 4135.13 4.37805 13
+95829884928 7947 524288 23.0211 0.000581145 4162.7 0.105083 13
+95817826304 3973 1048576 22.8665 0.00182998 4190.31 0.335345 13
+95793709056 1986 2097152 23.0258 0.000140905 4160.28 0.0254587 13
+95793709056 993 4194304 23.0235 8.01086e-05 4160.7 0.0144769 13
+95697240064 496 8388608 22.4927 0.000400424 4254.59 0.075742 13
+95697240064 248 16777216 21.9877 1.70469e-05 4352.31 0.00337432 13
+95697240064 124 33554432 21.2468 0.00245667 4504.08 0.520785 13
+95697240064 62 67108864 21.3725 0.162956 4477.6 34.1399 13
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 14 printing
+95829884928 15894 262144 23.1746 0.024538 4135.12 4.3784 14
+95829884928 7947 524288 23.0211 0.000573993 4162.7 0.10379 14
+95817826304 3973 1048576 22.8665 0.00182986 4190.31 0.335323 14
+95793709056 1986 2097152 23.0258 0.000145078 4160.28 0.0262125 14
+95793709056 993 4194304 23.0235 7.70092e-05 4160.7 0.0139168 14
+95697240064 496 8388608 22.4927 0.000401497 4254.59 0.0759449 14
+95697240064 248 16777216 21.9877 1.5974e-05 4352.31 0.00316195 14
+95697240064 124 33554432 21.2468 0.00246251 4504.08 0.522023 14
+95697240064 62 67108864 21.3725 0.162964 4477.6 34.1415 14
+
+
+
+#--- RECEIVER ----------------------------
+# process 15 printing
+95829884928 15894 262144 23.1746 0.024538 4135.12 4.3784 15
+95829884928 7947 524288 23.0211 0.000575423 4162.7 0.104049 15
+95817826304 3973 1048576 22.8665 0.00182939 4190.31 0.335236 15
+95793709056 1986 2097152 23.0258 0.000143528 4160.28 0.0259325 15
+95793709056 993 4194304 23.0235 7.4029e-05 4160.7 0.0133782 15
+95697240064 496 8388608 22.4927 0.000404 4254.59 0.0764184 15
+95697240064 248 16777216 21.9877 7.51019e-06 4352.31 0.00148659 15
+95697240064 124 33554432 21.2468 0.00246048 4504.08 0.521594 15
+95697240064 62 67108864 21.3725 0.162968 4477.6 34.1423 15
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 16 printing
+95829884928 15894 262144 23.1746 0.0245439 4135.12 4.37945 16
+95829884928 7947 524288 23.0211 0.000567555 4162.7 0.102626 16
+95817826304 3973 1048576 22.8665 0.00183892 4190.31 0.336984 16
+95793709056 1986 2097152 23.0258 0.000152469 4160.28 0.0275479 16
+95793709056 993 4194304 23.0235 7.45058e-05 4160.7 0.0134644 16
+95697240064 496 8388608 22.4927 0.000409842 4254.59 0.0775232 16
+95697240064 248 16777216 21.9877 1.58548e-05 4352.31 0.00313835 16
+95697240064 124 33554432 21.2468 0.00246048 4504.08 0.521593 16
+95697240064 62 67108864 21.3725 0.162972 4477.59 34.143 16
+
+
+
+#--- RECEIVER ----------------------------
+# process 17 printing
+95829884928 15894 262144 23.1746 0.0245466 4135.12 4.37993 17
+95829884928 7947 524288 23.0211 0.000568032 4162.69 0.102712 17
+95817826304 3973 1048576 22.8665 0.0018394 4190.31 0.337071 17
+95793709056 1986 2097152 23.0258 0.000155926 4160.28 0.0281725 17
+95793709056 993 4194304 23.0235 7.4029e-05 4160.7 0.0133782 17
+95697240064 496 8388608 22.4927 0.000414014 4254.59 0.0783125 17
+95697240064 248 16777216 21.9877 2.30074e-05 4352.31 0.00455415 17
+95697240064 124 33554432 21.2468 0.0024606 4504.08 0.521618 17
+95697240064 62 67108864 21.3725 0.162967 4477.6 34.1421 17
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 18 printing
+95829884928 15894 262144 23.1746 0.0245475 4135.12 4.38008 18
+95829884928 7947 524288 23.0211 0.000570059 4162.69 0.103078 18
+95817826304 3973 1048576 22.8666 0.00183344 4190.31 0.335978 18
+95793709056 1986 2097152 23.0258 0.000151992 4160.28 0.0274617 18
+95793709056 993 4194304 23.0235 7.54595e-05 4160.7 0.0136367 18
+95697240064 496 8388608 22.4927 0.000409961 4254.59 0.0775458 18
+95697240064 248 16777216 21.9877 1.49012e-05 4352.31 0.00294958 18
+95697240064 124 33554432 21.2468 0.00246215 4504.07 0.521947 18
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.1419 18
+
+
+
+#--- RECEIVER ----------------------------
+# process 19 printing
+95829884928 15894 262144 23.1746 0.024545 4135.12 4.37964 19
+95829884928 7947 524288 23.0211 0.000566483 4162.7 0.102432 19
+95817826304 3973 1048576 22.8666 0.00183749 4190.3 0.336721 19
+95793709056 1986 2097152 23.0258 0.000149488 4160.28 0.0270094 19
+95793709056 993 4194304 23.0235 7.48634e-05 4160.7 0.013529 19
+95697240064 496 8388608 22.4927 0.000411987 4254.59 0.0779292 19
+95697240064 248 16777216 21.9877 1.23978e-05 4352.31 0.00245405 19
+95697240064 124 33554432 21.2468 0.00245798 4504.08 0.521062 19
+95697240064 62 67108864 21.3725 0.162967 4477.6 34.1421 19
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 20 printing
+95829884928 15894 262144 23.1746 0.0245404 4135.12 4.37883 20
+95829884928 7947 524288 23.0211 0.00057292 4162.7 0.103596 20
+95817826304 3973 1048576 22.8665 0.00183594 4190.31 0.336437 20
+95793709056 1986 2097152 23.0258 0.000147462 4160.28 0.0266433 20
+95793709056 993 4194304 23.0235 7.79629e-05 4160.7 0.0140891 20
+95697240064 496 8388608 22.4927 0.000405908 4254.59 0.0767792 20
+95697240064 248 16777216 21.9877 1.45435e-05 4352.31 0.00287879 20
+95697240064 124 33554432 21.2468 0.00245905 4504.08 0.52129 20
+95697240064 62 67108864 21.3725 0.162968 4477.6 34.1422 20
+
+
+
+#--- RECEIVER ----------------------------
+# process 21 printing
+95829884928 15894 262144 23.1746 0.0245396 4135.12 4.37868 21
+95829884928 7947 524288 23.0211 0.000573039 4162.7 0.103617 21
+95817826304 3973 1048576 22.8665 0.00183594 4190.31 0.336437 21
+95793709056 1986 2097152 23.0258 0.000149012 4160.28 0.0269233 21
+95793709056 993 4194304 23.0235 7.34329e-05 4160.7 0.0132705 21
+95697240064 496 8388608 22.4927 0.000406504 4254.59 0.0768919 21
+95697240064 248 16777216 21.9877 2.31266e-05 4352.31 0.00457775 21
+95697240064 124 33554432 21.2468 0.00246251 4504.08 0.522023 21
+95697240064 62 67108864 21.3725 0.162963 4477.6 34.1413 21
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 22 printing
+95829884928 15894 262144 23.1746 0.024534 4135.12 4.37768 22
+95829884928 7947 524288 23.0211 0.000571489 4162.7 0.103337 22
+95817826304 3973 1048576 22.8665 0.00183344 4190.31 0.335979 22
+95793709056 1986 2097152 23.0258 0.000150442 4160.28 0.0271817 22
+95793709056 993 4194304 23.0235 7.49826e-05 4160.7 0.0135505 22
+95697240064 496 8388608 22.4927 0.000408411 4254.59 0.0772527 22
+95697240064 248 16777216 21.9877 1.75238e-05 4352.31 0.00346871 22
+95697240064 124 33554432 21.2468 0.00246549 4504.08 0.522654 22
+95697240064 62 67108864 21.3725 0.162965 4477.6 34.1418 22
+
+
+
+#--- RECEIVER ----------------------------
+# process 23 printing
+95829884928 15894 262144 23.1746 0.0245324 4135.12 4.3774 23
+95829884928 7947 524288 23.0211 0.00056994 4162.7 0.103057 23
+95817826304 3973 1048576 22.8665 0.00183761 4190.31 0.336743 23
+95793709056 1986 2097152 23.0258 0.000152588 4160.28 0.0275694 23
+95793709056 993 4194304 23.0235 7.95126e-05 4160.7 0.0143692 23
+95697240064 496 8388608 22.4927 0.000409842 4254.59 0.0775233 23
+95697240064 248 16777216 21.9877 1.40667e-05 4352.31 0.0027844 23
+95697240064 124 33554432 21.2468 0.00246406 4504.08 0.522351 23
+95697240064 62 67108864 21.3725 0.162968 4477.6 34.1423 23
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 24 printing
+95829884928 15894 262144 23.1746 0.024541 4135.12 4.37894 24
+95829884928 7947 524288 23.0211 0.000572562 4162.7 0.103531 24
+95817826304 3973 1048576 22.8665 0.00183499 4190.31 0.336263 24
+95793709056 1986 2097152 23.0258 0.000151038 4160.28 0.0272895 24
+95793709056 993 4194304 23.0235 7.84397e-05 4160.7 0.0141753 24
+95697240064 496 8388608 22.4927 0.000404477 4254.59 0.0765086 24
+95697240064 248 16777216 21.9877 1.23978e-05 4352.31 0.00245405 24
+95697240064 124 33554432 21.2468 0.00245857 4504.08 0.521189 24
+95697240064 62 67108864 21.3725 0.16297 4477.6 34.1426 24
+
+
+
+#--- RECEIVER ----------------------------
+# process 25 printing
+95829884928 15894 262144 23.1746 0.024542 4135.12 4.37911 25
+95829884928 7947 524288 23.0211 0.000575542 4162.7 0.10407 25
+95817826304 3973 1048576 22.8665 0.00183511 4190.31 0.336285 25
+95793709056 1986 2097152 23.0258 0.000151038 4160.28 0.0272894 25
+95793709056 993 4194304 23.0235 7.4029e-05 4160.7 0.0133782 25
+95697240064 496 8388608 22.4927 0.000406981 4254.59 0.0769822 25
+95697240064 248 16777216 21.9877 1.95503e-05 4352.31 0.00386985 25
+95697240064 124 33554432 21.2468 0.00245953 4504.08 0.521391 25
+95697240064 62 67108864 21.3725 0.162965 4477.6 34.1417 25
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 26 printing
+95829884928 15894 262144 23.1746 0.0245439 4135.12 4.37945 26
+95829884928 7947 524288 23.0211 0.000571966 4162.7 0.103423 26
+95817826304 3973 1048576 22.8665 0.00183308 4190.31 0.335913 26
+95793709056 1986 2097152 23.0258 0.000148535 4160.28 0.0268371 26
+95793709056 993 4194304 23.0235 7.4029e-05 4160.7 0.0133782 26
+95697240064 496 8388608 22.4927 0.000406981 4254.59 0.0769821 26
+95697240064 248 16777216 21.9877 1.75238e-05 4352.31 0.00346871 26
+95697240064 124 33554432 21.2468 0.00246298 4504.08 0.522124 26
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.1419 26
+
+
+
+#--- RECEIVER ----------------------------
+# process 27 printing
+95829884928 15894 262144 23.1746 0.024544 4135.12 4.37947 27
+95829884928 7947 524288 23.0211 0.000568509 4162.7 0.102798 27
+95817826304 3973 1048576 22.8665 0.00183249 4190.31 0.335804 27
+95793709056 1986 2097152 23.0258 0.000144005 4160.28 0.0260187 27
+95793709056 993 4194304 23.0235 7.70092e-05 4160.7 0.0139168 27
+95697240064 496 8388608 22.4927 0.000407934 4254.59 0.0771625 27
+95697240064 248 16777216 21.9877 1.50204e-05 4352.31 0.00297318 27
+95697240064 124 33554432 21.2468 0.00246108 4504.08 0.52172 27
+95697240064 62 67108864 21.3725 0.162967 4477.6 34.1421 27
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 28 printing
+95829884928 15894 262144 23.1746 0.0245395 4135.12 4.37866 28
+95829884928 7947 524288 23.0211 0.000565052 4162.69 0.102173 28
+95817826304 3973 1048576 22.8665 0.00183952 4190.31 0.337093 28
+95793709056 1986 2097152 23.0258 0.000150442 4160.28 0.0271817 28
+95793709056 993 4194304 23.0235 7.86781e-05 4160.7 0.0142183 28
+95697240064 496 8388608 22.4927 0.000406504 4254.59 0.0768918 28
+95697240064 248 16777216 21.9877 1.54972e-05 4352.31 0.00306756 28
+95697240064 124 33554432 21.2468 0.00246501 4504.08 0.522554 28
+95697240064 62 67108864 21.3725 0.162963 4477.59 34.1411 28
+
+
+
+#--- RECEIVER ----------------------------
+# process 29 printing
+95829884928 15894 262144 23.1746 0.0245379 4135.12 4.37838 29
+95829884928 7947 524288 23.0211 0.000569582 4162.69 0.102992 29
+95817826304 3973 1048576 22.8666 0.00183761 4190.3 0.336743 29
+95793709056 1986 2097152 23.0258 0.000147581 4160.28 0.0266648 29
+95793709056 993 4194304 23.0235 7.59363e-05 4160.7 0.0137229 29
+95697240064 496 8388608 22.4927 0.000408053 4254.59 0.077185 29
+95697240064 248 16777216 21.9877 2.21729e-05 4352.31 0.00438897 29
+95697240064 124 33554432 21.2468 0.00246584 4504.08 0.522731 29
+95697240064 62 67108864 21.3725 0.162963 4477.59 34.1412 29
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 30 printing
+95829884928 15894 262144 23.1746 0.024539 4135.12 4.37857 30
+95829884928 7947 524288 23.0211 0.000572562 4162.7 0.103531 30
+95817826304 3973 1048576 22.8665 0.00183105 4190.31 0.335542 30
+95793709056 1986 2097152 23.0258 0.000148058 4160.28 0.026751 30
+95793709056 993 4194304 23.0235 7.4625e-05 4160.7 0.0134859 30
+95697240064 496 8388608 22.4927 0.000404 4254.59 0.0764184 30
+95697240064 248 16777216 21.9877 1.65701e-05 4352.31 0.00327993 30
+95697240064 124 33554432 21.2468 0.00246692 4504.08 0.522958 30
+95697240064 62 67108864 21.3725 0.162964 4477.59 34.1413 30
+
+
+
+#--- RECEIVER ----------------------------
+# process 31 printing
+95829884928 15894 262144 23.1746 0.0245396 4135.12 4.37868 31
+95829884928 7947 524288 23.0211 0.000570059 4162.7 0.103079 31
+95817826304 3973 1048576 22.8665 0.00183094 4190.31 0.33552 31
+95793709056 1986 2097152 23.0258 0.000142574 4160.28 0.0257602 31
+95793709056 993 4194304 23.0235 7.59363e-05 4160.7 0.0137229 31
+95697240064 496 8388608 22.4927 0.000407577 4254.59 0.0770948 31
+95697240064 248 16777216 21.9877 5.126e-06 4352.31 0.00101466 31
+95697240064 124 33554432 21.2468 0.00246489 4504.08 0.522528 31
+95697240064 62 67108864 21.3725 0.162967 4477.59 34.1422 31
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 32 printing
+95829884928 15894 262144 23.1746 0.024545 4135.12 4.37964 32
+95829884928 7947 524288 23.0211 0.000569582 4162.7 0.102992 32
+95817826304 3973 1048576 22.8665 0.00183606 4190.31 0.336459 32
+95793709056 1986 2097152 23.0258 0.000146985 4160.28 0.0265571 32
+95793709056 993 4194304 23.0235 7.54595e-05 4160.7 0.0136367 32
+95697240064 496 8388608 22.4927 0.000408411 4254.59 0.0772527 32
+95697240064 248 16777216 21.9877 1.2517e-05 4352.31 0.00247765 32
+95697240064 124 33554432 21.2468 0.00246 4504.08 0.521492 32
+95697240064 62 67108864 21.3725 0.162967 4477.59 34.1421 32
+
+
+
+#--- RECEIVER ----------------------------
+# process 33 printing
+95829884928 15894 262144 23.1746 0.0245456 4135.12 4.37974 33
+95829884928 7947 524288 23.0211 0.000567079 4162.7 0.10254 33
+95817826304 3973 1048576 22.8665 0.00183642 4190.31 0.336525 33
+95793709056 1986 2097152 23.0258 0.000146389 4160.28 0.0264494 33
+95793709056 993 4194304 23.0235 7.689e-05 4160.7 0.0138952 33
+95697240064 496 8388608 22.4927 0.000410438 4254.59 0.077636 33
+95697240064 248 16777216 21.9877 2.25306e-05 4352.31 0.00445976 33
+95697240064 124 33554432 21.2468 0.00246143 4504.08 0.521795 33
+95697240064 62 67108864 21.3725 0.162964 4477.6 34.1414 33
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 34 printing
+95829884928 15894 262144 23.1746 0.024546 4135.13 4.37984 34
+95829884928 7947 524288 23.0211 0.000566483 4162.7 0.102432 34
+95817826304 3973 1048576 22.8665 0.00183952 4190.31 0.337093 34
+95793709056 1986 2097152 23.0258 0.000151634 4160.28 0.0273972 34
+95793709056 993 4194304 23.0235 7.71284e-05 4160.7 0.0139383 34
+95697240064 496 8388608 22.4927 0.000412583 4254.6 0.0780421 34
+95697240064 248 16777216 21.9877 1.39475e-05 4352.31 0.00276081 34
+95697240064 124 33554432 21.2468 0.00246501 4504.08 0.522555 34
+95697240064 62 67108864 21.3724 0.162968 4477.6 34.1424 34
+
+
+
+#--- RECEIVER ----------------------------
+# process 35 printing
+95829884928 15894 262144 23.1746 0.0245419 4135.13 4.3791 35
+95829884928 7947 524288 23.0211 0.000566125 4162.7 0.102367 35
+95817826304 3973 1048576 22.8665 0.00184107 4190.31 0.337377 35
+95793709056 1986 2097152 23.0258 0.000151992 4160.28 0.0274618 35
+95793709056 993 4194304 23.0235 7.25985e-05 4160.7 0.0131197 35
+95697240064 496 8388608 22.4927 0.00040853 4254.6 0.0772755 35
+95697240064 248 16777216 21.9877 1.45435e-05 4352.31 0.0028788 35
+95697240064 124 33554432 21.2468 0.00246418 4504.08 0.522378 35
+95697240064 62 67108864 21.3724 0.162968 4477.6 34.1424 35
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 36 printing
+95829884928 15894 262144 23.1746 0.0245395 4135.12 4.37866 36
+95829884928 7947 524288 23.0211 0.000576496 4162.7 0.104242 36
+95817826304 3973 1048576 22.8665 0.00183356 4190.31 0.336001 36
+95793709056 1986 2097152 23.0258 0.000148416 4160.28 0.0268156 36
+95793709056 993 4194304 23.0235 7.93934e-05 4160.7 0.0143476 36
+95697240064 496 8388608 22.4927 0.000408053 4254.59 0.077185 36
+95697240064 248 16777216 21.9877 1.04904e-05 4352.31 0.0020765 36
+95697240064 124 33554432 21.2468 0.00246 4504.08 0.521492 36
+95697240064 62 67108864 21.3725 0.162965 4477.6 34.1417 36
+
+
+
+#--- RECEIVER ----------------------------
+# process 37 printing
+95829884928 15894 262144 23.1746 0.0245405 4135.12 4.37885 37
+95829884928 7947 524288 23.0211 0.00057447 4162.7 0.103876 37
+95817826304 3973 1048576 22.8665 0.0018369 4190.31 0.336612 37
+95793709056 1986 2097152 23.0258 0.000146866 4160.28 0.0265356 37
+95793709056 993 4194304 23.0235 7.64132e-05 4160.7 0.013809 37
+95697240064 496 8388608 22.4927 0.000409126 4254.59 0.077388 37
+95697240064 248 16777216 21.9877 1.95503e-05 4352.31 0.00386985 37
+95697240064 124 33554432 21.2468 0.00246108 4504.08 0.52172 37
+95697240064 62 67108864 21.3725 0.162963 4477.6 34.1412 37
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 38 printing
+95829884928 15894 262144 23.1746 0.0245324 4135.12 4.37741 38
+95829884928 7947 524288 23.0211 0.000568986 4162.7 0.102884 38
+95817826304 3973 1048576 22.8665 0.00183046 4190.31 0.335432 38
+95793709056 1986 2097152 23.0258 0.000147939 4160.28 0.0267294 38
+95793709056 993 4194304 23.0235 8.05855e-05 4160.69 0.014563 38
+95697240064 496 8388608 22.4927 0.000405431 4254.59 0.076689 38
+95697240064 248 16777216 21.9877 1.45435e-05 4352.31 0.00287879 38
+95697240064 124 33554432 21.2468 0.00246704 4504.08 0.522983 38
+95697240064 62 67108864 21.3725 0.162964 4477.6 34.1414 38
+
+
+
+#--- RECEIVER ----------------------------
+# process 39 printing
+95829884928 15894 262144 23.1746 0.0245324 4135.12 4.37741 39
+95829884928 7947 524288 23.0211 0.000573516 4162.7 0.103704 39
+95817826304 3973 1048576 22.8665 0.00183141 4190.31 0.335607 39
+95793709056 1986 2097152 23.0258 0.000144482 4160.28 0.0261048 39
+95793709056 993 4194304 23.0235 7.70092e-05 4160.7 0.0139167 39
+95697240064 496 8388608 22.4927 0.000405431 4254.59 0.076689 39
+95697240064 248 16777216 21.9877 8.58307e-06 4352.31 0.00169896 39
+95697240064 124 33554432 21.2468 0.00246286 4504.08 0.522098 39
+95697240064 62 67108864 21.3725 0.162966 4477.6 34.1418 39
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 40 printing
+95829884928 15894 262144 23.1746 0.0245436 4135.12 4.3794 40
+95829884928 7947 524288 23.0211 0.000578403 4162.7 0.104587 40
+95817826304 3973 1048576 22.8666 0.00183558 4190.31 0.336372 40
+95793709056 1986 2097152 23.0258 0.000148535 4160.28 0.0268371 40
+95793709056 993 4194304 23.0235 8.34465e-05 4160.69 0.01508 40
+95697240064 496 8388608 22.4927 0.000406027 4254.59 0.0768017 40
+95697240064 248 16777216 21.9877 1.50204e-05 4352.31 0.00297317 40
+95697240064 124 33554432 21.2468 0.00245893 4504.08 0.521264 40
+95697240064 62 67108864 21.3725 0.162968 4477.59 34.1423 40
+
+
+
+#--- RECEIVER ----------------------------
+# process 41 printing
+95829884928 15894 262144 23.1746 0.0245441 4135.12 4.37949 41
+95829884928 7947 524288 23.0211 0.000573993 4162.69 0.10379 41
+95817826304 3973 1048576 22.8666 0.00183749 4190.3 0.336721 41
+95793709056 1986 2097152 23.0258 0.000150561 4160.28 0.0272033 41
+95793709056 993 4194304 23.0235 7.95126e-05 4160.7 0.0143691 41
+95697240064 496 8388608 22.4927 0.000407338 4254.59 0.0770497 41
+95697240064 248 16777216 21.9877 2.09808e-05 4352.31 0.004153 41
+95697240064 124 33554432 21.2468 0.00245953 4504.08 0.521391 41
+95697240064 62 67108864 21.3725 0.162965 4477.59 34.1416 41
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 42 printing
+95829884928 15894 262144 23.1746 0.024543 4135.12 4.37929 42
+95829884928 7947 524288 23.0211 0.000573874 4162.69 0.103768 42
+95817826304 3973 1048576 22.8666 0.00183213 4190.3 0.335738 42
+95793709056 1986 2097152 23.0258 0.000146508 4160.27 0.0264709 42
+95793709056 993 4194304 23.0235 7.84397e-05 4160.69 0.0141752 42
+95697240064 496 8388608 22.4927 0.000406504 4254.59 0.0768918 42
+95697240064 248 16777216 21.9877 1.5974e-05 4352.31 0.00316194 42
+95697240064 124 33554432 21.2468 0.00246048 4504.07 0.521593 42
+95697240064 62 67108864 21.3725 0.162966 4477.59 34.1417 42
+
+
+
+#--- RECEIVER ----------------------------
+# process 43 printing
+95829884928 15894 262144 23.1746 0.024544 4135.12 4.37946 43
+95829884928 7947 524288 23.0211 0.000571489 4162.69 0.103337 43
+95817826304 3973 1048576 22.8666 0.0018326 4190.3 0.335825 43
+95793709056 1986 2097152 23.0258 0.000143528 4160.27 0.0259324 43
+95793709056 993 4194304 23.0235 7.93934e-05 4160.69 0.0143476 43
+95697240064 496 8388608 22.4927 0.00041008 4254.59 0.0775683 43
+95697240064 248 16777216 21.9877 1.28746e-05 4352.31 0.00254843 43
+95697240064 124 33554432 21.2468 0.00246 4504.07 0.521491 43
+95697240064 62 67108864 21.3725 0.162966 4477.59 34.1418 43
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 44 printing
+95829884928 15894 262144 23.1746 0.0245416 4135.12 4.37904 44
+95829884928 7947 524288 23.0211 0.000572562 4162.7 0.103531 44
+95817826304 3973 1048576 22.8665 0.00183558 4190.31 0.336372 44
+95793709056 1986 2097152 23.0258 0.000148058 4160.28 0.026751 44
+95793709056 993 4194304 23.0235 7.35521e-05 4160.7 0.013292 44
+95697240064 496 8388608 22.4927 0.000404954 4254.59 0.0765987 44
+95697240064 248 16777216 21.9877 1.69277e-05 4352.31 0.00335072 44
+95697240064 124 33554432 21.2468 0.00246096 4504.08 0.521694 44
+95697240064 62 67108864 21.3725 0.162965 4477.59 34.1416 44
+
+
+
+#--- RECEIVER ----------------------------
+# process 45 printing
+95829884928 15894 262144 23.1746 0.0245434 4135.12 4.37936 45
+95829884928 7947 524288 23.0211 0.000574589 4162.7 0.103898 45
+95817826304 3973 1048576 22.8665 0.00183547 4190.31 0.33635 45
+95793709056 1986 2097152 23.0258 0.000147581 4160.28 0.0266648 45
+95793709056 993 4194304 23.0235 7.55787e-05 4160.7 0.0136582 45
+95697240064 496 8388608 22.4927 0.000406981 4254.59 0.0769821 45
+95697240064 248 16777216 21.9877 2.19345e-05 4352.31 0.00434178 45
+95697240064 124 33554432 21.2468 0.00246096 4504.08 0.521695 45
+95697240064 62 67108864 21.3725 0.162964 4477.59 34.1413 45
+
+
+
+#----------------------- SENDER ---------------------------
+# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std 
+
+# process 46 printing
+95829884928 15894 262144 23.1746 0.0245365 4135.12 4.37812 46
+95829884928 7947 524288 23.0211 0.000573993 4162.69 0.10379 46
+95817826304 3973 1048576 22.8666 0.0018295 4190.3 0.335257 46
+95793709056 1986 2097152 23.0258 0.000142574 4160.28 0.0257602 46
+95793709056 993 4194304 23.0235 7.236e-05 4160.69 0.0130766 46
+95697240064 496 8388608 22.4927 0.000403523 4254.59 0.0763281 46
+95697240064 248 16777216 21.9877 1.39475e-05 4352.31 0.0027608 46
+95697240064 124 33554432 21.2468 0.0024631 4504.07 0.522149 46
+95697240064 62 67108864 21.3725 0.162962 4477.59 34.1411 46
+
+
+
+#--- RECEIVER ----------------------------
+# process 47 printing
+95829884928 15894 262144 23.1746 0.024537 4135.12 4.37821 47
+95829884928 7947 524288 23.0211 0.000574946 4162.7 0.103962 47
+95817826304 3973 1048576 22.8666 0.00182903 4190.3 0.33517 47
+95793709056 1986 2097152 23.0258 0.000142932 4160.28 0.0258248 47
+95793709056 993 4194304 23.0235 7.16448e-05 4160.69 0.0129473 47
+95697240064 496 8388608 22.4927 0.00040257 4254.59 0.0761477 47
+95697240064 248 16777216 21.9877 8.46386e-06 4352.31 0.00167536 47
+95697240064 124 33554432 21.2468 0.00246191 4504.07 0.521896 47
+95697240064 62 67108864 21.3725 0.162964 4477.59 34.1415 47
+
+
+
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:29
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
+#22.5.2015 - 16:13:30
