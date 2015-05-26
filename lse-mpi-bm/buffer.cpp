@@ -32,14 +32,15 @@ void Buffer::comm(Measurement *measurement){
     //testwaitcounter.assign(numberofremoteranks,0);
 
     for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
-        // wait for objects---- pipelinesize scales with number of number of remoteranks
         remoterank = remoterank_vec.at(index_remoterank);
         for(size_t j = 0; j < innerRuntimeIterations; j++){
+            // wait for objects---- pipelinesize scales with number of number of remoteranks
             while (queue_request.size() >= pipelinedepth*numberofremoteranks){
                 MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
                 //testwaitcounter.front()+= timestamp.cycles();
                 queue_request.pop();
             }
+
             // fill queue---------------------------------
             index = (packagecount*((index_remoterank*innerRuntimeIterations)+j))%(buffersize/sizeof(int));
             //index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));

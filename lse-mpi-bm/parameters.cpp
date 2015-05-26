@@ -339,10 +339,14 @@ size_t Parameters::getinnerRuntimeIterations(int z) {
         innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
     }
     
-    if (innerRuntimeIterations <= pipelinedepth){
+    /*if (innerRuntimeIterations <= pipelinedepth){
         innerRuntimeIterations = (pipelinedepth*numberofremoteranks) + 1;
         //innerRuntimeIterations = pipelinedepth + 1;
-    }
+    }*/
     
+    if (innerRuntimeIterations <= 1){
+        innerRuntimeIterations = 1;
+        //innerRuntimeIterations = pipelinedepth + 1;
+    }
     return innerRuntimeIterations;
 }
