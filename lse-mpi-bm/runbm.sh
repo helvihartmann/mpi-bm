@@ -36,9 +36,9 @@ do
 
 
 #echo "testib_parallel.sh "$n" "$n" | tee 55nodes_s"$s"_n"$END"_m"$m".log" >> single.in
-    echo "mpirun --npernode 1 --mca btl_openib_if_include mlx4_0 build/lse-mpi-bm -m 1 -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $((n/2)) "-r" $((n/2)) "-b" $b ">> 55nodes_m1_s"$((n/2))"_n"$END"_"$node".out" >> single.in
+    echo "/opt/openmpi185/bin/mpirun --npernode 1 --mca btl_openib_if_include mlx4_0 build/lse-mpi-bm -y 0 -m 1 -i "$i" -w "$w" -e "$e" -o "$o "-s" $((n/2)) "-r" $((n/2)) "-b" $b ">> 55nodes_m1_s"$((n/2))"_n"$END"_"$node".out" >> single.in
 
-    echo "mpirun --npernode 2 --mca btl_openib_if_include mlx4_0 build/lse-mpi-bm -m 2 -i "$i" -w "$w" -e "$e" -o "$o" -q" $q "-s" $n "-r" $n "-b" $b ">> 55nodes_m2_s"$n"_n"$END"_"$node".out" >> single.in
+    echo "/opt/openmpi185/bin/mpirun --npernode 2 --mca btl_openib_if_include mlx4_0 build/lse-mpi-bm -y 0 -m 2 -i "$i" -w "$w" -e "$e" -o "$o "-s" $n "-r" $n "-b" $b ">> 55nodes_m2_s"$n"_n"$END"_"$node".out" >> single.in
     echo "" >> single.in
 
     echo "number of nodes: " $END

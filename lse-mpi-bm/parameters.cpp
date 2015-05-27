@@ -208,20 +208,52 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
     numberofcommprocesses = numberofSenders + numberofReceivers;
     switch (multicore) {
             case 1: {
-                if(rank < numberofSenders){
+                if(rank < numberofcommprocesses){
+                    if (rank%2 == 0){
                     
-                    setflag(0,numberofReceivers);
-                    sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope, no implementation of barrelshift
-                }
-                else if( rank >= numberofSenders && rank < numberofcommprocesses){
-                    setflag(1,numberofSenders);
-                    sortlist(0, numberofSenders, (size + 1), 1);
+                        setflag(0,numberofReceivers);
+                        
+                        switch (barrelshiftingflag) {
+                            case on:
+                                barrelshifting(1,1);
+                            break;
+                            case off:
+                                sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
+                            break;
+                            default:
+                                sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
+                            break;
+                        }
+                    }
+                    else {
+                        setflag(1,numberofSenders);
+                        
+                        switch (barrelshiftingflag) {
+                            case on:
+                                barrelshifting((numberofcommprocesses - 1),-1);
+                            break;
+                            case off:
+                                sortlist(0, numberofSenders, (size + 1), 1);
+                            break;
+                            default:
+                                sortlist(0, numberofSenders, (size + 1), 1);
+                            break;
+                        }
+                    }
+                    for (unsigned int i = 0; i < numberofcommprocesses; i++) {
+                        if (rank == i){
+                            for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
+                                std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
+                            }
+                        }
+                    } 
                 }
                 else{
                     setflag(2,0);
                 }
-            }
+                
             break;
+            }
             case 2: {
                 numberofReceivers = numberofSenders;
                 numberofcommprocesses = numberofSenders + numberofReceivers;
@@ -267,7 +299,6 @@ std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int
                             for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
                                 std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
                             }
-                            
                         }
                     }
                 }

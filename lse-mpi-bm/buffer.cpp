@@ -33,6 +33,7 @@ void Buffer::comm(Measurement *measurement){
 
     for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
         remoterank = remoterank_vec.at(index_remoterank);
+        //std::cout << rank << " sending to " << remoterank << std::endl;
         for(size_t j = 0; j < innerRuntimeIterations; j++){
             // wait for objects---- pipelinesize scales with number of number of remoteranks
             while (queue_request.size() >= pipelinedepth*numberofremoteranks){
