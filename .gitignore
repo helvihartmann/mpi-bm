@@ -9,3 +9,4 @@ build/
 *.ib
 *.txt
 nodelist.txt
+runbm.sh
