@@ -3,7 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-/**/
+/*2015 Copyright Helvi Hartmann <hhartmann@fias.uni-frankfurt.de
+ collects time measured to transfer data and calculates data rate from it*/
 
 class Results{
 private:
@@ -19,7 +20,7 @@ private:
     int numberofRemoteranks;
     std::vector<double> time;
     std::vector<double> summe;
-    //std::vector<size_t>avg_waittestcounter;
+
 public:
     
     Results(int rank, int statisticaliteration, int numberofpackages);

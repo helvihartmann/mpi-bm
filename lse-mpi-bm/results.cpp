@@ -17,16 +17,10 @@ void Results::setvectors(int idx_outeriter_, size_t idx_numberofpackages, size_t
     numberofRemoteranks = numberofRemoteranks_;
     package_vector.at(idx_numberofpackages) = packagesize_tmp;
     innerRuntimeIterations_vector.at(idx_numberofpackages)=innerRuntimeIterations;
-    //std::cout << "idx_numberofpackages: " << idx_numberofpackages << ", packagesize_tmp: " << packagesize_tmp << ", innerRuntimeIterations: " << innerRuntimeIterations << ", numberofRemoteranks: " << numberofRemoteranks << std::endl;
+    
     totaldatasent_vector.at(idx_numberofpackages)=packagesize_tmp*innerRuntimeIterations*numberofRemoteranks;
-    
-    /*for (int i = 0; i < numberofRemoteranks; i++){
-        avg_waittestcounter.push_back(waittestcounter_.at(i)/(innerRuntimeIterations-pipelinedepth));
-    }*/
-    
     int index = idx_outeriter*numberofpackages+idx_numberofpackages;
     time.at(index) = time_;
-    
     summe.at(idx_numberofpackages) += time_;
 }
 
@@ -37,10 +31,6 @@ void Results::printstatisticaliteration(){
         int index = idx_outeriter*numberofpackages+idx_numberofpackages;
         std::cout<<totaldatasent_vector.at(idx_numberofpackages)<<" "<<innerRuntimeIterations_vector.at(idx_numberofpackages)<<" "<<package_vector.at(idx_numberofpackages)<<" " << time.at(index) <<" - "<< (totaldatasent_vector.at(idx_numberofpackages)/time.at(index))/1000000 << " - " << rank <<  " -  ";
         
-
-        /*for (int i = 0; i < numberofRemoteranks; i++){
-            std::cout << avg_waittestcounter.at(idx_numberofpackages*numberofRemoteranks+i) << " ";
-        }*/
         std::cout << " " << std::endl;
     }
     std::cout  << "\n\n" << std::endl;
