@@ -5,11 +5,11 @@
 //#include "buffer.h"
 
 enum method_t {basic, hist};
-class Buffer;
+class CommunicationManager;
 class Measurement{
 private:
     double starttime, endtime;
-    
+    CommunicationManager *datahandle;
     
 protected:
     MPI_Comm communicators_comm;
@@ -17,11 +17,11 @@ protected:
     size_t packagecount;
     
 public:
-    Measurement(MPI_Comm communicators_comm_);
+    Measurement(CommunicationManager *datahandle_, MPI_Comm communicators_comm_);
         
-    void warmup(Buffer *buffer, size_t numberofwarmups, size_t endpackagesize, int rank);
+    void warmup(size_t numberofwarmups, size_t endpackagesize, int rank);
     
-    void measure(Buffer *buffer, size_t packagecount_, size_t innerRuntimeIterations, enum method_t method);
+    void measure(size_t packagecount_, size_t innerRuntimeIterations, enum method_t method);
     
     virtual MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank)=0;
     double getstarttime() { return starttime; }

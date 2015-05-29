@@ -10,9 +10,10 @@
 #include "measurement.h"
 
 using namespace std;
-/**/
+/*2015 Copyright Helvi Hartman <hhartmann@fias.uni-frankfurt.de
+ CommunicationManager takes care of buffer, of iterations over buffer and that each process knows to which process it should send data*/
 
-class Buffer{
+class CommunicationManager{
 private:
     int size;
     int rank;
@@ -22,9 +23,7 @@ private:
     std::vector<int>remoterank_vec;
     unsigned int numberofremoteranks; // now every process has his own
     MPI_Comm communicators_comm;
-    
     int *buffer;
-    
     size_t innerRuntimeIterations;
     size_t packagecount;
     
@@ -35,27 +34,14 @@ private:
 
     int remoterank = -1;
     MPI_Request comm_obj;
-    
     size_t index = 0;
-
-    
     TimeStampCounter timestamp;
-    
-    //std::vector<size_t>testwaitcounter;
-    
-    size_t errorcounter = 0;
-    
-    
-    
     
 public:
     
-    Buffer(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks, MPI_Comm communicators_comm_);
-   
-    void checkbuffer(int value, int remoterank);
+    CommunicationManager(int size, int rank, unsigned int pipelinedepth, size_t buffersize, std::vector<int>remoterank_vec, unsigned int numberofremoteranks, MPI_Comm communicators_comm_);
     
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
-    
     
     void comm(Measurement *measurement);
     
@@ -64,10 +50,6 @@ public:
     void emptyqueue(std::queue<MPI_Request> queue_request);
     
     void printsingletime();
-        
-    //std::vector<size_t> gettestwaitcounter() { return testwaitcounter; }
-    
-    size_t geterrorcounter() { return errorcounter; }
 };
 
 #endif /*BUFFER_H*/

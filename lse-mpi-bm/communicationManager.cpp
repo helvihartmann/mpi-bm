@@ -1,6 +1,6 @@
-#include "buffer.h"
+#include "communicationManager.h"
 
-Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_, MPI_Comm communicators_comm_) :
+CommunicationManager::CommunicationManager(int size_, int rank_, unsigned int pipelinedepth_, size_t buffersize_, std::vector<int>remoterank_vec_, unsigned int numberofremoteranks_, MPI_Comm communicators_comm_) :
     size(size_),
     rank(rank_),
     pipelinedepth(pipelinedepth_),
@@ -22,41 +22,36 @@ Buffer::Buffer(int size_, int rank_, unsigned int pipelinedepth_, size_t buffers
     std::cout << "# buffer initialized.\n" << std::endl;
 }
 
-void Buffer::setloopvariables(size_t packagecount_, size_t innerRuntimeIterations_){
+void CommunicationManager::setloopvariables(size_t packagecount_, size_t innerRuntimeIterations_){
     innerRuntimeIterations = innerRuntimeIterations_;
     packagecount = packagecount_;
 }
 
-void Buffer::comm(Measurement *measurement){
+void CommunicationManager::comm(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
-    //testwaitcounter.assign(numberofremoteranks,0);
 
     for(unsigned int index_remoterank = 0; index_remoterank < numberofremoteranks; index_remoterank++){
         remoterank = remoterank_vec.at(index_remoterank);
-        //std::cout << rank << " sending to " << remoterank << std::endl;
         for(size_t j = 0; j < innerRuntimeIterations; j++){
             // wait for objects---- pipelinesize scales with number of number of remoteranks
             while (queue_request.size() >= pipelinedepth*numberofremoteranks){
                 MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
-                //testwaitcounter.front()+= timestamp.cycles();
                 queue_request.pop();
             }
             // fill queue---------------------------------
             index = (packagecount*((index_remoterank*innerRuntimeIterations)+j))%(buffersize/sizeof(int));
-            //index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             queue_request.push(comm_obj);
         }
-        //MPI_Barrier(communicators_comm);
+        MPI_Barrier(communicators_comm);
     }
     emptyqueue(queue_request);
 }
 
 
 //similar to above but with additional messurements for histogramms -----------------------------------------
-void Buffer::comm_hist(Measurement *measurement){
+void CommunicationManager::comm_hist(Measurement *measurement){
     std::queue<MPI_Request> queue_request;
-    //testwaitcounter.assign(numberofremoteranks,0);
     
     commstart.resize(innerRuntimeIterations);
     commstop.resize(innerRuntimeIterations);
@@ -70,7 +65,6 @@ void Buffer::comm_hist(Measurement *measurement){
             waitstart.at(j) = timestamp.start();
             MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
             waitstop.at(j) = timestamp.stop();
-            //testwaitcounter.front()+= timestamp.cycles();
             queue_request.pop();
         }
         // fill queue---------------------------------
@@ -85,19 +79,17 @@ void Buffer::comm_hist(Measurement *measurement){
         }
     }
     emptyqueue(queue_request);
-    
 }
 
-void Buffer::emptyqueue(std::queue<MPI_Request> queue_request){
+void CommunicationManager::emptyqueue(std::queue<MPI_Request> queue_request){
     while(!queue_request.empty()){
         MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
         queue_request.pop();
     }
-    
 }
 
 
-void Buffer::printsingletime(){
+void CommunicationManager::printsingletime(){
     size_t i = 0;
     ostringstream oss;
     oss << (packagecount*sizeof(int)) << "_x" << numberofremoteranks << "_p" << pipelinedepth << "_n" << size << "_" << rank << ".hist";
@@ -109,6 +101,5 @@ void Buffer::printsingletime(){
         myfile << commstart.at(j) << " " << commstop.at(j) << " " << ((commstop.at(j)-commstart.at(j))/2) << " " << waitstart.at(j) << " " << waitstop.at(j) << " " << ((waitstop.at(j)-waitstart.at(j))/2) <<  " " << i << "\n";
         i++;
     }
-    
     myfile.close();
 }

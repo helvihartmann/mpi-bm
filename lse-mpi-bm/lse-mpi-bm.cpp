@@ -3,7 +3,7 @@
 #include <memory>
 #include "parameters.h"
 #include "results.h"
-#include "buffer.h"
+#include "communicationManager.h"
 #include "measurement.h"
 #include "output.h"
 #include <unistd.h>
@@ -59,7 +59,7 @@ int main (int argc, char *argv[]){
        
         // iniate classes
         Results results(rank, statisticaliteration, numberofpackages);
-        Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
+        CommunicationManager datahandle(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
         Output output(rank, size, communicators_comm);
         
     
@@ -70,15 +70,15 @@ int main (int argc, char *argv[]){
             //point to correct function depending on if process is sender or receiver
             unique_ptr <Measurement> measurement = nullptr;
             if (commflag == 0){ //sender
-                measurement.reset(new Measurementsend(communicators_comm));
+                measurement.reset(new Measurementsend(&datahandle, communicators_comm));
             }
             else{//receiver
-                measurement.reset(new Measurementrecv(communicators_comm));
+                measurement.reset(new Measurementrecv(&datahandle, communicators_comm));
             }
 
             //Warmup
             MPI_Barrier(communicators_comm);
-            measurement->warmup(&buffer, params.getnumberofwarmups(), params.getendpackagesize(),rank);
+            measurement->warmup(params.getnumberofwarmups(), params.getendpackagesize(),rank);
             
             //Data rate measurement: Iterate over packagesize-----------------------------------------------------
             for (int z = 0; z < numberofpackages; z++){
@@ -95,15 +95,15 @@ int main (int argc, char *argv[]){
                 /*basically the same but case1 prints additonally files with times for every single meassurement 
                  for a packagesize of 16kiB where stuff usually goes wrong*/
                     case 1:
-                        measurement->measure(&buffer, packacount,innerRuntimeIterations,hist);
+                        measurement->measure(packacount,innerRuntimeIterations,hist);
 
                         if (packagesize >= 8192 && packagesize <= 16384){
-                            buffer.printsingletime();
+                            datahandle.printsingletime();
                         }
                         break;
                         
                     default:
-                        measurement->measure(&buffer, packacount,innerRuntimeIterations,basic);
+                        measurement->measure(packacount,innerRuntimeIterations,basic);
                         break;
                 }
 
