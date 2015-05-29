@@ -4,9 +4,9 @@
 #include <vector>
 #include <unistd.h>
 #include <getopt.h>
-/**/
 
-
+/*2015 Copyright Helvi Hartmann <hhartmann@fias.uni-frankfurt.de>
+ Parameter class takes in all options parsed in function call or sets default values*/
 
 class Parameters{
 private:
@@ -33,8 +33,6 @@ private:
     
     int commflag;
     int queue;
-    enum Flag {on, off};
-    Flag barrelshiftingflag;
     
     unsigned int numberofcommprocesses;
 public:
@@ -72,10 +70,8 @@ public:
     int getmulticore() { return multicore; }
     
     int getpinningmode() { return pinningmode; }
-    
-    void sortlist(unsigned int start, unsigned int end, unsigned int except, int increment);
-    
-    void barrelshifting(int start, int sign);
+        
+    void applyLSE(int start, int sign);
     
     void setflag(int commflag_, unsigned int numberofremoteranks_);
     

@@ -41,14 +41,13 @@ void Buffer::comm(Measurement *measurement){
                 //testwaitcounter.front()+= timestamp.cycles();
                 queue_request.pop();
             }
-
             // fill queue---------------------------------
             index = (packagecount*((index_remoterank*innerRuntimeIterations)+j))%(buffersize/sizeof(int));
             //index = (packagecount*((j*numberofremoteranks)+index_remoterank))%(buffersize/sizeof(int));
             MPI_Request comm_obj = measurement->mpisendrecvfunction(buffer, index, remoterank);
             queue_request.push(comm_obj);
         }
-        MPI_Barrier(communicators_comm);
+        //MPI_Barrier(communicators_comm);
     }
     emptyqueue(queue_request);
 }

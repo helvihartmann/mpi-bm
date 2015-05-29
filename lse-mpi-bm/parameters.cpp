@@ -1,6 +1,5 @@
 #include "parameters.h"
-/*08.08.2014 this class is responsible for reading all option parsed in the function call or othererwise setting the default values
- */
+
 Parameters::Parameters(int argc, char **argv){
     int opt;
     numberofwarmups = 1000;
@@ -14,9 +13,7 @@ Parameters::Parameters(int argc, char **argv){
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     histcheck = 0;
     pinningmode = 1;
-    
-    barrelshiftingflag = off;
-    
+        
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 24;
     int packageSizeFactor = 2;
@@ -37,12 +34,11 @@ Parameters::Parameters(int argc, char **argv){
         { "number_recv",                required_argument,	     NULL,       'r' },
         { "number_senders",                required_argument,	     NULL,       's' },
         { "timedistribution",                required_argument,	     NULL,       't' },
-        { "barrelshift",    required_argument,	     NULL,	     'y' },
         { "pinningmode",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:t:y:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:t:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -60,7 +56,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --number_recv                 -r       number of processes that receive data from all others (min 1; max: 8) \n (DEFAULT = "              << numberofReceivers << ") \n" << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
-            std::cout << " --barrelshift                 -y       barrelshift \n (DEFAULT = "                     << barrelshiftingflag << ")\n"         << std::endl;
             std::cout << " --pinningmode             -x       relevant for multicore ==1, 1 both processes on cpu0; 2 both processes on cpu1; 3 p0 on cpu0 & p1 on cpu1; 4 p0 on cpu1 & p1 on cpu0 \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             
             exit(1);
@@ -163,14 +158,6 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 'y':
-            barrelshiftingflag = static_cast<Flag>(atoi(optarg));
-            if (atoi(optarg) >= 0 && atoi(optarg) <=1) {
-            }
-            else {
-                printf("#INFO -r: 0 for on and 1 for off only \n");
-            }
-            break;
         case 'x':
             pinningmode = atoi(optarg);
             if (!(pinningmode >= 1 && pinningmode <=4)) {
@@ -198,116 +185,52 @@ Parameters::Parameters(int argc, char **argv){
         }
     }
     
-    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe single" <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << ", barrelshift " << barrelshiftingflag << " (0 = on & 1 = off)" << std::endl;
+    std::cout<<"#start packagesize " << startpackagesize << ", inner iterations " << factor << ", end packagesize " << endpackagesize << ", statistical iterations " <<statisticaliteration << ", buffersize " << buffersize << ", pipeline depth " << pipelinedepth << ", natur of pipe single" <<  ", number of warm ups " << numberofwarmups << ", number of senders " << numberofSenders << ", multicore " << multicore << ", pinningmode " << pinningmode << std::endl;
 }
 
 std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){
     size = size_;
     rank = rank_;
-    //numberofReceivers = size - numberofSenders;
     numberofcommprocesses = numberofSenders + numberofReceivers;
-    switch (multicore) {
+    if(rank < numberofcommprocesses){
+        switch (multicore) {
+            // for one process per node
             case 1: {
-                if(rank < numberofcommprocesses){
-                    if (rank%2 == 0){
-                    
-                        setflag(0,numberofReceivers);
-                        
-                        switch (barrelshiftingflag) {
-                            case on:
-                                barrelshifting(1,1);
-                            break;
-                            case off:
-                                sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
-                            break;
-                            default:
-                                sortlist(numberofSenders, size, (size + 1), 1);//exception out of scope
-                            break;
-                        }
-                    }
-                    else {
-                        setflag(1,numberofSenders);
-                        
-                        switch (barrelshiftingflag) {
-                            case on:
-                                barrelshifting((numberofcommprocesses - 1),-1);
-                            break;
-                            case off:
-                                sortlist(0, numberofSenders, (size + 1), 1);
-                            break;
-                            default:
-                                sortlist(0, numberofSenders, (size + 1), 1);
-                            break;
-                        }
-                    }
-                    for (unsigned int i = 0; i < numberofcommprocesses; i++) {
-                        if (rank == i){
-                            for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
-                                std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
-                            }
-                        }
-                    } 
+                if (rank%2 == 0){//for senders
+                    setflag(0,numberofReceivers);
+                    applyLSE(1,1);
                 }
-                else{
-                    setflag(2,0);
+                else {//for receivers
+                    setflag(1,numberofSenders);
+                    applyLSE((numberofcommprocesses - 1),-1);
                 }
-                
             break;
             }
             case 2: {
                 numberofReceivers = numberofSenders;
                 numberofcommprocesses = numberofSenders + numberofReceivers;
                 int numberofremoteranks_tmp = numberofSenders - 1;
-                if (rank < numberofcommprocesses){
-                    //for senders
-                    if(rank%2 == 0 ){
-                        
-                        setflag(0,numberofremoteranks_tmp);
-                        //send to all odd ranked processes except the one on the same node (sender rank +1); either decreasing (sortlist) or every process to a different port (barrelshifting)
-                        switch (barrelshiftingflag) {
-                            case on:
-                                barrelshifting(3,1);
-                                break;
-                            case off:
-                                sortlist(1, numberofcommprocesses, (rank + 1) , 2);
-                                break;
-                            default:
-                                sortlist(1, numberofcommprocesses, (rank + 1) , 2);
-                                break;
-                        }
-                    }
-                    //for receivers
-                    else {
-                        
-                        setflag(1,numberofremoteranks_tmp);
-                        //receive from all even ranked process except the one on the same node (receiver rank - 1)
-                        switch (barrelshiftingflag) {
-                            case on:
-                                barrelshifting((numberofcommprocesses - 3),-1);//1 receives first from second last process
-                                break;
-                            case off:
-                                sortlist(0, (numberofcommprocesses - 1), (rank - 1), 2);
-                                break;
-                                
-                            default:
-                                sortlist(0, (numberofcommprocesses - 1), (rank - 1), 2);
-                                break;
-                        }
-                    }
-                    for (unsigned int i = 0; i < numberofcommprocesses; i++) {
-                        if (rank == i){
-                            for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
-                                std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
-                            }
-                        }
-                    }
+                if(rank%2 == 0 ){//for senders
+                    setflag(0,numberofremoteranks_tmp);
+                    applyLSE(3,1);//send to all odd ranked processes except the one on the same node (sender rank +1);
                 }
-                else{
-                    setflag(2,0);
+                else {//for receivers
+                    setflag(1,numberofremoteranks_tmp);
+                    applyLSE((numberofcommprocesses - 3),-1);//1 receives first from second last process except the one on the same node (receiver rank - 1)
                 }
-               
-            }
             break;
+            }
+        }
+    }
+    else{
+        setflag(2,0);
+    }
+    for (unsigned int i = 0; i < numberofcommprocesses; i++) {
+        if (rank == i){
+            for (unsigned int rank_index = 0; rank_index < remoterank_vec.size(); rank_index++){
+                std::cout << "my (" << rank << ") remoterank list is: " << remoterank_vec.at(rank_index) << std::endl;
+            }
+        }
     }
     return remoterank_vec;
 }
@@ -326,23 +249,13 @@ void Parameters::setflag(int commflag_, unsigned int numberofremoteranks_){
     }
 }
 
-void Parameters::sortlist(unsigned int start, unsigned int end, unsigned int except, int increment){
-    for (unsigned int remoterank_idx = start; remoterank_idx < end; remoterank_idx = (remoterank_idx + increment)){
-        if (remoterank_idx != (except)){
-            remoterank_vec.push_back(remoterank_idx);
-        }
-    }
-}
-
-void Parameters::barrelshifting(int start, int sign){
+void Parameters::applyLSE(int start, int sign){
     for(unsigned int remoterank_idx = 0; remoterank_idx < numberofremoteranks; remoterank_idx++){
         unsigned int remoterank = (rank + start + (remoterank_idx * 2 * sign))%numberofcommprocesses;
         //0 should always start with sending to 3 and then add 2 in the next round
         remoterank_vec.push_back(remoterank);
     }
 }
-
-
 
 size_t Parameters::getinnerRuntimeIterations(int z) {
     size_t innerRuntimeIterations;
