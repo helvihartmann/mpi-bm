@@ -11,6 +11,10 @@
 
 using namespace std;
 
+/*2015 Copyright Helvi Hartmann <hhartmann@fias.uni-frankfurt.de>
+ Main for the LSE (Linear Shift Exchange Communication) Pattern used to measure the data rate of an all-to-all communication between n%2==0 processes started by a slurm script, which is created via runbm.sh
+ */
+
 void pinning(int commflag, int pinningmode);
 void printtimestamp();
 MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
@@ -19,42 +23,32 @@ MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
 int main (int argc, char *argv[]){
     
     // Header
-   printtimestamp();
+    printtimestamp();
     
-    //initiate MPI----------------------------------------------------------------
+    //initiate MPI-----------------------------------------------------------------------------------------------
     int rank, size, length;
     char name[MPI_MAX_PROCESSOR_NAME];
-    
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
     
-    
-    
-    //Parameter class--------------------------------------
+    //Parameter class
     Parameters params(argc, argv);
     
-    //set flag for ranks if they are sender or receiver and pin them
+    //set flag for ranks if they are sender or receiver-----------------------------------------------------------
     MPI_Barrier(MPI_COMM_WORLD);
     vector<int>remoterank_vec =  params.getsetremoterankvec(size, rank);
     int commflag = params.getcommflag(); //decides wether process is sender (0) or receiver (1)
-    
     cout << "# process " << rank << " on host " << name << " reports for duty with commflag " << commflag << endl;
     MPI_Comm communicators_comm = setgroups(params.getnumberofcommprocesses(), rank);
-    
-    
     MPI_Barrier(MPI_COMM_WORLD);
     
-    
-    
-    if (commflag <= 1){//invoked in communication 0=sender; 1=receiver; 2=nada
+    //major part only for process which are invoked in communication 0=sender; 1=receiver; 2=nada-----------------
+    if (commflag <= 1){
+        //pinning sender and receiver to correct numa node
         pinning(commflag, params.getpinningmode());
-        
-
         MPI_Barrier(communicators_comm);
-        
-        sleep(5);
         
         //get and initialize parameters
         unsigned int pipelinedepth = params.getpipelinedepth();
@@ -68,13 +62,13 @@ int main (int argc, char *argv[]){
         Buffer buffer(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
         Output output(rank, size, communicators_comm);
         
-        
     
-        // do Measurement--------------------------------------------------------------------------
-        // repeat measurement couples of times
+        // do Measurement----------------------------------------------------------------------------------------
+        // repeat measurement couples of times for statistics
         for (unsigned int m = 0; m < statisticaliteration; m++){
             
-            unique_ptr <Measurement> measurement = nullptr; //initilazided automatically as nullptr only here for ausführlichkeit
+            //point to correct function depending on if process is sender or receiver
+            unique_ptr <Measurement> measurement = nullptr;
             if (commflag == 0){ //sender
                 measurement.reset(new Measurementsend(communicators_comm));
             }
@@ -86,7 +80,7 @@ int main (int argc, char *argv[]){
             MPI_Barrier(communicators_comm);
             measurement->warmup(&buffer, params.getnumberofwarmups(), params.getendpackagesize(),rank);
             
-            //Iterate over packagesize----------------------------------------------------------------------------
+            //Data rate measurement: Iterate over packagesize-----------------------------------------------------
             for (int z = 0; z < numberofpackages; z++){
                 
                 // get loop variables-----------------------------------------------------------------------------
@@ -97,10 +91,10 @@ int main (int argc, char *argv[]){
                     pipelinedepth = innerRuntimeIterations-2;
                 }
 
-
-                switch (histcheck) {//basically the same but case1 prints additonally files with times for every single meassurement for a packagesize of 16kiB where stuff usually goes wrong
+                switch (histcheck) {
+                /*basically the same but case1 prints additonally files with times for every single meassurement 
+                 for a packagesize of 16kiB where stuff usually goes wrong*/
                     case 1:
-                        //measurement.measure_hist(packacount,innerRuntimeIterations);
                         measurement->measure(&buffer, packacount,innerRuntimeIterations,hist);
 
                         if (packagesize >= 8192 && packagesize <= 16384){
@@ -113,19 +107,16 @@ int main (int argc, char *argv[]){
                         break;
                 }
 
-                
-                
                 //Write time-----------------------------------------------------------------
                 results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()));
-
-            }//z
+            }//z package size
             
             output.outputiteration(&results, m);
-        }//m
+        }//m statisticcal iteration
         
         //-----------------------------------Output-------------------------------------------------------------
         output.outputfinal(&results, commflag);
-    }
+    }//if communicating process
     
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_Finalize();

@@ -49,6 +49,6 @@ done
     echo "collectresult.sh" >> single.in
     echo "exit 0" >> single.in
     cat single.in
-    sbatch single.in
+#sbatch single.in
 
 exit 0
