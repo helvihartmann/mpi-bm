@@ -1,12 +1,14 @@
 #include <mpi.h>
-#include <queue>
-
-using namespace std;
+#include <memory>
+#include <vector>
+#include "dataManager.h"
+#include "parameters.h"
 
 /*2015 Copyright Helvi Hartmann <hhartmann@fias.uni-frankfurt.de> */
 
 MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
 
+void output(int rank, int size, std::vector<double> time, std::vector<size_t> packagesize, std::vector<size_t> innerRuntimeIterations);
 
 int main (int argc, char *argv[]){
 //initiate MPI-----------------------------------------------------------------------------------------------
@@ -17,77 +19,27 @@ int main (int argc, char *argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
    
-    double starttime, endtime;
-    unsigned int remoteRank;
-    int pipelinedepth = 8;
-    std::queue<MPI_Request> queue_request;
-    MPI_Request comm_obj;
-    size_t innerRuntimeIterations = 10000;
+    cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
     size_t buffersize = 17179869184;
 
-    int *buffer = new int[(buffersize / sizeof(int))];
-    
-    std::cout << "# " << buffersize << " B allocated, initializing...\n" << std::endl;
-    
-    for (size_t i=0; i < (buffersize / sizeof(int)); i++){
-        buffer[i]=0;
+    Parameters params(argc, argv);
+    std::vector<size_t>packagesize = params.getpackagesizes();
+    std::vector<size_t>innerRuntimeIterations = params.getinnerRuntimeIterations();
+
+
+    //point to correct function depending on if process is sender or receiver
+    unique_ptr <DataManager> measurement = nullptr;
+    if (rank%2 == 0){ //sender
+        measurement.reset(new Measurementsend(buffersize));
     }
+    else{//receiver
+        measurement.reset(new Measurementrecv(buffersize));
+    }
+
+    //measurement
+    std::vector<double>time = measurement->run(packagesize, size, innerRuntimeIterations, rank, params.getnumberofwarmups());
     
-    std::cout << "# buffer initialized.\n" << std::endl;
-
-    for (unsigned int iteration = 0; iteration < 2; iteration++){
-        for(unsigned int phase = 0; phase < (size/2); phase++){
-            for (unsigned int packagesize = 4; packagesize < 4194304; packagesize = packagesize *2){
-            size_t packagecount = packagesize/sizeof(int);
-                MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                if (rank%2==0){
-                    //cout << phase << " " << rank << " sending to " << remoteRank << " " << packagesize << endl;
-                    remoteRank = (rank + 1 + (phase * 2)) %4;
-                    for (unsigned int j = 0; j < innerRuntimeIterations; j++){
-                        while (queue_request.size() >= pipelinedepth){
-                            MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
-                            queue_request.pop();
-                        }
-                        size_t index = (packagecount*j)%(buffersize/sizeof(int));
-                        MPI_Issend((buffer + index), packagecount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &comm_obj);
-                        //MPI_Wait(&comm_obj, MPI_STATUS_IGNORE);
-                        queue_request.push(comm_obj);
-                    }
-                    while(!queue_request.empty()){
-                        MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
-                        queue_request.pop();
-                    }
-                }
-                else {
-                    remoteRank = (rank + (size - 1) + (phase * 2)) %4;
-                    //cout << rank << " receiving from " << remoteRank << " " << packagesize << endl;
-
-                    for (unsigned int j = 0; j < innerRuntimeIterations; j++){
-                        while (queue_request.size() >= pipelinedepth){
-                            MPI_Wait (&queue_request.front(), MPI_STATUS_IGNORE);
-                            queue_request.pop();
-                        }
-                        size_t index = (packagecount*j)%(buffersize/sizeof(int));
-                        MPI_Irecv((buffer + index), packagecount, MPI_INT, remoteRank, j, MPI_COMM_WORLD, &comm_obj);
-                        queue_request.push(comm_obj);
-                        //MPI_Wait(&comm_obj, MPI_STATUS_IGNORE);
-                    }
-                    while(!queue_request.empty()){
-                        MPI_Wait(&queue_request.front(), MPI_STATUS_IGNORE);
-                        queue_request.pop();
-                    }
-                }
-                MPI_Barrier(MPI_COMM_WORLD);
-                endtime = MPI_Wtime();
-                if (rank%2==0){
-                    cout << rank << " to " << remoteRank << " " << packagesize << " " << endtime-starttime << " " <<  (packagesize * innerRuntimeIterations)/((endtime-starttime)*1000000)<< endl;
-                }
-            }//packagesize
-            cout << " " << endl;
-        }//phase
-        cout << " " << endl;
-    }//iterations
+    output(rank, size, time, packagesize, innerRuntimeIterations);
 
 
     MPI_Barrier(MPI_COMM_WORLD);
