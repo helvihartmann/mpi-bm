@@ -8,10 +8,10 @@
 
 MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
 
-void output(int rank, int size, std::vector<double> time, std::vector<size_t> packagesize, std::vector<size_t> innerRuntimeIterations);
+void output(int rank, unsigned int nmbr_commprocess, std::vector<double> time, std::vector<size_t> packagesize, std::vector<size_t> innerRuntimeIterations);
 
 int main (int argc, char *argv[]){
-//initiate MPI-----------------------------------------------------------------------------------------------
+    //initiate MPI-----------------------------------------------------------------------------------------------
     int rank, size, length;
     char name[MPI_MAX_PROCESSOR_NAME];
     MPI_Init(&argc, &argv);
@@ -20,30 +20,32 @@ int main (int argc, char *argv[]){
     MPI_Get_processor_name(name, &length);
    
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
-    size_t buffersize = 17179869184;
 
     Parameters params(argc, argv);
     std::vector<size_t>packagesize = params.getpackagesizes();
     std::vector<size_t>innerRuntimeIterations = params.getinnerRuntimeIterations();
-
+    int commflag = params.getsetflag(rank);
 
     //point to correct function depending on if process is sender or receiver
     unique_ptr <DataManager> measurement = nullptr;
-    if (rank%2 == 0){ //sender
-        measurement.reset(new Measurementsend(buffersize));
+    //if (rank%2 == 0){ //sender
+    if (commflag == 0){
+        measurement.reset(new Measurementsend(params.getbuffersize()));
     }
-    else{//receiver
-        measurement.reset(new Measurementrecv(buffersize));
+    else if (commflag == 1){//receiver
+        measurement.reset(new Measurementrecv(params.getbuffersize()));
+    }
+    else{
+        measurement.reset(new Measurementobserver(params.getbuffersize()));
     }
 
     //measurement
-    std::vector<double>time = measurement->run(packagesize, size, innerRuntimeIterations, rank, params.getnumberofwarmups());
+    std::vector<double>time = measurement->run(packagesize, innerRuntimeIterations, rank, params.getnumberofwarmups(), commflag, params.getnumberofcommprocesses());
     
-    output(rank, size, time, packagesize, innerRuntimeIterations);
+    output(rank, params.getnumberofcommprocesses(), time, packagesize, innerRuntimeIterations);
 
-
+    //finalize MPI-----------------------------------------------------------------------------------------------
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_Finalize();
     return 0;
 }
-

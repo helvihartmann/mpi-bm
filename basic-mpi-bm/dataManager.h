@@ -21,7 +21,7 @@ protected:
 public:
     DataManager(size_t buffersize);
     
-    vector<double> run(vector<size_t>packagesize, int size, vector<size_t> innerRuntimeIterations_, int rank, size_t numberofwarmups);
+    vector<double> run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, int rank, size_t numberofwarmups, int commflag, unsigned int nmbr_commprocess);
     
     void sendrecvdata(unsigned int remoterank, size_t innerRuntimeIterations);
     
@@ -51,4 +51,16 @@ public:
         return comm_obj;
     }
 };
+
+
+class Measurementobserver : public DataManager {
+    
+public:
+    using DataManager::DataManager;
+    MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank) override {
+        cout << "ERROR Observer do not call this function where data is send. Something went wrong at buffer pointing to " << buffer + index << " sending to " << remoterank << endl;
+        return 0;
+    }
+};
+
 #endif

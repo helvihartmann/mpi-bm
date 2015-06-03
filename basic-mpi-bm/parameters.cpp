@@ -104,7 +104,7 @@ Parameters::Parameters(int argc, char **argv){
             break;
         case 'n':
             nmbr_commprocess = atoll(optarg);
-            if (nmbr_commprocess > 2) {
+            if (nmbr_commprocess > 1) {
             }
             else {
                 printf("ERROR -n: must be at least two processes sending/receiving data\n");
@@ -157,7 +157,8 @@ Parameters::Parameters(int argc, char **argv){
 
 
 
-void Parameters::setflag(int rank){
+int Parameters::getsetflag(int rank){
+    int commflag;
     if (rank < nmbr_commprocess){
         if (rank%2 == 0){
             commflag = 0;
@@ -173,6 +174,7 @@ void Parameters::setflag(int rank){
         commflag = 2;
         std::cout << " I am Observer " << rank << std::endl;
     }
+    return commflag;
 }
 
 

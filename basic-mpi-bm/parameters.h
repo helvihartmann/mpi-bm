@@ -14,9 +14,7 @@ private:
     int multicore;
     int pinningmode;
     unsigned int pipelinedepth;
-    unsigned int numberofcommprocesses;
-    int commflag;
-    int nmbr_commprocess;
+    unsigned int nmbr_commprocess;
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
@@ -31,21 +29,19 @@ public:
     
     Parameters(int argc, char **argv);
     
-    void setflag(int rank);
+    int getsetflag(int rank);
     
     const std::vector<size_t>& getpackagesizes() { return packagesizes; }
     
     size_t getNumberOfPackageSizes() { return packagesizes.size(); }
     
-    size_t getBuffersize() { return buffersize; }
+    size_t getbuffersize() { return buffersize; }
     
     unsigned int getpipelinedepth() { return pipelinedepth; }
     
     size_t getnumberofwarmups() { return numberofwarmups; }
-        
-    int getcommflag() { return commflag; }
     
-    unsigned int getnumberofcommprocesses() { return numberofcommprocesses; }
+    unsigned int getnumberofcommprocesses() { return nmbr_commprocess; }
     
     std::vector<size_t> getinnerRuntimeIterations();
     

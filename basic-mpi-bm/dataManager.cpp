@@ -16,35 +16,37 @@ DataManager::DataManager(size_t buffersize_) :
 
 }
 
-vector<double> DataManager::run(vector<size_t>packagesize, int size, vector<size_t> innerRuntimeIterations_, int rank, size_t numberofwarmups){
-    unsigned int remoteRank;
-    double starttime, endtime;
+vector<double> DataManager::run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, int rank, size_t nmbr_warmups, int commflag, unsigned int nmbr_commprocess){
+    unsigned int remoteRank = 0;
+    double starttime = 0;
+    double endtime = 0;
     time.clear();
     size_t innerRuntimeIteration;
-    for(int phase = 0; phase < (size/2); phase++){
+    for(unsigned int phase = 0; phase < (nmbr_commprocess/2); phase++){
         for (int warmup = 0; warmup < 2; warmup++){
             for (unsigned int i = 0; i < packagesize.size(); i++){
                 if (warmup == 0){
-                    innerRuntimeIteration = numberofwarmups;
+                    innerRuntimeIteration = nmbr_warmups;
                 }
                 else{
                     innerRuntimeIteration = innerRuntimeIterations_.at(i);
                 }
                 packagecount = packagesize.at(i)/sizeof(int);
                 MPI_Barrier(MPI_COMM_WORLD);
-                starttime = MPI_Wtime();
-                if (rank%2 == 0){
-                    //cout << phase << " " << rank << " sending to " << remoteRank << " " << packagesize << endl;
-                    remoteRank = (rank + 1 + (phase * 2)) %4;
-                    sendrecvdata(remoteRank, innerRuntimeIteration);
-                }
-                else {
-                    remoteRank = (rank + (size - 1) + (phase * 2)) %4;
-                    sendrecvdata(remoteRank, innerRuntimeIteration);
+                if (commflag < 2){
+                    starttime = MPI_Wtime();
+                    if (rank%2 == 0){
+                        remoteRank = (rank + 1 + (phase * 2)) % nmbr_commprocess;
+                        //cout << phase << " " << rank << " sending to " << remoteRank << " " << packagecount << endl;
+                        sendrecvdata(remoteRank, innerRuntimeIteration);
+                    }
+                    else {
+                        remoteRank = (rank + (nmbr_commprocess - 1) - (phase * 2)) % nmbr_commprocess;
+                        sendrecvdata(remoteRank, innerRuntimeIteration);
+                    }
                 }
                 MPI_Barrier(MPI_COMM_WORLD);
                 endtime = MPI_Wtime();
-                //cout << rank << " " << innerRuntimeIteration << " " << endtime - starttime << endl;
                 if (warmup !=0){
                     time.push_back(endtime - starttime);
                 }
