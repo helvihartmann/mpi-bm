@@ -54,7 +54,6 @@ int main (int argc, char *argv[]){
         unsigned int pipelinedepth = params.getpipelinedepth();
         unsigned int statisticaliteration = params.getStatisticalIterations();
         int numberofpackages = params.getNumberOfPackageSizes();
-        int histcheck = params.gethistcheck();
         unsigned int numberofremoteranks = params.getnumberofremoteranks();
        
         // iniate classes
@@ -82,35 +81,9 @@ int main (int argc, char *argv[]){
             
             //Data rate measurement: Iterate over packagesize-----------------------------------------------------
             for (int z = 0; z < numberofpackages; z++){
-                
-                // get loop variables-----------------------------------------------------------------------------
-                size_t packagesize = params.getPackageSizes().at(z);
-                size_t packacount = packagesize/sizeof(int);
-                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
-                if (pipelinedepth > innerRuntimeIterations){
-                    pipelinedepth = innerRuntimeIterations-2;
-                }
-
-                switch (histcheck) {
-                /*basically the same but case1 prints additonally files with times for every single meassurement 
-                 for a packagesize of 16kiB where stuff usually goes wrong*/
-                    case 1:
-                        measurement->measure(packacount,innerRuntimeIterations,hist);
-
-                        if (packagesize >= 8192 && packagesize <= 16384){
-                            datahandle.printsingletime();
-                        }
-                        break;
-                        
-                    default:
-                        measurement->measure(packacount,innerRuntimeIterations,basic);
-                        break;
-                }
-
-                //Write time-----------------------------------------------------------------
-                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()));
+                measurement->measure(params.getPackageSizes().at(z)/sizeof(int), params.getinnerRuntimeIterations(z));
+                results.setvectors(m, z, params.getinnerRuntimeIterations(z), params.getPackageSizes().at(z), numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()));
             }//z package size
-            
             output.outputiteration(&results, m);
         }//m statisticcal iteration
         

@@ -26,11 +26,6 @@ private:
     int *buffer;
     size_t innerRuntimeIterations;
     size_t packagecount;
-    
-    std::vector<unsigned long long>commstart;
-    std::vector<unsigned long long>commstop;
-    std::vector<unsigned long long>waitstart;
-    std::vector<unsigned long long>waitstop;
 
     int remoterank = -1;
     MPI_Request comm_obj;
@@ -44,12 +39,9 @@ public:
     void setloopvariables(size_t packagecount, size_t innerRuntimeIterations);
     
     void comm(Measurement *measurement);
-    
-    void comm_hist(Measurement *measurement);
-        
+            
     void emptyqueue(std::queue<MPI_Request> queue_request);
     
-    void printsingletime();
 };
 
 #endif /*BUFFER_H*/

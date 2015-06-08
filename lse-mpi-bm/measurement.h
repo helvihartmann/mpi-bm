@@ -4,7 +4,6 @@
 #include <mpi.h>
 //#include "buffer.h"
 
-enum method_t {basic, hist};
 class CommunicationManager;
 class Measurement{
 private:
@@ -21,7 +20,7 @@ public:
         
     void warmup(size_t numberofwarmups, size_t endpackagesize, int rank);
     
-    void measure(size_t packagecount_, size_t innerRuntimeIterations, enum method_t method);
+    void measure(size_t packagecount_, size_t innerRuntimeIterations);
     
     virtual MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank)=0;
     double getstarttime() { return starttime; }

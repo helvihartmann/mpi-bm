@@ -11,7 +11,6 @@ Parameters::Parameters(int argc, char **argv){
     factor = (6000000000);
     factor_fix = (1*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
-    histcheck = 0;
     pinningmode = 1;
         
     startpackagesize = 1 << 2;
@@ -33,12 +32,11 @@ Parameters::Parameters(int argc, char **argv){
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_recv",                required_argument,	     NULL,       'r' },
         { "number_senders",                required_argument,	     NULL,       's' },
-        { "timedistribution",                required_argument,	     NULL,       't' },
         { "pinningmode",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:t:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -55,7 +53,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_recv                 -r       number of processes that receive data from all others (min 1; max: 8) \n (DEFAULT = "              << numberofReceivers << ") \n" << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
-            std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
             std::cout << " --pinningmode             -x       relevant for multicore ==1, 1 both processes on cpu0; 2 both processes on cpu1; 3 p0 on cpu0 & p1 on cpu1; 4 p0 on cpu1 & p1 on cpu0 \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             
             exit(1);
@@ -148,13 +145,6 @@ Parameters::Parameters(int argc, char **argv){
             numberofSenders = atof(optarg);
             if (!(numberofSenders > 0 && numberofSenders <=100)) {
                 printf("ERROR -x: there are only 8 nodes, therefore only 8 possible root processes \n");
-                exit(1);
-            }
-            break;
-        case 't':
-            histcheck = atoi(optarg);
-            if (!(histcheck >= 0 && histcheck <=1)) {
-                printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
                 exit(1);
             }
             break;

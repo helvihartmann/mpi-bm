@@ -32,22 +32,15 @@ void Measurement::warmup(size_t numberofwarmups, size_t endpackagesize, int rank
     std::cout << " " << std::endl;
 }
 
-void Measurement::measure(size_t packagecount_, size_t innerRuntimeIterations, enum method_t method){
+void Measurement::measure(size_t packagecount_, size_t innerRuntimeIterations){
     packagecount = packagecount_;
     datahandle->setloopvariables(packagecount,innerRuntimeIterations);
+    
     MPI_Barrier(communicators_comm);
     starttime = MPI_Wtime();
-    switch (method) {
-        case basic:
-             datahandle->comm(this);
-            break;
-        case hist:
-            datahandle->comm_hist(this);
-            break;
-        default:
-            datahandle->comm(this);
-            break;
-    }
+
+    datahandle->comm(this);
+
    
     MPI_Barrier(communicators_comm);
     endtime = MPI_Wtime();
