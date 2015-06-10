@@ -2,26 +2,31 @@
 #define MEASUREMENT_H
 #include <iostream>
 #include <mpi.h>
+#include <queue>
+#include "results.h"
+
 //#include "buffer.h"
 
-enum method_t {basic, hist};
-class CommunicationManager;
 class Measurement{
 private:
+    size_t buffersize;
     double starttime, endtime;
-    CommunicationManager *datahandle;
-    
+    int *buffer;
+
 protected:
     MPI_Comm communicators_comm;
     MPI_Request comm_obj;
     size_t packagecount;
     
 public:
-    Measurement(CommunicationManager *datahandle_, MPI_Comm communicators_comm_);
-        
-    void warmup(size_t numberofwarmups, size_t endpackagesize, int rank);
+    Measurement(size_t buffersize, MPI_Comm communicators_comm_);
+
+    void measure(std::vector<size_t> innerRuntimeIterations, std::vector<size_t>packagesizes, std::vector<int>remoterank_vec, int rank, unsigned int pipelinedepth, int flag, Results *results, unsigned int m);
     
-    void measure(size_t packagecount_, size_t innerRuntimeIterations, enum method_t method);
+    void comm(unsigned int numberofremoteranks, std::vector<int>remoterank_vec, size_t innerRuntimeIterations, unsigned int pipelinedepth);
+    
+    void emptyqueue(std::queue<MPI_Request> queue_request);
+    
     
     virtual MPI_Request mpisendrecvfunction(int *buffer, size_t index, unsigned int remoterank)=0;
     double getstarttime() { return starttime; }

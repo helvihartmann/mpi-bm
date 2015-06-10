@@ -2,12 +2,21 @@
 
 Parameters::Parameters(int argc, char **argv){
     int opt;
+<<<<<<< HEAD
     numberofwarmups = 1000;
     multicore = 1;
     pipelinedepth = 8;
     factor = (20000000000);
     factor_fix = (1*(1<<21));
     buffersize = 17179869184;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
+=======
+    numberofwarmups = 100;
+    multicore = 1;
+    pipelinedepth = 8;
+    factor = (10000000000);
+    factor_fix = (1*(1<<21));
+    buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
+>>>>>>> 1081eb23224868e3d233fbde6d7b2abfc6f8c5a3
     pinningmode = 1;
     nmbr_commprocess = 4;
     startpackagesize = 1 << 2;

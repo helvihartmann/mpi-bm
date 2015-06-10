@@ -23,11 +23,12 @@ private:
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
-    int histcheck;
     size_t startpackagesize;
     size_t endpackagesize;
+    int packagesizefactor;
     
     std::vector<size_t> packageSizes;
+    std::vector<size_t> innerRuntimeIterations;
     
     std::vector<int>remoterank_vec;
     
@@ -41,14 +42,14 @@ public:
     
     const std::vector<size_t>& getPackageSizes() { return packageSizes; }
     
-    size_t getNumberOfPackageSizes() { return packageSizes.size(); }
+    std::vector<size_t> getinnerRuntimeIterations() { return innerRuntimeIterations; }
+    
+    void setinnerRuntimeIterations(size_t packagesize);
     
     unsigned int getStatisticalIterations() { return statisticaliteration; }
     
     size_t getBuffersize() { return buffersize; }
-    
-    int gethistcheck() { return histcheck; }
-    
+        
     unsigned int getpipelinedepth() { return pipelinedepth; }
     
     size_t getnumberofwarmups() { return numberofwarmups; }
@@ -58,10 +59,6 @@ public:
     int getcommflag() { return commflag; }
     
     unsigned int getnumberofcommprocesses() { return numberofcommprocesses; }
-    
-    size_t getinnerRuntimeIterations(int z);
-    
-    size_t getendpackagesize() { return endpackagesize; }
     
     std::vector<int> getsetremoterankvec(unsigned int size,unsigned int rank);
     

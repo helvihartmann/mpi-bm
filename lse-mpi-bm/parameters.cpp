@@ -11,12 +11,11 @@ Parameters::Parameters(int argc, char **argv){
     factor = (6000000000);
     factor_fix = (1*(1<<20));
     buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
-    histcheck = 0;
     pinningmode = 1;
         
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 24;
-    int packageSizeFactor = 2;
+    packagesizefactor = 2;
     
     //-------------------------------------------------------------------------------------------
     
@@ -33,12 +32,11 @@ Parameters::Parameters(int argc, char **argv){
         { "warmups",                required_argument,	     NULL,       'w' },
         { "number_recv",                required_argument,	     NULL,       'r' },
         { "number_senders",                required_argument,	     NULL,       's' },
-        { "timedistribution",                required_argument,	     NULL,       't' },
         { "pinningmode",                required_argument,	     NULL,       'x' },
         { NULL,	     0,			     NULL,	     0 }
     };
     
-    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:t:x:", longopts, NULL)) != -1)
+    while ((opt = getopt_long (argc, argv, "hs:r:i:a:e:f:o:b:m:p:w:r:s:x:", longopts, NULL)) != -1)
         switch (opt)
     {
         case 'h':
@@ -47,7 +45,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
             std::cout << " --start_package_size          -a       start package size\n (DEFAULT = "                                                         << startpackagesize << ")\n"       << std::endl;
             std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
-            std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
+            std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packagesizefactor << ")\n"      << std::endl;
             std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
@@ -55,7 +53,6 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --warmups                     -w       number of warmups (i.e. how many times a package is send/received in advance)\n (DEFAULT = "   << numberofwarmups << ")\n"        << std::endl;
             std::cout << " --number_recv                 -r       number of processes that receive data from all others (min 1; max: 8) \n (DEFAULT = "              << numberofReceivers << ") \n" << std::endl;
             std::cout << " --number_senders             -s       number of processes that send data to all others (min 1; max: 8) \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
-            std::cout << " --timedistribution            -t       additional output of format <name>.hist containig timeinformation are printed (0=off, 1=on) \n (DEFAULT = "              << histcheck << ") \n" << std::endl;
             std::cout << " --pinningmode             -x       relevant for multicore ==1, 1 both processes on cpu0; 2 both processes on cpu1; 3 p0 on cpu0 & p1 on cpu1; 4 p0 on cpu1 & p1 on cpu0 \n (DEFAULT = "              << numberofSenders << ") \n" << std::endl;
             
             exit(1);
@@ -88,9 +85,9 @@ Parameters::Parameters(int argc, char **argv){
             }
             break;
         case 'f':
-            packageSizeFactor = atof(optarg);
+            packagesizefactor = atof(optarg);
             
-            if (!(packageSizeFactor > 0)) {
+            if (!(packagesizefactor > 0)) {
                 printf("ERROR -f: please enter vaild number for step factor\n");
                 exit(1);
             }
@@ -151,13 +148,6 @@ Parameters::Parameters(int argc, char **argv){
                 exit(1);
             }
             break;
-        case 't':
-            histcheck = atoi(optarg);
-            if (!(histcheck >= 0 && histcheck <=1)) {
-                printf("ERROR -t: only 0 (off) and 1 (on) are possible \n");
-                exit(1);
-            }
-            break;
         case 'x':
             pinningmode = atoi(optarg);
             if (!(pinningmode >= 1 && pinningmode <=4)) {
@@ -174,14 +164,22 @@ Parameters::Parameters(int argc, char **argv){
     }
 
     //-------------------------------------------------------------------------------------------
+    
+    if (factor > 100000000000){
+        factor_fix = 50*factor_fix;
+    }
+    
+    
     if (startpackagesize <= endpackagesize){
-        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packageSizeFactor){
-                packageSizes.push_back(p);
+        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packagesizefactor){
+            packageSizes.push_back(p);
+            setinnerRuntimeIterations(p);
         }
     }
     else{
-        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packageSizeFactor){
-                packageSizes.push_back(p);
+        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packagesizefactor){
+            packageSizes.push_back(p);
+            setinnerRuntimeIterations(p);
         }
     }
     
@@ -257,40 +255,35 @@ void Parameters::applyLSE(int start, int sign){
     }
 }
 
-size_t Parameters::getinnerRuntimeIterations(int z) {
-    size_t innerRuntimeIterations;
+void Parameters::setinnerRuntimeIterations(size_t packagesize) {
+    size_t iter;
     
     if (factor > 100000000000){
         factor_fix = 50*factor_fix;
     }
     
     // inner iter for small packagesize constant because double the packagesize = double as fast
-    if (packageSizes.at(z) <= 8000)  {
-        innerRuntimeIterations = factor_fix;
+    if (packagesize <= 8000)  {
+        iter = factor_fix;
     }
     else{
-        innerRuntimeIterations = factor/packageSizes.at(z);
+        iter = factor/packagesize;
     }
     
     // inner iter for big package sizes which are all around 6GB/s
     if (numberofSenders < numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofSenders/(double)numberofReceivers);
+        iter = iter * ((double)numberofSenders/(double)numberofReceivers);
     }
     else if (numberofSenders > numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofSenders);
+        iter = iter * ((double)numberofReceivers/(double)numberofSenders);
     }
     else if (numberofSenders == numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
+        iter = iter/numberofReceivers;
     }
     
-    /*if (innerRuntimeIterations <= pipelinedepth){
-        innerRuntimeIterations = (pipelinedepth*numberofremoteranks) + 1;
-        //innerRuntimeIterations = pipelinedepth + 1;
-    }*/
-    
-    if (innerRuntimeIterations <= 1){
-        innerRuntimeIterations = 1;
-        //innerRuntimeIterations = pipelinedepth + 1;
+    if (iter <= 1){
+        iter = 1;
+        //iter = pipelinedepth + 1;
     }
-    return innerRuntimeIterations;
+    innerRuntimeIterations.push_back(iter);
 }

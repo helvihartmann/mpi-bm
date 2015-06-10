@@ -9,7 +9,10 @@
 MPI_Comm setgroups(unsigned int numbercommprocesses, int rank);
 
 void output(int rank, unsigned int nmbr_commprocess, std::vector<double> time, std::vector<size_t> packagesize, std::vector<size_t> innerRuntimeIterations);
+<<<<<<< HEAD
 void printtimestamp();
+=======
+>>>>>>> 1081eb23224868e3d233fbde6d7b2abfc6f8c5a3
 
 int main (int argc, char *argv[]){
     //initiate MPI-----------------------------------------------------------------------------------------------
@@ -20,11 +23,16 @@ int main (int argc, char *argv[]){
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Get_processor_name(name, &length);
    
+<<<<<<< HEAD
     // Header
     printtimestamp();
     cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
 
     
+=======
+    cout << "# process " << rank << " on host " << name << " reports for duty" << endl;
+
+>>>>>>> 1081eb23224868e3d233fbde6d7b2abfc6f8c5a3
     Parameters params(argc, argv);
     std::vector<size_t>packagesize = params.getpackagesizes();
     std::vector<size_t>innerRuntimeIterations = params.getinnerRuntimeIterations();

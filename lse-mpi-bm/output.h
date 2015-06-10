@@ -1,6 +1,7 @@
 #include <iostream>
 #include "results.h"
 
+using namespace std;
 class Output{
 private:
     int rank, size;

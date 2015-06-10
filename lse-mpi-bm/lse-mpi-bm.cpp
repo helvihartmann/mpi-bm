@@ -3,7 +3,6 @@
 #include <memory>
 #include "parameters.h"
 #include "results.h"
-#include "communicationManager.h"
 #include "measurement.h"
 #include "output.h"
 #include <unistd.h>
@@ -53,64 +52,30 @@ int main (int argc, char *argv[]){
         //get and initialize parameters
         unsigned int pipelinedepth = params.getpipelinedepth();
         unsigned int statisticaliteration = params.getStatisticalIterations();
-        int numberofpackages = params.getNumberOfPackageSizes();
-        int histcheck = params.gethistcheck();
-        unsigned int numberofremoteranks = params.getnumberofremoteranks();
        
         // iniate classes
-        Results results(rank, statisticaliteration, numberofpackages);
-        CommunicationManager datahandle(size, rank, pipelinedepth, params.getBuffersize(), remoterank_vec, numberofremoteranks, communicators_comm);
+        Results results(rank, statisticaliteration, params.getPackageSizes().size());
         Output output(rank, size, communicators_comm);
-        
+        //point to correct function depending on if process is sender or receiver
+        unique_ptr <Measurement> measurement = nullptr;
+        if (commflag == 0){ //sender
+            measurement.reset(new Measurementsend(params.getBuffersize(), communicators_comm));
+        }
+        else{//receiver
+            measurement.reset(new Measurementrecv(params.getBuffersize(), communicators_comm));
+        }
     
         // do Measurement----------------------------------------------------------------------------------------
         // repeat measurement couples of times for statistics
         for (unsigned int m = 0; m < statisticaliteration; m++){
-            
-            //point to correct function depending on if process is sender or receiver
-            unique_ptr <Measurement> measurement = nullptr;
-            if (commflag == 0){ //sender
-                measurement.reset(new Measurementsend(&datahandle, communicators_comm));
-            }
-            else{//receiver
-                measurement.reset(new Measurementrecv(&datahandle, communicators_comm));
-            }
 
             //Warmup
             MPI_Barrier(communicators_comm);
-            measurement->warmup(params.getnumberofwarmups(), params.getendpackagesize(),rank);
             
             //Data rate measurement: Iterate over packagesize-----------------------------------------------------
-            for (int z = 0; z < numberofpackages; z++){
-                
-                // get loop variables-----------------------------------------------------------------------------
-                size_t packagesize = params.getPackageSizes().at(z);
-                size_t packacount = packagesize/sizeof(int);
-                size_t innerRuntimeIterations = params.getinnerRuntimeIterations(z);
-                if (pipelinedepth > innerRuntimeIterations){
-                    pipelinedepth = innerRuntimeIterations-2;
-                }
-
-                switch (histcheck) {
-                /*basically the same but case1 prints additonally files with times for every single meassurement 
-                 for a packagesize of 16kiB where stuff usually goes wrong*/
-                    case 1:
-                        measurement->measure(packacount,innerRuntimeIterations,hist);
-
-                        if (packagesize >= 8192 && packagesize <= 16384){
-                            datahandle.printsingletime();
-                        }
-                        break;
-                        
-                    default:
-                        measurement->measure(packacount,innerRuntimeIterations,basic);
-                        break;
-                }
-
-                //Write time-----------------------------------------------------------------
-                results.setvectors(m, z, innerRuntimeIterations, packagesize, numberofremoteranks,(measurement->getendtime()-measurement->getstarttime()));
-            }//z package size
-            
+            std::vector<size_t> warmups(params.getPackageSizes().size(), params.getnumberofwarmups());
+            measurement->measure(warmups, params.getPackageSizes(), remoterank_vec, rank, 1, 0, &results, m);
+            measurement->measure(params.getinnerRuntimeIterations(), params.getPackageSizes(), remoterank_vec, rank, pipelinedepth, 1, &results, m);
             output.outputiteration(&results, m);
         }//m statisticcal iteration
         
