@@ -10,7 +10,7 @@ Parameters::Parameters(int argc, char **argv){
     statisticaliteration = 1;
     factor = (6000000000);
     factor_fix = (1*(1<<20));
-    buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
+    buffersize = 17179869184;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     pinningmode = 1;
         
     startpackagesize = 1 << 2;

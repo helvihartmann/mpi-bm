@@ -57,6 +57,9 @@ int main (int argc, char *argv[]){
         Results results(rank, statisticaliteration, params.getPackageSizes().size());
         Output output(rank, size, communicators_comm);
         //point to correct function depending on if process is sender or receiver
+        
+        cout << "checkpoint 1" << endl;
+
         unique_ptr <Measurement> measurement = nullptr;
         if (commflag == 0){ //sender
             measurement.reset(new Measurementsend(params.getBuffersize(), communicators_comm));
@@ -64,7 +67,7 @@ int main (int argc, char *argv[]){
         else{//receiver
             measurement.reset(new Measurementrecv(params.getBuffersize(), communicators_comm));
         }
-    
+
         // do Measurement----------------------------------------------------------------------------------------
         // repeat measurement couples of times for statistics
         for (unsigned int m = 0; m < statisticaliteration; m++){
@@ -74,6 +77,7 @@ int main (int argc, char *argv[]){
             
             //Data rate measurement: Iterate over packagesize-----------------------------------------------------
             std::vector<size_t> warmups(params.getPackageSizes().size(), params.getnumberofwarmups());
+            cout << "checkpoint 2" << endl;
             measurement->measure(warmups, params.getPackageSizes(), remoterank_vec, rank, 1, 0, &results, m);
             measurement->measure(params.getinnerRuntimeIterations(), params.getPackageSizes(), remoterank_vec, rank, pipelinedepth, 1, &results, m);
             output.outputiteration(&results, m);
