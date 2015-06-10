@@ -10,11 +10,12 @@
 
 class Parameters{
 private:
+    int size, rank;
     size_t numberofwarmups;
     int multicore;
     int pinningmode;
     unsigned int pipelinedepth;
-    unsigned int nmbr_commprocess;
+    int nmbr_commprocess;
     size_t factor;
     size_t factor_fix;
     size_t buffersize;
@@ -23,7 +24,8 @@ private:
     int packageSizeFactor;
     
     std::vector<size_t> packagesizes;
-    
+    std::vector<int>remoterank_vec;
+
     
 public:
     
@@ -31,7 +33,13 @@ public:
     
     int getsetflag(int rank);
     
+    void setpackagesizes();
+    
     const std::vector<size_t>& getpackagesizes() { return packagesizes; }
+    
+    std::vector<int> getsetremoterankvec(unsigned int size_,unsigned int rank_);
+    
+    void applyLSE(int start, int sign);
     
     size_t getNumberOfPackageSizes() { return packagesizes.size(); }
     

@@ -16,13 +16,13 @@ DataManager::DataManager(size_t buffersize_) :
 
 }
 
-vector<double> DataManager::run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, int rank, size_t nmbr_warmups, int commflag, unsigned int nmbr_commprocess){
+vector<double> DataManager::run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, vector<int>remoteranks, size_t nmbr_warmups, int commflag, int nmbr_commprocess){
     unsigned int remoteRank = 0;
     double starttime = 0;
     double endtime = 0;
     time.clear();
     size_t innerRuntimeIteration;
-    for(unsigned int phase = 0; phase < (nmbr_commprocess/2); phase++){
+    for(int phase = 0; phase < (nmbr_commprocess/2); phase++){
         for (int warmup = 0; warmup < 2; warmup++){
             for (unsigned int i = 0; i < packagesize.size(); i++){
                 if (warmup == 0){
@@ -34,14 +34,14 @@ vector<double> DataManager::run(vector<size_t>packagesize, vector<size_t> innerR
                 packagecount = packagesize.at(i)/sizeof(int);
                 MPI_Barrier(MPI_COMM_WORLD);
                 if (commflag < 2){
+                    remoteRank = remoteranks.at(phase);
                     starttime = MPI_Wtime();
-                    if (rank%2 == 0){
-                        remoteRank = (rank + 1 + (phase * 2)) % nmbr_commprocess;
-                        //cout << phase << " " << rank << " sending to " << remoteRank << " " << packagecount << endl;
+                    if (commflag == 1){
+                        //remoteRank = (rank + 1 + (phase * 2)) % nmbr_commprocess;
                         sendrecvdata(remoteRank, innerRuntimeIteration);
                     }
                     else {
-                        remoteRank = (rank + (nmbr_commprocess - 1) - (phase * 2)) % nmbr_commprocess;
+                        //remoteRank = (rank + (nmbr_commprocess - 1) - (phase * 2)) % nmbr_commprocess;
                         sendrecvdata(remoteRank, innerRuntimeIteration);
                     }
                 }

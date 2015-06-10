@@ -2,12 +2,12 @@
 
 Parameters::Parameters(int argc, char **argv){
     int opt;
-    numberofwarmups = 100;
+    numberofwarmups = 1000;
     multicore = 1;
     pipelinedepth = 8;
-    factor = (10000000000);
-    factor_fix = (1*(1<<20));
-    buffersize = 34359738368;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
+    factor = (20000000000);
+    factor_fix = (1*(1<<21));
+    buffersize = 17179869184;//4294967296; //2147483648;//!!!Attention in Bytes convert for pointer arithmetic
     pinningmode = 1;
     nmbr_commprocess = 4;
     startpackagesize = 1 << 2;
@@ -142,20 +142,61 @@ Parameters::Parameters(int argc, char **argv){
     }
 
     //-------------------------------------------------------------------------------------------
-    if (startpackagesize <= endpackagesize){
-        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packageSizeFactor){
-                packagesizes.push_back(p);
-        }
-    }
-    else{
-        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packageSizeFactor){
-                packagesizes.push_back(p);
-        }
-    }
+    setpackagesizes();
 }
 
 
 
+void Parameters::setpackagesizes(){
+    if (startpackagesize <= endpackagesize){
+        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packageSizeFactor){
+            packagesizes.push_back(p);
+        }
+    }
+    else{
+        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packageSizeFactor){
+            packagesizes.push_back(p);
+        }
+    }
+}
+
+std::vector<int> Parameters::getsetremoterankvec(unsigned int size_,unsigned int rank_){
+    size = size_;
+    rank = rank_;
+    if(rank < nmbr_commprocess){
+        switch (multicore) {
+            // for one process per node
+            case 1: {
+                if (rank%2 == 0){//for senders
+                    applyLSE(1,1);
+                }
+                else {//for receivers
+                    applyLSE((nmbr_commprocess - 1),-1);
+                }
+                break;
+            }
+            case 2: {
+                if(rank%2 == 0 ){//for senders
+                    applyLSE(3,1);//send to all odd ranked processes except the one on the same node (sender rank +1);
+                }
+                else {//for receivers
+                    applyLSE((nmbr_commprocess - 3),-1);//1 receives first from second last process except the one on the same node (receiver rank - 1)
+                }
+                break;
+            }
+        }
+    }
+    return remoterank_vec;
+}
+
+void Parameters::applyLSE(int start, int sign){
+    for(int remoterank_idx = 0; remoterank_idx < nmbr_commprocess; remoterank_idx++){
+        unsigned int remoterank = (rank + start + (remoterank_idx * 2 * sign))%nmbr_commprocess;
+
+        //0 should always start with sending to 3 and then add 2 in the next round
+        remoterank_vec.push_back(remoterank);
+    }
+}
 
 int Parameters::getsetflag(int rank){
     int commflag;
@@ -182,8 +223,6 @@ std::vector<size_t> Parameters::getinnerRuntimeIterations() {
     std::vector<size_t>innerRuntimeIterations;
     size_t iter;
     // inner iter for small packagesize constant because double the packagesize = double as fast
-    std::cout << factor << " " << factor_fix << " " << numberofwarmups << std::endl;
-
     for(size_t pcksize = packagesizes.front(); pcksize <= packagesizes.back(); pcksize = pcksize*packageSizeFactor){
         if (pcksize <= 8000)  {
             iter = factor_fix;
@@ -198,6 +237,7 @@ std::vector<size_t> Parameters::getinnerRuntimeIterations() {
             iter = 1;
             //innerRuntimeIterations = pipelinedepth + 1;
         }
+        std::cout << iter << std::endl;
         innerRuntimeIterations.push_back(iter);
     }
     return innerRuntimeIterations;

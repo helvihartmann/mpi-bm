@@ -21,7 +21,7 @@ protected:
 public:
     DataManager(size_t buffersize);
     
-    vector<double> run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, int rank, size_t numberofwarmups, int commflag, unsigned int nmbr_commprocess);
+    vector<double> run(vector<size_t>packagesize, vector<size_t> innerRuntimeIterations_, vector<int> remoteranks, size_t numberofwarmups, int commflag, int nmbr_commprocess);
     
     void sendrecvdata(unsigned int remoterank, size_t innerRuntimeIterations);
     
