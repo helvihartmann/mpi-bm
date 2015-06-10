@@ -15,7 +15,7 @@ Parameters::Parameters(int argc, char **argv){
         
     startpackagesize = 1 << 2;
     endpackagesize = 1 << 24;
-    int packageSizeFactor = 2;
+    packagesizefactor = 2;
     
     //-------------------------------------------------------------------------------------------
     
@@ -45,7 +45,7 @@ Parameters::Parameters(int argc, char **argv){
             std::cout << " --iterations                  -i       factor to determine number of inner runtime iterations in miollions \n (DEFAULT = "                        << factor << ")\n"                 << std::endl;
             std::cout << " --start_package_size          -a       start package size\n (DEFAULT = "                                                         << startpackagesize << ")\n"       << std::endl;
             std::cout << " --cutoff                      -e       endPackageSize, i.e. the maximum package size being send \n (DEFAULT = "                     << endpackagesize << ")\n"         << std::endl;
-            std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packageSizeFactor << ")\n"      << std::endl;
+            std::cout << " --package_size_factor         -f       factor by which package size is increased \n (DEFAULT = "                                   << packagesizefactor << ")\n"      << std::endl;
             std::cout << " --outer_statistical_iteations -o       statistical iterations of whole measurement\n (DEFAULT = "                                  << statisticaliteration << ")\n"   << std::endl;
             std::cout << " --buffer_size                 -b       size of allocated buffer\n (DEFAULT = "                                                   << buffersize << ")\n"             << std::endl;
             std::cout << " --multicore                   -m       defines how many processes are initiated on a node \n (DEFAULT = "                           << multicore         << ")\n"      << std::endl;
@@ -85,9 +85,9 @@ Parameters::Parameters(int argc, char **argv){
             }
             break;
         case 'f':
-            packageSizeFactor = atof(optarg);
+            packagesizefactor = atof(optarg);
             
-            if (!(packageSizeFactor > 0)) {
+            if (!(packagesizefactor > 0)) {
                 printf("ERROR -f: please enter vaild number for step factor\n");
                 exit(1);
             }
@@ -164,14 +164,22 @@ Parameters::Parameters(int argc, char **argv){
     }
 
     //-------------------------------------------------------------------------------------------
+    
+    if (factor > 100000000000){
+        factor_fix = 50*factor_fix;
+    }
+    
+    
     if (startpackagesize <= endpackagesize){
-        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packageSizeFactor){
-                packageSizes.push_back(p);
+        for (size_t p = startpackagesize; p <= endpackagesize; p = p * packagesizefactor){
+            packageSizes.push_back(p);
+            setinnerRuntimeIterations(p);
         }
     }
     else{
-        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packageSizeFactor){
-                packageSizes.push_back(p);
+        for (size_t p = startpackagesize; p >= endpackagesize; p = p/packagesizefactor){
+            packageSizes.push_back(p);
+            setinnerRuntimeIterations(p);
         }
     }
     
@@ -247,40 +255,35 @@ void Parameters::applyLSE(int start, int sign){
     }
 }
 
-size_t Parameters::getinnerRuntimeIterations(int z) {
-    size_t innerRuntimeIterations;
+void Parameters::setinnerRuntimeIterations(size_t packagesize) {
+    size_t iter;
     
     if (factor > 100000000000){
         factor_fix = 50*factor_fix;
     }
     
     // inner iter for small packagesize constant because double the packagesize = double as fast
-    if (packageSizes.at(z) <= 8000)  {
-        innerRuntimeIterations = factor_fix;
+    if (packagesize <= 8000)  {
+        iter = factor_fix;
     }
     else{
-        innerRuntimeIterations = factor/packageSizes.at(z);
+        iter = factor/packagesize;
     }
     
     // inner iter for big package sizes which are all around 6GB/s
     if (numberofSenders < numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofSenders/(double)numberofReceivers);
+        iter = iter * ((double)numberofSenders/(double)numberofReceivers);
     }
     else if (numberofSenders > numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations * ((double)numberofReceivers/(double)numberofSenders);
+        iter = iter * ((double)numberofReceivers/(double)numberofSenders);
     }
     else if (numberofSenders == numberofReceivers){
-        innerRuntimeIterations = innerRuntimeIterations/numberofReceivers;
+        iter = iter/numberofReceivers;
     }
     
-    /*if (innerRuntimeIterations <= pipelinedepth){
-        innerRuntimeIterations = (pipelinedepth*numberofremoteranks) + 1;
-        //innerRuntimeIterations = pipelinedepth + 1;
-    }*/
-    
-    if (innerRuntimeIterations <= 1){
-        innerRuntimeIterations = 1;
-        //innerRuntimeIterations = pipelinedepth + 1;
+    if (iter <= 1){
+        iter = 1;
+        //iter = pipelinedepth + 1;
     }
-    return innerRuntimeIterations;
+    innerRuntimeIterations.push_back(iter);
 }
