@@ -17,7 +17,7 @@ echo "#SBATCH --output="$m$m"pipe"$p".out" >> single.in
     echo "#SBATCH --ntasks-per-node=1" >> single.in
     echo "" >> single.in
     echo "" >> single.in
-    echo "mpirun --mca btl_openib_if_include mlx4_0 --mca btl_openib_eager_limit 136 build/pingpong -s "$m" -r "$m "-o 2 -e 10000000000 -p" $p >> single.in
+    echo "mpirun --mca btl_openib_if_include mlx4_0 --mca btl_openib_eager_limit 136 ../build/pingpong -s "$m" -r "$m "-o 2 -e 10000000000 -p" $p >> single.in
     echo "" >> single.in
     echo "exit 0" >> single.in
     sbatch single.in

@@ -21,4 +21,31 @@ b) if no slurm
 to see which parameter can be used to run it
 
 
+2. lse-mpi-bm---------------------------
+
+stands for Linear Shift Exchange pattern - MPI - BenchMark
+in this benchmark a bunch of nodes can communicate via MPI_ISsend/MPI_Irecv to eachother and output the reached data rate
+
+compile with cmake
+
+run with
+
+a) if slurm availabe
+
+	> sbatch run.slurm
+	
+	or
+
+	> mpirun lse-mpi-bm -h
+
+	to see parameter overview	
+
+b) if not 
+
+	> mpirun <options> lse-mpi-bm
+
+
+
+
+
 
