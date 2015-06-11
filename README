@@ -1,0 +1,51 @@
+Repository created by H.Hartmann 2013-2015 <hhartmann@fias.uni-frankfurt.de>
+
+This project was created to test the performance of MPI over an Infiniband Network.
+
+1. Sendrecv------------------------
+
+This program mimiks a send and receive routine between two processes and can be run with different sendmodes of MPI
+
+Just compile with cmake
+
+It can be run with different options try 
+
+a) if slurm available
+
+	> srun -N2 mpirun sendrecv -h
+
+b) if no slurm
+
+	> mpirun sendrecv -h
+
+to see which parameter can be used to run it
+
+
+2. lse-mpi-bm---------------------------
+
+stands for Linear Shift Exchange pattern - MPI - BenchMark
+in this benchmark a bunch of nodes can communicate via MPI_ISsend/MPI_Irecv to eachother and output the reached data rate
+
+compile with cmake
+
+run with
+
+a) if slurm availabe
+
+	> sbatch run.slurm
+	
+	or
+
+	> mpirun lse-mpi-bm -h
+
+	to see parameter overview	
+
+b) if not 
+
+	> mpirun <options> lse-mpi-bm
+
+
+
+
+
+

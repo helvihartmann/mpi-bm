@@ -1,0 +1,6 @@
+sudo service opensm stop
+sudo /usr/sbin/opensm -f stdout -R file -U dump_lfts.txt
+sudo /usr/sbin/opensm -R file -U myTable.txt
+sudo service opensm start 
+sudo pssh -h /root/hosts -p 200 -i uptime
+ssh root@lcsc-r04n04 -- /opt/slurm/exec/sbin/slurmd -d /opt/slurm/exec/sbin/slurmstepd
