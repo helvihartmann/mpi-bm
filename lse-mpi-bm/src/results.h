@@ -3,9 +3,11 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <mpi.h>
+#include <unistd.h>
 /*2015 Copyright Helvi Hartmann <hhartmann@fias.uni-frankfurt.de
  collects time measured to transfer data and calculates data rate from it*/
-
+using namespace std;
 class Results{
 private:
     int rank;
@@ -21,11 +23,16 @@ private:
     std::vector<double> time;
     std::vector<double> summe;
 
+    MPI_Comm communicators_comm;
+    int size;
 public:
     
-    Results(int rank, int statisticaliteration, int numberofpackages);
+    Results(int rank, int statisticaliteration, int numberofpackages, MPI_Comm communicators_comm_, int size_);
     
     void setvectors(int m, size_t idx_numberofpackages, size_t innerRuntimeIterations, size_t packagesize_tmp, int dataamountfactor,double time);
+    
+    void outputiteration(unsigned int m);
+    void outputfinal(int commflag);
     
     void printstatisticaliteration();
     

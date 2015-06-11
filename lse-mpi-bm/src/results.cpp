@@ -1,14 +1,16 @@
 #include "results.h"
 
-Results::Results(int rank_, int statisticaliteration_, int numberofpackages_) :
-  rank(rank_),
-  statisticaliteration(statisticaliteration_),
-  numberofpackages(numberofpackages_),
-  package_vector(numberofpackages),
-  innerRuntimeIterations_vector(numberofpackages),
-  totaldatasent_vector(numberofpackages),
-  time(statisticaliteration * numberofpackages),
-  summe(numberofpackages)
+Results::Results(int rank_, int statisticaliteration_, int numberofpackages_, MPI_Comm communicators_comm_, int size_) :
+    rank(rank_),
+    statisticaliteration(statisticaliteration_),
+    numberofpackages(numberofpackages_),
+    package_vector(numberofpackages),
+    innerRuntimeIterations_vector(numberofpackages),
+    totaldatasent_vector(numberofpackages),
+    time(statisticaliteration * numberofpackages),
+    summe(numberofpackages),
+    communicators_comm(communicators_comm_),
+    size(size_)
 {
 }
 
@@ -51,5 +53,45 @@ void Results::calculate(){
         double send_std=(send_stdtime/send_mean)*rate;
         
         std::cout<<totaldatasent_vector.at(z)<<" "<<innerRuntimeIterations_vector.at(z)<<" "<<package_vector.at(z)<<" "<<send_mean<<" "<<send_stdtime<<" "<<rate<< " " << send_std << " " << rank << std::endl;
+    }
+}
+
+
+void Results::outputiteration(unsigned int m){
+    MPI_Barrier(communicators_comm);
+    for (int i=0; i<size; i++) {
+        if (rank == i){
+            if (rank == 0){
+                cout << m << ". iteration-------------------" << endl;
+                
+            }
+            printstatisticaliteration();
+            sleep(2);
+        }
+        MPI_Barrier(communicators_comm);
+    }
+}
+
+void Results::outputfinal(int commflag){
+    for (int i=0; i<size; i++) {
+        if (rank == i){
+            if(rank == 0){
+                cout << "# processes " << size << endl;
+            }
+            
+            if (commflag == 0){
+                cout << "#----------------------- SENDER ---------------------------" << endl;
+                cout << "# totaldatasent repeats  packagesize time [us] std sendbandwidth [MB/s] std \n" << endl;
+            }
+            
+            else {
+                cout << "#--- RECEIVER ----------------------------" << endl;
+            }
+            
+            calculate();
+            cout << "\n\n" << endl;
+            sleep(5);
+        }
+        MPI_Barrier(communicators_comm);
     }
 }

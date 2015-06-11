@@ -4,7 +4,7 @@
 #include "parameters.h"
 #include "results.h"
 #include "measurement.h"
-#include "output.h"
+//#include "output.h"
 #include <unistd.h>
 #include "tsc.h"
 
@@ -54,8 +54,8 @@ int main (int argc, char *argv[]){
         unsigned int statisticaliteration = params.getStatisticalIterations();
        
         // iniate classes
-        Results results(rank, statisticaliteration, params.getPackageSizes().size());
-        Output output(rank, size, communicators_comm);
+        Results results(rank, statisticaliteration, params.getPackageSizes().size(), communicators_comm, size);
+        //Output output(rank, size, communicators_comm);
         //point to correct function depending on if process is sender or receiver
         unique_ptr <Measurement> measurement = nullptr;
         if (commflag == 0){ //sender
@@ -76,11 +76,11 @@ int main (int argc, char *argv[]){
             std::vector<size_t> warmups(params.getPackageSizes().size(), params.getnumberofwarmups());
             measurement->measure(warmups, params.getPackageSizes(), remoterank_vec, rank, 1, 0, &results, m);
             measurement->measure(params.getinnerRuntimeIterations(), params.getPackageSizes(), remoterank_vec, rank, pipelinedepth, 1, &results, m);
-            output.outputiteration(&results, m);
+            results.outputiteration(m);
         }//m statisticcal iteration
         
         //-----------------------------------Output-------------------------------------------------------------
-        output.outputfinal(&results, commflag);
+        results.outputfinal(commflag);
     }//if communicating process
     
     MPI_Barrier(MPI_COMM_WORLD);
