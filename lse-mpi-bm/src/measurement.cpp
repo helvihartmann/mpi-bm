@@ -21,7 +21,6 @@ Measurement::Measurement(size_t buffersize_, MPI_Comm communicators_comm_) :
 void Measurement::measure(std::vector<size_t> innerRuntimeIterations, std::vector<size_t>packagesizes, std::vector<int>remoterank_vec, int rank, unsigned int pipelinedepth, int flag, Results *results, unsigned int m){
     
     for (unsigned int z = 0; z < packagesizes.size(); z++){
-        std::cout << z << " " << packagesizes.size() << " " << packagesizes.at(z) << " " << innerRuntimeIterations.size() << " " << innerRuntimeIterations.at(z) << std::endl;
         packagecount = packagesizes.at(z)/sizeof(int);
         MPI_Barrier(communicators_comm);
         starttime = MPI_Wtime();

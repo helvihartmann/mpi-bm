@@ -7,6 +7,5 @@ build/
 *.hist
 *.log
 *.ib
-*.txt
-nodelist.txt
+nodelist*.txt
 runbm.sh
