@@ -10,5 +10,5 @@ set(CMAKE_CXX_COMPILER mpic++)
 #Sends the -std=c99 flag to the gcc compiler
 add_definitions(-std=c++11 -Wall -Wextra -g -O3)
 #This tells CMake to do executable
-add_executable(pingpong pingpong.cpp buffer.cpp parameters.cpp results.cpp)
+add_executable(pingpong src/pingpong.cpp src/buffer.cpp src/parameters.cpp src/results.cpp)
 
