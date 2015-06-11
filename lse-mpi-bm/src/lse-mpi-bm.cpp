@@ -55,8 +55,8 @@ int main (int argc, char *argv[]){
        
         // iniate classes
         Results results(rank, statisticaliteration, params.getPackageSizes().size(), communicators_comm, size);
-        //Output output(rank, size, communicators_comm);
-        //point to correct function depending on if process is sender or receiver
+
+        //setting class object depending on if process is sender or receiver
         unique_ptr <Measurement> measurement = nullptr;
         if (commflag == 0){ //sender
             measurement.reset(new Measurementsend(params.getBuffersize(), communicators_comm));
@@ -69,12 +69,12 @@ int main (int argc, char *argv[]){
         // repeat measurement couples of times for statistics
         for (unsigned int m = 0; m < statisticaliteration; m++){
 
-            //Warmup
             MPI_Barrier(communicators_comm);
             
-            //Data rate measurement: Iterate over packagesize-----------------------------------------------------
             std::vector<size_t> warmups(params.getPackageSizes().size(), params.getnumberofwarmups());
+            //Warmup
             measurement->measure(warmups, params.getPackageSizes(), remoterank_vec, rank, 1, 0, &results, m);
+            //Measurement
             measurement->measure(params.getinnerRuntimeIterations(), params.getPackageSizes(), remoterank_vec, rank, pipelinedepth, 1, &results, m);
             results.outputiteration(m);
         }//m statisticcal iteration
